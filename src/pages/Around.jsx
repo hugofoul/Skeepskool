@@ -24,15 +24,25 @@ export default function Around() {
             <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
           </Reveal>
 
-          <Reveal delay={120} className="mt-8 max-w-3xl">
-            <p className="text-lg leading-relaxed text-dark/80">{a.tourism.text}</p>
-            <div className="mt-7">
-              <CTAButton href={a.tourism.url} target="_blank" rel="noopener noreferrer">
-                {a.tourism.cta}
-                <ExternalLink className="h-4 w-4" />
-              </CTAButton>
-            </div>
-          </Reveal>
+          <div className="mt-10 grid items-center gap-10 lg:grid-cols-2">
+            <Reveal className="overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10">
+              <img
+                src={images.beach}
+                alt={a.tourismTitle}
+                className="h-72 w-full object-cover sm:h-96"
+                loading="lazy"
+              />
+            </Reveal>
+            <Reveal delay={120}>
+              <p className="text-lg leading-relaxed text-dark/80">{a.tourism.text}</p>
+              <div className="mt-7">
+                <CTAButton href={a.tourism.url} target="_blank" rel="noopener noreferrer">
+                  {a.tourism.cta}
+                  <ExternalLink className="h-4 w-4" />
+                </CTAButton>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 

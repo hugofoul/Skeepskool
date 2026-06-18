@@ -13,9 +13,9 @@ export default function PageHero({ title, subtitle, image }) {
             src={image}
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 h-full w-full object-cover opacity-25"
+            className="absolute inset-0 h-full w-full object-cover opacity-50"
           />
-          <div className="absolute inset-0 bg-royalBlue/60" />
+          <div className="absolute inset-0 bg-royalBlue/35" />
         </>
       )}
       <div className="relative mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 sm:py-24 lg:px-8">

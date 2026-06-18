@@ -254,7 +254,7 @@ export const fr = {
     addressDetail: '40 m au nord de l’accès principal à la plage.',
     openMaps: 'Ouvrir dans Google Maps',
     phones: '+33 6 70 60 84 26 · +33 6 50 52 34 75',
-    facebook: 'facebook.com/skeepskool',
+    facebook: '@skeepskool (Facebook)',
     instagram: '@skeepskool (Instagram)',
     email: 'contact@skeepskool.fr',
 

@@ -170,6 +170,8 @@ export default function Home() {
 }
 
 function InfoLine({ icon: Icon, title, label }) {
+  const isAddress = Icon === MapPin && !title
+  
   return (
     <div className="flex items-start gap-4 rounded-xl bg-white p-4 shadow-sm ring-1 ring-black/5">
       <span className="rounded-lg bg-royalBlue/10 p-2">
@@ -177,7 +179,18 @@ function InfoLine({ icon: Icon, title, label }) {
       </span>
       <div>
         {title && <p className="font-bold text-royalBlue">{title}</p>}
-        <p className="text-sm text-dark/80">{label}</p>
+        {isAddress ? (
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-dark/80 transition-colors hover:text-royalBlue"
+          >
+            {label}
+          </a>
+        ) : (
+          <p className="text-sm text-dark/80">{label}</p>
+        )}
       </div>
     </div>
   )
