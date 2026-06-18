@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Waves, Phone, Mail, Facebook, Instagram, MapPin } from 'lucide-react'
+import { Phone, Mail, Facebook, Instagram, MapPin } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 
 export default function Footer() {
@@ -20,11 +20,12 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3 lg:px-8">
         {/* Col 1 — Brand */}
         <div>
-          <Link to="/" className="flex items-center gap-2">
-            <Waves className="h-6 w-6 text-yellow" strokeWidth={2.5} />
-            <span className="text-xl font-extrabold tracking-wide">
-              SKEEPS<span className="text-red">K</span>OOL
-            </span>
+          <Link to="/" className="inline-flex items-center">
+            <img
+              src="/logo-skeep-400-1-2.png"
+              alt="Skeepskool Surfing Le Porge"
+              className="h-20 w-auto object-contain"
+            />
           </Link>
           <p className="mt-4 max-w-xs text-sm text-white/80">{t.footer.tagline}</p>
           <span className="mt-4 inline-block rounded-full bg-yellow px-3 py-1 text-xs font-bold text-royalBlue">

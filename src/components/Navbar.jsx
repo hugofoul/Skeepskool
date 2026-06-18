@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Menu, X, Waves, Phone } from 'lucide-react'
+import { Menu, X, Phone } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 
 export default function Navbar() {
@@ -44,14 +44,12 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-royalBlue shadow-lg">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         {/* Brand */}
-        <Link to="/" className="group flex items-center gap-2">
-          <Waves className="h-6 w-6 text-yellow" strokeWidth={2.5} />
-          <span className="text-xl font-extrabold tracking-wide text-white">
-            SKEEPS
-            <span className="text-red">K</span>
-            OOL
-          </span>
-          <span className="ml-0.5 h-2 w-2 rounded-full bg-red" />
+        <Link to="/" className="group flex items-center">
+          <img
+            src="/logo-skeep-400-1-2.png"
+            alt="Skeepskool Surfing Le Porge"
+            className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02] sm:h-16"
+          />
         </Link>
 
         {/* Center links (desktop) */}

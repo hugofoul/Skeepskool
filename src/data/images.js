@@ -45,7 +45,7 @@ export const carousel = [
   { src: '/images/coucher2.jpg', alt: 'Planches de surf alignées' },
   { src: '/images/charliecours.jpg', alt: 'Plage du Porge Océan' },
   { src: '/images/coucher.jpg', alt: 'Vague atlantique qui déferle' },
-  { src: '/images/sunset3.JPEG', alt: 'Groupe de surfeurs sur la plage' },
+  { src: '/images/sunset4.JPEG', alt: 'Groupe de surfeurs sur la plage' },
 ]
 
 // Team member portraits.
