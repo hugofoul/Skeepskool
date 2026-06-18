@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/wave.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Skeepskool — École de surf labellisée FFS au Porge Océan (Gironde). Cours de surf dès 5 ans, location de matériel, à 50 min de Bordeaux."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Skeepskool — École de Surf · Le Porge Océan</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Graceful fallback: if a local photo in /images/ is missing, show a
+      // neutral ocean placeholder instead of a broken-image icon.
+      (function () {
+        var FALLBACK =
+          'https://images.unsplash.com/photo-1505459668311-8dfac7952bf9?w=1600&q=80&auto=format&fit=crop';
+        document.addEventListener(
+          'error',
+          function (e) {
+            var el = e.target;
+            if (
+              el &&
+              el.tagName === 'IMG' &&
+              !el.dataset.fallbackApplied &&
+              el.getAttribute('src') &&
+              el.getAttribute('src').indexOf('/images/') === 0
+            ) {
+              el.dataset.fallbackApplied = '1';
+              el.src = FALLBACK;
+            }
+          },
+          true
+        );
+      })();
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
