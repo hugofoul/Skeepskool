@@ -202,6 +202,7 @@ export const fr = {
     infoTitle: 'Nos coordonnées',
     address: 'Plage Centrale, Le Porge Océan, 33680 Gironde',
     addressDetail: '40 m au nord de l’accès principal à la plage.',
+    openMaps: 'Ouvrir dans Google Maps',
     phones: '+33 6 70 60 84 26 · +33 6 50 52 34 75',
     facebook: 'facebook.com/skeepskool',
     instagram: '@skeepskool (Instagram)',

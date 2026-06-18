@@ -16,18 +16,18 @@ export const images = {
   wave: '/images/vague.jpg', //         u('1505459668311-8dfac7952bf9')
   beach: '/images/plage.jpg', //        u('1507525428034-b723cf961d3e')
   surfboards: '/images/planches.jpg', // u('1531722569936-825d3dd91b15')
-  riding: '/images/surf-vague.jpg', //  u('1455729552865-3658a5d39692')
+  riding: '/images/vague.jpg', //  u('1455729552865-3658a5d39692')
   dunePines: '/images/dune-foret.jpg', // u('1559827260-dc66d52bef19')
   lesson: '/images/cours.jpg', //       u('1549880181-56a44cf4a9a5')
-  team: '/images/equipe.jpg', //        u('1530870110042-98b2cb110834')
+  team: '/images/charliecours.jpg', //        u('1530870110042-98b2cb110834')
   contact: '/images/ocean.jpg', //      u('1520454974749-611b7248ffdb')
 }
 
 // Home page photo carousel — add or remove lines freely.
 export const carousel = [
   { src: '/images/carrousel-1.JPEG', alt: 'Cours de surf à Skeepskool' },
-  { src: '/images/carrousel-2.jpg', alt: 'Surfeur prenant une vague' },
-  { src: '/images/carrousel-3.jpg', alt: 'Planches de surf alignées' },
+  { src: '/images/école.jpeg', alt: 'Surfeur prenant une vague' },
+  { src: '/images/coucher2.jpg', alt: 'Planches de surf alignées' },
   { src: '/images/carrousel-4.jpg', alt: 'Plage du Porge Océan' },
   { src: '/images/carrousel-5.jpg', alt: 'Vague atlantique qui déferle' },
   { src: '/images/carrousel-6.jpg', alt: 'Groupe de surfeurs sur la plage' },
