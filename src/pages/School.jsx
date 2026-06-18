@@ -78,7 +78,7 @@ export default function School() {
       </section>
 
       {/* ---- Team presentation ---- */}
-      <section className="bg-white py-16 sm:py-24">
+      <section id="equipe" className="scroll-mt-24 bg-white py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-center text-3xl font-black text-royalBlue sm:text-4xl">

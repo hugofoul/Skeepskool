@@ -15,6 +15,7 @@ export const en = {
     school: 'School',
     lessons: 'Lessons',
     rental: 'Rental',
+    around: 'Around',
     contact: 'Contact',
   },
 
@@ -140,6 +141,47 @@ export const en = {
     introTitle: 'Surf lessons',
     introText:
       'Every package includes: qualified instructor, suitable equipment, insurance, federation license and level certificate.',
+
+    // --- Detailed lesson presentation ---
+    aboutTitle: 'How does a lesson work?',
+    aboutLead:
+      'A surf lesson at Skeepskool is 2 hours led by a state-certified instructor, on the central beach of Le Porge Océan. A real sports session designed to progress while having fun — from beginner to advanced, from age 5.',
+    quickFacts: [
+      { label: 'Duration', value: '2 hours', detail: 'Please arrive 20 min before the lesson starts.' },
+      { label: 'Level', value: 'All levels', detail: 'Beginner to advanced, from age 5.' },
+      { label: 'Equipment', value: 'All included', detail: 'Wetsuit and board provided.' },
+      { label: 'Supervision', value: 'Certified instructor', detail: 'Always with you in the water.' },
+    ],
+    stepsTitle: 'Step by step',
+    steps: [
+      {
+        title: 'Arrive 20 min early',
+        text: 'Meet at the Skeepskool cabin 20 minutes before the lesson to collect your wetsuit and the board chosen by your instructor.',
+      },
+      {
+        title: 'Warm-up & theory',
+        text: 'The instructor takes you onto the sand for a warm-up, a briefing on the day’s conditions and the essential safety rules.',
+      },
+      {
+        title: 'In the water',
+        text: 'Time to practise! Beginners surf in the whitewater, the more confident head out for the waves. The instructor stays with you in the water.',
+      },
+      {
+        title: 'Review & progress',
+        text: 'At the end of the session, the instructor gives you personalised tips to keep improving next time.',
+      },
+    ],
+    includedTitle: 'Everything is included in the price',
+    goodToKnowTitle: 'Good to know',
+    goodToKnow: [
+      'Please arrive 20 minutes before the lesson starts.',
+      'For a first lesson, more time is spent on the sand (basics and safety).',
+      'Groups are formed by level for the best progression.',
+      'Lesson schedules are posted in real time on the WhatsApp community.',
+    ],
+    pricesTitle: 'Our packages & prices',
+    pricesSubtitle: 'The more lessons you take, the lower the price per session.',
+
     popular: 'Popular',
     perSession: '/ session',
     cards: [
@@ -162,6 +204,14 @@ export const en = {
       'Federation license',
       'Level certificate',
     ],
+    validityNote: 'All our packages are valid for 1 year from the purchase date.',
+    sunsetTitle: 'Sunset lessons',
+    sunsetText:
+      'Fancy a magical session? We also offer Sunset lessons: surf in the golden evening light, when the ocean calms down and the waves are all yours.',
+    sunsetCta: 'Ask for a Sunset lesson',
+    teamLinkTitle: 'Led by a passionate team',
+    teamLinkText: 'All our lessons are run by state-certified instructors. Meet the Skeepskool team.',
+    teamLinkCta: 'Meet the instructors',
     cta: 'Book now',
   },
 
@@ -241,7 +291,56 @@ export const en = {
     mapTitle: 'Find us',
   },
 
-  // ---- Footer ----
+  // ---- Around / Practical ----
+  around: {
+    heroTitle: 'Around us',
+    heroSubtitle: 'Where to sleep, where to eat and how to get to Le Porge Océan.',
+
+    campingTitle: 'Where to sleep',
+    camping: {
+      name: 'Camping La Grigne ★★★',
+      text: 'Skeepskool is just steps from the municipal campsite La Grigne, by the Atlantic Ocean. Direct access to the beach on foot or by bike, a preserved natural setting and a family atmosphere — perfect to combine holidays and surf sessions.',
+      address: '35 avenue de l’Océan, 33680 Le Porge-Océan',
+      phone: '+33 5 56 26 54 88',
+      season: 'Open from 4 April to 1 November',
+      cta: 'Visit the campsite',
+      url: 'https://camping-leporge.fr',
+    },
+
+    restaurantsTitle: 'Where to eat',
+    restaurantsIntro: 'Two great spots nearby to enjoy a meal after surfing:',
+    restaurants: [
+      {
+        name: 'Pizzeria des Bois',
+        text: 'Generous pizzas to enjoy between dune and forest — perfect after a session.',
+        cta: 'View on Instagram',
+        url: 'https://www.instagram.com/pizzeria_des_bois/',
+      },
+      {
+        name: 'L’Ajoncière',
+        text: 'A friendly restaurant in Le Porge Océan for a tasty break just steps from the beach.',
+        cta: 'View on Instagram',
+        url: 'https://www.instagram.com/l_ajonciere_le_porge_ocean/',
+      },
+    ],
+
+    busTitle: 'Coming by bus',
+    busText:
+      'The Cars Région Nouvelle-Aquitaine regional coach line connects Bordeaux to Le Porge. A simple and affordable way to reach the ocean without a car.',
+    busPriceLabel: 'Fare',
+    busPrice: '€2.60 per trip',
+    busPriceNote: 'Indicative flat fare for the regional network — please confirm before travelling.',
+    busCta: 'View timetable (PDF)',
+    busUrl:
+      'https://transports.nouvelle-aquitaine.fr/sites/default/files/timetable_files/NOUVEAU-SPECIAL%20Eté-Fiche%20horaire%20Cars%20régionaux-Bordeaux-Le%20Porge.pdf',
+
+    tourismTitle: 'Tourist office',
+    tourism: {
+      text: 'To plan your stay, the Médoc Atlantique tourist office helps you discover Le Porge, its village and its ocean: walks, markets, nature activities and tips throughout the season.',
+      cta: 'Discover Le Porge',
+      url: 'https://www.medocpleinsud.com/decouvrir/le-porge-village-et-ocean/',
+    },
+  },
   footer: {
     tagline: 'FFS-certified surf school at Le Porge Océan, Gironde.',
     quickLinks: 'Quick links',

@@ -15,6 +15,7 @@ export const fr = {
     school: 'École',
     lessons: 'Cours',
     rental: 'Location',
+    around: 'Autour',
     contact: 'Contact',
   },
 
@@ -140,6 +141,47 @@ export const fr = {
     introTitle: 'Cours de surf',
     introText:
       'Chaque formule comprend : moniteur diplômé, matériel adapté, assurance, licence fédérale et attestation de niveau.',
+
+    // --- Présentation détaillée d'un cours ---
+    aboutTitle: 'Comment se déroule un cours ?',
+    aboutLead:
+      'Un cours de surf chez Skeepskool, c’est 2 heures encadrées par un moniteur diplômé d’État, sur la plage centrale du Porge Océan. Une vraie session sportive, pensée pour progresser en s’amusant, du débutant au confirmé, dès 5 ans.',
+    quickFacts: [
+      { label: 'Durée', value: '2 heures', detail: 'Présentez-vous 20 min avant le début du cours.' },
+      { label: 'Niveau', value: 'Tous niveaux', detail: 'Débutant à confirmé, dès 5 ans.' },
+      { label: 'Matériel', value: 'Tout est compris', detail: 'Combinaison et planche fournies.' },
+      { label: 'Encadrement', value: 'Moniteur diplômé', detail: 'Toujours présent avec vous sur l’eau.' },
+    ],
+    stepsTitle: 'Le déroulé, étape par étape',
+    steps: [
+      {
+        title: 'Arrivée 20 min avant',
+        text: 'Rendez-vous à la cabane Skeepskool 20 minutes avant le début du cours pour récupérer votre combinaison et la planche choisie par votre moniteur.',
+      },
+      {
+        title: 'Échauffement & théorie',
+        text: 'Le moniteur vous emmène sur le sable pour un échauffement, un point sur les conditions du jour et les règles de sécurité essentielles.',
+      },
+      {
+        title: 'Dans l’eau',
+        text: 'Place à la pratique ! Les débutants surfent dans les mousses, les plus à l’aise vont chercher les vagues du large. Le moniteur reste avec vous dans l’eau.',
+      },
+      {
+        title: 'Bilan & progression',
+        text: 'En fin de séance, le moniteur vous donne ses conseils personnalisés pour continuer à progresser à la prochaine session.',
+      },
+    ],
+    includedTitle: 'Tout est compris dans le prix',
+    goodToKnowTitle: 'Bon à savoir',
+    goodToKnow: [
+      'Présentez-vous 20 minutes avant le début du cours.',
+      'Pour un premier cours, le temps sur le sable est plus long (bases et sécurité).',
+      'Les groupes sont constitués par niveau pour une progression optimale.',
+      'Les horaires des cours sont publiés en temps réel sur la communauté WhatsApp.',
+    ],
+    pricesTitle: 'Nos formules & tarifs',
+    pricesSubtitle: 'Plus vous prenez de cours, plus le tarif à la séance baisse.',
+
     popular: 'Populaire',
     perSession: '/ séance',
     cards: [
@@ -162,6 +204,14 @@ export const fr = {
       'Licence fédérale',
       'Attestation de niveau',
     ],
+    validityNote: 'Toutes nos formules sont valables 1 an à partir de la date d’achat.',
+    sunsetTitle: 'Cours au coucher du soleil',
+    sunsetText:
+      'Envie d’une session magique ? Nous proposons aussi des cours en Sunset : surfez dans la lumière dorée de fin de journée, quand l’océan se calme et que les vagues n’appartiennent plus qu’à vous.',
+    sunsetCta: 'Demander un cours Sunset',
+    teamLinkTitle: 'Encadré par une équipe passionnée',
+    teamLinkText: 'Tous nos cours sont assurés par des moniteurs diplômés d’État. Faites connaissance avec l’équipe Skeepskool.',
+    teamLinkCta: 'Découvrir les moniteurs',
     cta: 'Réserver maintenant',
   },
 
@@ -239,6 +289,57 @@ export const fr = {
     gift: 'Offrir un bon cadeau',
     giftUrl: 'https://www.leporge-ecoledesurf.com/en/gift-coupons/',
     mapTitle: 'Nous situer',
+  },
+
+  // ---- Around / Practical ----
+  around: {
+    heroTitle: 'Autour de nous',
+    heroSubtitle: 'Où dormir, où manger et comment venir au Porge Océan.',
+
+    campingTitle: 'Où dormir',
+    camping: {
+      name: 'Camping La Grigne ★★★',
+      text: 'Skeepskool est à deux pas du Camping municipal La Grigne, au bord de l’océan Atlantique. Accès direct à la plage à pied ou à vélo, cadre naturel préservé et ambiance familiale — l’idéal pour combiner vacances et sessions de surf.',
+      address: '35 avenue de l’Océan, 33680 Le Porge-Océan',
+      phone: '+33 5 56 26 54 88',
+      season: 'Ouvert du 4 avril au 1ᵉʳ novembre',
+      cta: 'Voir le camping',
+      url: 'https://camping-leporge.fr',
+    },
+
+    restaurantsTitle: 'Où manger',
+    restaurantsIntro: 'Deux bonnes adresses à proximité pour se régaler après le surf :',
+    restaurants: [
+      {
+        name: 'Pizzeria des Bois',
+        text: 'Pizzas généreuses à savourer entre dune et forêt, parfait après une session.',
+        cta: 'Voir sur Instagram',
+        url: 'https://www.instagram.com/pizzeria_des_bois/',
+      },
+      {
+        name: 'L’Ajoncière',
+        text: 'Restaurant convivial du Porge Océan pour une pause gourmande à deux pas de la plage.',
+        cta: 'Voir sur Instagram',
+        url: 'https://www.instagram.com/l_ajonciere_le_porge_ocean/',
+      },
+    ],
+
+    busTitle: 'Venir en bus',
+    busText:
+      'La ligne de cars régionaux Cars Région Nouvelle-Aquitaine relie Bordeaux au Porge. Une solution simple et économique pour rejoindre l’océan sans voiture.',
+    busPriceLabel: 'Tarif',
+    busPrice: '2,60 € le trajet',
+    busPriceNote: 'Tarif unique indicatif du réseau régional — à confirmer avant votre voyage.',
+    busCta: 'Voir les horaires (PDF)',
+    busUrl:
+      'https://transports.nouvelle-aquitaine.fr/sites/default/files/timetable_files/NOUVEAU-SPECIAL%20Eté-Fiche%20horaire%20Cars%20régionaux-Bordeaux-Le%20Porge.pdf',
+
+    tourismTitle: 'Office de tourisme',
+    tourism: {
+      text: 'Pour préparer votre séjour, l’Office de tourisme Médoc Atlantique vous fait découvrir Le Porge, son village et son océan : balades, marchés, activités nature et bons plans tout au long de la saison.',
+      cta: 'Découvrir Le Porge',
+      url: 'https://www.medocpleinsud.com/decouvrir/le-porge-village-et-ocean/',
+    },
   },
 
   // ---- Footer ----

@@ -11,6 +11,7 @@ export default function Footer() {
     { to: '/ecole', label: t.nav.school },
     { to: '/cours', label: t.nav.lessons },
     { to: '/location', label: t.nav.rental },
+    { to: '/autour', label: t.nav.around },
     { to: '/contact', label: t.nav.contact },
   ]
 
@@ -58,7 +59,14 @@ export default function Footer() {
           <ul className="space-y-3 text-sm text-white/85">
             <li className="flex items-start gap-2">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-yellow" />
-              <span>Plage Centrale, Le Porge Océan, 33680 Gironde</span>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-yellow"
+              >
+                Plage Centrale, Le Porge Océan, 33680 Gironde
+              </a>
             </li>
             <li className="flex items-center gap-2">
               <Phone className="h-4 w-4 shrink-0 text-yellow" />

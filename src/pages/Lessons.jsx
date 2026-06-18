@@ -1,4 +1,5 @@
-import { Check, Star, Waves } from 'lucide-react'
+import { Check, Star, Waves, Clock, Users, Backpack, ShieldCheck, MapPin, Info, Sunset, ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
 import CTAButton from '../components/CTAButton.jsx'
@@ -8,6 +9,8 @@ import { images } from '../data/images.js'
 // Index of the card to highlight as "Popular" (Pack 5 lessons)
 const POPULAR_INDEX = 2
 
+const factIcons = [Clock, Users, Backpack, ShieldCheck]
+
 export default function Lessons() {
   const { t } = useLang()
   const l = t.lessons
@@ -16,13 +19,177 @@ export default function Lessons() {
     <div>
       <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.riding} />
 
-      {/* ---- Intro ---- */}
+      {/* ---- Lesson presentation ---- */}
+      <section className="bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-10 lg:grid-cols-2">
+            <Reveal>
+              <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{l.aboutTitle}</h2>
+              <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+              <p className="mt-5 text-lg leading-relaxed text-dark/80">{l.aboutLead}</p>
+            </Reveal>
+            <Reveal
+              delay={120}
+              className="overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10"
+            >
+              <img
+                src={images.riding}
+                alt={l.aboutTitle}
+                className="h-72 w-full object-cover sm:h-96"
+                loading="lazy"
+              />
+            </Reveal>
+          </div>
+
+          {/* Quick facts */}
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {l.quickFacts.map((fact, i) => {
+              const Icon = factIcons[i]
+              return (
+                <Reveal
+                  key={fact.label}
+                  delay={i * 100}
+                  className="rounded-2xl border-b-4 border-red bg-lightGray p-6 shadow-sm"
+                >
+                  <Icon className="h-9 w-9 text-royalBlue" strokeWidth={2} />
+                  <p className="mt-3 text-xs font-bold uppercase tracking-widest text-royalBlue/70">
+                    {fact.label}
+                  </p>
+                  <p className="text-xl font-extrabold text-dark">{fact.value}</p>
+                  <p className="mt-1 text-sm text-dark/65">{fact.detail}</p>
+                </Reveal>
+              )
+            })}
+          </div>
+
+          {/* Team link */}
+          <Reveal delay={150} className="mt-10">
+            <Link
+              to="/ecole#equipe"
+              className="group flex flex-col items-start gap-4 rounded-2xl bg-royalBlue p-7 text-white shadow-md ring-1 ring-black/5 transition-colors hover:bg-royalBlue/90 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <div className="flex items-start gap-4">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-yellow">
+                  <Users className="h-6 w-6 text-royalBlue" strokeWidth={2.2} />
+                </span>
+                <div>
+                  <h3 className="text-xl font-extrabold text-yellow">{l.teamLinkTitle}</h3>
+                  <p className="mt-1 text-sm text-white/85">{l.teamLinkText}</p>
+                </div>
+              </div>
+              <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-yellow px-5 py-2.5 text-sm font-bold text-royalBlue transition-transform group-hover:translate-x-1">
+                {l.teamLinkCta}
+                <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+              </span>
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---- Sunset lessons ---- */}
+      <section className="bg-dark py-16 text-white sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-10 lg:grid-cols-2">
+            <Reveal
+              className="order-2 overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/10 lg:order-1"
+            >
+              <img
+                src={images.riding}
+                alt={l.sunsetTitle}
+                className="h-72 w-full object-cover sm:h-96"
+                loading="lazy"
+              />
+            </Reveal>
+            <Reveal delay={120} className="order-1 lg:order-2">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-yellow">
+                <Sunset className="h-4 w-4" /> Sunset
+              </span>
+              <h2 className="mt-4 text-3xl font-black text-yellow sm:text-4xl">{l.sunsetTitle}</h2>
+              <span className="mt-3 block h-1 w-16 rounded bg-red" />
+              <p className="mt-5 text-lg leading-relaxed text-white/85">{l.sunsetText}</p>
+              <div className="mt-7">
+                <CTAButton to="/contact" className="bg-red hover:bg-yellow">
+                  {l.sunsetCta}
+                </CTAButton>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+      <section className="bg-royalBlue py-16 text-white sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <h2 className="text-3xl font-black sm:text-4xl">{l.stepsTitle}</h2>
+            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+          </Reveal>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {l.steps.map((step, i) => (
+              <Reveal
+                key={step.title}
+                delay={i * 100}
+                className="relative rounded-2xl bg-white/5 p-6 ring-1 ring-white/10"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-yellow text-lg font-black text-royalBlue">
+                  {i + 1}
+                </span>
+                <h3 className="mt-4 text-lg font-extrabold text-yellow">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/85">{step.text}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Included + good to know ---- */}
+      <section className="bg-lightGray py-16 sm:py-20">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <Reveal className="rounded-2xl bg-white p-7 shadow-md ring-1 ring-black/5 sm:p-9">
+            <h3 className="text-2xl font-black text-royalBlue">{l.includedTitle}</h3>
+            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+            <ul className="mt-6 space-y-3">
+              {l.includes.map((inc) => (
+                <li key={inc} className="flex items-center gap-3">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-yellow">
+                    <Check className="h-4 w-4 text-royalBlue" strokeWidth={3} />
+                  </span>
+                  <span className="font-semibold text-dark">{inc}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal
+            delay={120}
+            className="rounded-2xl border-l-4 border-red bg-white p-7 shadow-md ring-1 ring-black/5 sm:p-9"
+          >
+            <div className="flex items-center gap-2">
+              <Info className="h-6 w-6 text-red" />
+              <h3 className="text-2xl font-black text-royalBlue">{l.goodToKnowTitle}</h3>
+            </div>
+            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+            <ul className="mt-6 space-y-3">
+              {l.goodToKnow.map((item) => (
+                <li key={item} className="flex items-start gap-3 text-sm text-dark/80">
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-royalBlue" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---- Prices heading ---- */}
       <section className="bg-white pt-16">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <Reveal>
-            <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{l.introTitle}</h2>
+            <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{l.pricesTitle}</h2>
             <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
-            <p className="mt-5 text-lg text-dark/75">{l.introText}</p>
+            <p className="mt-5 text-lg text-dark/75">{l.pricesSubtitle}</p>
+            <p className="mx-auto mt-5 inline-flex items-center gap-2 rounded-full bg-yellow/20 px-4 py-2 text-sm font-bold text-royalBlue ring-1 ring-yellow">
+              <ShieldCheck className="h-4 w-4" />
+              {l.validityNote}
+            </p>
           </Reveal>
         </div>
       </section>
