@@ -25,7 +25,7 @@ export const images = {
 
 // Home page photo carousel — add or remove lines freely.
 export const carousel = [
-  { src: '/images/carrousel-1.jpg', alt: 'Cours de surf à Skeepskool' },
+  { src: '/images/carrousel-1.JPEG', alt: 'Cours de surf à Skeepskool' },
   { src: '/images/carrousel-2.jpg', alt: 'Surfeur prenant une vague' },
   { src: '/images/carrousel-3.jpg', alt: 'Planches de surf alignées' },
   { src: '/images/carrousel-4.jpg', alt: 'Plage du Porge Océan' },
@@ -37,8 +37,8 @@ export const carousel = [
 export const teamPhotos = {
   pierre: '/images/pierre.jpg', //  u('1500648767791-00dcc994a43e', 800)
   mariane: '/images/mariane.jpg', // u('1494790108377-be9c29b29330', 800)
-  manoa: '/images/manoa.jpg', //    u('1506794778202-cad84cf45f1d', 800)
-  hugo: '/images/hugo.jpg', //      u('1507003211169-0a1dd7228f2d', 800)
+  manoa: '/images/charlie.jpeg', //    u('1506794778202-cad84cf45f1d', 800)
+  hugo: '/images/hugo.JPG', //      u('1507003211169-0a1dd7228f2d', 800)
 }
 
 // Exported so the helper stays available if you switch a line back to Unsplash.
