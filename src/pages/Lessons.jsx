@@ -17,7 +17,7 @@ export default function Lessons() {
 
   return (
     <div>
-      <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.riding} />
+      <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.lessonsHero} />
 
       {/* ---- Lesson presentation ---- */}
       <section className="bg-white py-16 sm:py-20">
@@ -33,7 +33,7 @@ export default function Lessons() {
               className="overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10"
             >
               <img
-                src={images.riding}
+                src={images.lessonsIntro}
                 alt={l.aboutTitle}
                 className="h-72 w-full object-cover sm:h-96"
                 loading="lazy"
@@ -87,31 +87,28 @@ export default function Lessons() {
       </section>
 
       {/* ---- Sunset lessons ---- */}
-      <section className="bg-dark py-16 text-white sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden py-16 text-white sm:py-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0f2d45] via-[#245a72] to-[#5c8f9d]" />
+        <div className="absolute inset-0 bg-black/10" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <Reveal
-              className="order-2 overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/10 lg:order-1"
+              className="order-2 overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/15 lg:order-1"
             >
               <img
-                src={images.riding}
+                src={images.lessonsSunset}
                 alt={l.sunsetTitle}
                 className="h-72 w-full object-cover sm:h-96"
                 loading="lazy"
               />
             </Reveal>
             <Reveal delay={120} className="order-1 lg:order-2">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-yellow">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#d9f0f5]">
                 <Sunset className="h-4 w-4" /> Sunset
               </span>
-              <h2 className="mt-4 text-3xl font-black text-yellow sm:text-4xl">{l.sunsetTitle}</h2>
-              <span className="mt-3 block h-1 w-16 rounded bg-red" />
-              <p className="mt-5 text-lg leading-relaxed text-white/85">{l.sunsetText}</p>
-              <div className="mt-7">
-                <CTAButton to="/contact" className="bg-red hover:bg-yellow">
-                  {l.sunsetCta}
-                </CTAButton>
-              </div>
+              <h2 className="mt-4 text-3xl font-black text-white sm:text-4xl">{l.sunsetTitle}</h2>
+              <span className="mt-3 block h-1 w-16 rounded bg-[#8ad1df]" />
+              <p className="mt-5 text-lg leading-relaxed text-white/88">{l.sunsetText}</p>
             </Reveal>
           </div>
         </div>

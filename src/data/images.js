@@ -12,25 +12,40 @@
 const u = (id, w = 1600) => `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`
 
 export const images = {
-  hero: '/images/vague_avec_planche.jpg', //          u('1502680390469-be75c86b636f')
-  wave: '/images/vague.jpg', //         u('1505459668311-8dfac7952bf9')
-  beach: '/images/vague_avec_planche.jpg', //        u('1507525428034-b723cf961d3e')
-  surfboards: '/images/planches.jpg', // u('1531722569936-825d3dd91b15')
-  riding: '/images/vague.jpg', //  u('1455729552865-3658a5d39692')
-  dunePines: '/images/dune-foret.jpg', // u('1559827260-dc66d52bef19')
-  lesson: '/images/charliecours.jpg', //       u('1549880181-56a44cf4a9a5')
-  team: '/images/charliecours.jpg', //        u('1530870110042-98b2cb110834')
-  contact: '/images/école.jpeg', //      u('1520454974749-611b7248ffdb')
+  // Accueil
+  homeHero: '/images/vague_avec_planche.jpg', // Accueil > grand hero
+
+  // L'école
+  schoolHero: '/images/vague.jpg', // L'école > bandeau du haut
+  schoolSpot: '/images/dune-foret.jpg', // L'école > section "Le spot"
+  schoolPedagogy: '/images/planches.jpg', // L'école > section "Notre pédagogie"
+  schoolTeamSection: '/images/charliecours.jpg', // L'école > section "Notre équipe"
+
+  // Cours & tarifs
+  lessonsHero: '/images/vague.jpg', // Cours & tarifs > bandeau du haut
+  lessonsIntro: '/images/vague.jpg', // Cours & tarifs > bloc de présentation
+  lessonsSunset: '/images/sunset1.JPEG', // Cours & tarifs > section Sunset
+
+  // Location
+  rentalHero: '/images/planches.jpg', // Location > bandeau du haut
+
+  // Contact
+  contactHero: '/images/école.jpeg', // Contact > bandeau du haut
+
+  // Autour de nous
+  aroundHero: '/images/dune-foret.jpg', // Autour de nous > bandeau du haut
+  aroundCamping: '/images/camping.jpg', // Autour de nous > section Camping
+  aroundTourism: '/images/plage.jpg', // Autour de nous > Office de tourisme
 }
 
 // Home page photo carousel — add or remove lines freely.
 export const carousel = [
   { src: '/images/carrousel-1.JPEG', alt: 'Cours de surf à Skeepskool' },
-  { src: '/images/école.jpeg', alt: 'Surfeur prenant une vague' },
+  { src: '/images/sunset2.JPEG', alt: 'Surfeur prenant une vague' },
   { src: '/images/coucher2.jpg', alt: 'Planches de surf alignées' },
   { src: '/images/charliecours.jpg', alt: 'Plage du Porge Océan' },
   { src: '/images/coucher.jpg', alt: 'Vague atlantique qui déferle' },
-  { src: '/images/dune-foret.jpg', alt: 'Groupe de surfeurs sur la plage' },
+  { src: '/images/sunset3.JPEG', alt: 'Groupe de surfeurs sur la plage' },
 ]
 
 // Team member portraits.

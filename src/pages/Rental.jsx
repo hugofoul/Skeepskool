@@ -13,7 +13,7 @@ export default function Rental() {
 
   return (
     <div>
-      <PageHero title={r.heroTitle} subtitle={r.heroSubtitle} image={images.surfboards} />
+      <PageHero title={r.heroTitle} subtitle={r.heroSubtitle} image={images.rentalHero} />
 
       {/* ---- Pricing table (desktop) ---- */}
       <section className="bg-white py-16 sm:py-20">

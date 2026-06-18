@@ -11,7 +11,7 @@ export default function Around() {
 
   return (
     <div>
-      <PageHero title={a.heroTitle} subtitle={a.heroSubtitle} image={images.dunePines} />
+      <PageHero title={a.heroTitle} subtitle={a.heroSubtitle} image={images.aroundHero} />
 
       {/* ---- Tourist office ---- */}
       <section className="bg-white py-16 sm:py-20">
@@ -27,7 +27,7 @@ export default function Around() {
           <div className="mt-10 grid items-center gap-10 lg:grid-cols-2">
             <Reveal className="overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10">
               <img
-                src={images.beach}
+                src={images.aroundTourism}
                 alt={a.tourismTitle}
                 className="h-72 w-full object-cover sm:h-96"
                 loading="lazy"
@@ -60,7 +60,7 @@ export default function Around() {
           <div className="mt-10 grid items-center gap-10 lg:grid-cols-2">
             <Reveal className="overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10">
               <img
-                src={images.beach}
+                src={images.aroundCamping}
                 alt={a.camping.name}
                 className="h-72 w-full object-cover sm:h-96"
                 loading="lazy"

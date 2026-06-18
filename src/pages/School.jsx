@@ -4,7 +4,7 @@ import { images, teamPhotos } from '../data/images.js'
 import PageHero from '../components/PageHero.jsx'
 import Reveal from '../components/Reveal.jsx'
 
-const sectionImages = [images.dunePines, images.surfboards, images.team]
+const sectionImages = [images.schoolSpot, images.schoolPedagogy, images.schoolTeamSection]
 const valueIcons = [Waves, Handshake, TrendingUp]
 const teamImages = [teamPhotos.pierre, teamPhotos.mariane, teamPhotos.manoa, teamPhotos.hugo]
 
@@ -14,7 +14,7 @@ export default function School() {
 
   return (
     <div>
-      <PageHero title={s.heroTitle} subtitle={s.heroSubtitle} image={images.wave} />
+      <PageHero title={s.heroTitle} subtitle={s.heroSubtitle} image={images.schoolHero} />
 
       {/* ---- Alternating content sections ---- */}
       {s.sections.map((sec, i) => {

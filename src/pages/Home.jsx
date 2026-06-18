@@ -19,7 +19,7 @@ export default function Home() {
       {/* ---------------- HERO ---------------- */}
       <section className="relative flex min-h-[88vh] items-center justify-center overflow-hidden">
         <img
-          src={images.hero}
+          src={images.homeHero}
           alt="Surfeur à la plage du Porge Océan"
           className="absolute inset-0 h-full w-full object-cover"
         />

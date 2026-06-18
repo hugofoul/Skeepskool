@@ -22,7 +22,7 @@ export default function Contact() {
 
   return (
     <div>
-      <PageHero title={c.heroTitle} subtitle={c.heroSubtitle} image={images.contact} />
+      <PageHero title={c.heroTitle} subtitle={c.heroSubtitle} image={images.contactHero} />
 
       {/* ---- Info cards ---- */}
       <section className="bg-white py-16 sm:py-20">
