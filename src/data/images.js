@@ -28,7 +28,7 @@ export const carousel = [
   { src: '/images/carrousel-1.JPEG', alt: 'Cours de surf à Skeepskool' },
   { src: '/images/école.jpeg', alt: 'Surfeur prenant une vague' },
   { src: '/images/coucher2.jpg', alt: 'Planches de surf alignées' },
-  { src: '/images/carrousel-4.jpg', alt: 'Plage du Porge Océan' },
+  { src: '/images/charliecours.jpg', alt: 'Plage du Porge Océan' },
   { src: '/images/coucher.jpg', alt: 'Vague atlantique qui déferle' },
   { src: '/images/dune-foret.jpg', alt: 'Groupe de surfeurs sur la plage' },
 ]
