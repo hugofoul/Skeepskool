@@ -136,6 +136,32 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---------------- GOOGLE REVIEWS CTA ---------------- */}
+      <section className="bg-royalBlue py-14 text-white">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <Reveal className="overflow-hidden rounded-3xl bg-yellow/10 shadow-lg ring-1 ring-yellow/20">
+            <div className="flex flex-col items-center gap-6 p-8 text-center sm:flex-row sm:p-10 sm:text-left">
+              <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-yellow">
+                <Star className="h-8 w-8 fill-yellow text-yellow" />
+              </span>
+              <div className="flex-1">
+                <h3 className="text-xl font-black text-white">{h.reviewsTitle}</h3>
+                <p className="mt-2 text-sm text-white/85">{h.reviewsText}</p>
+              </div>
+              <CTAButton
+                href={h.reviewsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 bg-yellow text-royalBlue hover:bg-white"
+              >
+                <Star className="h-4 w-4" />
+                {h.reviewsCta}
+              </CTAButton>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ---------------- TESTIMONIALS ---------------- */}
       <section className="bg-white py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

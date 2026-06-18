@@ -5,6 +5,7 @@ import {
   Instagram,
   CalendarCheck,
   MessageCircle,
+  Star,
 } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'

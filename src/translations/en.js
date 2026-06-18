@@ -59,6 +59,11 @@ export const en = {
       gps: '44.8965° N, 1.1057° W',
     },
 
+    reviewsTitle: 'Leave a Google review',
+    reviewsText: 'Your feedback helps us improve! If you enjoyed your experience at Skeepskool, please share a Google review with us.',
+    reviewsCta: 'Leave a Google review',
+    reviewsUrl: 'https://g.page/r/Cevy5D3GcYpTEAE/review',
+
     testimonialsTitle: 'They surfed with us',
     testimonials: [
       {
@@ -288,6 +293,12 @@ export const en = {
 
     gift: 'Give a gift voucher',
     giftUrl: 'https://www.leporge-ecoledesurf.com/en/gift-coupons/',
+    
+    reviewsTitle: 'Leave a Google review',
+    reviewsText: 'Your feedback helps us improve! If you enjoyed your experience at Skeepskool, please share a Google review with us.',
+    reviewsCta: 'Leave a Google review',
+    reviewsUrl: 'https://g.page/r/Cevy5D3GcYpTEAE/review',
+    
     mapTitle: 'Find us',
   },
 
