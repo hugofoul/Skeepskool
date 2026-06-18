@@ -4,8 +4,6 @@ import Reveal from './Reveal.jsx'
 export default function WeeklyScheduleBoard({
   badge,
   title,
-  subtitle,
-  dayLabel,
   liveLabel,
   fallbackLabel,
   days,
@@ -23,9 +21,6 @@ export default function WeeklyScheduleBoard({
               </span>
               <h1 className="mt-5 text-3xl font-black text-royalBlue sm:text-4xl">{title}</h1>
               <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
-              {subtitle && (
-                <p className="mt-5 text-lg leading-relaxed text-dark/75">{subtitle}</p>
-              )}
             </div>
 
             <div className="inline-flex items-center gap-2 self-start rounded-full bg-white px-4 py-2 text-sm font-bold text-royalBlue shadow-sm ring-1 ring-black/5 lg:self-auto">
@@ -43,10 +38,7 @@ export default function WeeklyScheduleBoard({
               className="overflow-hidden rounded-[1.75rem] bg-white shadow-md ring-1 ring-black/5"
             >
               <div className="bg-gradient-to-r from-royalBlue to-[#2f5fd0] px-6 py-5 text-white">
-                <p className="text-xs font-bold uppercase tracking-[0.24em] text-yellow/90">
-                  {dayLabel}
-                </p>
-                <h2 className="mt-2 text-2xl font-black">{day.day}</h2>
+                <h2 className="text-2xl font-black">{day.day}</h2>
               </div>
 
               <div className="space-y-3 px-5 py-5">
@@ -56,12 +48,12 @@ export default function WeeklyScheduleBoard({
                       key={`${day.day}-${slot.time}-${slot.title}`}
                       className="rounded-2xl bg-lightGray px-4 py-4"
                     >
-                      <div className="flex items-center justify-between gap-3">
+                      <div className="flex flex-wrap items-start justify-between gap-3">
                         <div className="flex items-center gap-2 text-red">
                           <Clock3 className="h-4 w-4" />
                           <p className="text-lg font-black">{slot.time}</p>
                         </div>
-                        <span className="rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-widest text-royalBlue ring-1 ring-black/5">
+                        <span className="max-w-full rounded-full bg-white px-3 py-1.5 text-center text-[11px] font-bold uppercase leading-tight tracking-[0.18em] text-royalBlue ring-1 ring-black/5">
                           {slot.level}
                         </span>
                       </div>

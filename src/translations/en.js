@@ -237,15 +237,8 @@ export const en = {
   schedule: {
     badge: 'Live planning',
     title: 'Lesson schedule',
-    subtitle: 'Slots are loaded automatically from your Google Sheets planning and displayed in a real site tab.',
-    dayLabel: 'Day',
     liveLabel: 'Live schedule',
     fallbackLabel: 'No lesson scheduled',
-    infoBadge: 'Booking',
-    infoTitle: 'Up to 4 lessons a day, all week long',
-    infoText: 'The schedule automatically displays every slot published in the sheet, day by day. As soon as Google Sheets is updated, the site picks up the new information.',
-    bookCta: 'Book on WhatsApp',
-    contactCta: 'Contact us',
     allLevels: 'All levels',
     fallbackDays: [
       { day: 'Monday', slots: [] },

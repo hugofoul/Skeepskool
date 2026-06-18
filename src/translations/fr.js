@@ -237,15 +237,8 @@ export const fr = {
   schedule: {
     badge: 'Planning live',
     title: 'Horaires des cours',
-    subtitle: 'Les créneaux sont récupérés automatiquement depuis votre planning Google Sheets et mis en page dans un vrai onglet du site.',
-    dayLabel: 'Jour',
     liveLabel: 'Planning en direct',
     fallbackLabel: 'Aucun cours programmé',
-    infoBadge: 'Réservation',
-    infoTitle: 'Jusqu’à 4 cours par jour, toute la semaine',
-    infoText: 'Le planning affiche automatiquement tous les créneaux publiés dans la feuille, jour par jour. Dès que vous mettez à jour Google Sheets, le site reprend les nouvelles informations.',
-    bookCta: 'Réserver sur WhatsApp',
-    contactCta: 'Nous contacter',
     allLevels: 'Tous niveaux',
     fallbackDays: [
       { day: 'Lundi', slots: [] },

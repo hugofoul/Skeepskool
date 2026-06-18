@@ -75,8 +75,6 @@ function mapScheduleRows(rawRows, lang, fallbackDays, allLevelsLabel) {
 
   const dayFormatter = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-US', {
     weekday: 'long',
-    day: 'numeric',
-    month: 'long',
   })
 
   const groupedDays = new Map()
