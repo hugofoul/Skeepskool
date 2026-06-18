@@ -127,7 +127,7 @@ export const fr = {
         text: 'La maman de l’équipe : elle sait tout faire ! Accueil, organisation, conseils… rien ne lui échappe.',
       },
       {
-        name: 'Manoa',
+          name: 'Manua',
         role: 'Le prof cool',
         text: 'Le prof cool qui nous vient tout droit de Tahiti. Bonne humeur et style garantis à chaque session.',
       },

@@ -23,7 +23,7 @@ export const images = {
 
   // Cours & tarifs
   lessonsHero: '/images/vague.jpg', // Cours & tarifs > bandeau du haut
-  lessonsIntro: '/images/vague.jpg', // Cours & tarifs > bloc de présentation
+  lessonsIntro: '/images/personalisé.jpg', // Cours & tarifs > bloc de présentation
   lessonsSunset: '/images/sunset1.JPEG', // Cours & tarifs > section Sunset
 
   // Location
@@ -52,7 +52,7 @@ export const carousel = [
 export const teamPhotos = {
   pierre: '/images/boss.jpeg', //  u('1500648767791-00dcc994a43e', 800)
   mariane: '/images/boss.jpeg', // u('1494790108377-be9c29b29330', 800)
-  manoa: '/images/charlie.jpeg', //    u('1506794778202-cad84cf45f1d', 800)
+  manoa: '/images/manu.JPG', //    u('1506794778202-cad84cf45f1d', 800)
   hugo: '/images/hugo.JPG', //      u('1507003211169-0a1dd7228f2d', 800)
 }
 

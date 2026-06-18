@@ -127,7 +127,7 @@ export const en = {
         text: 'The team mum: she can do it all! Welcome, organisation, advice… nothing gets past her.',
       },
       {
-        name: 'Manoa',
+          name: 'Manua',
         role: 'The cool coach',
         text: 'The cool coach who comes straight from Tahiti. Good vibes and style guaranteed every session.',
       },
