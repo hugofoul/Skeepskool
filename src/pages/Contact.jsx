@@ -37,20 +37,6 @@ export default function Contact() {
           </Reveal>
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2">
-            <InfoCard icon={MapPin}>
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block"
-              >
-                <p className="font-semibold text-dark group-hover:text-red">{c.address}</p>
-                <p className="text-sm text-dark/60">{c.addressDetail}</p>
-                <span className="mt-1 inline-block text-sm font-semibold text-royalBlue group-hover:text-red">
-                  {c.openMaps} →
-                </span>
-              </a>
-            </InfoCard>
             <InfoCard icon={Phone}>
               <a href="tel:+33670608426" className="block font-semibold text-dark hover:text-red">
                 +33 6 70 60 84 26
