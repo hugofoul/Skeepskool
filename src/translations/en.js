@@ -14,6 +14,7 @@ export const en = {
     home: 'Home',
     school: 'School',
     lessons: 'Lessons',
+    schedule: 'Schedule',
     rental: 'Rental',
     around: 'Around',
     contact: 'Contact',
@@ -44,6 +45,12 @@ export const en = {
     aboutTitle: 'Surfing at the gates of Bordeaux',
     aboutText:
       'The closest ocean beach from Bordeaux. Surf lessons from age 5, supervised by certified state-qualified instructors.',
+    schedulePreview: {
+      badge: 'Weekly schedule',
+      title: 'See the next lesson slots at a glance',
+      text: 'Check group lesson times, kids sessions and sunset slots, then open the full weekly planning for the complete schedule.',
+      cta: 'View full schedule',
+    },
 
     findUsTitle: 'How to find us',
     findUs: {
@@ -217,7 +224,38 @@ export const en = {
     teamLinkTitle: 'Led by a passionate team',
     teamLinkText: 'All our lessons are run by state-certified instructors. Meet the Skeepskool team.',
     teamLinkCta: 'Meet the instructors',
+    weeklySchedule: {
+      badge: 'Weekly timetable',
+      title: 'Lesson planning updated every week',
+      subtitle: 'Find the full lesson details in the Schedule tab, with a clear weekly layout.',
+      openPlanning: 'Open the Schedule tab',
+      contactCta: 'Book this slot',
+    },
     cta: 'Book now',
+  },
+
+  schedule: {
+    badge: 'Live planning',
+    title: 'Lesson schedule',
+    subtitle: 'Slots are loaded automatically from your Google Sheets planning and displayed in a real site tab.',
+    dayLabel: 'Day',
+    liveLabel: 'Live schedule',
+    fallbackLabel: 'No lesson scheduled',
+    infoBadge: 'Booking',
+    infoTitle: 'Up to 4 lessons a day, all week long',
+    infoText: 'The schedule automatically displays every slot published in the sheet, day by day. As soon as Google Sheets is updated, the site picks up the new information.',
+    bookCta: 'Book on WhatsApp',
+    contactCta: 'Contact us',
+    allLevels: 'All levels',
+    fallbackDays: [
+      { day: 'Monday', slots: [] },
+      { day: 'Tuesday', slots: [] },
+      { day: 'Wednesday', slots: [] },
+      { day: 'Thursday', slots: [] },
+      { day: 'Friday', slots: [] },
+      { day: 'Saturday', slots: [] },
+      { day: 'Sunday', slots: [] },
+    ],
   },
 
   // ---- Rental ----

@@ -1,4 +1,16 @@
-import { Check, Star, Waves, Clock, Users, Backpack, ShieldCheck, MapPin, Info, Sunset, ArrowRight } from 'lucide-react'
+import {
+  Check,
+  Star,
+  Waves,
+  Clock,
+  Users,
+  Backpack,
+  ShieldCheck,
+  MapPin,
+  Info,
+  Sunset,
+  ArrowRight,
+} from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
@@ -172,6 +184,31 @@ export default function Lessons() {
                 </li>
               ))}
             </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-[#f5f7fb] py-16 sm:py-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <Reveal className="rounded-[2rem] bg-white p-8 shadow-xl ring-1 ring-black/5 sm:p-10">
+            <p className="text-sm font-bold uppercase tracking-[0.22em] text-red/80">
+              {l.weeklySchedule.badge}
+            </p>
+            <h2 className="mt-4 text-3xl font-black text-royalBlue sm:text-4xl">
+              {l.weeklySchedule.title}
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-dark/75">{l.weeklySchedule.subtitle}</p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <CTAButton to="/horaires">{l.weeklySchedule.openPlanning}</CTAButton>
+              <CTAButton
+                href={t.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-royalBlue hover:bg-yellow"
+              >
+                {l.weeklySchedule.contactCta}
+              </CTAButton>
+            </div>
           </Reveal>
         </div>
       </section>

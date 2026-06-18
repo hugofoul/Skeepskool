@@ -1,5 +1,17 @@
-import { Waves, LifeBuoy, Award, Star, MapPin, Car, Navigation, ParkingCircle } from 'lucide-react'
+import {
+  Waves,
+  LifeBuoy,
+  Award,
+  Star,
+  MapPin,
+  Car,
+  Navigation,
+  ParkingCircle,
+  CalendarDays,
+  Clock3,
+} from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
+import { useWeeklySchedule } from '../hooks/useWeeklySchedule.js'
 import { images, carousel } from '../data/images.js'
 import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
@@ -11,8 +23,14 @@ const MAP_SRC =
   'https://www.google.com/maps?q=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge&z=14&output=embed'
 
 export default function Home() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const h = t.home
+  const lessonSchedule = useWeeklySchedule({
+    lang,
+    fallbackDays: t.lessons.weeklySchedule.days,
+    allLevelsLabel: t.lessons.weeklySchedule.allLevels,
+  })
+  const schedule = t.lessons.weeklySchedule
 
   return (
     <div>
@@ -88,6 +106,55 @@ export default function Home() {
               </CTAButton>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+            <Reveal>
+              <span className="inline-flex items-center gap-2 rounded-full bg-lightGray px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-royalBlue">
+                <CalendarDays className="h-4 w-4 text-red" />
+                {h.schedulePreview.badge}
+              </span>
+              <h2 className="mt-5 text-3xl font-black text-royalBlue sm:text-4xl">
+                {h.schedulePreview.title}
+              </h2>
+              <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-dark/75">
+                {h.schedulePreview.text}
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <CTAButton to="/horaires">{h.schedulePreview.cta}</CTAButton>
+              </div>
+            </Reveal>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              {lessonSchedule.days.slice(0, 3).map((day, i) => (
+                <Reveal
+                  key={day.day}
+                  delay={i * 100}
+                  className="rounded-[1.75rem] bg-lightGray p-5 shadow-sm ring-1 ring-black/5"
+                >
+                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-royalBlue/60">
+                    {schedule.dayLabel}
+                  </p>
+                  <h3 className="mt-2 text-2xl font-black text-royalBlue">{day.day}</h3>
+                  <div className="mt-4 space-y-3">
+                    {day.slots.slice(0, 2).map((slot) => (
+                      <div key={`${day.day}-${slot.time}`} className="rounded-2xl bg-white px-4 py-3">
+                        <div className="flex items-center gap-2 text-red">
+                          <Clock3 className="h-4 w-4" />
+                          <p className="text-sm font-black">{slot.time}</p>
+                        </div>
+                        <p className="mt-2 text-sm font-bold text-dark">{slot.title}</p>
+                      </div>
+                    ))}
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

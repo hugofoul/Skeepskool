@@ -14,6 +14,7 @@ export const fr = {
     home: 'Accueil',
     school: 'École',
     lessons: 'Cours',
+    schedule: 'Horaires',
     rental: 'Location',
     around: 'Autour',
     contact: 'Contact',
@@ -44,6 +45,12 @@ export const fr = {
     aboutTitle: 'Le surf aux portes de Bordeaux',
     aboutText:
       "La plage océan la plus proche de Bordeaux. Cours de surf dès 5 ans, encadrés par des moniteurs diplômés d'État.",
+    schedulePreview: {
+      badge: 'Planning de la semaine',
+      title: 'Consultez les prochains créneaux en un coup d’œil',
+      text: 'Retrouvez les horaires des cours collectifs, des sessions enfants et des créneaux sunset, puis ouvrez le planning complet pour toute la semaine.',
+      cta: 'Voir le planning complet',
+    },
 
     findUsTitle: 'Comment nous trouver',
     findUs: {
@@ -217,7 +224,38 @@ export const fr = {
     teamLinkTitle: 'Encadré par une équipe passionnée',
     teamLinkText: 'Tous nos cours sont assurés par des moniteurs diplômés d’État. Faites connaissance avec l’équipe Skeepskool.',
     teamLinkCta: 'Découvrir les moniteurs',
+    weeklySchedule: {
+      badge: 'Horaires de la semaine',
+      title: 'Le planning des cours mis à jour chaque semaine',
+      subtitle: 'Retrouvez le détail des créneaux dans l’onglet Horaires, avec un affichage clair pensé pour toute la semaine.',
+      openPlanning: 'Voir l’onglet Horaires',
+      contactCta: 'Réserver ce créneau',
+    },
     cta: 'Réserver maintenant',
+  },
+
+  schedule: {
+    badge: 'Planning live',
+    title: 'Horaires des cours',
+    subtitle: 'Les créneaux sont récupérés automatiquement depuis votre planning Google Sheets et mis en page dans un vrai onglet du site.',
+    dayLabel: 'Jour',
+    liveLabel: 'Planning en direct',
+    fallbackLabel: 'Aucun cours programmé',
+    infoBadge: 'Réservation',
+    infoTitle: 'Jusqu’à 4 cours par jour, toute la semaine',
+    infoText: 'Le planning affiche automatiquement tous les créneaux publiés dans la feuille, jour par jour. Dès que vous mettez à jour Google Sheets, le site reprend les nouvelles informations.',
+    bookCta: 'Réserver sur WhatsApp',
+    contactCta: 'Nous contacter',
+    allLevels: 'Tous niveaux',
+    fallbackDays: [
+      { day: 'Lundi', slots: [] },
+      { day: 'Mardi', slots: [] },
+      { day: 'Mercredi', slots: [] },
+      { day: 'Jeudi', slots: [] },
+      { day: 'Vendredi', slots: [] },
+      { day: 'Samedi', slots: [] },
+      { day: 'Dimanche', slots: [] },
+    ],
   },
 
   // ---- Rental ----

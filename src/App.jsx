@@ -5,6 +5,7 @@ import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
 import School from './pages/School.jsx'
 import Lessons from './pages/Lessons.jsx'
+import Schedule from './pages/Schedule.jsx'
 import Rental from './pages/Rental.jsx'
 import Around from './pages/Around.jsx'
 import Contact from './pages/Contact.jsx'
@@ -38,6 +39,8 @@ export default function App() {
           <Route path="/school" element={<School />} />
           <Route path="/cours" element={<Lessons />} />
           <Route path="/lessons" element={<Lessons />} />
+          <Route path="/horaires" element={<Schedule />} />
+          <Route path="/schedule" element={<Schedule />} />
           <Route path="/location" element={<Rental />} />
           <Route path="/rental" element={<Rental />} />
           <Route path="/autour" element={<Around />} />
