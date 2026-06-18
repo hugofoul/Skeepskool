@@ -12,7 +12,7 @@
 const u = (id, w = 1600) => `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`
 
 export const images = {
-  hero: '/images/hero.jpg', //          u('1502680390469-be75c86b636f')
+  hero: '/images/vague_avec_planche.jpg', //          u('1502680390469-be75c86b636f')
   wave: '/images/vague.jpg', //         u('1505459668311-8dfac7952bf9')
   beach: '/images/plage.jpg', //        u('1507525428034-b723cf961d3e')
   surfboards: '/images/planches.jpg', // u('1531722569936-825d3dd91b15')
