@@ -17,7 +17,7 @@ export const fr = {
     schedule: 'Horaires',
     rental: 'Location',
     around: 'Autour',
-    contact: 'Contact',
+    contact: 'Infos pratiques',
   },
 
   // ---- Home ----
@@ -235,7 +235,6 @@ export const fr = {
   },
 
   schedule: {
-    badge: 'Planning live',
     title: 'Horaires des cours',
     liveLabel: 'Planning en direct',
     fallbackLabel: 'Aucun cours programmé',
@@ -281,10 +280,10 @@ export const fr = {
     cta: 'Nous contacter',
   },
 
-  // ---- Contact ----
+  // ---- Infos pratiques (anciennement Contact) ----
   contact: {
-    heroTitle: 'Contact',
-    heroSubtitle: 'Une question, une réservation ? Écrivez-nous.',
+    heroTitle: 'Infos pratiques',
+    heroSubtitle: "Comment venir, où se garer, nos horaires d'ouverture.",
     infoTitle: 'Nos coordonnées',
     address: 'Plage Centrale, Le Porge Océan, 33680 Gironde',
     addressDetail: '40 m au nord de l’accès principal à la plage.',
@@ -294,15 +293,35 @@ export const fr = {
     instagram: '@skeepskool (Instagram)',
     email: 'contact@skeepskool.fr',
 
-    seasonTitle: 'Saison & horaires',
-    season:
-      'Ouvert d’avril à novembre — saison estivale en juillet et août. Tous les jours de 9h à 18h.',
-    seasonHighlight: 'Ouvert d’avril à novembre',
+    seasonTitle: "Horaires d'ouverture",
+    season: 'Ouvert des vacances de Pâques à la Toussaint.',
+    seasonHighlight: '9h - 19h, tous les jours',
 
     whatsappTitle: 'Horaires des cours sur WhatsApp',
     whatsappText:
       'Tous les horaires des cours sont disponibles en temps réel sur notre communauté WhatsApp. Rejoignez-la pour ne rien manquer !',
     whatsappCta: 'Rejoindre la communauté WhatsApp',
+
+    findUsTitle: 'Comment nous trouver',
+    findUs: {
+      address: 'Plage Centrale, Le Porge Océan, 33680, Gironde',
+      byCarLabel: 'En voiture',
+      byCar: '~50 min depuis Bordeaux via la D6 puis la D3 en direction du Porge → suivre les panneaux « Le Porge Océan ».',
+      citiesLabel: 'Villes les plus proches',
+      cities: 'Bordeaux 50 min · Lacanau 20 min · Lège-Cap-Ferret 25 min',
+      parkingLabel: 'Stationnement',
+      parking: 'Parking gratuit à proximité de la plage.',
+      busLabel: 'Bus 4210',
+      bus: 'Ligne 4210 (Liézards Jaunes) depuis Bordeaux vers Le Porge. Consultez les arrêts desservis pour Le Porge Océan, puis accès plage à pied. Horaires sur liezards-jaunes.com',
+      busCta: 'Voir les horaires (PDF)',
+      busUrl:
+        'https://transports.nouvelle-aquitaine.fr/sites/default/files/timetable_files/NOUVEAU-SPECIAL%20Eté-Fiche%20horaire%20Cars%20régionaux-Bordeaux-Le%20Porge.pdf',
+      busPriceLabel: 'Tarif',
+      busPrice: '2,60 EUR le trajet',
+      busPriceNote: 'Tarif indicatif du réseau régional, à vérifier avant votre déplacement.',
+      gpsLabel: 'GPS',
+      gps: '44.8965° N, 1.1057° O',
+    },
 
     formTitle: 'Écrivez-nous',
     form: {
@@ -330,7 +349,7 @@ export const fr = {
     reviewsCta: 'Laisser un avis sur Google',
     reviewsUrl: 'https://g.page/r/Cevy5D3GcYpTEAE/review',
 
-    mapTitle: 'Nous situer',
+    mapTitle: 'Localisation',
   },
 
   // ---- Around / Practical ----

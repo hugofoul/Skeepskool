@@ -16,7 +16,6 @@ export default function Schedule() {
   return (
     <div>
       <WeeklyScheduleBoard
-        badge={s.badge}
         title={s.title}
         liveLabel={s.liveLabel}
         fallbackLabel={s.fallbackLabel}

@@ -10,6 +10,7 @@ export default function Footer() {
     { to: '/', label: t.nav.home },
     { to: '/ecole', label: t.nav.school },
     { to: '/cours', label: t.nav.lessons },
+    { to: '/horaires', label: t.nav.schedule },
     { to: '/location', label: t.nav.rental },
     { to: '/autour', label: t.nav.around },
     { to: '/contact', label: t.nav.contact },

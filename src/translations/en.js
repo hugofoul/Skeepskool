@@ -17,7 +17,7 @@ export const en = {
     schedule: 'Schedule',
     rental: 'Rental',
     around: 'Around',
-    contact: 'Contact',
+    contact: 'Practical Info',
   },
 
   // ---- Home ----
@@ -235,7 +235,6 @@ export const en = {
   },
 
   schedule: {
-    badge: 'Live planning',
     title: 'Lesson schedule',
     liveLabel: 'Live schedule',
     fallbackLabel: 'No lesson scheduled',
@@ -281,10 +280,10 @@ export const en = {
     cta: 'Contact us',
   },
 
-  // ---- Contact ----
+  // ---- Practical Info (formerly Contact) ----
   contact: {
-    heroTitle: 'Contact',
-    heroSubtitle: 'A question, a booking? Get in touch.',
+    heroTitle: 'Practical Info',
+    heroSubtitle: 'How to get here, where to park, our opening hours.',
     infoTitle: 'Our details',
     address: 'Plage Centrale, Le Porge Océan, 33680 Gironde',
     addressDetail: '40m north of the main beach access.',
@@ -294,15 +293,36 @@ export const en = {
     instagram: '@skeepskool (Instagram)',
     email: 'contact@skeepskool.fr',
 
-    seasonTitle: 'Season & hours',
+    seasonTitle: 'Opening Hours',
     season:
-      'Open from April to November — peak summer season in July and August. Daily from 9am to 6pm.',
-    seasonHighlight: 'Open from April to November',
+      'Open from 9am to 7pm, 7 days a week.',
+    seasonHighlight: '9am - 7pm, every day',
 
     whatsappTitle: 'Lesson schedules on WhatsApp',
     whatsappText:
       'All lesson schedules are available in real time on our WhatsApp community. Join it so you never miss a session!',
     whatsappCta: 'Join the WhatsApp community',
+
+    findUsTitle: 'How to find us',
+    findUs: {
+      address: 'Plage Centrale, Le Porge Océan, 33680, Gironde',
+      byCarLabel: 'By car',
+      byCar: '~50 min from Bordeaux via the D6 then the D3 toward Le Porge → follow the "Le Porge Océan" signs.',
+      citiesLabel: 'Nearest cities',
+      cities: 'Bordeaux 50 min · Lacanau 20 min · Lège-Cap-Ferret 25 min',
+      parkingLabel: 'Parking',
+      parking: 'Free parking near the beach.',
+      busLabel: 'Bus 4210',
+      bus: 'Line 4210 (Liézards Jaunes) from Bordeaux to Le Porge. Check the stops serving Le Porge Océan, then walk to the beach. Timetables on liezards-jaunes.com',
+      busCta: 'View timetable (PDF)',
+      busUrl:
+        'https://transports.nouvelle-aquitaine.fr/sites/default/files/timetable_files/NOUVEAU-SPECIAL%20Eté-Fiche%20horaire%20Cars%20régionaux-Bordeaux-Le%20Porge.pdf',
+      busPriceLabel: 'Fare',
+      busPrice: 'EUR 2.60 per trip',
+      busPriceNote: 'Indicative regional fare, please confirm before travelling.',
+      gpsLabel: 'GPS',
+      gps: '44.8965° N, 1.1057° W',
+    },
 
     formTitle: 'Write to us',
     form: {
@@ -330,7 +350,7 @@ export const en = {
     reviewsCta: 'Leave a Google review',
     reviewsUrl: 'https://g.page/r/Cevy5D3GcYpTEAE/review',
     
-    mapTitle: 'Find us',
+    mapTitle: 'Location',
   },
 
   // ---- Around / Practical ----

@@ -82,16 +82,16 @@ function mapScheduleRows(rawRows, lang, fallbackDays, allLevelsLabel) {
   rawRows.forEach((row) => {
     const date = parseDate(row.jour || row.date || row.day)
     const time = normalizeTime(row.heure || row.time || row.hour)
-    const title = row.type || row.cours || row.course || row.title
+    const type = row.type || ''
     const level = row.niveau || row.level || allLevelsLabel
 
-    if (!date || !time || !title) return
+    if (!date || !time) return
 
     const key = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
     const dayLabel = capitalize(dayFormatter.format(date))
     const slot = {
       time,
-      title,
+      type,
       level: level || allLevelsLabel,
       sortKey: `${key}-${time}`,
     }

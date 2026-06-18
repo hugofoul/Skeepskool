@@ -3,10 +3,6 @@ import {
   LifeBuoy,
   Award,
   Star,
-  MapPin,
-  Car,
-  Navigation,
-  ParkingCircle,
   CalendarDays,
   Clock3,
 } from 'lucide-react'
@@ -18,9 +14,6 @@ import Reveal from '../components/Reveal.jsx'
 import Carousel from '../components/Carousel.jsx'
 
 const highlightIcons = [Waves, LifeBuoy, Award]
-
-const MAP_SRC =
-  'https://www.google.com/maps?q=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge&z=14&output=embed'
 
 export default function Home() {
   const { t, lang } = useLang()
@@ -136,18 +129,21 @@ export default function Home() {
                   delay={i * 100}
                   className="rounded-[1.75rem] bg-lightGray p-5 shadow-sm ring-1 ring-black/5"
                 >
-                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-royalBlue/60">
-                    {schedule.dayLabel}
-                  </p>
-                  <h3 className="mt-2 text-2xl font-black text-royalBlue">{day.day}</h3>
+                  <h3 className="text-2xl font-black text-royalBlue">{day.day}</h3>
                   <div className="mt-4 space-y-3">
                     {day.slots.slice(0, 2).map((slot) => (
                       <div key={`${day.day}-${slot.time}`} className="rounded-2xl bg-white px-4 py-3">
-                        <div className="flex items-center gap-2 text-red">
-                          <Clock3 className="h-4 w-4" />
-                          <p className="text-sm font-black">{slot.time}</p>
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="flex items-center gap-2 text-red">
+                            <Clock3 className="h-4 w-4" />
+                            <p className="text-sm font-black">{slot.time}</p>
+                          </div>
+                          {slot.type && slot.type.includes('Sunset') && (
+                            <span className="rounded-full bg-yellow px-2 py-0.5 text-[10px] font-bold text-red">
+                              Sunset
+                            </span>
+                          )}
                         </div>
-                        <p className="mt-2 text-sm font-bold text-dark">{slot.title}</p>
                       </div>
                     ))}
                   </div>
@@ -158,59 +154,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- HOW TO FIND US ---------------- */}
-      <section className="bg-lightGray py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <h2 className="text-3xl font-black text-red sm:text-4xl">{h.findUsTitle}</h2>
-            <span className="mt-3 inline-block h-1 w-16 rounded bg-yellow" />
-          </Reveal>
-
-          <div className="mt-10 grid gap-10 lg:grid-cols-2">
-            {/* Info list */}
-            <Reveal className="space-y-5">
-              <InfoLine icon={MapPin} label={h.findUs.address} />
-              <InfoLine
-                icon={Car}
-                title={h.findUs.byCarLabel}
-                label={h.findUs.byCar}
-              />
-              <InfoLine
-                icon={Navigation}
-                title={h.findUs.citiesLabel}
-                label={h.findUs.cities}
-              />
-              <InfoLine
-                icon={ParkingCircle}
-                title={h.findUs.parkingLabel}
-                label={h.findUs.parking}
-              />
-              <InfoLine icon={MapPin} title={h.findUs.gpsLabel} label={h.findUs.gps} />
-            </Reveal>
-
-            {/* Map */}
-            <Reveal delay={120} className="overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/10">
-              <iframe
-                title="Le Porge Océan — Google Maps"
-                src={MAP_SRC}
-                className="h-80 w-full border-0 lg:h-full"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
       {/* ---------------- GOOGLE REVIEWS CTA ---------------- */}
       <section className="bg-royalBlue py-14 text-white">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Reveal className="overflow-hidden rounded-3xl bg-yellow/10 shadow-lg ring-1 ring-yellow/20">
             <div className="flex flex-col items-center gap-6 p-8 text-center sm:flex-row sm:p-10 sm:text-left">
-              <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-yellow">
-                <Star className="h-8 w-8 fill-yellow text-yellow" />
-              </span>
+              <div className="flex gap-1 shrink-0">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="h-6 w-6 fill-yellow text-yellow" />
+                ))}
+              </div>
               <div className="flex-1">
                 <h3 className="text-xl font-black text-white">{h.reviewsTitle}</h3>
                 <p className="mt-2 text-sm text-white/85">{h.reviewsText}</p>
@@ -258,33 +211,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
-  )
-}
-
-function InfoLine({ icon: Icon, title, label }) {
-  const isAddress = Icon === MapPin && !title
-  
-  return (
-    <div className="flex items-start gap-4 rounded-xl bg-white p-4 shadow-sm ring-1 ring-black/5">
-      <span className="rounded-lg bg-royalBlue/10 p-2">
-        <Icon className="h-5 w-5 text-royalBlue" />
-      </span>
-      <div>
-        {title && <p className="font-bold text-royalBlue">{title}</p>}
-        {isAddress ? (
-          <a
-            href="https://www.google.com/maps/search/?api=1&query=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm font-medium text-dark/80 transition-colors hover:text-royalBlue"
-          >
-            {label}
-          </a>
-        ) : (
-          <p className="text-sm text-dark/80">{label}</p>
-        )}
-      </div>
     </div>
   )
 }

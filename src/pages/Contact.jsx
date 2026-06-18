@@ -1,11 +1,15 @@
 import {
   MapPin,
+  Bus,
   Phone,
   Facebook,
   Instagram,
   CalendarCheck,
   MessageCircle,
   Star,
+  Car,
+  ExternalLink,
+  ParkingCircle,
 } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
@@ -89,7 +93,9 @@ export default function Contact() {
               <CalendarCheck className="h-5 w-5" />
               {c.seasonHighlight}
             </span>
-            <p className="mx-auto mt-5 max-w-2xl text-lg text-white/90">{c.season}</p>
+            {c.season && (
+              <p className="mx-auto mt-5 max-w-2xl text-lg text-white/90">{c.season}</p>
+            )}
           </Reveal>
         </div>
       </section>
@@ -124,21 +130,80 @@ export default function Contact() {
       <section className="bg-lightGray py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{c.mapTitle}</h2>
+            <h2 className="text-3xl font-black text-red sm:text-4xl">{c.findUsTitle}</h2>
             <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
           </Reveal>
-          <Reveal
-            delay={120}
-            className="mt-8 overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/10"
-          >
-            <iframe
-              title={c.mapTitle}
-              src={MAP_SRC}
-              className="h-80 w-full border-0 sm:h-[28rem]"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
+
+          <div className="mt-10 grid gap-10 lg:grid-cols-2">
+            {/* Info list */}
+            <Reveal className="space-y-5">
+              <InfoLine icon={MapPin} label={c.findUs.address} />
+              <InfoLine
+                icon={MapPin}
+                title={c.findUs.byCarLabel}
+                label={c.findUs.byCar}
+              />
+              <InfoLine
+                icon={MapPin}
+                title={c.findUs.citiesLabel}
+                label={c.findUs.cities}
+              />
+              <InfoLine
+                icon={ParkingCircle}
+                title={c.findUs.parkingLabel}
+                label={c.findUs.parking}
+              />
+              <InfoLine
+                icon={Bus}
+                title={c.findUs.busLabel}
+                label={c.findUs.bus}
+              />
+              <InfoLine icon={MapPin} title={c.findUs.gpsLabel} label={c.findUs.gps} />
+            </Reveal>
+
+            {/* Map */}
+            <Reveal delay={120} className="overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/10">
+              <iframe
+                title={c.mapTitle}
+                src={MAP_SRC}
+                className="h-80 w-full border-0 lg:h-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </Reveal>
+          </div>
+
+          <Reveal delay={180} className="mt-8 rounded-2xl bg-royalBlue p-6 text-white shadow-lg sm:p-8">
+            <div className="grid items-center gap-6 lg:grid-cols-[1.4fr_1fr]">
+              <div>
+                <div className="flex items-center gap-3">
+                  <Bus className="h-8 w-8 text-yellow" />
+                  <h3 className="text-2xl font-black sm:text-3xl">{c.findUs.busLabel}</h3>
+                </div>
+                <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+                <p className="mt-5 text-base leading-relaxed text-white/90 sm:text-lg">{c.findUs.bus}</p>
+                <div className="mt-6">
+                  <CTAButton
+                    href={c.findUs.busUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-red hover:bg-yellow"
+                  >
+                    {c.findUs.busCta}
+                    <ExternalLink className="h-4 w-4" />
+                  </CTAButton>
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-white/10 p-6 text-center ring-1 ring-white/15 sm:p-8">
+                <p className="text-xs font-bold uppercase tracking-widest text-yellow">
+                  {c.findUs.busPriceLabel}
+                </p>
+                <p className="mt-2 text-4xl font-black text-yellow">{c.findUs.busPrice}</p>
+                <p className="mt-3 text-xs text-white/75">{c.findUs.busPriceNote}</p>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -148,11 +213,38 @@ export default function Contact() {
 
 function InfoCard({ icon: Icon, children }) {
   return (
-    <div className="flex items-start gap-4 rounded-xl border-l-4 border-royalBlue bg-lightGray p-5 shadow-sm">
-      <span className="rounded-lg bg-royalBlue/10 p-2.5">
+    <div className="rounded-2xl border-b-4 border-red bg-white p-6 shadow-md">
+      <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-royalBlue/10">
+        <Icon className="h-5 w-5 text-royalBlue" />
+      </div>
+      {children}
+    </div>
+  )
+}
+
+function InfoLine({ icon: Icon, title, label }) {
+  const isAddress = Icon === MapPin && !title
+  
+  return (
+    <div className="flex items-start gap-4 rounded-xl bg-white p-4 shadow-sm ring-1 ring-black/5">
+      <span className="rounded-lg bg-royalBlue/10 p-2">
         <Icon className="h-5 w-5 text-royalBlue" />
       </span>
-      <div>{children}</div>
+      <div>
+        {title && <p className="font-bold text-royalBlue">{title}</p>}
+        {isAddress ? (
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-dark/80 transition-colors hover:text-royalBlue"
+          >
+            {label}
+          </a>
+        ) : (
+          <p className="text-sm text-dark/80">{label}</p>
+        )}
+      </div>
     </div>
   )
 }
