@@ -8,8 +8,12 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 export default function Carousel({ slides = [], interval = 4500 }) {
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
+  const [dragDelta, setDragDelta] = useState(0)
+  const [isDragging, setIsDragging] = useState(false)
   const count = slides.length
   const timer = useRef(null)
+  const viewportRef = useRef(null)
+  const startXRef = useRef(0)
 
   const goTo = useCallback((i) => setIndex(((i % count) + count) % count), [count])
   const next = useCallback(() => goTo(index + 1), [goTo, index])
@@ -24,23 +28,65 @@ export default function Carousel({ slides = [], interval = 4500 }) {
     return () => clearTimeout(timer.current)
   }, [index, paused, count, interval, goTo])
 
+  const onDragStart = useCallback((clientX) => {
+    startXRef.current = clientX
+    setIsDragging(true)
+    setPaused(true)
+  }, [])
+
+  const onDragMove = useCallback(
+    (clientX) => {
+      if (!isDragging) return
+      setDragDelta(clientX - startXRef.current)
+    },
+    [isDragging],
+  )
+
+  const onDragEnd = useCallback(() => {
+    if (!isDragging) return
+
+    const width = viewportRef.current?.clientWidth || 1
+    const threshold = Math.max(40, width * 0.12)
+
+    if (dragDelta <= -threshold) {
+      next()
+    } else if (dragDelta >= threshold) {
+      prev()
+    }
+
+    setDragDelta(0)
+    setIsDragging(false)
+    setPaused(false)
+  }, [dragDelta, isDragging, next, prev])
+
   if (count === 0) return null
 
   return (
     <div
+      ref={viewportRef}
       className="relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-black/10"
       onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      onMouseLeave={() => {
+        onDragEnd()
+        setPaused(false)
+      }}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
+      onMouseDown={(event) => onDragStart(event.clientX)}
+      onMouseMove={(event) => onDragMove(event.clientX)}
+      onMouseUp={onDragEnd}
+      onTouchStart={(event) => onDragStart(event.touches[0].clientX)}
+      onTouchMove={(event) => onDragMove(event.touches[0].clientX)}
+      onTouchEnd={onDragEnd}
+      onTouchCancel={onDragEnd}
       role="region"
       aria-roledescription="carousel"
       aria-label="Photos Skeepskool"
     >
       {/* Track */}
       <div
-        className="flex transition-transform duration-700 ease-out"
-        style={{ transform: `translateX(-${index * 100}%)` }}
+        className={`flex ${isDragging ? '' : 'transition-transform duration-700 ease-out'}`}
+        style={{ transform: `translateX(calc(-${index * 100}% + ${dragDelta}px))` }}
       >
         {slides.map((slide, i) => (
           <div key={i} className="min-w-full" aria-hidden={i !== index}>
