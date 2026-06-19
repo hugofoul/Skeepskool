@@ -24,7 +24,8 @@ export const fr = {
   home: {
     heroTitle: 'SKEEPSKOOL',
     heroTagline: "Vis l'océan",
-    heroSubtitle: 'École de surf labellisée au Porge Océan — à 50 min de Bordeaux',
+    heroSubtitle:
+      'A 40m au nord de l\'accès principal de la plage centrale du Porge, notre école vous attend au pied de la dune et de la forêt pour des cours de surf aux portes de Bordeaux.',
     heroCta: 'Réserver',
 
     highlights: [
@@ -266,6 +267,7 @@ export const fr = {
       { item: 'Combinaison (Combi)', prices: ['6€', '8€', '10€', '45€', '8€'] },
     ],
     riskNote: 'Location à vos risques et périls — non encadrée.',
+    idRequiredNote: 'Une piece d\'identite est obligatoire pour toute location.',
     sunsetNote: 'Créneau Sunset : de 18h jusqu’au lendemain 9h30.',
     guideTitle: 'Choisir son matériel',
     guide: [

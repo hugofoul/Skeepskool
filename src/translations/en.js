@@ -266,6 +266,7 @@ export const en = {
       { item: 'Wetsuit (Combi)', prices: ['6€', '8€', '10€', '45€', '8€'] },
     ],
     riskNote: 'Rental at your own risk — unsupervised.',
+    idRequiredNote: 'A valid ID is required for any rental.',
     sunsetNote: 'Sunset slot: from 6pm to the next day at 9:30am.',
     guideTitle: 'Choose your equipment',
     guide: [

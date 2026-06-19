@@ -24,7 +24,7 @@ export default function Footer() {
           <Link to="/" className="inline-flex items-center">
             <div className="h-20 w-56 overflow-hidden">
               <img
-                src="/logo-drapeau-skeepskool.svg"
+                src="/logo-skeepskool-new.svg"
                 alt="Skeepskool Surfing Le Porge"
                 className="h-[132%] w-full -translate-y-[11%] object-contain object-top"
               />
