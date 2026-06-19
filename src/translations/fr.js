@@ -14,6 +14,7 @@ export const fr = {
     home: 'Accueil',
     school: 'École',
     lessons: 'Cours',
+    book: 'Réserver',
     schedule: 'Horaires',
     rental: 'Location',
     around: 'Autour',
@@ -262,6 +263,90 @@ export const fr = {
       { day: 'Samedi', slots: [] },
       { day: 'Dimanche', slots: [] },
     ],
+  },
+
+  booking: {
+    title: 'Réserver',
+    subtitle: 'Envoyez votre demande en quelques clics',
+    intro:
+      'Pour valider votre réservation, le paiement doit déjà être effectué par virement ou Paylib avant l\'envoi de ce formulaire.',
+
+    contactTitle: 'Informations de contact',
+    firstName: 'Prénom',
+    lastName: 'Nom',
+    phone: 'Téléphone',
+    phoneHint: 'Format attendu : 10 chiffres (ex. 06 70 60 84 26) ou numéro international.',
+    phoneInvalid: 'Merci de renseigner un numéro de téléphone valide.',
+
+    surfersTitle: 'Surfeurs',
+    surferLabel: 'Surfeur',
+    surferFirstName: 'Prénom',
+    surferLastName: 'Nom',
+    surferAge: 'Âge',
+    surferLevel: 'Niveau',
+    surferPackage: 'Formule choisie',
+    addSurfer: '+ Ajouter un surfeur',
+    removeSurfer: '✕ Supprimer',
+
+    levels: [
+      { value: 'beginner', label: 'Débutant' },
+      { value: 'some', label: 'Quelques cours' },
+      { value: 'intermediate', label: 'Confirmé' },
+    ],
+
+    packages: [
+      { value: 'single', label: '1 séance (2h) — 40€', price: 40 },
+      { value: 'pack3', label: 'Pack 3 séances — 110€', price: 110 },
+      { value: 'pack5', label: 'Pack 5 séances — 165€', price: 165 },
+      { value: 'pack10', label: 'Pack 10 séances — 300€', price: 300 },
+      { value: 'pack20', label: 'Pack 20 séances — 540€', price: 540 },
+      { value: 'private', label: 'Cours particulier (2h) — 110€', price: 110 },
+      { value: 'combo', label: 'Combo 5 jours + planche + combi — 255€', price: 255 },
+    ],
+
+    commonTitle: 'Informations communes',
+    startDate: 'Date de début approximative',
+    startDateNote: 'Date approximative — nous confirmerons l\'horaire exact par téléphone.',
+    paymentType: 'Type de paiement',
+    payerName: 'Personne qui a fait le virement / paiement',
+    sameAsContactSurfer: 'Remplir automatiquement le Surfeur 1 avec les informations de contact',
+    sameAsContactPayer: 'Le payeur est la même personne que le contact',
+    optionalMessage: 'Message optionnel',
+
+    paymentMethods: [
+      { value: 'transfer', label: 'Virement bancaire' },
+      { value: 'paylib', label: 'Paylib' },
+    ],
+
+    totalLabel: 'Total estimé :',
+    warning:
+      '⚠️ Attention — Pour que votre réservation soit validée, le paiement doit être effectué AVANT d\'envoyer ce formulaire.',
+    paylibLabel: '💳 Paylib : 06 70 60 84 26 (Skeepskool)',
+    ibanLabel: '🏦 Virement IBAN : FR76 1027 8022 8200 0205 3750 133 — BIC : CMCIFR2A',
+    warningFooter: 'Une fois le paiement effectué, cochez la case de confirmation puis cliquez sur Envoyer.',
+    callWeekNote: '📞 Merci d\'appeler l\'école 1 semaine avant votre arrivée pour confirmer le créneau.',
+    paidCheckbox: 'Je confirme avoir déjà effectué le paiement avant envoi du formulaire.',
+
+    submit: 'Envoyer',
+    none: 'Aucun',
+    unknownDate: 'Non renseignée',
+
+    successLead: 'Merci {name} ! Votre demande a bien été envoyée sur WhatsApp avec paiement indiqué comme effectué.',
+    successEnd: 'Nous vous contacterons rapidement pour confirmer. N\'oubliez pas d\'appeler l\'école 1 semaine avant votre arrivée. À bientôt sur l\'eau ! 🏄',
+
+    whatsappHeader: '🏄 Nouvelle réservation Skeepskool',
+    whatsappContact: '👤 Contact :',
+    whatsappDate: '📅 Date souhaitée :',
+    whatsappTotal: '💰 Total :',
+    whatsappSurfers: 'Surfeurs :',
+    whatsappMessage: '💬 Message :',
+    whatsappPayment: '✅ Paiement : Déjà effectué',
+    whatsappPaymentType: '💳 Type de paiement :',
+    whatsappPayerName: '👤 Payeur :',
+    whatsappCallWeek: '📞 Je contacterai l\'école 1 semaine avant l\'arrivée.',
+    whatsappClosing:
+      'Merci de confirmer la disponibilité.',
+    whatsappSurferLine: 'Surfeur',
   },
 
   // ---- Rental ----

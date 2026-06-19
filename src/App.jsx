@@ -9,6 +9,7 @@ import Schedule from './pages/Schedule.jsx'
 import Rental from './pages/Rental.jsx'
 import Around from './pages/Around.jsx'
 import Contact from './pages/Contact.jsx'
+import Booking from './pages/Booking.jsx'
 import Legal from './pages/Legal.jsx'
 
 function ScrollToTop() {
@@ -39,6 +40,8 @@ export default function App() {
           <Route path="/school" element={<School />} />
           <Route path="/cours" element={<Lessons />} />
           <Route path="/lessons" element={<Lessons />} />
+          <Route path="/reserver" element={<Booking />} />
+          <Route path="/book" element={<Booking />} />
           <Route path="/horaires" element={<Schedule />} />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/location" element={<Rental />} />

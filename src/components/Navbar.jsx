@@ -16,13 +16,14 @@ export default function Navbar() {
   const links = [
     { to: '/ecole', label: t.nav.school },
     { to: '/cours', label: t.nav.lessons },
+    { to: lang === 'fr' ? '/reserver' : '/book', label: t.nav.book, match: ['/reserver', '/book'] },
     { to: '/horaires', label: t.nav.schedule },
     { to: '/location', label: t.nav.rental },
     { to: '/autour', label: t.nav.around },
     { to: '/contact', label: t.nav.contact },
   ]
 
-  const linkClass = ({ isActive }) =>
+  const linkClass = (isActive) =>
     [
       'relative font-semibold text-white py-1 transition-colors',
       'after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:bg-yellow after:transition-all after:duration-300',
@@ -58,7 +59,11 @@ export default function Navbar() {
         {/* Center links (desktop) */}
         <div className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <NavLink key={l.to} to={l.to} className={linkClass}>
+            <NavLink
+              key={l.to}
+              to={l.to}
+              className={({ isActive }) => linkClass(isActive || (l.match?.includes(location.pathname) ?? false))}
+            >
               {l.label}
             </NavLink>
           ))}

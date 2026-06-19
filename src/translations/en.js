@@ -14,6 +14,7 @@ export const en = {
     home: 'Home',
     school: 'School',
     lessons: 'Lessons',
+    book: 'Book',
     schedule: 'Schedule',
     rental: 'Rental',
     around: 'Around',
@@ -261,6 +262,89 @@ export const en = {
       { day: 'Saturday', slots: [] },
       { day: 'Sunday', slots: [] },
     ],
+  },
+
+  booking: {
+    title: 'Book',
+    subtitle: 'Send your request in a few clicks',
+    intro:
+      'To confirm your booking, payment must already be completed by bank transfer or Paylib before submitting this form.',
+
+    contactTitle: 'Contact information',
+    firstName: 'First name',
+    lastName: 'Last name',
+    phone: 'Phone number',
+    phoneHint: 'Expected format: 10 digits (e.g. 06 70 60 84 26) or international number.',
+    phoneInvalid: 'Please enter a valid phone number.',
+
+    surfersTitle: 'Surfers',
+    surferLabel: 'Surfer',
+    surferFirstName: 'First name',
+    surferLastName: 'Last name',
+    surferAge: 'Age',
+    surferLevel: 'Level',
+    surferPackage: 'Package',
+    addSurfer: '+ Add a surfer',
+    removeSurfer: 'Remove',
+
+    levels: [
+      { value: 'beginner', label: 'Beginner' },
+      { value: 'some', label: 'Some experience' },
+      { value: 'intermediate', label: 'Intermediate+' },
+    ],
+
+    packages: [
+      { value: 'single', label: '1 lesson (2h) — 40€', price: 40 },
+      { value: 'pack3', label: '3-lesson pack — 110€', price: 110 },
+      { value: 'pack5', label: '5-lesson pack — 165€', price: 165 },
+      { value: 'pack10', label: '10-lesson pack — 300€', price: 300 },
+      { value: 'pack20', label: '20-lesson pack — 540€', price: 540 },
+      { value: 'private', label: 'Private lesson (2h) — 110€', price: 110 },
+      { value: 'combo', label: '5-day combo + board + wetsuit — 255€', price: 255 },
+    ],
+
+    commonTitle: 'Shared information',
+    startDate: 'Approximate start date',
+    startDateNote: 'Approximate date — we will confirm the exact time by phone.',
+    paymentType: 'Payment type',
+    payerName: 'Person who made the transfer / payment',
+    sameAsContactSurfer: 'Auto-fill Surfer 1 with contact information',
+    sameAsContactPayer: 'The payer is the same person as the contact',
+    optionalMessage: 'Optional message',
+
+    paymentMethods: [
+      { value: 'transfer', label: 'Bank transfer' },
+      { value: 'paylib', label: 'Paylib' },
+    ],
+
+    totalLabel: 'Estimated total:',
+    warning:
+      '⚠️ Important — Your booking is only confirmed once payment has been made BEFORE submitting this form.',
+    paylibLabel: '💳 Paylib: 06 70 60 84 26 (Skeepskool)',
+    ibanLabel: '🏦 Bank transfer IBAN: FR76 1027 8022 8200 0205 3750 133 — BIC: CMCIFR2A',
+    warningFooter: 'Once payment is done, tick the confirmation checkbox and click Send.',
+    callWeekNote: '📞 Please call the school 1 week before your arrival to confirm your slot.',
+    paidCheckbox: 'I confirm payment has already been made before submitting this form.',
+
+    submit: 'Send',
+    none: 'None',
+    unknownDate: 'Not specified',
+
+    successLead: 'Thank you {name}! Your request has been sent on WhatsApp with payment marked as completed.',
+    successEnd: 'We will contact you shortly to confirm. Do not forget to call the school 1 week before your arrival. See you in the water! 🏄',
+
+    whatsappHeader: '🏄 New Skeepskool Booking',
+    whatsappContact: '👤 Contact:',
+    whatsappDate: '📅 Preferred date:',
+    whatsappTotal: '💰 Total:',
+    whatsappSurfers: 'Surfers:',
+    whatsappMessage: '💬 Message:',
+    whatsappPayment: '✅ Payment: Already completed',
+    whatsappPaymentType: '💳 Payment type:',
+    whatsappPayerName: '👤 Payer:',
+    whatsappCallWeek: '📞 I will call the school 1 week before arrival.',
+    whatsappClosing: 'Please confirm availability!',
+    whatsappSurferLine: 'Surfer',
   },
 
   // ---- Rental ----
