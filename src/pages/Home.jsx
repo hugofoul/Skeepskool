@@ -54,6 +54,13 @@ export default function Home() {
             </CTAButton>
           </div>
         </div>
+
+        <div className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-center text-white/90">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em]">
+            {lang === 'fr' ? 'Faites defiler' : 'Scroll'}
+          </p>
+          <span className="mt-1 block text-sm leading-none animate-bounce">↓</span>
+        </div>
       </section>
 
       {/* ---------------- HIGHLIGHTS ---------------- */}
