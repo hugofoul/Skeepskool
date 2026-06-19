@@ -254,6 +254,9 @@ export const fr = {
     liveLabel: 'Planning en direct',
     fallbackLabel: 'Aucun cours programmé',
     allLevels: 'Tous niveaux',
+    callWidgetTitle: 'Appelez-nous pour réserver',
+    callWidgetText: 'Une question sur les créneaux ou envie de bloquer votre place rapidement ? Appelez l\'école.',
+    callWidgetCta: 'Appeler maintenant',
     fallbackDays: [
       { day: 'Lundi', slots: [] },
       { day: 'Mardi', slots: [] },

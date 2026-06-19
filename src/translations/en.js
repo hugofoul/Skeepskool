@@ -253,6 +253,9 @@ export const en = {
     liveLabel: 'Live schedule',
     fallbackLabel: 'No lesson scheduled',
     allLevels: 'All levels',
+    callWidgetTitle: 'Call us to book',
+    callWidgetText: 'Need help choosing a slot or want to secure your booking quickly? Call the school.',
+    callWidgetCta: 'Call now',
     fallbackDays: [
       { day: 'Monday', slots: [] },
       { day: 'Tuesday', slots: [] },
