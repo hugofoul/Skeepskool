@@ -197,6 +197,14 @@ export const fr = {
       'Les groupes sont constitués par niveau pour une progression optimale.',
       'Les horaires des cours sont publiés en temps réel sur la communauté WhatsApp.',
     ],
+    faqTitle: 'Questions fréquentes',
+    faq: [
+      {
+        question: 'Que faut-il prévoir avant le cours ?',
+        answer:
+          'Arrivez 20 minutes avant le début du cours avec votre maillot de bain, de l\'eau et de la crème solaire.',
+      },
+    ],
     pricesTitle: 'Nos formules & tarifs',
     pricesSubtitle: 'Plus vous prenez de cours, plus le tarif à la séance baisse.',
 
@@ -267,6 +275,7 @@ export const fr = {
       { item: 'Combinaison (Combi)', prices: ['6€', '8€', '10€', '45€', '8€'] },
     ],
     riskNote: 'Location à vos risques et périls — non encadrée.',
+    plusNote: 'Le + : vous pouvez changer de planche pendant toute la durée de la location.',
     idRequiredNote: 'Une piece d\'identite est obligatoire pour toute location.',
     sunsetNote: 'Créneau Sunset : de 18h jusqu’au lendemain 9h30.',
     guideTitle: 'Choisir son matériel',

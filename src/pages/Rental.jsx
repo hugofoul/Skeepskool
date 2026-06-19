@@ -86,6 +86,10 @@ export default function Rental() {
 
           {/* Notes */}
           <div className="mt-8 space-y-3">
+            <p className="flex items-start gap-2 text-sm font-semibold text-royalBlue">
+              <Waves className="mt-0.5 h-4 w-4 shrink-0 text-royalBlue" />
+              {r.plusNote}
+            </p>
             <p className="italic text-dark/60">{r.riskNote}</p>
             <p className="flex items-start gap-2 text-sm font-semibold text-red">
               <ShieldQuestion className="mt-0.5 h-4 w-4 shrink-0 text-red" />

@@ -188,6 +188,29 @@ export default function Lessons() {
         </div>
       </section>
 
+      {/* ---- FAQ ---- */}
+      <section className="bg-white py-14 sm:py-16">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{l.faqTitle}</h2>
+            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+          </Reveal>
+
+          <div className="mt-8 space-y-4">
+            {l.faq.map((item, i) => (
+              <Reveal
+                key={item.question}
+                delay={i * 80}
+                className="rounded-2xl border-l-4 border-red bg-lightGray p-6 shadow-sm"
+              >
+                <p className="text-lg font-extrabold text-royalBlue">{item.question}</p>
+                <p className="mt-2 text-sm leading-relaxed text-dark/80">{item.answer}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[#f5f7fb] py-16 sm:py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Reveal className="rounded-[2rem] bg-white p-8 shadow-xl ring-1 ring-black/5 sm:p-10">

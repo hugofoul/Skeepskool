@@ -196,6 +196,14 @@ export const en = {
       'Groups are formed by level for the best progression.',
       'Lesson schedules are posted in real time on the WhatsApp community.',
     ],
+    faqTitle: 'Frequently asked questions',
+    faq: [
+      {
+        question: 'What should I bring before the lesson?',
+        answer:
+          'Please arrive 20 minutes early with your swimsuit, water and sunscreen.',
+      },
+    ],
     pricesTitle: 'Our packages & prices',
     pricesSubtitle: 'The more lessons you take, the lower the price per session.',
 
@@ -266,6 +274,7 @@ export const en = {
       { item: 'Wetsuit (Combi)', prices: ['6€', '8€', '10€', '45€', '8€'] },
     ],
     riskNote: 'Rental at your own risk — unsupervised.',
+    plusNote: 'Bonus: you can switch boards during your rental period.',
     idRequiredNote: 'A valid ID is required for any rental.',
     sunsetNote: 'Sunset slot: from 6pm to the next day at 9:30am.',
     guideTitle: 'Choose your equipment',
