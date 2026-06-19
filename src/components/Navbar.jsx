@@ -46,11 +46,13 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         {/* Brand */}
         <Link to="/" className="group flex items-center">
-          <img
-            src="/logo-skeep-400-1-2.png"
-            alt="Skeepskool Surfing Le Porge"
-            className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02] sm:h-16"
-          />
+          <div className="h-14 w-44 overflow-hidden sm:h-16 sm:w-48">
+            <img
+              src="/logo-skeepskool-new.svg"
+              alt="Skeepskool Surfing Le Porge"
+              className="h-[132%] w-full -translate-y-[11%] object-contain object-top transition-transform duration-300 group-hover:scale-[1.03]"
+            />
+          </div>
         </Link>
 
         {/* Center links (desktop) */}

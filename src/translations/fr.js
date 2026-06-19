@@ -51,6 +51,11 @@ export const fr = {
       text: 'Retrouvez les horaires des cours collectifs, des sessions enfants et des créneaux sunset, puis ouvrez le planning complet pour toute la semaine.',
       cta: 'Voir le planning complet',
     },
+    surfConditions: {
+      badge: 'Conditions',
+      title: 'Conditions de surf prévues pour les prochains jours',
+      fallbackParagraphs: ['Mise a jour des conditions en cours.'],
+    },
 
     findUsTitle: 'Comment nous trouver',
     findUs: {
@@ -291,7 +296,7 @@ export const fr = {
     phones: '+33 6 70 60 84 26 · +33 6 50 52 34 75',
     facebook: '@skeepskool (Facebook)',
     instagram: '@skeepskool (Instagram)',
-    email: 'contact@skeepskool.fr',
+    email: 'skeepskool@hotmail.com',
 
     seasonTitle: "Horaires d'ouverture",
     season: 'Ouvert des vacances de Pâques à la Toussaint.',
@@ -452,7 +457,7 @@ export const fr = {
         body: [
           'Skeepskool s’engage à mettre en œuvre un traitement de vos données personnelles respectueux de votre vie privée et conforme à la législation française et européenne en vigueur.',
           'Les données collectées via le formulaire de contact (prénom, email, message) sont utilisées uniquement pour répondre à votre demande et ne sont ni cédées ni vendues à des tiers.',
-          'Conformément au RGPD, vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation et d’opposition au traitement de vos données. Pour exercer ces droits, contactez-nous à contact@skeepskool.fr.',
+          'Conformément au RGPD, vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation et d’opposition au traitement de vos données. Pour exercer ces droits, contactez-nous à skeepskool@hotmail.com.',
           'Vous pouvez introduire une réclamation auprès de la CNIL (www.cnil.fr).',
         ],
       },

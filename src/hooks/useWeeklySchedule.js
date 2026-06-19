@@ -64,6 +64,12 @@ function normalizeTime(value) {
   return `${hours.padStart(2, '0')}:${minutes}`
 }
 
+function startOfDay(date) {
+  const copy = new Date(date)
+  copy.setHours(0, 0, 0, 0)
+  return copy
+}
+
 function capitalize(value) {
   return value ? value.charAt(0).toUpperCase() + value.slice(1) : value
 }
@@ -72,6 +78,8 @@ function mapScheduleRows(rawRows, lang, fallbackDays, allLevelsLabel) {
   if (!rawRows.length) {
     return fallbackDays
   }
+
+  const today = startOfDay(new Date())
 
   const dayFormatter = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-US', {
     weekday: 'long',
@@ -86,6 +94,8 @@ function mapScheduleRows(rawRows, lang, fallbackDays, allLevelsLabel) {
     const level = row.niveau || row.level || allLevelsLabel
 
     if (!date || !time) return
+
+    if (startOfDay(date) < today) return
 
     const key = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
     const dayLabel = capitalize(dayFormatter.format(date))

@@ -22,11 +22,13 @@ export default function Footer() {
         {/* Col 1 — Brand */}
         <div>
           <Link to="/" className="inline-flex items-center">
-            <img
-              src="/logo-skeep-400-1-2.png"
-              alt="Skeepskool Surfing Le Porge"
-              className="h-20 w-auto object-contain"
-            />
+            <div className="h-20 w-56 overflow-hidden">
+              <img
+                src="/logo-drapeau-skeepskool.svg"
+                alt="Skeepskool Surfing Le Porge"
+                className="h-[132%] w-full -translate-y-[11%] object-contain object-top"
+              />
+            </div>
           </Link>
           <p className="mt-4 max-w-xs text-sm text-white/80">{t.footer.tagline}</p>
           <span className="mt-4 inline-block rounded-full bg-yellow px-3 py-1 text-xs font-bold text-royalBlue">
@@ -85,10 +87,10 @@ export default function Footer() {
             <li className="flex items-center gap-2">
               <Mail className="h-4 w-4 shrink-0 text-yellow" />
               <a
-                href="mailto:contact@skeepskool.fr"
+                href="mailto:skeepskool@hotmail.com"
                 className="transition-colors hover:text-yellow"
               >
-                contact@skeepskool.fr
+                skeepskool@hotmail.com
               </a>
             </li>
           </ul>

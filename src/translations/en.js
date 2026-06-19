@@ -51,6 +51,11 @@ export const en = {
       text: 'Check group lesson times, kids sessions and sunset slots, then open the full weekly planning for the complete schedule.',
       cta: 'View full schedule',
     },
+    surfConditions: {
+      badge: 'Conditions',
+      title: 'Forecast surf conditions for the next days',
+      fallbackParagraphs: ['Conditions update coming soon.'],
+    },
 
     findUsTitle: 'How to find us',
     findUs: {
@@ -291,7 +296,7 @@ export const en = {
     phones: '+33 6 70 60 84 26 · +33 6 50 52 34 75',
     facebook: '@skeepskool (Facebook)',
     instagram: '@skeepskool (Instagram)',
-    email: 'contact@skeepskool.fr',
+    email: 'skeepskool@hotmail.com',
 
     seasonTitle: 'Opening Hours',
     season:
@@ -451,7 +456,7 @@ export const en = {
         body: [
           'Skeepskool is committed to processing your personal data in a way that respects your privacy and complies with applicable French and European law.',
           'Data collected via the contact form (first name, email, message) is used solely to respond to your request and is never shared or sold to third parties.',
-          'In accordance with the GDPR, you have the right to access, rectify, erase, restrict and object to the processing of your data. To exercise these rights, contact us at contact@skeepskool.fr.',
+          'In accordance with the GDPR, you have the right to access, rectify, erase, restrict and object to the processing of your data. To exercise these rights, contact us at skeepskool@hotmail.com.',
           'You may also lodge a complaint with the CNIL (www.cnil.fr).',
         ],
       },
