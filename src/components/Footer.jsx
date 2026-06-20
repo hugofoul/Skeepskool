@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Phone, Mail, Facebook, Instagram, MapPin } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
+import { CONTACT, MAPS, SOCIAL } from '../config/site.js'
 
 export default function Footer() {
   const { t } = useLang()
@@ -64,7 +65,7 @@ export default function Footer() {
             <li className="flex items-start gap-2">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-yellow" />
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge"
+                href={MAPS.addressSearch}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-colors hover:text-yellow"
@@ -74,30 +75,30 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-2">
               <Phone className="h-4 w-4 shrink-0 text-yellow" />
-              <a href="tel:+33670608426" className="transition-colors hover:text-yellow">
-                +33 6 70 60 84 26
+              <a href={`tel:${CONTACT.phonePrimary}`} className="transition-colors hover:text-yellow">
+                {CONTACT.phonePrimaryDisplay}
               </a>
             </li>
             <li className="flex items-center gap-2">
               <Phone className="h-4 w-4 shrink-0 text-yellow" />
-              <a href="tel:+33650523475" className="transition-colors hover:text-yellow">
-                +33 6 50 52 34 75
+              <a href={`tel:${CONTACT.phoneSecondary}`} className="transition-colors hover:text-yellow">
+                {CONTACT.phoneSecondaryDisplay}
               </a>
             </li>
             <li className="flex items-center gap-2">
               <Mail className="h-4 w-4 shrink-0 text-yellow" />
               <a
-                href="mailto:skeepskool@hotmail.com"
+                href={`mailto:${CONTACT.email}`}
                 className="transition-colors hover:text-yellow"
               >
-                skeepskool@hotmail.com
+                {CONTACT.email}
               </a>
             </li>
           </ul>
 
           <div className="mt-4 flex gap-3">
             <a
-              href="https://www.facebook.com/skeepskool/"
+              href={SOCIAL.facebook}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
@@ -106,7 +107,7 @@ export default function Footer() {
               <Facebook className="h-5 w-5" />
             </a>
             <a
-              href="https://www.instagram.com/skeepskool/"
+              href={SOCIAL.instagram}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"

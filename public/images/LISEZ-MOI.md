@@ -1,37 +1,29 @@
 # Vos photos Skeepskool
 
-Déposez vos images dans ce dossier (`public/images/`) en respectant
-EXACTEMENT les noms de fichiers ci-dessous. Dès qu'un fichier est présent,
-il s'affiche automatiquement sur le site — aucun code à modifier.
+Les references reelles sont definies dans src/data/images.js.
+Si vous changez un nom de fichier ici, mettez aussi a jour src/data/images.js.
 
-## Images principales
-- hero.jpg          → grande image plein écran de l'accueil (~1600px de large)
-- vague.jpg         → bandeau en-tête de la page École
-- plage.jpg         → section "Le spot" (page École) + divers
-- planches.jpg      → bandeau page Location + section "pédagogie" (École)
-- surf-vague.jpg    → bandeau en-tête de la page Cours
-- dune-foret.jpg    → section "Le spot" (page École)
-- cours.jpg         → photo de cours (réserve)
-- equipe.jpg        → section "Notre équipe" (page École)
-- ocean.jpg         → bandeau en-tête de la page Contact
-
-## Carrousel de l'accueil (autant que vous voulez : 3 à 8 conseillé)
-- carrousel-1.jpg
-- carrousel-2.jpg
-- carrousel-3.jpg
-- carrousel-4.jpg
-- carrousel-5.jpg
-- carrousel-6.jpg
-
-## Portraits de l'équipe (~800px de large, format portrait)
-- pierre.jpg
-- mariane.jpg
-- manoa.jpg
-- hugo.jpg
+## Fichiers actuellement utilises
+- vague_avec_planche.jpg
+- vague.jpg
+- dune-foret.jpg
+- planches.jpg
+- charliecours.jpg
+- personalise.jpg
+- sunset1.JPEG
+- ecole.jpeg
+- plage.jpg
+- camping.jpg
+- carrousel-1.JPEG
+- sunset2.JPEG
+- coucher2.jpg
+- coucher.jpg
+- sunset4.JPEG
+- boss.jpeg
+- manu.JPG
+- hugo.JPG
 
 ## Conseils
-- Format : .jpg (ou .webp encore plus léger).
-- Poids : compressez vos photos (ex : https://squoosh.app).
-  Hero/carrousel ~200–400 Ko, portraits plus légers.
-- Si vous changez les noms ou ajoutez/retirez des photos du carrousel,
-  modifiez le fichier src/data/images.js en conséquence.
+- Preferer des noms ASCII (sans accent, sans espace).
+- Poids cible: hero/carrousel 200-400 Ko, autres images plus legeres.
+- Formats recommandes: JPG compresse, WebP, AVIF.

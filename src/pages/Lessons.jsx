@@ -32,7 +32,12 @@ export default function Lessons() {
     <div>
       <SEO
         title={lang === 'fr' ? 'Formules & Tarifs' : 'Packages & Prices'}
-        path="/cours"
+        path={lang === 'fr' ? '/cours' : '/lessons'}
+        alternates={[
+          { hrefLang: 'fr-FR', path: '/cours' },
+          { hrefLang: 'en', path: '/lessons' },
+          { hrefLang: 'x-default', path: '/cours' },
+        ]}
         description={lang === 'fr'
           ? "Cours de surf collectifs et particuliers à partir de 40€. Packs 3, 5, 10 ou 20 séances. Matériel et assurance inclus. Le Porge Océan, Gironde."
           : "Group and private surf lessons from €40. Packs of 3, 5, 10 or 20 sessions. Equipment and insurance included. Le Porge Océan, Gironde."}

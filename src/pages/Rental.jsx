@@ -16,7 +16,12 @@ export default function Rental() {
     <div>
       <SEO
         title={lang === 'fr' ? 'Location de matériel' : 'Equipment Rental'}
-        path="/location"
+        path={lang === 'fr' ? '/location' : '/rental'}
+        alternates={[
+          { hrefLang: 'fr-FR', path: '/location' },
+          { hrefLang: 'en', path: '/rental' },
+          { hrefLang: 'x-default', path: '/location' },
+        ]}
         description={lang === 'fr'
           ? "Location de planches de surf, bodyboards et combinaisons à la sortie de la plage du Porge Océan. À partir de 10€. Créneau sunset disponible."
           : "Surfboard, bodyboard and wetsuit rental right by the beach at Le Porge Océan. From €10. Sunset slot available."}

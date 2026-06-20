@@ -23,14 +23,14 @@ export const images = {
 
   // Cours & tarifs
   lessonsHero: '/images/vague.jpg', // Cours & tarifs > bandeau du haut
-  lessonsIntro: '/images/personalisé.jpg', // Cours & tarifs > bloc de présentation
+  lessonsIntro: '/images/personalise.jpg', // Cours & tarifs > bloc de présentation
   lessonsSunset: '/images/sunset1.JPEG', // Cours & tarifs > section Sunset
 
   // Location
   rentalHero: '/images/planches.jpg', // Location > bandeau du haut
 
   // Contact
-  contactHero: '/images/école.jpeg', // Contact > bandeau du haut
+  contactHero: '/images/ecole.jpeg', // Contact > bandeau du haut
 
   // Autour de nous
   aroundHero: '/images/dune-foret.jpg', // Autour de nous > bandeau du haut

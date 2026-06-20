@@ -1,13 +1,28 @@
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
 import Reveal from '../components/Reveal.jsx'
+import SEO from '../components/SEO.jsx'
 
 export default function Legal() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const l = t.legal
 
   return (
     <div>
+      <SEO
+        title={lang === 'fr' ? 'Mentions légales' : 'Legal Notice'}
+        path={lang === 'fr' ? '/mentions-legales' : '/legal'}
+        alternates={[
+          { hrefLang: 'fr-FR', path: '/mentions-legales' },
+          { hrefLang: 'en', path: '/legal' },
+          { hrefLang: 'x-default', path: '/mentions-legales' },
+        ]}
+        description={
+          lang === 'fr'
+            ? 'Mentions légales, politique de confidentialité et informations réglementaires de Skeepskool.'
+            : 'Legal notice, privacy policy and regulatory information for Skeepskool.'
+        }
+      />
       <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} />
 
       <section className="bg-white py-16 sm:py-20">

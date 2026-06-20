@@ -8,6 +8,11 @@ export const fr = {
   learnMore: 'En savoir plus',
   whatsappUrl: 'https://chat.whatsapp.com/J2vEDM7mQr23DoI61RSJFo',
   seasonBadge: 'Ouvert d’avril à novembre',
+  quickActions: {
+    response: 'Reponse rapide',
+    call: 'Appeler',
+    book: 'Reserver',
+  },
 
   // ---- Nav ----
   nav: {
@@ -28,6 +33,8 @@ export const fr = {
     heroSubtitle:
       'A 40m au nord de l\'accès principal de la plage centrale du Porge, notre école vous attend au pied de la dune et de la forêt pour des cours de surf aux portes de Bordeaux.',
     heroCta: 'Réserver',
+    heroSecondaryCta: 'Appeler maintenant',
+    heroTrustItems: ['Moniteurs diplomes d\'Etat', 'Des 5 ans', 'Materiel inclus'],
 
     highlights: [
       {

@@ -8,6 +8,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 export default function Carousel({ slides = [], interval = 4500 }) {
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
+  const [autoPlay, setAutoPlay] = useState(true)
   const [dragDelta, setDragDelta] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const count = slides.length
@@ -20,13 +21,13 @@ export default function Carousel({ slides = [], interval = 4500 }) {
   const prev = useCallback(() => goTo(index - 1), [goTo, index])
 
   useEffect(() => {
-    if (count <= 1 || paused) return
+    if (count <= 1 || paused || !autoPlay) return
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduce) return
 
     timer.current = setTimeout(() => goTo(index + 1), interval)
     return () => clearTimeout(timer.current)
-  }, [index, paused, count, interval, goTo])
+  }, [index, paused, autoPlay, count, interval, goTo])
 
   const onDragStart = useCallback((clientX) => {
     startXRef.current = clientX
@@ -70,8 +71,12 @@ export default function Carousel({ slides = [], interval = 4500 }) {
         onDragEnd()
         setPaused(false)
       }}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setPaused(false)
+        }
+      }}
       onMouseDown={(event) => onDragStart(event.clientX)}
       onMouseMove={(event) => onDragMove(event.clientX)}
       onMouseUp={onDragEnd}
@@ -79,12 +84,32 @@ export default function Carousel({ slides = [], interval = 4500 }) {
       onTouchMove={(event) => onDragMove(event.touches[0].clientX)}
       onTouchEnd={onDragEnd}
       onTouchCancel={onDragEnd}
+      onKeyDown={(event) => {
+        if (event.key === 'ArrowRight') {
+          event.preventDefault()
+          next()
+        }
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault()
+          prev()
+        }
+        if (event.key === 'Home') {
+          event.preventDefault()
+          goTo(0)
+        }
+        if (event.key === 'End') {
+          event.preventDefault()
+          goTo(count - 1)
+        }
+      }}
+      tabIndex={0}
       role="region"
       aria-roledescription="carousel"
       aria-label="Photos Skeepskool"
     >
       {/* Track */}
       <div
+        aria-live={paused || !autoPlay ? 'polite' : 'off'}
         className={`flex ${isDragging ? '' : 'transition-transform duration-700 ease-out'}`}
         style={{ transform: `translateX(calc(-${index * 100}% + ${dragDelta}px))` }}
       >
@@ -95,6 +120,8 @@ export default function Carousel({ slides = [], interval = 4500 }) {
               alt={slide.alt}
               className="h-72 w-full object-cover sm:h-96 lg:h-[30rem]"
               loading={i === 0 ? 'eager' : 'lazy'}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
+              decoding="async"
             />
           </div>
         ))}
@@ -117,6 +144,14 @@ export default function Carousel({ slides = [], interval = 4500 }) {
         className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/85 p-2 text-royalBlue shadow-md transition-colors hover:bg-yellow"
       >
         <ChevronRight className="h-6 w-6" />
+      </button>
+
+      <button
+        onClick={() => setAutoPlay((value) => !value)}
+        aria-label={autoPlay ? 'Mettre en pause le carrousel' : 'Relancer le carrousel'}
+        className="absolute right-3 top-3 rounded-full bg-white/85 px-3 py-1 text-xs font-bold text-royalBlue shadow-md transition-colors hover:bg-yellow"
+      >
+        {autoPlay ? 'Pause' : 'Play'}
       </button>
 
       {/* Dots */}

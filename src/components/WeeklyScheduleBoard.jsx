@@ -6,6 +6,7 @@ export default function WeeklyScheduleBoard({
   liveLabel,
   fallbackLabel,
   days,
+  isLive,
 }) {
   return (
     <section className="relative overflow-hidden bg-[#f3f7fd] py-16 sm:py-20">
@@ -17,6 +18,15 @@ export default function WeeklyScheduleBoard({
               <h1 className="mt-5 text-3xl font-black text-royalBlue sm:text-4xl">{title}</h1>
               <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
             </div>
+            <span
+              className={`inline-flex items-center self-start rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider ${
+                isLive
+                  ? 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-300'
+                  : 'bg-white text-royalBlue ring-1 ring-black/10'
+              }`}
+            >
+              {isLive ? liveLabel : fallbackLabel}
+            </span>
           </div>
         </Reveal>
 

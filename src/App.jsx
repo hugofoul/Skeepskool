@@ -1,7 +1,8 @@
 import { useEffect, lazy, Suspense } from 'react'
-import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
+import QuickActionBar from './components/QuickActionBar.jsx'
 
 const Home    = lazy(() => import('./pages/Home.jsx'))
 const School  = lazy(() => import('./pages/School.jsx'))
@@ -12,6 +13,7 @@ const Around  = lazy(() => import('./pages/Around.jsx'))
 const Contact = lazy(() => import('./pages/Contact.jsx'))
 const Booking = lazy(() => import('./pages/Booking.jsx'))
 const Legal   = lazy(() => import('./pages/Legal.jsx'))
+const NotFound = lazy(() => import('./pages/NotFound.jsx'))
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -34,7 +36,7 @@ export default function App() {
     <div className="flex min-h-screen flex-col">
       <ScrollToTop />
       <Navbar />
-      <main className="flex-1">
+      <main className="flex-1 pb-24 md:pb-0">
         <Suspense fallback={<div className="flex min-h-[60vh] items-center justify-center"><span className="h-8 w-8 animate-spin rounded-full border-4 border-royalBlue border-t-transparent" /></div>}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -53,10 +55,11 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/mentions-legales" element={<Legal />} />
           <Route path="/legal" element={<Legal />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>
       </main>
+      <QuickActionBar />
       <Footer />
     </div>
   )

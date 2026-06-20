@@ -6,8 +6,6 @@ import {
   Instagram,
   CalendarCheck,
   MessageCircle,
-  Star,
-  Car,
   ExternalLink,
   ParkingCircle,
 } from 'lucide-react'
@@ -17,6 +15,7 @@ import SEO from '../components/SEO.jsx'
 import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
+import { CONTACT, MAPS, SOCIAL } from '../config/site.js'
 
 const MAP_SRC =
   'https://www.google.com/maps?q=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge&z=14&output=embed'
@@ -30,6 +29,11 @@ export default function Contact() {
       <SEO
         title={lang === 'fr' ? 'Infos pratiques' : 'Practical Info'}
         path="/contact"
+        alternates={[
+          { hrefLang: 'fr-FR', path: '/contact' },
+          { hrefLang: 'en', path: '/contact' },
+          { hrefLang: 'x-default', path: '/contact' },
+        ]}
         description={lang === 'fr'
           ? "Comment venir au Porge Océan, horaires d'ouverture, numéros de téléphone, accès bus depuis Bordeaux. École de surf Skeepskool."
           : "How to reach Le Porge Océan, opening hours, phone numbers, bus access from Bordeaux. Skeepskool surf school."}
@@ -47,16 +51,16 @@ export default function Contact() {
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2">
             <InfoCard icon={Phone}>
-              <a href="tel:+33670608426" className="block font-semibold text-dark hover:text-red">
-                +33 6 70 60 84 26
+              <a href={`tel:${CONTACT.phonePrimary}`} className="block font-semibold text-dark hover:text-red">
+                {CONTACT.phonePrimaryDisplay}
               </a>
-              <a href="tel:+33650523475" className="block font-semibold text-dark hover:text-red">
-                +33 6 50 52 34 75
+              <a href={`tel:${CONTACT.phoneSecondary}`} className="block font-semibold text-dark hover:text-red">
+                {CONTACT.phoneSecondaryDisplay}
               </a>
             </InfoCard>
             <InfoCard icon={Instagram}>
               <a
-                href="https://www.instagram.com/skeepskool/"
+                href={SOCIAL.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold text-dark hover:text-red"
@@ -66,7 +70,7 @@ export default function Contact() {
             </InfoCard>
             <InfoCard icon={Facebook}>
               <a
-                href="https://www.facebook.com/skeepskool/"
+                href={SOCIAL.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold text-dark hover:text-red"
@@ -229,7 +233,7 @@ function InfoLine({ icon: Icon, title, label }) {
         {title && <p className="font-bold text-royalBlue">{title}</p>}
         {isAddress ? (
           <a
-            href="https://www.google.com/maps/search/?api=1&query=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge"
+            href={MAPS.addressSearch}
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm font-medium text-dark/80 transition-colors hover:text-royalBlue"

@@ -6,6 +6,7 @@ import {
   CalendarDays,
   Clock3,
   Phone,
+  CalendarCheck2,
 } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import { useWeeklySchedule } from '../hooks/useWeeklySchedule.js'
@@ -15,6 +16,7 @@ import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import Carousel from '../components/Carousel.jsx'
 import SEO from '../components/SEO.jsx'
+import { CONTACT } from '../config/site.js'
 
 const highlightIcons = [Waves, LifeBuoy, Award]
 
@@ -34,6 +36,11 @@ export default function Home() {
     <div>
       <SEO
         path="/"
+        alternates={[
+          { hrefLang: 'fr-FR', path: '/' },
+          { hrefLang: 'en', path: '/' },
+          { hrefLang: 'x-default', path: '/' },
+        ]}
         description={lang === 'fr'
           ? "École de surf labellisée FFS à Le Porge Océan, Gironde. Cours collectifs et particuliers dès 5 ans, location de matériel. Moniteurs diplômés d'État. 50 min de Bordeaux."
           : "FFS-certified surf school at Le Porge Océan, Gironde. Group and private lessons from age 5, equipment rental. State-certified instructors. 50 min from Bordeaux."}
@@ -44,6 +51,9 @@ export default function Home() {
           src={images.homeHero}
           alt="Surfeur à la plage du Porge Océan"
           className="absolute inset-0 h-full w-full object-cover"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-royalBlue/50" />
         <div className="relative z-10 mx-auto max-w-3xl px-4 text-center text-white">
@@ -53,14 +63,33 @@ export default function Home() {
           <p className="mx-auto mt-4 max-w-xl text-base text-white/90 sm:text-lg">
             {h.heroSubtitle}
           </p>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <CTAButton
-              href="tel:+33650523475"
+              to={lang === 'fr' ? '/reserver' : '/book'}
+              aria-label={lang === 'fr' ? 'Reserver un creneau de cours' : 'Book a lesson slot'}
+              className="px-6 py-3"
+            >
+              <CalendarCheck2 className="h-5 w-5" />
+              {h.heroCta}
+            </CTAButton>
+            <CTAButton
+              href={`tel:${CONTACT.phonePrimary}`}
               aria-label={lang === 'fr' ? 'Appeler Skeepskool' : 'Call Skeepskool'}
-              className="p-3"
+              className="bg-white px-6 py-3 !text-royalBlue hover:bg-yellow"
             >
               <Phone className="h-5 w-5" />
+              {h.heroSecondaryCta}
             </CTAButton>
+          </div>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+            {h.heroTrustItems.map((item) => (
+              <span
+                key={item}
+                className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white"
+              >
+                {item}
+              </span>
+            ))}
           </div>
         </div>
 

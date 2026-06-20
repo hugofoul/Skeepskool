@@ -8,6 +8,11 @@ export const en = {
   learnMore: 'Learn more',
   whatsappUrl: 'https://chat.whatsapp.com/J2vEDM7mQr23DoI61RSJFo',
   seasonBadge: 'Open from April to November',
+  quickActions: {
+    response: 'Fast response',
+    call: 'Call',
+    book: 'Book',
+  },
 
   // ---- Nav ----
   nav: {
@@ -27,6 +32,8 @@ export const en = {
     heroTagline: 'Live the Ocean',
     heroSubtitle: 'Certified surf school at Le Porge Océan — 50 min from Bordeaux',
     heroCta: 'Book now',
+    heroSecondaryCta: 'Call now',
+    heroTrustItems: ['State-certified instructors', 'From age 5', 'Equipment included'],
 
     highlights: [
       {

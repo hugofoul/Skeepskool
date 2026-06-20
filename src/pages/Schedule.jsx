@@ -5,6 +5,7 @@ import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import SEO from '../components/SEO.jsx'
 import { Phone } from 'lucide-react'
+import { CONTACT } from '../config/site.js'
 
 export default function Schedule() {
   const { t, lang } = useLang()
@@ -19,7 +20,12 @@ export default function Schedule() {
     <div>
       <SEO
         title={lang === 'fr' ? 'Horaires des cours' : 'Lesson Schedule'}
-        path="/horaires"
+        path={lang === 'fr' ? '/horaires' : '/schedule'}
+        alternates={[
+          { hrefLang: 'fr-FR', path: '/horaires' },
+          { hrefLang: 'en', path: '/schedule' },
+          { hrefLang: 'x-default', path: '/horaires' },
+        ]}
         description={lang === 'fr'
           ? "Planning des cours de surf en direct à Skeepskool. Créneaux collectifs, sessions enfants et cours Sunset au Porge Océan."
           : "Live surf lesson schedule at Skeepskool. Group slots, kids sessions and Sunset lessons at Le Porge Océan."}
@@ -29,6 +35,7 @@ export default function Schedule() {
         liveLabel={s.liveLabel}
         fallbackLabel={s.fallbackLabel}
         days={schedule.days}
+        isLive={schedule.isLive}
       />
 
       <section className="bg-white pb-16 pt-4 sm:pb-20 sm:pt-6">
@@ -43,7 +50,7 @@ export default function Schedule() {
                 <p className="mt-3 text-sm leading-relaxed text-dark/80 sm:text-base">{s.callWidgetText}</p>
               </div>
 
-              <CTAButton href="tel:+33670608426" className="shrink-0">
+              <CTAButton href={`tel:${CONTACT.phonePrimary}`} className="shrink-0">
                 {s.callWidgetCta}
               </CTAButton>
             </div>

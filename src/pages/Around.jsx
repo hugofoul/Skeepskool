@@ -14,7 +14,12 @@ export default function Around() {
     <div>
       <SEO
         title={lang === 'fr' ? 'Autour de nous' : 'Around Us'}
-        path="/autour"
+        path={lang === 'fr' ? '/autour' : '/around'}
+        alternates={[
+          { hrefLang: 'fr-FR', path: '/autour' },
+          { hrefLang: 'en', path: '/around' },
+          { hrefLang: 'x-default', path: '/autour' },
+        ]}
         description={lang === 'fr'
           ? "Hébergements, activités et bonnes adresses autour de la plage du Porge Océan, Gironde. Tout pour profiter de votre séjour surf."
           : "Accommodation, activities and local tips around Le Porge Océan, Gironde. Everything to make the most of your surf stay."}

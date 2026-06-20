@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
+import { CONTACT } from '../config/site.js'
 
 const initialSurfer = {
   id: 1,
@@ -149,7 +150,7 @@ export default function Booking() {
     ].join('\n')
 
     const encoded = encodeURIComponent(whatsappMessage)
-    window.open(`https://wa.me/33670608426?text=${encoded}`, '_blank', 'noopener,noreferrer')
+    window.open(`https://wa.me/${CONTACT.whatsappNumber}?text=${encoded}`, '_blank', 'noopener,noreferrer')
 
     const displayName = contact.firstName || b.firstName
     const successLead = b.successLead.replace('{name}', displayName)
@@ -160,7 +161,12 @@ export default function Booking() {
     <div>
       <SEO
         title={lang === 'fr' ? 'Réserver' : 'Book a Lesson'}
-        path="/reserver"
+        path={lang === 'fr' ? '/reserver' : '/book'}
+        alternates={[
+          { hrefLang: 'fr-FR', path: '/reserver' },
+          { hrefLang: 'en', path: '/book' },
+          { hrefLang: 'x-default', path: '/reserver' },
+        ]}
         description={lang === 'fr'
           ? "Réservez votre cours de surf à Skeepskool, école de surf au Porge Océan. Choisissez votre formule et validez votre place en ligne."
           : "Book your surf lesson at Skeepskool, surf school at Le Porge Océan. Choose your package and secure your spot online."}

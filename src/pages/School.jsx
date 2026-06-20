@@ -17,7 +17,12 @@ export default function School() {
     <div>
       <SEO
         title={lang === 'fr' ? "L'École" : 'The School'}
-        path="/ecole"
+        path={lang === 'fr' ? '/ecole' : '/school'}
+        alternates={[
+          { hrefLang: 'fr-FR', path: '/ecole' },
+          { hrefLang: 'en', path: '/school' },
+          { hrefLang: 'x-default', path: '/ecole' },
+        ]}
         description={lang === 'fr'
           ? "Découvrez l'école Skeepskool : spot préservé entre dunes et forêt de pins au Porge Océan, moniteurs diplômés, label École Française de Surf."
           : "Discover Skeepskool surf school: a preserved spot between dunes and pine forest at Le Porge Océan, certified instructors, FFS label."}

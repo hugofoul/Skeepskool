@@ -120,7 +120,7 @@ function mapScheduleRows(rawRows, lang, fallbackDays, allLevelsLabel) {
       day: day.day,
       slots: day.slots
         .sort((left, right) => left.sortKey.localeCompare(right.sortKey))
-        .map(({ sortKey, ...slot }) => slot),
+        .map(({ sortKey: _sortKey, ...slot }) => slot),
     }))
 
   return days.length ? days : fallbackDays
@@ -171,7 +171,7 @@ export function useWeeklySchedule({ lang, fallbackDays = [], allLevelsLabel = 'T
         if (!cancelled) {
           setState({
             days,
-            isLive: rows.length > 0,
+            isLive: days !== fallbackValue,
           })
         }
       } catch {

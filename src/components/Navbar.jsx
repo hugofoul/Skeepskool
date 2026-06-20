@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X, Phone } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
+import { CONTACT } from '../config/site.js'
 
 export default function Navbar() {
   const { lang, toggle, t } = useLang()
@@ -75,11 +76,11 @@ export default function Navbar() {
         {/* Right: lang toggle (desktop) + hamburger (mobile) */}
         <div className="flex items-center justify-self-end gap-3">
           <a
-            href="tel:+33650523475"
+            href={`tel:${CONTACT.phoneSecondary}`}
             className="hidden items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-yellow hover:text-royalBlue lg:inline-flex"
           >
             <Phone className="h-4 w-4 text-yellow" />
-            +33 6 50 52 34 75
+            {CONTACT.phoneSecondaryDisplay}
           </a>
           <LangToggle className="hidden md:inline-flex" />
           <button
@@ -115,11 +116,11 @@ export default function Navbar() {
               </NavLink>
             ))}
             <a
-              href="tel:+33650523475"
+              href={`tel:${CONTACT.phoneSecondary}`}
               className="mt-1 flex items-center gap-2 rounded-lg px-3 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
             >
               <Phone className="h-5 w-5 text-yellow" />
-              +33 6 50 52 34 75
+              {CONTACT.phoneSecondaryDisplay}
             </a>
             <div className="pt-3">
               <LangToggle />

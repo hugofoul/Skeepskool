@@ -14,6 +14,9 @@ export default function PageHero({ title, subtitle, image }) {
             alt=""
             aria-hidden="true"
             className="absolute inset-0 h-full w-full object-cover opacity-60"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-royalBlue/30" />
         </>
