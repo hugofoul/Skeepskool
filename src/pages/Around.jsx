@@ -1,16 +1,24 @@
 import { Tent, Utensils, MapPin, Phone, CalendarCheck, ExternalLink, Instagram, Compass } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
+import SEO from '../components/SEO.jsx'
 import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
 
 export default function Around() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const a = t.around
 
   return (
     <div>
+      <SEO
+        title={lang === 'fr' ? 'Autour de nous' : 'Around Us'}
+        path="/autour"
+        description={lang === 'fr'
+          ? "Hébergements, activités et bonnes adresses autour de la plage du Porge Océan, Gironde. Tout pour profiter de votre séjour surf."
+          : "Accommodation, activities and local tips around Le Porge Océan, Gironde. Everything to make the most of your surf stay."}
+      />
       <PageHero title={a.heroTitle} subtitle={a.heroSubtitle} image={images.aroundHero} />
 
       {/* ---- Tourist office ---- */}

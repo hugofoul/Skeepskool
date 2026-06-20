@@ -2,6 +2,7 @@ import { Waves, Handshake, TrendingUp, Award } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import { images, teamPhotos } from '../data/images.js'
 import PageHero from '../components/PageHero.jsx'
+import SEO from '../components/SEO.jsx'
 import Reveal from '../components/Reveal.jsx'
 
 const sectionImages = [images.schoolSpot, images.schoolPedagogy, images.schoolTeamSection]
@@ -9,11 +10,18 @@ const valueIcons = [Waves, Handshake, TrendingUp]
 const teamImages = [teamPhotos.pierre, teamPhotos.mariane, teamPhotos.manoa, teamPhotos.hugo]
 
 export default function School() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const s = t.school
 
   return (
     <div>
+      <SEO
+        title={lang === 'fr' ? "L'École" : 'The School'}
+        path="/ecole"
+        description={lang === 'fr'
+          ? "Découvrez l'école Skeepskool : spot préservé entre dunes et forêt de pins au Porge Océan, moniteurs diplômés, label École Française de Surf."
+          : "Discover Skeepskool surf school: a preserved spot between dunes and pine forest at Le Porge Océan, certified instructors, FFS label."}
+      />
       <PageHero title={s.heroTitle} subtitle={s.heroSubtitle} image={images.schoolHero} />
 
       {/* ---- Alternating content sections ---- */}

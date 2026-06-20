@@ -1,6 +1,7 @@
 import { Waves, ShieldQuestion, Info } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
+import SEO from '../components/SEO.jsx'
 import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
@@ -8,11 +9,18 @@ import { images } from '../data/images.js'
 const guideIcons = [Waves, ShieldQuestion, Info]
 
 export default function Rental() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const r = t.rental
 
   return (
     <div>
+      <SEO
+        title={lang === 'fr' ? 'Location de matériel' : 'Equipment Rental'}
+        path="/location"
+        description={lang === 'fr'
+          ? "Location de planches de surf, bodyboards et combinaisons à la sortie de la plage du Porge Océan. À partir de 10€. Créneau sunset disponible."
+          : "Surfboard, bodyboard and wetsuit rental right by the beach at Le Porge Océan. From €10. Sunset slot available."}
+      />
       <PageHero title={r.heroTitle} subtitle={r.heroSubtitle} image={images.rentalHero} />
 
       <section className="bg-white py-6 sm:py-8">

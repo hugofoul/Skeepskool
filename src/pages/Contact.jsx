@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
+import SEO from '../components/SEO.jsx'
 import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
@@ -21,11 +22,18 @@ const MAP_SRC =
   'https://www.google.com/maps?q=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge&z=14&output=embed'
 
 export default function Contact() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const c = t.contact
 
   return (
     <div>
+      <SEO
+        title={lang === 'fr' ? 'Infos pratiques' : 'Practical Info'}
+        path="/contact"
+        description={lang === 'fr'
+          ? "Comment venir au Porge Océan, horaires d'ouverture, numéros de téléphone, accès bus depuis Bordeaux. École de surf Skeepskool."
+          : "How to reach Le Porge Océan, opening hours, phone numbers, bus access from Bordeaux. Skeepskool surf school."}
+      />
       <PageHero title={c.heroTitle} subtitle={c.heroSubtitle} image={images.contactHero} />
 
       {/* ---- Info cards ---- */}

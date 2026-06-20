@@ -3,6 +3,7 @@ import { useWeeklySchedule } from '../hooks/useWeeklySchedule.js'
 import WeeklyScheduleBoard from '../components/WeeklyScheduleBoard.jsx'
 import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
+import SEO from '../components/SEO.jsx'
 import { Phone } from 'lucide-react'
 
 export default function Schedule() {
@@ -16,6 +17,13 @@ export default function Schedule() {
 
   return (
     <div>
+      <SEO
+        title={lang === 'fr' ? 'Horaires des cours' : 'Lesson Schedule'}
+        path="/horaires"
+        description={lang === 'fr'
+          ? "Planning des cours de surf en direct à Skeepskool. Créneaux collectifs, sessions enfants et cours Sunset au Porge Océan."
+          : "Live surf lesson schedule at Skeepskool. Group slots, kids sessions and Sunset lessons at Le Porge Océan."}
+      />
       <WeeklyScheduleBoard
         title={s.title}
         liveLabel={s.liveLabel}

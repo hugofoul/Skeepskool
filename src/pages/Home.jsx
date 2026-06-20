@@ -14,6 +14,7 @@ import { images, carousel } from '../data/images.js'
 import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import Carousel from '../components/Carousel.jsx'
+import SEO from '../components/SEO.jsx'
 
 const highlightIcons = [Waves, LifeBuoy, Award]
 
@@ -31,6 +32,12 @@ export default function Home() {
 
   return (
     <div>
+      <SEO
+        path="/"
+        description={lang === 'fr'
+          ? "École de surf labellisée FFS à Le Porge Océan, Gironde. Cours collectifs et particuliers dès 5 ans, location de matériel. Moniteurs diplômés d'État. 50 min de Bordeaux."
+          : "FFS-certified surf school at Le Porge Océan, Gironde. Group and private lessons from age 5, equipment rental. State-certified instructors. 50 min from Bordeaux."}
+      />
       {/* ---------------- HERO ---------------- */}
       <section className="relative flex min-h-[88vh] items-center justify-center overflow-hidden">
         <img

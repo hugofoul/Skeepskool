@@ -1,16 +1,17 @@
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
-import Home from './pages/Home.jsx'
-import School from './pages/School.jsx'
-import Lessons from './pages/Lessons.jsx'
-import Schedule from './pages/Schedule.jsx'
-import Rental from './pages/Rental.jsx'
-import Around from './pages/Around.jsx'
-import Contact from './pages/Contact.jsx'
-import Booking from './pages/Booking.jsx'
-import Legal from './pages/Legal.jsx'
+
+const Home    = lazy(() => import('./pages/Home.jsx'))
+const School  = lazy(() => import('./pages/School.jsx'))
+const Lessons = lazy(() => import('./pages/Lessons.jsx'))
+const Schedule = lazy(() => import('./pages/Schedule.jsx'))
+const Rental  = lazy(() => import('./pages/Rental.jsx'))
+const Around  = lazy(() => import('./pages/Around.jsx'))
+const Contact = lazy(() => import('./pages/Contact.jsx'))
+const Booking = lazy(() => import('./pages/Booking.jsx'))
+const Legal   = lazy(() => import('./pages/Legal.jsx'))
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -34,6 +35,7 @@ export default function App() {
       <ScrollToTop />
       <Navbar />
       <main className="flex-1">
+        <Suspense fallback={<div className="flex min-h-[60vh] items-center justify-center"><span className="h-8 w-8 animate-spin rounded-full border-4 border-royalBlue border-t-transparent" /></div>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/ecole" element={<School />} />
@@ -53,6 +55,7 @@ export default function App() {
           <Route path="/legal" element={<Legal />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        </Suspense>
       </main>
       <Footer />
     </div>

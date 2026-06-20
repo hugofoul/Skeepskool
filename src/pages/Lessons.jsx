@@ -14,6 +14,7 @@ import {
 import { Link } from 'react-router-dom'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
+import SEO from '../components/SEO.jsx'
 import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
@@ -24,11 +25,18 @@ const POPULAR_INDEX = 2
 const factIcons = [Clock, Users, Backpack, ShieldCheck]
 
 export default function Lessons() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const l = t.lessons
 
   return (
     <div>
+      <SEO
+        title={lang === 'fr' ? 'Formules & Tarifs' : 'Packages & Prices'}
+        path="/cours"
+        description={lang === 'fr'
+          ? "Cours de surf collectifs et particuliers à partir de 40€. Packs 3, 5, 10 ou 20 séances. Matériel et assurance inclus. Le Porge Océan, Gironde."
+          : "Group and private surf lessons from €40. Packs of 3, 5, 10 or 20 sessions. Equipment and insurance included. Le Porge Océan, Gironde."}
+      />
       <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.lessonsHero} />
 
       {/* ---- Lesson presentation ---- */}
