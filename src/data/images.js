@@ -13,7 +13,7 @@ const u = (id, w = 1600) => `https://images.unsplash.com/photo-${id}?w=${w}&q=80
 
 export const images = {
   // Accueil
-  homeHero: '/images/vague_avec_planche.jpg', // Accueil > grand hero
+  homeHero: '/images/vague_avec_planche_hero.jpg', // Accueil > grand hero (version optimisee)
 
   // L'école
   schoolHero: '/images/vague.jpg', // L'école > bandeau du haut

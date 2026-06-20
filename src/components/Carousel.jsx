@@ -119,7 +119,8 @@ export default function Carousel({ slides = [], interval = 4500 }) {
               src={slide.src}
               alt={slide.alt}
               className="h-72 w-full object-cover sm:h-96 lg:h-[30rem]"
-              loading={i === 0 ? 'eager' : 'lazy'}
+              loading="lazy"
+              fetchPriority="low"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
               decoding="async"
             />

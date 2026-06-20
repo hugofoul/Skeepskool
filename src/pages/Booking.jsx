@@ -177,6 +177,9 @@ export default function Booking() {
         <div className="mx-auto w-full max-w-[680px] px-4 sm:px-6">
           <Reveal className="rounded-2xl bg-royalBlue p-6 text-white shadow-lg sm:p-7">
             <p className="text-sm font-semibold leading-relaxed sm:text-base">{b.intro}</p>
+            <p className="mt-3 text-xs font-bold uppercase tracking-wide text-yellow">
+              {t.lessons.multiCourseFlexNote}
+            </p>
           </Reveal>
 
           <form

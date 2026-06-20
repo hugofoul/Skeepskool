@@ -239,6 +239,7 @@ export const fr = {
       'Attestation de niveau',
     ],
     validityNote: 'Toutes nos formules sont valables 1 an à partir de la date d’achat.',
+    multiCourseFlexNote: 'Les formules de plusieurs cours ne sont pas obligatoirement à enchaîner : vous pouvez les répartir selon vos disponibilités.',
     sunsetTitle: 'Cours au coucher du soleil',
     sunsetText:
       'Envie d’une session magique ? Nous proposons aussi des cours en Sunset : surfez dans la lumière dorée de fin de journée, quand l’océan se calme et que les vagues n’appartiennent plus qu’à vous.',

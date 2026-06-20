@@ -260,6 +260,9 @@ export default function Lessons() {
               <ShieldCheck className="h-4 w-4" />
               {l.validityNote}
             </p>
+            <p className="mx-auto mt-3 max-w-2xl text-sm font-semibold text-dark/70">
+              {l.multiCourseFlexNote}
+            </p>
           </Reveal>
         </div>
       </section>

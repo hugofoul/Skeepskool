@@ -238,6 +238,7 @@ export const en = {
       'Level certificate',
     ],
     validityNote: 'All our packages are valid for 1 year from the purchase date.',
+    multiCourseFlexNote: 'Multi-lesson packages do not need to be taken on consecutive days: you can spread them out based on your availability.',
     sunsetTitle: 'Sunset lessons',
     sunsetText:
       'Fancy a magical session? We also offer Sunset lessons: surf in the golden evening light, when the ocean calms down and the waves are all yours.',
