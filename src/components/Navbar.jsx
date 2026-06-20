@@ -44,9 +44,12 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-royalBlue shadow-lg">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <nav className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center px-4 py-3 sm:px-6 md:flex md:justify-between lg:px-8">
+        {/* Left placeholder to keep centered logo on mobile */}
+        <div className="h-7 w-7 md:hidden" aria-hidden="true" />
+
         {/* Brand */}
-        <Link to="/" className="group flex items-center">
+        <Link to="/" className="group flex items-center justify-self-center md:justify-self-auto">
           <div className="h-14 w-44 overflow-hidden sm:h-16 sm:w-48">
             <img
               src="/logo-skeepskool-new.svg"
@@ -69,8 +72,8 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right: lang toggle (desktop) + hamburger */}
-        <div className="flex items-center gap-3">
+        {/* Right: lang toggle (desktop) + hamburger (mobile) */}
+        <div className="flex items-center justify-self-end gap-3">
           <a
             href="tel:+33650523475"
             className="hidden items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-yellow hover:text-royalBlue lg:inline-flex"
@@ -91,8 +94,12 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile dropdown */}
-      {open && (
-        <div className="border-t border-white/10 bg-royalBlue px-4 pb-5 pt-2 md:hidden">
+      <div
+        className={`overflow-hidden bg-royalBlue transition-all duration-300 ease-out md:hidden ${
+          open ? 'max-h-[80vh] border-t border-white/10 opacity-100' : 'max-h-0 border-t border-transparent opacity-0'
+        }`}
+      >
+        <div className={`px-4 pb-5 pt-2 transition-transform duration-300 ${open ? 'translate-y-0' : '-translate-y-2'}`}>
           <div className="flex flex-col gap-1">
             {links.map((l) => (
               <NavLink
@@ -119,7 +126,7 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-      )}
+      </div>
     </header>
   )
 }

@@ -13,7 +13,7 @@ export const fr = {
   nav: {
     home: 'Accueil',
     school: 'École',
-    lessons: 'Cours',
+    lessons: 'Formules',
     book: 'Réserver',
     schedule: 'Horaires',
     rental: 'Location',
@@ -363,6 +363,8 @@ export const fr = {
       { item: 'Combinaison (Combi)', prices: ['6€', '8€', '10€', '45€', '8€'] },
     ],
     riskNote: 'Location à vos risques et périls — non encadrée.',
+    safetyRecommendation:
+      'Il est recommande d\'avoir fait au moins 10 seances avec un professeur de surf. La securite est essentielle pour vous et pour les autres : le surf peut etre dangereux.',
     plusNote: 'Le + : vous pouvez changer de planche pendant toute la durée de la location.',
     idRequiredNote: 'Une piece d\'identite est obligatoire pour toute location.',
     sunsetNote: 'Créneau Sunset : de 18h jusqu’au lendemain 9h30.',
@@ -389,6 +391,7 @@ export const fr = {
     heroTitle: 'Infos pratiques',
     heroSubtitle: "Comment venir, où se garer, nos horaires d'ouverture.",
     infoTitle: 'Nos coordonnées',
+    infoLead: 'Appelez-nous pour réserver ou si vous souhaitez des renseignements.',
     address: 'Plage Centrale, Le Porge Océan, 33680 Gironde',
     addressDetail: '40 m au nord de l’accès principal à la plage.',
     openMaps: 'Ouvrir dans Google Maps',

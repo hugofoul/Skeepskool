@@ -34,6 +34,7 @@ export default function Contact() {
           <Reveal>
             <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{c.infoTitle}</h2>
             <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+            {c.infoLead && <p className="mt-4 max-w-2xl text-base text-dark/75 sm:text-lg">{c.infoLead}</p>}
           </Reveal>
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2">
@@ -45,16 +46,6 @@ export default function Contact() {
                 +33 6 50 52 34 75
               </a>
             </InfoCard>
-            <InfoCard icon={Facebook}>
-              <a
-                href="https://www.facebook.com/skeepskool/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-dark hover:text-red"
-              >
-                {c.facebook}
-              </a>
-            </InfoCard>
             <InfoCard icon={Instagram}>
               <a
                 href="https://www.instagram.com/skeepskool/"
@@ -63,6 +54,16 @@ export default function Contact() {
                 className="font-semibold text-dark hover:text-red"
               >
                 {c.instagram}
+              </a>
+            </InfoCard>
+            <InfoCard icon={Facebook}>
+              <a
+                href="https://www.facebook.com/skeepskool/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-dark hover:text-red"
+              >
+                {c.facebook}
               </a>
             </InfoCard>
           </div>

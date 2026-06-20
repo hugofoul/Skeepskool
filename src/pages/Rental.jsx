@@ -15,8 +15,19 @@ export default function Rental() {
     <div>
       <PageHero title={r.heroTitle} subtitle={r.heroSubtitle} image={images.rentalHero} />
 
+      <section className="bg-white py-6 sm:py-8">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <Reveal className="rounded-2xl border-l-4 border-red bg-lightGray p-4 shadow-sm ring-1 ring-black/5 sm:p-5">
+            <p className="flex items-start gap-2 text-sm font-semibold text-red sm:text-base">
+              <ShieldQuestion className="mt-0.5 h-4 w-4 shrink-0 text-red" />
+              {r.safetyRecommendation}
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ---- Pricing table (desktop) ---- */}
-      <section className="bg-white py-16 sm:py-20">
+      <section className="bg-white py-8 sm:py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           {/* Desktop / tablet table */}
           <Reveal className="hidden overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/10 md:block">

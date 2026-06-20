@@ -13,7 +13,7 @@ export const en = {
   nav: {
     home: 'Home',
     school: 'School',
-    lessons: 'Lessons',
+    lessons: 'Packages',
     book: 'Book',
     schedule: 'Schedule',
     rental: 'Rental',
@@ -361,6 +361,8 @@ export const en = {
       { item: 'Wetsuit (Combi)', prices: ['6€', '8€', '10€', '45€', '8€'] },
     ],
     riskNote: 'Rental at your own risk — unsupervised.',
+    safetyRecommendation:
+      'It is recommended to have completed at least 10 lessons with a surf instructor. Safety is essential for you and for others: surfing can be dangerous.',
     plusNote: 'Bonus: you can switch boards during your rental period.',
     idRequiredNote: 'A valid ID is required for any rental.',
     sunsetNote: 'Sunset slot: from 6pm to the next day at 9:30am.',
@@ -387,6 +389,7 @@ export const en = {
     heroTitle: 'Practical Info',
     heroSubtitle: 'How to get here, where to park, our opening hours.',
     infoTitle: 'Our details',
+    infoLead: 'Call us to book or if you need any information.',
     address: 'Plage Centrale, Le Porge Océan, 33680 Gironde',
     addressDetail: '40m north of the main beach access.',
     openMaps: 'Open in Google Maps',

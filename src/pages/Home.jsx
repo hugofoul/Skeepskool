@@ -5,6 +5,7 @@ import {
   Star,
   CalendarDays,
   Clock3,
+  Phone,
 } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import { useWeeklySchedule } from '../hooks/useWeeklySchedule.js'
@@ -42,15 +43,16 @@ export default function Home() {
           <h1 className="animate-fadeInUp text-5xl font-black tracking-tight drop-shadow-lg sm:text-7xl lg:text-8xl">
             {h.heroTitle}
           </h1>
-          <p className="mt-4 text-2xl font-semibold text-yellow sm:text-3xl">
-            {h.heroTagline}
-          </p>
           <p className="mx-auto mt-4 max-w-xl text-base text-white/90 sm:text-lg">
             {h.heroSubtitle}
           </p>
           <div className="mt-8">
-            <CTAButton to="/contact" className="text-lg">
-              {h.heroCta}
+            <CTAButton
+              href="tel:+33650523475"
+              aria-label={lang === 'fr' ? 'Appeler Skeepskool' : 'Call Skeepskool'}
+              className="p-3"
+            >
+              <Phone className="h-5 w-5" />
             </CTAButton>
           </div>
         </div>
@@ -78,6 +80,20 @@ export default function Home() {
                   <Icon className="h-12 w-12 text-royalBlue" strokeWidth={2} />
                   <h3 className="mt-4 text-xl font-extrabold text-royalBlue">{card.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-dark/75">{card.text}</p>
+                  {i === 0 && (
+                    <div className="mt-5">
+                      <CTAButton to="/cours" className="px-4 py-2 text-sm">
+                        {t.learnMore}
+                      </CTAButton>
+                    </div>
+                  )}
+                  {i === 1 && (
+                    <div className="mt-5">
+                      <CTAButton to="/location" className="px-4 py-2 text-sm">
+                        {t.learnMore}
+                      </CTAButton>
+                    </div>
+                  )}
                 </Reveal>
               )
             })}
