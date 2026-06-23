@@ -19,6 +19,12 @@ export default function Booking() {
   const { t, lang } = useLang()
   const b = t.booking
 
+  const minStartDate = useMemo(() => {
+    const date = new Date()
+    date.setDate(date.getDate() + 6)
+    return date.toISOString().slice(0, 10)
+  }, [])
+
   const [contact, setContact] = useState({
     firstName: '',
     lastName: '',
@@ -365,6 +371,7 @@ export default function Booking() {
                     className={inputClass}
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
+                    min={minStartDate}
                     required
                   />
                 </label>
