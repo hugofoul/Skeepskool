@@ -31,6 +31,7 @@ export const images = {
 
   // Contact
   contactHero: '/images/ecole.jpeg', // Contact > bandeau du haut
+  contactPlan: '/images/Plan-ecole-de-surf-Skeepskool-Le-Porge.png', // Contact > plan d'accès
 
   // Autour de nous
   aroundHero: '/images/dune-foret.jpg', // Autour de nous > bandeau du haut

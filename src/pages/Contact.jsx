@@ -160,16 +160,32 @@ export default function Contact() {
               <InfoLine icon={MapPin} title={c.findUs.gpsLabel} label={c.findUs.gps} />
             </Reveal>
 
-            {/* Map */}
-            <Reveal delay={120} className="overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/10">
-              <iframe
-                title={c.mapTitle}
-                src={MAP_SRC}
-                className="h-80 w-full border-0 lg:h-full"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
+            {/* Map + access plan */}
+            <Reveal delay={120} className="space-y-5">
+              <div className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-black/10">
+                <a href={images.contactPlan} target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le plan d’accès en grand">
+                  <img
+                    src={images.contactPlan}
+                    alt="Plan explicatif pour localiser l’école de surf Skeepskool"
+                    className="h-80 w-full object-cover object-[88%_4%] sm:h-96"
+                    loading="lazy"
+                  />
+                </a>
+                <div className="p-4">
+                  <p className="text-sm font-semibold text-royalBlue">Plan d’accès</p>
+                  <p className="mt-1 text-sm text-dark/75">Cliquez sur l’image pour l’ouvrir en grand.</p>
+                </div>
+              </div>
+              <div className="overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/10">
+                <iframe
+                  title={c.mapTitle}
+                  src={MAP_SRC}
+                  className="h-80 w-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
             </Reveal>
           </div>
 

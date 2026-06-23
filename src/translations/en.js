@@ -31,6 +31,8 @@ export const en = {
     heroTitle: 'SKEEPSKOOL',
     heroTagline: 'Live the Ocean',
     heroSubtitle: 'Certified surf school at Le Porge Océan — 50 min from Bordeaux',
+    campingNotePrefix: 'Right next to ',
+    campingNoteLink: 'Camping La Grigne',
     heroCta: 'Book now',
     heroSecondaryCta: 'Call now',
     heroTrustItems: ['State-certified instructors', 'From age 5', 'Equipment included'],

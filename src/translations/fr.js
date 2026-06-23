@@ -32,6 +32,8 @@ export const fr = {
     heroTagline: "Vis l'océan",
     heroSubtitle:
       'A 40m au nord de l\'accès principal de la plage centrale du Porge, notre école vous attend au pied de la dune et de la forêt pour des cours de surf aux portes de Bordeaux.',
+    campingNotePrefix: 'Juste à côté du ',
+    campingNoteLink: 'Camping La Grigne',
     heroCta: 'Réserver',
     heroSecondaryCta: 'Appeler maintenant',
     heroTrustItems: ['Moniteurs diplomes d\'Etat', 'Des 5 ans', 'Materiel inclus'],
@@ -397,11 +399,12 @@ export const fr = {
   // ---- Infos pratiques (anciennement Contact) ----
   contact: {
     heroTitle: 'Infos pratiques',
-    heroSubtitle: "Comment venir, où se garer, nos horaires d'ouverture.",
+    heroSubtitle: "Très facile d’accès : Skeepskool est l’École de Surf de la Plage Centrale du Porge.",
     infoTitle: 'Nos coordonnées',
-    infoLead: 'Appelez-nous pour réserver ou si vous souhaitez des renseignements.',
+    infoLead:
+      'En voiture, au rond-point de la plage, prenez à droite puis à gauche à l’intersection suivante : vous arrivez devant l’école, devant un grand parking.',
     address: 'Plage Centrale, Le Porge Océan, 33680 Gironde',
-    addressDetail: '40 m au nord de l’accès principal à la plage.',
+    addressDetail: '40 m au nord de l’accès principal à la plage, au pied de la dune côté forêt.',
     openMaps: 'Ouvrir dans Google Maps',
     phones: '+33 6 70 60 84 26 · +33 6 50 52 34 75',
     facebook: '@skeepskool (Facebook)',
@@ -421,7 +424,8 @@ export const fr = {
     findUs: {
       address: 'Plage Centrale, Le Porge Océan, 33680, Gironde',
       byCarLabel: 'En voiture',
-      byCar: '~50 min depuis Bordeaux via la D6 puis la D3 en direction du Porge → suivre les panneaux « Le Porge Océan ».',
+      byCar:
+        '~50 min depuis Bordeaux via la D6 puis la D3 en direction du Porge → au rond-point de la plage, prenez à droite puis à gauche à l’intersection suivante. Vous arrivez devant l’école, 40 m au nord de l’allée de la Plage Centrale.',
       citiesLabel: 'Villes les plus proches',
       cities: 'Bordeaux 50 min · Lacanau 20 min · Lège-Cap-Ferret 25 min',
       parkingLabel: 'Stationnement',

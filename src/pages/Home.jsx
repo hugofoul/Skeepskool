@@ -8,6 +8,7 @@ import {
   Phone,
   CalendarCheck2,
 } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { useLang } from '../hooks/useLang.js'
 import { useWeeklySchedule } from '../hooks/useWeeklySchedule.js'
 import { useSurfConditions } from '../hooks/useSurfConditions.js'
@@ -62,6 +63,16 @@ export default function Home() {
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-base text-white/90 sm:text-lg">
             {h.heroSubtitle}
+          </p>
+          <p className="mx-auto mt-3 max-w-xl text-sm font-medium text-white/85 sm:text-base">
+            {h.campingNotePrefix}
+            <Link
+              to="/autour#camping-la-grigne"
+              className="font-bold text-white transition-colors hover:text-yellow"
+            >
+              {h.campingNoteLink}
+            </Link>
+            .
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <CTAButton
