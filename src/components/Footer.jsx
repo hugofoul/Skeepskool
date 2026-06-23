@@ -13,6 +13,7 @@ export default function Footer() {
     { to: '/cours', label: t.nav.lessons },
     { to: '/horaires', label: t.nav.schedule },
     { to: '/location', label: t.nav.rental },
+    { to: '/album-photo', label: t.nav.photos },
     { to: '/autour', label: t.nav.around },
     { to: '/contact', label: t.nav.contact },
   ]

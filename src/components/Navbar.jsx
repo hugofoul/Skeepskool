@@ -20,6 +20,7 @@ export default function Navbar() {
     { to: lang === 'fr' ? '/reserver' : '/book', label: t.nav.book, match: ['/reserver', '/book'] },
     { to: '/horaires', label: t.nav.schedule },
     { to: '/location', label: t.nav.rental },
+    { to: '/album-photo', label: t.nav.photos, match: ['/album-photo', '/photos'] },
     { to: '/autour', label: t.nav.around },
     { to: '/contact', label: t.nav.contact },
   ]

@@ -19,6 +19,7 @@ export const en = {
     home: 'Home',
     school: 'School',
     lessons: 'Packages',
+    photos: 'Photos',
     book: 'Book',
     schedule: 'Schedule',
     rental: 'Rental',

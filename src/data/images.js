@@ -49,6 +49,124 @@ export const carousel = [
   { src: '/images/sunset4.JPEG', alt: 'Groupe de surfeurs sur la plage' },
 ]
 
+// Home page photo gallery — used for the “plus de photos” section.
+export const photoGallery = [
+  {
+    src: '/images/vague_avec_planche.jpg',
+    alt: 'Planche de surf portée par une vague au large',
+    className: 'md:col-span-2 md:row-span-2',
+  },
+  {
+    src: '/images/sunset2.JPEG',
+    alt: 'Élève de Skeepskool au coucher du soleil',
+    className: 'md:col-span-2',
+  },
+  {
+    src: '/images/carrousel-1.JPEG',
+    alt: 'Cours de surf à Skeepskool sur l’eau',
+  },
+  {
+    src: '/images/charliecours.jpg',
+    alt: 'Séance de coaching sur le spot du Porge',
+  },
+  {
+    src: '/images/vague.jpg',
+    alt: 'Vague de l’Atlantique qui déferle',
+  },
+  {
+    src: '/images/sunset4.JPEG',
+    alt: 'Groupe de surfeurs dans la lumière du soir',
+  },
+  {
+    src: '/images/plage.jpg',
+    alt: 'Plage sauvage et horizon océanique',
+  },
+  {
+    src: '/images/IMG_2093.jpg',
+    alt: 'Session surf en bord d’océan',
+  },
+  {
+    src: '/images/IMG_2122.JPEG',
+    alt: 'Élève Skeepskool sur la vague',
+  },
+  {
+    src: '/images/IMG_2170.JPEG',
+    alt: 'Moment surf sur le spot du Porge',
+  },
+  {
+    src: '/images/IMG_2177.jpg',
+    alt: 'Vue de la session sur l’eau',
+  },
+  {
+    src: '/images/IMG_2188.JPEG',
+    alt: 'Surfeur lancé sur une vague',
+  },
+  {
+    src: '/images/IMG_2212.JPEG',
+    alt: 'Élève en équilibre sur sa planche',
+  },
+  {
+    src: '/images/IMG_2221.JPEG',
+    alt: 'Ambiance de session avec les vagues',
+  },
+  {
+    src: '/images/boss.jpeg',
+    alt: 'Portrait de l’équipe Skeepskool',
+  },
+  {
+    src: '/images/camping.jpg',
+    alt: 'Camping à proximité de la plage',
+  },
+  {
+    src: '/images/coaching_confirmé.JPG',
+    alt: 'Coaching confirmé sur le sable',
+  },
+  {
+    src: '/images/coucher.jpg',
+    alt: 'Vague au coucher du soleil',
+  },
+  {
+    src: '/images/coucher2.jpg',
+    alt: 'Ambiance océan et planches au coucher du soleil',
+  },
+  {
+    src: '/images/dune-foret.jpg',
+    alt: 'Dunes et forêt de pins',
+  },
+  {
+    src: '/images/ecole.jpeg',
+    alt: 'L’école de surf Skeepskool',
+  },
+  {
+    src: '/images/hugo.JPG',
+    alt: 'Portrait de Hugo',
+  },
+  {
+    src: '/images/manu.JPG',
+    alt: 'Portrait de Manu',
+  },
+  {
+    src: '/images/personalise.jpg',
+    alt: 'Séance de surf personnalisée',
+  },
+  {
+    src: '/images/planches.jpg',
+    alt: 'Planches de surf prêtes sur la plage',
+  },
+  {
+    src: '/images/sunset1.JPEG',
+    alt: 'Lumière de sunset sur la plage',
+  },
+  {
+    src: '/images/sunset3.JPEG',
+    alt: 'Fin de journée sur l’océan',
+  },
+  {
+    src: '/images/vague_avec_planche_hero.jpg',
+    alt: 'Grand visuel de vague avec planche de surf',
+  },
+]
+
 // Team member portraits.
 export const teamPhotos = {
   pierre: '/images/boss.jpeg', //  u('1500648767791-00dcc994a43e', 800)

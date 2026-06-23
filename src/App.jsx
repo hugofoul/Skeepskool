@@ -11,6 +11,7 @@ const Schedule = lazy(() => import('./pages/Schedule.jsx'))
 const Rental  = lazy(() => import('./pages/Rental.jsx'))
 const Around  = lazy(() => import('./pages/Around.jsx'))
 const Contact = lazy(() => import('./pages/Contact.jsx'))
+const PhotoAlbum = lazy(() => import('./pages/PhotoAlbum.jsx'))
 const Booking = lazy(() => import('./pages/Booking.jsx'))
 const Legal   = lazy(() => import('./pages/Legal.jsx'))
 const NotFound = lazy(() => import('./pages/NotFound.jsx'))
@@ -53,6 +54,8 @@ export default function App() {
           <Route path="/autour" element={<Around />} />
           <Route path="/around" element={<Around />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/album-photo" element={<PhotoAlbum />} />
+          <Route path="/photos" element={<PhotoAlbum />} />
           <Route path="/mentions-legales" element={<Legal />} />
           <Route path="/legal" element={<Legal />} />
           <Route path="*" element={<NotFound />} />

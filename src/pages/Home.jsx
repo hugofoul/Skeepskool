@@ -8,7 +8,6 @@ import {
   Phone,
   CalendarCheck2,
 } from 'lucide-react'
-import { Link } from 'react-router-dom'
 import { useLang } from '../hooks/useLang.js'
 import { useWeeklySchedule } from '../hooks/useWeeklySchedule.js'
 import { useSurfConditions } from '../hooks/useSurfConditions.js'
@@ -66,12 +65,14 @@ export default function Home() {
           </p>
           <p className="mx-auto mt-3 max-w-xl text-sm font-medium text-white/85 sm:text-base">
             {h.campingNotePrefix}
-            <Link
-              to="/autour#camping-la-grigne"
+            <a
+              href="https://camping-leporge.fr/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="font-bold text-white transition-colors hover:text-yellow"
             >
               {h.campingNoteLink}
-            </Link>
+            </a>
             .
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -154,6 +155,21 @@ export default function Home() {
           <Reveal>
             <Carousel slides={carousel} />
           </Reveal>
+          <div className="mt-8 flex flex-col items-center gap-4 text-center">
+            <p className="max-w-2xl text-sm font-medium text-dark/70 sm:text-base">
+              {lang === 'fr'
+                ? 'Envie d’en voir plus ? Ouvrez l’album photo pour découvrir le spot, les sessions et l’ambiance à l’eau.'
+                : 'Want to see more? Open the photo album to discover the spot, sessions and life in the water.'}
+            </p>
+            <CTAButton
+              href="/album-photo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-black/10 !bg-white px-5 py-2.5 text-sm font-medium !text-royalBlue shadow-sm shadow-black/5 hover:-translate-y-0.5 hover:border-yellow hover:!bg-yellow hover:shadow-md"
+            >
+              {lang === 'fr' ? 'Voir l’album photo' : 'View photo album'}
+            </CTAButton>
+          </div>
         </div>
       </section>
 

@@ -19,6 +19,7 @@ export const fr = {
     home: 'Accueil',
     school: 'École',
     lessons: 'Formules',
+    photos: 'Photos',
     book: 'Réserver',
     schedule: 'Horaires',
     rental: 'Location',
@@ -32,7 +33,7 @@ export const fr = {
     heroTagline: "Vis l'océan",
     heroSubtitle:
       'A 40m au nord de l\'accès principal de la plage centrale du Porge, notre école vous attend au pied de la dune et de la forêt pour des cours de surf aux portes de Bordeaux.',
-    campingNotePrefix: 'Juste à côté du ',
+    campingNotePrefix: 'L’école de surf la plus proche du ',
     campingNoteLink: 'Camping La Grigne',
     heroCta: 'Réserver',
     heroSecondaryCta: 'Appeler maintenant',
