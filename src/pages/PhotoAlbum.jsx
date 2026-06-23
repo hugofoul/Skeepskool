@@ -110,7 +110,7 @@ export default function PhotoAlbum() {
               onClick={closePhoto}
               className="absolute right-4 top-4 z-10 rounded-full bg-white/90 px-4 py-2 text-sm font-bold text-royalBlue shadow-lg transition-colors hover:bg-yellow"
             >
-              {lang === 'fr' ? 'Fermer' : 'Close'}
+              ×
             </button>
 
             <div className="relative flex items-center justify-center bg-black">
@@ -124,14 +124,14 @@ export default function PhotoAlbum() {
                 onClick={() => setActiveIndex((current) => (current - 1 + photoGallery.length) % photoGallery.length)}
                 className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 px-4 py-2 text-sm font-bold text-royalBlue shadow-lg transition-colors hover:bg-yellow"
               >
-                {lang === 'fr' ? 'Précédente' : 'Previous'}
+                ←
               </button>
               <button
                 type="button"
                 onClick={() => setActiveIndex((current) => (current + 1) % photoGallery.length)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 px-4 py-2 text-sm font-bold text-royalBlue shadow-lg transition-colors hover:bg-yellow"
               >
-                {lang === 'fr' ? 'Suivante' : 'Next'}
+                →
               </button>
             </div>
             <div className="flex items-center justify-between gap-4 bg-royalBlue px-5 py-4 text-white">
