@@ -102,7 +102,7 @@ export default function PhotoAlbum() {
           onClick={closePhoto}
         >
           <div
-            className="relative w-full max-w-6xl overflow-hidden rounded-[2rem] bg-black shadow-2xl ring-1 ring-white/10"
+            className="relative inline-flex max-h-[92dvh] w-auto max-w-[94vw] flex-col overflow-hidden rounded-[2rem] bg-black shadow-2xl ring-1 ring-white/10"
             onClick={(event) => event.stopPropagation()}
           >
             <button
@@ -113,52 +113,34 @@ export default function PhotoAlbum() {
               {lang === 'fr' ? 'Fermer' : 'Close'}
             </button>
 
-            <div className="grid lg:grid-cols-[1.4fr_0.6fr]">
-              <div className="relative flex items-center justify-center overflow-hidden bg-black lg:bg-royalBlue/95">
-                <img
-                  src={currentPhoto.src}
-                  alt=""
-                  aria-hidden="true"
-                  className="absolute inset-0 h-full w-full object-cover blur-2xl scale-110 opacity-35 lg:block"
-                />
-                <img
-                  src={currentPhoto.src}
-                  alt={currentPhoto.alt}
-                  className="relative z-10 h-auto max-h-[calc(100dvh-14rem)] w-full object-contain sm:h-[75vh] sm:max-h-none lg:h-auto lg:max-h-[80vh] lg:w-auto lg:max-w-full"
-                />
-              </div>
-              <div className="flex flex-col justify-between gap-6 bg-royalBlue p-6 text-white sm:p-8">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-yellow">
-                    {lang === 'fr' ? 'Photo' : 'Photo'}
-                  </p>
-                  <h3 className="mt-4 text-2xl font-black sm:text-3xl">
-                    {activeIndex === 0 && (lang === 'fr' ? 'La puissance des vagues' : 'Wave power')}
-                    {activeIndex === 1 && (lang === 'fr' ? 'Lumière de fin de journée' : 'End-of-day light')}
-                    {activeIndex > 1 && (lang === 'fr' ? 'Ambiance surf au Porge' : 'Surf atmosphere at Le Porge')}
-                  </h3>
-                  <p className="mt-4 text-base leading-relaxed text-white/85">
-                    {currentPhoto.alt}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setActiveIndex((current) => (current - 1 + photoGallery.length) % photoGallery.length)}
-                    className="rounded-full bg-white/10 px-4 py-2 text-sm font-bold transition-colors hover:bg-white/20"
-                  >
-                    {lang === 'fr' ? 'Précédente' : 'Previous'}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setActiveIndex((current) => (current + 1) % photoGallery.length)}
-                    className="rounded-full bg-white/10 px-4 py-2 text-sm font-bold transition-colors hover:bg-white/20"
-                  >
-                    {lang === 'fr' ? 'Suivante' : 'Next'}
-                  </button>
-                </div>
-              </div>
+            <div className="relative flex items-center justify-center bg-black">
+              <img
+                src={currentPhoto.src}
+                alt={currentPhoto.alt}
+                className="max-h-[calc(100dvh-8rem)] w-auto max-w-[94vw] object-contain"
+              />
+              <button
+                type="button"
+                onClick={() => setActiveIndex((current) => (current - 1 + photoGallery.length) % photoGallery.length)}
+                className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 px-4 py-2 text-sm font-bold text-royalBlue shadow-lg transition-colors hover:bg-yellow"
+              >
+                {lang === 'fr' ? 'Précédente' : 'Previous'}
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveIndex((current) => (current + 1) % photoGallery.length)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 px-4 py-2 text-sm font-bold text-royalBlue shadow-lg transition-colors hover:bg-yellow"
+              >
+                {lang === 'fr' ? 'Suivante' : 'Next'}
+              </button>
+            </div>
+            <div className="flex items-center justify-between gap-4 bg-royalBlue px-5 py-4 text-white">
+              <p className="min-w-0 text-sm font-medium text-white/90">
+                {currentPhoto.alt}
+              </p>
+              <p className="shrink-0 text-xs font-bold uppercase tracking-[0.25em] text-yellow">
+                {lang === 'fr' ? 'Photo' : 'Photo'}
+              </p>
             </div>
           </div>
         </div>
