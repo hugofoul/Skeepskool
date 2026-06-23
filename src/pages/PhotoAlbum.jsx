@@ -114,11 +114,17 @@ export default function PhotoAlbum() {
             </button>
 
             <div className="grid lg:grid-cols-[1.4fr_0.6fr]">
-              <div className="bg-black">
+              <div className="relative flex items-center justify-center overflow-hidden bg-black lg:bg-royalBlue/95">
+                <img
+                  src={currentPhoto.src}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 h-full w-full object-cover blur-2xl scale-110 opacity-35 lg:block"
+                />
                 <img
                   src={currentPhoto.src}
                   alt={currentPhoto.alt}
-                  className="h-auto max-h-[calc(100dvh-14rem)] w-full object-contain sm:h-[75vh] sm:max-h-none lg:h-[80vh]"
+                  className="relative z-10 h-auto max-h-[calc(100dvh-14rem)] w-full object-contain sm:h-[75vh] sm:max-h-none lg:h-auto lg:max-h-[80vh] lg:w-auto lg:max-w-full"
                 />
               </div>
               <div className="flex flex-col justify-between gap-6 bg-royalBlue p-6 text-white sm:p-8">
