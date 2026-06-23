@@ -177,9 +177,10 @@ export default function Booking() {
         <div className="mx-auto w-full max-w-[680px] px-4 sm:px-6">
           <Reveal className="rounded-2xl bg-royalBlue p-6 text-white shadow-lg sm:p-7">
             <p className="text-sm font-semibold leading-relaxed sm:text-base">{b.intro}</p>
-            <p className="mt-3 text-xs font-bold uppercase tracking-wide text-yellow">
-              {t.lessons.multiCourseFlexNote}
-            </p>
+          </Reveal>
+
+          <Reveal className="mt-4 rounded-2xl border border-yellow/50 bg-yellow px-5 py-4 text-royalBlue shadow-md sm:px-6">
+            <p className="text-sm font-black leading-relaxed sm:text-base">{b.startDateNote}</p>
           </Reveal>
 
           <form
@@ -366,7 +367,6 @@ export default function Booking() {
                     onChange={(e) => setStartDate(e.target.value)}
                     required
                   />
-                  <span className="mt-2 block text-xs font-medium text-dark/70">{b.startDateNote}</span>
                 </label>
 
                 <label className="block sm:max-w-sm">

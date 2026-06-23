@@ -102,7 +102,7 @@ export default function PhotoAlbum() {
           onClick={closePhoto}
         >
           <div
-            className="relative inline-flex max-h-[92dvh] w-auto max-w-[94vw] flex-col overflow-hidden rounded-[2rem] bg-black shadow-2xl ring-1 ring-white/10"
+            className="relative w-fit max-w-[94vw] overflow-hidden rounded-[2rem] bg-black shadow-2xl ring-1 ring-white/10"
             onClick={(event) => event.stopPropagation()}
           >
             <button
@@ -117,7 +117,7 @@ export default function PhotoAlbum() {
               <img
                 src={currentPhoto.src}
                 alt={currentPhoto.alt}
-                className="max-h-[calc(100dvh-8rem)] w-auto max-w-[94vw] object-contain"
+                className="block h-auto max-h-[calc(100dvh-8rem)] w-auto max-w-[94vw] object-contain sm:max-h-[85dvh]"
               />
               <button
                 type="button"
@@ -133,14 +133,6 @@ export default function PhotoAlbum() {
               >
                 →
               </button>
-            </div>
-            <div className="flex items-center justify-between gap-4 bg-royalBlue px-5 py-4 text-white">
-              <p className="min-w-0 text-sm font-medium text-white/90">
-                {currentPhoto.alt}
-              </p>
-              <p className="shrink-0 text-xs font-bold uppercase tracking-[0.25em] text-yellow">
-                {lang === 'fr' ? 'Photo' : 'Photo'}
-              </p>
             </div>
           </div>
         </div>

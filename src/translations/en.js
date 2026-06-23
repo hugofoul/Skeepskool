@@ -241,7 +241,6 @@ export const en = {
       'Level certificate',
     ],
     validityNote: 'All our packages are valid for 1 year from the purchase date.',
-    multiCourseFlexNote: 'Multi-lesson packages do not need to be taken on consecutive days: you can spread them out based on your availability.',
     sunsetTitle: 'Sunset lessons',
     sunsetText:
       'Fancy a magical session? We also offer Sunset lessons: surf in the golden evening light, when the ocean calms down and the waves are all yours.',
@@ -319,7 +318,7 @@ export const en = {
 
     commonTitle: 'Shared information',
     startDate: 'Approximate start date',
-    startDateNote: 'Approximate date — we will confirm the exact time by phone.',
+    startDateNote: 'For lessons within less than 5 days, please call us directly so we can give you the most suitable slot.',
     paymentType: 'Payment type',
     payerName: 'Person who made the transfer / payment',
     sameAsContactSurfer: 'Auto-fill Surfer 1 with contact information',
@@ -331,7 +330,7 @@ export const en = {
       { value: 'paylib', label: 'Paylib' },
     ],
 
-    totalLabel: 'Estimated total:',
+    totalLabel: 'Total:',
     warning:
       '⚠️ Important — Your booking is only confirmed once payment has been made BEFORE submitting this form.',
     paylibLabel: '💳 Paylib: 06 70 60 84 26 (Skeepskool)',

@@ -242,7 +242,6 @@ export const fr = {
       'Attestation de niveau',
     ],
     validityNote: 'Toutes nos formules sont valables 1 an à partir de la date d’achat.',
-    multiCourseFlexNote: 'Les formules de plusieurs cours ne sont pas obligatoirement à enchaîner : vous pouvez les répartir selon vos disponibilités.',
     sunsetTitle: 'Cours au coucher du soleil',
     sunsetText:
       'Envie d’une session magique ? Nous proposons aussi des cours en Sunset : surfez dans la lumière dorée de fin de journée, quand l’océan se calme et que les vagues n’appartiennent plus qu’à vous.',
@@ -320,7 +319,7 @@ export const fr = {
 
     commonTitle: 'Informations communes',
     startDate: 'Date de début approximative',
-    startDateNote: 'Date approximative — nous confirmerons l\'horaire exact par téléphone.',
+    startDateNote: 'Pour un cours à moins de 5 jours, appelez-nous directement : on vous donnera le créneau le plus adapté.',
     paymentType: 'Type de paiement',
     payerName: 'Personne qui a fait le virement / paiement',
     sameAsContactSurfer: 'Remplir automatiquement le Surfeur 1 avec les informations de contact',
@@ -332,7 +331,7 @@ export const fr = {
       { value: 'paylib', label: 'Paylib' },
     ],
 
-    totalLabel: 'Total estimé :',
+    totalLabel: 'Total :',
     warning:
       '⚠️ Attention — Pour que votre réservation soit validée, le paiement doit être effectué AVANT d\'envoyer ce formulaire.',
     paylibLabel: '💳 Paylib : 06 70 60 84 26 (Skeepskool)',
