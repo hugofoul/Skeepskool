@@ -95,7 +95,7 @@ export default function PhotoAlbum() {
 
       {currentPhoto && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-dark/90 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-dark/90 p-4 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-label={lang === 'fr' ? 'Visionneuse photo' : 'Photo viewer'}
@@ -118,7 +118,7 @@ export default function PhotoAlbum() {
                 <img
                   src={currentPhoto.src}
                   alt={currentPhoto.alt}
-                  className="h-[65vh] w-full object-cover sm:h-[75vh] lg:h-[80vh]"
+                  className="h-auto max-h-[calc(100dvh-14rem)] w-full object-contain sm:h-[75vh] sm:max-h-none lg:h-[80vh]"
                 />
               </div>
               <div className="flex flex-col justify-between gap-6 bg-royalBlue p-6 text-white sm:p-8">
