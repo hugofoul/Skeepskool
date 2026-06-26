@@ -201,14 +201,35 @@ export default function Contact() {
                 </div>
                 <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
                 <p className="mt-5 text-base leading-relaxed text-white/90 sm:text-lg">{c.findUs.bus}</p>
-                <div className="mt-6">
+                <p className="mt-3 text-sm font-semibold text-yellow sm:text-base">
+                  {c.findUs.busBookingNote}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
                   <CTAButton
                     href={c.findUs.busUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-red hover:bg-yellow"
+                    className="bg-yellow text-royalBlue hover:bg-white"
                   >
                     {c.findUs.busCta}
+                    <ExternalLink className="h-4 w-4" />
+                  </CTAButton>
+                  <CTAButton
+                    href={c.findUs.busAppStoreUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-red hover:bg-yellow"
+                  >
+                    {c.findUs.busAppStoreCta}
+                    <ExternalLink className="h-4 w-4" />
+                  </CTAButton>
+                  <CTAButton
+                    href={c.findUs.busGooglePlayUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border border-white/30 bg-white/10 hover:bg-white/20"
+                  >
+                    {c.findUs.busGooglePlayCta}
                     <ExternalLink className="h-4 w-4" />
                   </CTAButton>
                 </div>
@@ -219,7 +240,9 @@ export default function Contact() {
                   {c.findUs.busPriceLabel}
                 </p>
                 <p className="mt-2 text-4xl font-black text-yellow">{c.findUs.busPrice}</p>
-                <p className="mt-3 text-xs text-white/75">{c.findUs.busPriceNote}</p>
+                {c.findUs.busPriceNote && (
+                  <p className="mt-3 text-xs text-white/75">{c.findUs.busPriceNote}</p>
+                )}
               </div>
             </div>
           </Reveal>

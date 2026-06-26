@@ -1,4 +1,4 @@
-import { Waves, Handshake, TrendingUp, Award } from 'lucide-react'
+import { Waves, Handshake, TrendingUp } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import { images, teamPhotos } from '../data/images.js'
 import PageHero from '../components/PageHero.jsx'
@@ -140,8 +140,14 @@ export default function School() {
       <section className="bg-lightGray py-16">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <Reveal className="inline-flex flex-col items-center gap-4 rounded-3xl border-2 border-yellow bg-white px-10 py-10 shadow-md">
-            <span className="flex h-20 w-20 items-center justify-center rounded-full bg-yellow">
-              <Award className="h-10 w-10 text-royalBlue" />
+            <span className="flex h-24 w-24 items-center justify-center rounded-2xl bg-white p-2 ring-1 ring-black/10">
+              <img
+                src="/images/ffs-officiel-portrait.png"
+                alt={lang === 'fr' ? 'Logo École Française de Surf' : 'French Surf School logo'}
+                className="h-full w-full object-contain"
+                loading="lazy"
+                decoding="async"
+              />
             </span>
             <p className="text-xl font-black text-royalBlue">{s.badge}</p>
             <p className="text-sm text-dark/70">{t.ffsLabel}</p>

@@ -1,7 +1,6 @@
 import {
   Waves,
   LifeBuoy,
-  Award,
   Star,
   Phone,
   CalendarCheck2,
@@ -19,7 +18,7 @@ import SEO from '../components/SEO.jsx'
 import { CONTACT } from '../config/site.js'
 import { buildSrcSet, HERO_SIZES } from '../utils/responsiveImage.js'
 
-const highlightIcons = [Waves, LifeBuoy, Award]
+const highlightIcons = [Waves, LifeBuoy, null]
 
 export default function Home() {
   const { t, lang } = useLang()
@@ -246,7 +245,17 @@ export default function Home() {
                   delay={i * 120}
                   className="group rounded-2xl border-b-4 border-red bg-white p-8 shadow-md ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1"
                 >
-                  <Icon className="h-12 w-12 text-royalBlue" strokeWidth={2} />
+                  {i === 2 ? (
+                    <img
+                      src="/images/ffs-officiel-portrait.png"
+                      alt={lang === 'fr' ? 'Logo École Française de Surf' : 'French Surf School logo'}
+                      className="h-12 w-12 object-contain"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <Icon className="h-12 w-12 text-royalBlue" strokeWidth={2} />
+                  )}
                   <h3 className="mt-4 text-xl font-extrabold text-royalBlue">{card.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-dark/75">{card.text}</p>
                   {i === 0 && (
