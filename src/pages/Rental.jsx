@@ -119,10 +119,6 @@ export default function Rental() {
               <ShieldQuestion className="mt-0.5 h-4 w-4 shrink-0 text-red" />
               {r.idRequiredNote}
             </p>
-            <p className="flex items-start gap-2 text-sm text-dark/70">
-              <Info className="mt-0.5 h-4 w-4 shrink-0 text-royalBlue" />
-              {r.sunsetNote}
-            </p>
           </div>
         </div>
       </section>

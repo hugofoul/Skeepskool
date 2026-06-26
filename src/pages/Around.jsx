@@ -5,6 +5,7 @@ import SEO from '../components/SEO.jsx'
 import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
+import { buildSrcSet, DEFAULT_SIZES } from '../utils/responsiveImage.js'
 
 export default function Around() {
   const { t, lang } = useLang()
@@ -41,6 +42,8 @@ export default function Around() {
             <Reveal className="overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10">
               <img
                 src={images.aroundCamping}
+                srcSet={buildSrcSet(images.aroundCamping)}
+                sizes={DEFAULT_SIZES}
                 alt={a.camping.name}
                 className="h-72 w-full object-cover sm:h-96"
                 loading="lazy"
@@ -91,6 +94,8 @@ export default function Around() {
             <Reveal className="overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10">
               <img
                 src={images.aroundTourism}
+                srcSet={buildSrcSet(images.aroundTourism)}
+                sizes={DEFAULT_SIZES}
                 alt={a.tourismTitle}
                 className="h-72 w-full object-cover sm:h-96"
                 loading="lazy"

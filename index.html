@@ -20,6 +20,24 @@
     <meta name="geo.position" content="44.8965;-1.1057" />
     <meta name="ICBM" content="44.8965, -1.1057" />
 
+    <script>
+      (function () {
+        var gaId = '%VITE_GA4_MEASUREMENT_ID%'
+        if (!gaId || gaId.indexOf('VITE_') !== -1) return
+        window.dataLayer = window.dataLayer || []
+        window.gtag = function () {
+          window.dataLayer.push(arguments)
+        }
+        window.gtag('js', new Date())
+        window.gtag('config', gaId, { send_page_view: false, anonymize_ip: true })
+
+        var script = document.createElement('script')
+        script.async = true
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId
+        document.head.appendChild(script)
+      })()
+    </script>
+
     <!-- Open Graph par défaut -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://skeepskool.fr/" />

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Phone, Mail, Facebook, Instagram, MapPin } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import { CONTACT, MAPS, SOCIAL } from '../config/site.js'
+import { buildSrcSet } from '../utils/responsiveImage.js'
 
 export default function Footer() {
   const { t } = useLang()
@@ -27,6 +28,8 @@ export default function Footer() {
             <div className="h-20 w-56 overflow-hidden">
               <img
                 src="/logo-skeepskool-new.svg"
+                srcSet={buildSrcSet('/logo-skeepskool-new.svg')}
+                sizes="224px"
                 alt="Skeepskool Surfing Le Porge"
                 className="h-[132%] w-full -translate-y-[11%] object-contain object-top"
               />

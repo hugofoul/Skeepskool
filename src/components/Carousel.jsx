@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { buildSrcSet } from '../utils/responsiveImage.js'
 
 /**
  * Auto-playing photo carousel with prev/next arrows and dot indicators.
@@ -117,6 +118,7 @@ export default function Carousel({ slides = [], interval = 4500 }) {
           <div key={i} className="min-w-full" aria-hidden={i !== index}>
             <img
               src={slide.src}
+              srcSet={buildSrcSet(slide.src)}
               alt={slide.alt}
               className="h-72 w-full object-cover sm:h-96 lg:h-[30rem]"
               loading="lazy"

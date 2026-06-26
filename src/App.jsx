@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import QuickActionBar from './components/QuickActionBar.jsx'
+import { trackPageView } from './lib/analytics.js'
 
 const Home    = lazy(() => import('./pages/Home.jsx'))
 const School  = lazy(() => import('./pages/School.jsx'))
@@ -32,10 +33,21 @@ function ScrollToTop() {
   return null
 }
 
+function AnalyticsTracker() {
+  const { pathname, search } = useLocation()
+
+  useEffect(() => {
+    trackPageView(`${pathname}${search}`)
+  }, [pathname, search])
+
+  return null
+}
+
 export default function App() {
   return (
     <div className="flex min-h-screen flex-col">
       <ScrollToTop />
+      <AnalyticsTracker />
       <Navbar />
       <main className="flex-1 pb-24 md:pb-0">
         <Suspense fallback={<div className="flex min-h-[60vh] items-center justify-center"><span className="h-8 w-8 animate-spin rounded-full border-4 border-royalBlue border-t-transparent" /></div>}>

@@ -1,4 +1,5 @@
 import Reveal from './Reveal.jsx'
+import { buildSrcSet, HERO_SIZES } from '../utils/responsiveImage.js'
 
 /**
  * royalBlue page header with white title and a yellow decorative underline.
@@ -11,6 +12,8 @@ export default function PageHero({ title, subtitle, image }) {
         <>
           <img
             src={image}
+            srcSet={buildSrcSet(image)}
+            sizes={HERO_SIZES}
             alt=""
             aria-hidden="true"
             className="absolute inset-0 h-full w-full object-cover opacity-60"

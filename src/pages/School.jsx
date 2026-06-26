@@ -4,6 +4,7 @@ import { images, teamPhotos } from '../data/images.js'
 import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
 import Reveal from '../components/Reveal.jsx'
+import { buildSrcSet, DEFAULT_SIZES } from '../utils/responsiveImage.js'
 
 const sectionImages = [images.schoolSpot, images.schoolPedagogy, images.schoolTeamSection]
 const valueIcons = [Waves, Handshake, TrendingUp]
@@ -56,6 +57,8 @@ export default function School() {
               >
                 <img
                   src={sectionImages[i]}
+                  srcSet={buildSrcSet(sectionImages[i])}
+                  sizes={DEFAULT_SIZES}
                   alt={sec.title}
                   className="h-72 w-full object-cover sm:h-96"
                   loading="lazy"
@@ -113,6 +116,8 @@ export default function School() {
                 <div className="relative h-64 overflow-hidden">
                   <img
                     src={teamImages[i]}
+                    srcSet={buildSrcSet(teamImages[i])}
+                    sizes={DEFAULT_SIZES}
                     alt={member.name}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"

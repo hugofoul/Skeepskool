@@ -31,7 +31,8 @@ export const en = {
   home: {
     heroTitle: 'SKEEPSKOOL',
     heroTagline: 'Live the Ocean',
-    heroSubtitle: 'Certified surf school at Le Porge Océan — 50 min from Bordeaux',
+    heroSubtitle:
+      '40 m north of the main access to Le Porge central beach, our school welcomes you at the foot of the dune and pine forest for surf lessons at the gates of Bordeaux.',
     campingNotePrefix: 'Right next to ',
     campingNoteLink: 'Camping La Grigne',
     heroCta: 'Book now',
@@ -202,10 +203,22 @@ export const en = {
     includedTitle: 'Everything is included in the price',
     goodToKnowTitle: 'Good to know',
     goodToKnow: [
-      'Please arrive 20 minutes before the lesson starts.',
-      'For a first lesson, more time is spent on the sand (basics and safety).',
-      'Groups are formed by level for the best progression.',
-      'Lesson schedules are posted in real time on the WhatsApp community.',
+      {
+        question: 'When should I arrive before the lesson?',
+        answer: 'Please arrive 20 minutes before the lesson starts.',
+      },
+      {
+        question: 'How does a first lesson work?',
+        answer: 'For a first lesson, more time is spent on the sand (basics and safety).',
+      },
+      {
+        question: 'How are groups organized?',
+        answer: 'Groups are formed by level for the best progression.',
+      },
+      {
+        question: 'Where can I find updated lesson times?',
+        answer: 'Lesson schedules are posted in real time on the WhatsApp community.',
+      },
     ],
     faqTitle: 'Frequently asked questions',
     faq: [
@@ -318,7 +331,8 @@ export const en = {
 
     commonTitle: 'Shared information',
     startDate: 'Approximate start date',
-    startDateNote: 'For lessons within less than 5 days, please call us directly so we can give you the most suitable slot.',
+    startDateNote: 'For bookings within less than 7 days, please call us directly so we can give you the most suitable slot.',
+    shortNoticeAlert: 'For bookings within less than 7 days, please call the school directly.',
     paymentType: 'Payment type',
     payerName: 'Person who made the transfer / payment',
     sameAsContactSurfer: 'Auto-fill Surfer 1 with contact information',

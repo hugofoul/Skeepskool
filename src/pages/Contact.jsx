@@ -16,6 +16,7 @@ import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
 import { CONTACT, MAPS, SOCIAL } from '../config/site.js'
+import { buildSrcSet, DEFAULT_SIZES } from '../utils/responsiveImage.js'
 
 const MAP_SRC =
   'https://www.google.com/maps?q=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge&z=14&output=embed'
@@ -166,6 +167,8 @@ export default function Contact() {
                 <a href={images.contactPlan} target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le plan d’accès en grand">
                   <img
                     src={images.contactPlan}
+                    srcSet={buildSrcSet(images.contactPlan)}
+                    sizes={DEFAULT_SIZES}
                     alt="Plan explicatif pour localiser l’école de surf Skeepskool"
                     className="h-80 w-full object-cover object-[88%_4%] sm:h-96"
                     loading="lazy"

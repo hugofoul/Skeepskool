@@ -5,6 +5,7 @@ import SEO from '../components/SEO.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
 import { CONTACT } from '../config/site.js'
+import { trackConversion } from '../lib/analytics.js'
 
 const initialSurfer = {
   id: 1,
@@ -19,9 +20,9 @@ export default function Booking() {
   const { t, lang } = useLang()
   const b = t.booking
 
-  const minStartDate = useMemo(() => {
+  const todayDate = useMemo(() => {
     const date = new Date()
-    date.setDate(date.getDate() + 6)
+    date.setHours(0, 0, 0, 0)
     return date.toISOString().slice(0, 10)
   }, [])
 
@@ -41,8 +42,21 @@ export default function Booking() {
   const [paidConfirmed, setPaidConfirmed] = useState(false)
   const [successMessage, setSuccessMessage] = useState('')
   const [phoneError, setPhoneError] = useState('')
+  const [dateError, setDateError] = useState('')
   const formRef = useRef(null)
   const phoneInputRef = useRef(null)
+  const startDateInputRef = useRef(null)
+
+  const daysUntilStartDate = useMemo(() => {
+    if (!startDate) return null
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    const selected = new Date(`${startDate}T00:00:00`)
+    return Math.floor((selected - today) / 86400000)
+  }, [startDate])
+
+  const isShortNotice =
+    daysUntilStartDate !== null && daysUntilStartDate >= 0 && daysUntilStartDate < 7
 
   const scrollToField = (element) => {
     if (!element) return
@@ -120,6 +134,13 @@ export default function Booking() {
     }
     setPhoneError('')
 
+    if (isShortNotice) {
+      setDateError(b.shortNoticeAlert)
+      scrollToField(startDateInputRef.current)
+      return
+    }
+    setDateError('')
+
     const selectedDate = startDate || b.unknownDate
     const safeMessage = message.trim() || b.none
     const fullName = `${contact.firstName} ${contact.lastName}`.trim()
@@ -157,6 +178,12 @@ export default function Booking() {
 
     const encoded = encodeURIComponent(whatsappMessage)
     window.open(`https://wa.me/${CONTACT.whatsappNumber}?text=${encoded}`, '_blank', 'noopener,noreferrer')
+
+    trackConversion('booking_form_submitted', {
+      surfers_count: surfers.length,
+      total_eur: total,
+      payment_type: paymentType,
+    })
 
     const displayName = contact.firstName || b.firstName
     const successLead = b.successLead.replace('{name}', displayName)
@@ -367,13 +394,20 @@ export default function Booking() {
                 <label className="block">
                   <span className="mb-2 block text-sm font-semibold text-dark">{b.startDate}</span>
                   <input
+                    ref={startDateInputRef}
                     type="date"
                     className={inputClass}
                     value={startDate}
-                    onChange={(e) => setStartDate(e.target.value)}
-                    min={minStartDate}
+                    onChange={(e) => {
+                      setStartDate(e.target.value)
+                      if (dateError) setDateError('')
+                    }}
+                    min={todayDate}
                     required
                   />
+                  {(isShortNotice || dateError) && (
+                    <span className="mt-2 block text-xs font-bold text-red">{b.shortNoticeAlert}</span>
+                  )}
                 </label>
 
                 <label className="block sm:max-w-sm">

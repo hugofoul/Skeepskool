@@ -1,13 +1,10 @@
 import {
-  Check,
   Star,
   Waves,
   Clock,
   Users,
   Backpack,
   ShieldCheck,
-  MapPin,
-  Info,
   Sunset,
   ArrowRight,
 } from 'lucide-react'
@@ -18,6 +15,7 @@ import SEO from '../components/SEO.jsx'
 import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
+import { buildSrcSet, DEFAULT_SIZES } from '../utils/responsiveImage.js'
 
 // Index of the card to highlight as "Popular" (Pack 5 lessons)
 const POPULAR_INDEX = 2
@@ -59,6 +57,8 @@ export default function Lessons() {
             >
               <img
                 src={images.lessonsIntro}
+                srcSet={buildSrcSet(images.lessonsIntro)}
+                sizes={DEFAULT_SIZES}
                 alt={l.aboutTitle}
                 className="h-72 w-full object-cover sm:h-96"
                 loading="lazy"
@@ -122,6 +122,8 @@ export default function Lessons() {
             >
               <img
                 src={images.lessonsSunset}
+                srcSet={buildSrcSet(images.lessonsSunset)}
+                sizes={DEFAULT_SIZES}
                 alt={l.sunsetTitle}
                 className="h-72 w-full object-cover sm:h-96"
                 loading="lazy"
@@ -159,93 +161,6 @@ export default function Lessons() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ---- Included + good to know ---- */}
-      <section className="bg-lightGray py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <Reveal className="rounded-2xl bg-white p-7 shadow-md ring-1 ring-black/5 sm:p-9">
-            <h3 className="text-2xl font-black text-royalBlue">{l.includedTitle}</h3>
-            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
-            <ul className="mt-6 space-y-3">
-              {l.includes.map((inc) => (
-                <li key={inc} className="flex items-center gap-3">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-yellow">
-                    <Check className="h-4 w-4 text-royalBlue" strokeWidth={3} />
-                  </span>
-                  <span className="font-semibold text-dark">{inc}</span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-
-          <Reveal
-            delay={120}
-            className="rounded-2xl border-l-4 border-red bg-white p-7 shadow-md ring-1 ring-black/5 sm:p-9"
-          >
-            <div className="flex items-center gap-2">
-              <Info className="h-6 w-6 text-red" />
-              <h3 className="text-2xl font-black text-royalBlue">{l.goodToKnowTitle}</h3>
-            </div>
-            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
-            <ul className="mt-6 space-y-3">
-              {l.goodToKnow.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm text-dark/80">
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-royalBlue" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---- FAQ ---- */}
-      <section className="bg-white py-14 sm:py-16">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{l.faqTitle}</h2>
-            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
-          </Reveal>
-
-          <div className="mt-8 space-y-4">
-            {l.faq.map((item, i) => (
-              <Reveal
-                key={item.question}
-                delay={i * 80}
-                className="rounded-2xl border-l-4 border-red bg-lightGray p-6 shadow-sm"
-              >
-                <p className="text-lg font-extrabold text-royalBlue">{item.question}</p>
-                <p className="mt-2 text-sm leading-relaxed text-dark/80">{item.answer}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#f5f7fb] py-16 sm:py-20">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <Reveal className="rounded-[2rem] bg-white p-8 shadow-xl ring-1 ring-black/5 sm:p-10">
-            <p className="text-sm font-bold uppercase tracking-[0.22em] text-red/80">
-              {l.weeklySchedule.badge}
-            </p>
-            <h2 className="mt-4 text-3xl font-black text-royalBlue sm:text-4xl">
-              {l.weeklySchedule.title}
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-dark/75">{l.weeklySchedule.subtitle}</p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <CTAButton to="/horaires">{l.weeklySchedule.openPlanning}</CTAButton>
-              <CTAButton
-                href={t.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-royalBlue hover:bg-yellow"
-              >
-                {l.weeklySchedule.contactCta}
-              </CTAButton>
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -294,14 +209,6 @@ export default function Lessons() {
                     {card.note && (
                       <p className="mt-1 text-sm font-medium text-dark/60">{card.note}</p>
                     )}
-                    <ul className="mt-5 space-y-2">
-                      {l.includes.slice(0, 3).map((inc) => (
-                        <li key={inc} className="flex items-center gap-2 text-sm text-dark/80">
-                          <Check className="h-4 w-4 shrink-0 text-yellow" strokeWidth={3} />
-                          {inc}
-                        </li>
-                      ))}
-                    </ul>
                     <div className="mt-6 pt-2">
                       <CTAButton to="/contact" className="w-full">
                         {t.bookNow}
@@ -343,36 +250,6 @@ export default function Lessons() {
         </div>
       </section>
 
-      {/* ---- Includes checklist ---- */}
-      <section className="bg-white py-16 sm:py-20">
-        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
-          <Reveal>
-            <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">
-              {l.includesTitle}
-            </h2>
-            <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
-          </Reveal>
-          <Reveal delay={120} className="mt-10 grid gap-4 sm:grid-cols-2">
-            {l.includes.map((inc) => (
-              <div
-                key={inc}
-                className="flex items-center gap-3 rounded-xl bg-lightGray px-5 py-4 text-left shadow-sm"
-              >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-yellow">
-                  <Check className="h-5 w-5 text-royalBlue" strokeWidth={3} />
-                </span>
-                <span className="font-semibold text-dark">{inc}</span>
-              </div>
-            ))}
-          </Reveal>
-
-          <div className="mt-12">
-            <CTAButton to="/contact" className="text-lg">
-              {l.cta}
-            </CTAButton>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

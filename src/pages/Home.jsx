@@ -3,13 +3,13 @@ import {
   LifeBuoy,
   Award,
   Star,
-  CalendarDays,
-  Clock3,
   Phone,
   CalendarCheck2,
+  ChevronDown,
 } from 'lucide-react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useLang } from '../hooks/useLang.js'
-import { useWeeklySchedule } from '../hooks/useWeeklySchedule.js'
 import { useSurfConditions } from '../hooks/useSurfConditions.js'
 import { images, carousel } from '../data/images.js'
 import CTAButton from '../components/CTAButton.jsx'
@@ -17,17 +17,134 @@ import Reveal from '../components/Reveal.jsx'
 import Carousel from '../components/Carousel.jsx'
 import SEO from '../components/SEO.jsx'
 import { CONTACT } from '../config/site.js'
+import { buildSrcSet, HERO_SIZES } from '../utils/responsiveImage.js'
 
 const highlightIcons = [Waves, LifeBuoy, Award]
 
 export default function Home() {
   const { t, lang } = useLang()
   const h = t.home
-  const lessonSchedule = useWeeklySchedule({
-    lang,
-    fallbackDays: t.lessons.weeklySchedule.days,
-    allLevelsLabel: t.lessons.weeklySchedule.allLevels,
-  })
+  const [openFaqIndex, setOpenFaqIndex] = useState(0)
+
+  const faqItems = [
+    {
+      question: {
+        fr: 'Quand faut-il arriver avant le cours ?',
+        en: 'When should I arrive before the lesson?',
+      },
+      answer: {
+        fr: 'Présentez-vous 20 minutes avant le début du cours.',
+        en: 'Please arrive 20 minutes before the lesson starts.',
+      },
+    },
+    {
+      question: {
+        fr: 'Le premier cours se passe comment ?',
+        en: 'What happens during the first lesson?',
+      },
+      answer: {
+        fr: 'Pour un premier cours, le temps sur le sable est plus long (bases et sécurité).',
+        en: 'For a first lesson, more time is spent on the sand covering the basics and safety.',
+      },
+    },
+    {
+      question: {
+        fr: 'Comment sont formés les groupes ?',
+        en: 'How are groups formed?',
+      },
+      answer: {
+        fr: 'Les groupes sont constitués par niveau pour une progression optimale, et limités à 8 personnes maximum.',
+        en: 'Groups are formed by level for optimal progression, and limited to 8 people maximum.',
+      },
+    },
+    {
+      question: {
+        fr: 'Où voir les horaires mis à jour ?',
+        en: 'Where can I see the updated schedule?',
+      },
+      answer: {
+        fr: 'Les horaires sont publiés en temps réel sur la communauté WhatsApp.',
+        en: 'The schedule is published in real time on the WhatsApp community.',
+      },
+      link: { to: '/horaires', fr: 'Voir les horaires →', en: 'See schedule →' },
+    },
+    {
+      question: {
+        fr: 'Que faut-il prévoir avant le cours ?',
+        en: 'What should I bring to the lesson?',
+      },
+      answer: {
+        fr: 'Arrivez 20 minutes avant avec votre maillot de bain, de l\'eau et de la crème solaire.',
+        en: 'Arrive 20 minutes early with your swimsuit, water, and sunscreen.',
+      },
+    },
+    {
+      question: {
+        fr: 'Quels documents faut-il apporter ?',
+        en: 'What documents do I need to bring?',
+      },
+      answer: {
+        fr: 'Pensez à apporter votre carte d\'identité ainsi que votre maillot de bain, de l\'eau et de la crème solaire.',
+        en: 'Please bring your ID card along with your swimsuit, water, and sunscreen.',
+      },
+    },
+    {
+      question: {
+        fr: 'Faut-il savoir nager ?',
+        en: 'Do I need to know how to swim?',
+      },
+      answer: {
+        fr: 'Il est recommandé de savoir nager. Une aisance dans l\'eau est nécessaire pour pratiquer le surf en toute sécurité.',
+        en: 'Swimming ability is recommended. Feeling comfortable in the water is essential to surf safely.',
+      },
+      link: { to: '/ecole', fr: 'En savoir plus sur l\'école →', en: 'Learn more about the school →' },
+    },
+    {
+      question: {
+        fr: 'Que se passe-t-il si les conditions sont mauvaises ?',
+        en: 'What happens if conditions are bad?',
+      },
+      answer: {
+        fr: 'En cas de conditions dangereuses, le cours est reporté ou remboursé. Nous vous prévenons dès que possible.',
+        en: 'If conditions are unsafe, the lesson is rescheduled or refunded. We notify you as soon as possible.',
+      },
+      link: { to: '/contact', fr: 'Nous contacter →', en: 'Contact us →' },
+    },
+    {
+      question: {
+        fr: 'Peut-on payer sur place ?',
+        en: 'Can I pay on site?',
+      },
+      answer: {
+        fr: 'Oui ! Vous pouvez régler sur place en espèces, par virement bancaire ou avec des chèques vacances. Pour garantir votre place à l\'avance, le paiement par virement ou Paylib est recommandé.',
+        en: 'Yes! You can pay on site in cash, by bank transfer, or with holiday vouchers (chèques vacances). To secure your spot in advance, payment by bank transfer or Paylib is recommended.',
+      },
+      link: { to: '/reserver', fr: 'Réserver et payer →', en: 'Book and pay →' },
+    },
+    {
+      question: {
+        fr: 'Combien de personnes par groupe ?',
+        en: 'How many people per group?',
+      },
+      answer: {
+        fr: 'Les groupes sont limités à 8 personnes maximum pour garantir un encadrement de qualité.',
+        en: 'Groups are limited to 8 people maximum to ensure quality supervision.',
+      },
+      link: { to: '/cours', fr: 'Voir les formules →', en: 'See packages →' },
+    },
+    {
+      question: {
+        fr: 'Peut-on louer du matériel sans prendre de cours ?',
+        en: 'Can I rent equipment without taking a lesson?',
+      },
+      answer: {
+        fr: 'Oui, la location est ouverte à tous. Cependant, nous déconseillons fortement la location sans encadrement si vous avez moins de 10 heures de cours avec un moniteur diplômé. En dessous de ce niveau, la pratique du surf peut être dangereuse pour vous et pour les autres surfeurs.',
+        en: 'Yes, rental is open to everyone. However, we strongly advise against renting without supervision if you have fewer than 10 hours of lessons with a qualified instructor. Below this level, surfing can be dangerous for yourself and for other surfers.',
+      },
+      link: { to: '/location', fr: 'Voir les tarifs location →', en: 'See rental prices →' },
+    },
+  ]
+
   const surfConditions = useSurfConditions({
     fallbackParagraphs: h.surfConditions.fallbackParagraphs,
   })
@@ -49,6 +166,8 @@ export default function Home() {
       <section className="relative flex min-h-[88vh] items-center justify-center overflow-hidden">
         <img
           src={images.homeHero}
+          srcSet={buildSrcSet(images.homeHero)}
+          sizes={HERO_SIZES}
           alt="Surfeur à la plage du Porge Océan"
           className="absolute inset-0 h-full w-full object-cover"
           loading="eager"
@@ -61,7 +180,9 @@ export default function Home() {
             {h.heroTitle}
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-base text-white/90 sm:text-lg">
-            {h.heroSubtitle}
+            {lang === 'fr'
+              ? h.heroSubtitle
+              : '40 m north of the main access to Le Porge central beach, our school welcomes you at the foot of the dune and pine forest for surf lessons at the gates of Bordeaux.'}
           </p>
           <p className="mx-auto mt-3 max-w-xl text-sm font-medium text-white/85 sm:text-base">
             {h.campingNotePrefix}
@@ -191,58 +312,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-            <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full bg-lightGray px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-royalBlue">
-                <CalendarDays className="h-4 w-4 text-red" />
-                {h.schedulePreview.badge}
-              </span>
-              <h2 className="mt-5 text-3xl font-black text-royalBlue sm:text-4xl">
-                {h.schedulePreview.title}
-              </h2>
-              <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-dark/75">
-                {h.schedulePreview.text}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <CTAButton to="/horaires">{h.schedulePreview.cta}</CTAButton>
-              </div>
-            </Reveal>
-
-            <div className="grid gap-4 sm:grid-cols-3">
-              {lessonSchedule.days.slice(0, 3).map((day, i) => (
-                <Reveal
-                  key={day.day}
-                  delay={i * 100}
-                  className="rounded-[1.75rem] bg-lightGray p-5 shadow-sm ring-1 ring-black/5"
-                >
-                  <h3 className="text-2xl font-black text-royalBlue">{day.day}</h3>
-                  <div className="mt-4 space-y-3">
-                    {day.slots.slice(0, 2).map((slot) => (
-                      <div key={`${day.day}-${slot.time}`} className="rounded-2xl bg-white px-4 py-3">
-                        <div className="flex items-center justify-between gap-2">
-                          <div className="flex items-center gap-2 text-red">
-                            <Clock3 className="h-4 w-4" />
-                            <p className="text-sm font-black">{slot.time}</p>
-                          </div>
-                          {slot.type && slot.type.includes('Sunset') && (
-                            <span className="rounded-full bg-yellow px-2 py-0.5 text-[10px] font-bold text-red">
-                              Sunset
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ---------------- SURF CONDITIONS ---------------- */}
       <section className="bg-lightGray py-16 sm:py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -321,6 +390,74 @@ export default function Home() {
                 <p className="mt-4 font-bold text-royalBlue">{rev.name}</p>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- FAQ ---------------- */}
+      <section className="bg-lightGray py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl px-4">
+          <Reveal>
+            <h2 className="text-center text-3xl font-black text-royalBlue sm:text-4xl">
+              {lang === 'fr' ? 'Questions fréquentes' : 'FAQ'}
+            </h2>
+            <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
+            <p className="mx-auto mt-5 max-w-2xl text-center text-sm text-dark/70 sm:text-base">
+              {lang === 'fr'
+                ? 'Tout ce qu’il faut savoir avant de réserver votre cours ou votre location.'
+                : 'Everything you need to know before booking your lesson or rental.'}
+            </p>
+          </Reveal>
+
+          <div className="mt-10 space-y-3">
+            {faqItems.map((item, index) => {
+              const isOpen = openFaqIndex === index
+              return (
+                <Reveal key={item.question.en} delay={index * 60}>
+                  <div className="overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition-shadow hover:shadow-md">
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                      className={`flex w-full cursor-pointer items-center justify-between gap-4 px-6 py-5 text-left transition ${
+                        isOpen ? 'bg-lightGray/60' : 'hover:bg-lightGray/40'
+                      }`}
+                      aria-expanded={isOpen}
+                    >
+                      <span className="text-base font-extrabold text-royalBlue sm:text-lg">
+                        {lang === 'fr' ? item.question.fr : item.question.en}
+                      </span>
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red/10">
+                        <ChevronDown
+                          className={`h-5 w-5 text-red transition-transform duration-300 ${
+                            isOpen ? 'rotate-180' : 'rotate-0'
+                          }`}
+                        />
+                      </span>
+                    </button>
+
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                        isOpen ? 'max-h-[320px] opacity-100' : 'max-h-0 opacity-0'
+                      }`}
+                    >
+                      <div className="ml-2 border-l-4 border-yellow px-6 pb-5 text-dark">
+                        <p className="leading-relaxed text-dark/85">
+                          {lang === 'fr' ? item.answer.fr : item.answer.en}
+                        </p>
+                        {item.link && (
+                          <Link
+                            to={item.link.to}
+                            className="mt-3 inline-block text-red font-semibold hover:underline"
+                          >
+                            {lang === 'fr' ? item.link.fr : item.link.en}
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+              )
+            })}
           </div>
         </div>
       </section>

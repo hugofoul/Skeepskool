@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X, Phone } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import { CONTACT } from '../config/site.js'
+import { buildSrcSet } from '../utils/responsiveImage.js'
 
 export default function Navbar() {
   const { lang, toggle, t } = useLang()
@@ -55,6 +56,8 @@ export default function Navbar() {
           <div className="h-14 w-44 overflow-hidden sm:h-16 sm:w-48">
             <img
               src="/logo-skeepskool-new.svg"
+              srcSet={buildSrcSet('/logo-skeepskool-new.svg')}
+              sizes="192px"
               alt="Skeepskool Surfing Le Porge"
               className="h-[132%] w-full -translate-y-[11%] object-contain object-top transition-transform duration-300 group-hover:scale-[1.03]"
             />

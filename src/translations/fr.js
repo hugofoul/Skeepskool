@@ -203,10 +203,22 @@ export const fr = {
     includedTitle: 'Tout est compris dans le prix',
     goodToKnowTitle: 'Bon à savoir',
     goodToKnow: [
-      'Présentez-vous 20 minutes avant le début du cours.',
-      'Pour un premier cours, le temps sur le sable est plus long (bases et sécurité).',
-      'Les groupes sont constitués par niveau pour une progression optimale.',
-      'Les horaires des cours sont publiés en temps réel sur la communauté WhatsApp.',
+      {
+        question: 'Quand faut-il arriver avant le cours ?',
+        answer: 'Présentez-vous 20 minutes avant le début du cours.',
+      },
+      {
+        question: 'Le premier cours se passe comment ?',
+        answer: 'Pour un premier cours, le temps sur le sable est plus long (bases et sécurité).',
+      },
+      {
+        question: 'Comment sont formés les groupes ?',
+        answer: 'Les groupes sont constitués par niveau pour une progression optimale.',
+      },
+      {
+        question: 'Où voir les horaires mis à jour ?',
+        answer: 'Les horaires des cours sont publiés en temps réel sur la communauté WhatsApp.',
+      },
     ],
     faqTitle: 'Questions fréquentes',
     faq: [
@@ -319,7 +331,8 @@ export const fr = {
 
     commonTitle: 'Informations communes',
     startDate: 'Date de début approximative',
-    startDateNote: 'Pour un cours à moins de 5 jours, appelez-nous directement : on vous donnera le créneau le plus adapté.',
+    startDateNote: 'Pour une réservation à moins de 7 jours, appelez-nous directement : on vous donnera le créneau le plus adapté.',
+    shortNoticeAlert: 'Pour les réservations à moins de 7 jours, merci d’appeler l’école directement.',
     paymentType: 'Type de paiement',
     payerName: 'Personne qui a fait le virement / paiement',
     sameAsContactSurfer: 'Remplir automatiquement le Surfeur 1 avec les informations de contact',
