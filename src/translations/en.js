@@ -491,7 +491,7 @@ export const en = {
   // ---- Around / Practical ----
   around: {
     heroTitle: 'Around us',
-    heroSubtitle: 'Where to sleep, where to eat and how to get to Le Porge Océan.',
+    heroSubtitle: ',
 
     campingTitle: 'Where to sleep',
     camping: {

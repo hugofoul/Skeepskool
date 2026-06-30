@@ -25,7 +25,7 @@ export default function Around() {
           ? "Hébergements, activités et bonnes adresses autour de la plage du Porge Océan, Gironde. Tout pour profiter de votre séjour surf."
           : "Accommodation, activities and local tips around Le Porge Océan, Gironde. Everything to make the most of your surf stay."}
       />
-      <PageHero title={a.heroTitle} subtitle={a.heroSubtitle} image={images.aroundHero} />
+      <PageHero title={a.heroTitle} image={images.aroundHero} />
 
       {/* ---- Camping ---- */}
       <section id="camping-la-grigne" className="bg-lightGray py-16 sm:py-20">
@@ -79,41 +79,6 @@ export default function Around() {
         </div>
       </section>
 
-      {/* ---- Tourist office ---- */}
-      <section className="bg-white py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="flex items-center gap-3">
-              <Compass className="h-8 w-8 text-royalBlue" />
-              <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{a.tourismTitle}</h2>
-            </div>
-            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
-          </Reveal>
-
-          <div className="mt-10 grid items-center gap-10 lg:grid-cols-2">
-            <Reveal className="overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10">
-              <img
-                src={images.aroundTourism}
-                srcSet={buildSrcSet(images.aroundTourism)}
-                sizes={DEFAULT_SIZES}
-                alt={a.tourismTitle}
-                className="h-72 w-full object-cover sm:h-96"
-                loading="lazy"
-              />
-            </Reveal>
-            <Reveal delay={120}>
-              <p className="text-lg leading-relaxed text-dark/80">{a.tourism.text}</p>
-              <div className="mt-7">
-                <CTAButton href={a.tourism.url} target="_blank" rel="noopener noreferrer">
-                  {a.tourism.cta}
-                  <ExternalLink className="h-4 w-4" />
-                </CTAButton>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
       {/* ---- Restaurants ---- */}
       <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -155,6 +120,41 @@ export default function Around() {
                 </div>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Tourist office ---- */}
+      <section className="bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="flex items-center gap-3">
+              <Compass className="h-8 w-8 text-royalBlue" />
+              <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{a.tourismTitle}</h2>
+            </div>
+            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+          </Reveal>
+
+          <div className="mt-10 grid items-center gap-10 lg:grid-cols-2">
+            <Reveal className="overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10">
+              <img
+                src={images.aroundTourism}
+                srcSet={buildSrcSet(images.aroundTourism)}
+                sizes={DEFAULT_SIZES}
+                alt={a.tourismTitle}
+                className="h-72 w-full object-cover sm:h-96"
+                loading="lazy"
+              />
+            </Reveal>
+            <Reveal delay={120}>
+              <p className="text-lg leading-relaxed text-dark/80">{a.tourism.text}</p>
+              <div className="mt-7">
+                <CTAButton href={a.tourism.url} target="_blank" rel="noopener noreferrer">
+                  {a.tourism.cta}
+                  <ExternalLink className="h-4 w-4" />
+                </CTAButton>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
