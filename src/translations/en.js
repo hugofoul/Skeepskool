@@ -491,7 +491,7 @@ export const en = {
   // ---- Around / Practical ----
   around: {
     heroTitle: 'Around us',
-    heroSubtitle: ',
+    heroSubtitle: '',
 
     campingTitle: 'Where to sleep',
     camping: {
