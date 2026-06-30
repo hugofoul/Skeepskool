@@ -512,12 +512,14 @@ export const fr = {
         text: 'Pizzas généreuses à savourer entre dune et forêt, parfait après une session.',
         cta: 'Voir sur Instagram',
         url: 'https://www.instagram.com/pizzeria_des_bois/',
+        embedUrl: 'https://www.instagram.com/pizzeria_des_bois/embed/',
       },
       {
         name: 'L’Ajoncière',
         text: 'Restaurant convivial du Porge Océan pour une pause gourmande à deux pas de la plage.',
         cta: 'Voir sur Instagram',
         url: 'https://www.instagram.com/l_ajonciere_le_porge_ocean/',
+        embedUrl: 'https://www.instagram.com/l_ajonciere_le_porge_ocean/embed/',
       },
     ],
 

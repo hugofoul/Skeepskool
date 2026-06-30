@@ -131,19 +131,28 @@ export default function Around() {
               <Reveal
                 key={resto.name}
                 delay={i * 120}
-                className="flex flex-col rounded-2xl border-b-4 border-red bg-white p-7 shadow-md"
+                className="flex flex-col overflow-hidden rounded-2xl border-b-4 border-red bg-white shadow-md"
               >
-                <h3 className="text-xl font-extrabold text-royalBlue">{resto.name}</h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-dark/75">{resto.text}</p>
-                <a
-                  href={resto.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 inline-flex items-center gap-2 self-start rounded-full border-2 border-royalBlue px-5 py-2 text-sm font-bold text-royalBlue transition-colors hover:border-yellow hover:bg-yellow"
-                >
-                  <Instagram className="h-4 w-4" />
-                  {resto.cta}
-                </a>
+                <iframe
+                  src={resto.embedUrl}
+                  title={`${resto.name} Instagram`}
+                  className="h-80 w-full border-0 bg-lightGray sm:h-96"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div className="flex flex-1 flex-col p-7">
+                  <h3 className="text-xl font-extrabold text-royalBlue">{resto.name}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-dark/75">{resto.text}</p>
+                  <a
+                    href={resto.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex items-center gap-2 self-start rounded-full border-2 border-royalBlue px-5 py-2 text-sm font-bold text-royalBlue transition-colors hover:border-yellow hover:bg-yellow"
+                  >
+                    <Instagram className="h-4 w-4" />
+                    {resto.cta}
+                  </a>
+                </div>
               </Reveal>
             ))}
           </div>
