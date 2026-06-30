@@ -229,7 +229,7 @@ export const en = {
       },
     ],
     pricesTitle: 'Our packages & prices',
-    pricesSubtitle: 'The more lessons you take, the lower the price per session.',
+    pricesSubtitle: '',
 
     popular: 'Popular',
     perSession: '/ session',

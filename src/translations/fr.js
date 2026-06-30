@@ -229,7 +229,7 @@ export const fr = {
       },
     ],
     pricesTitle: 'Nos formules & tarifs',
-    pricesSubtitle: 'Plus vous prenez de cours, plus le tarif à la séance baisse.',
+    pricesSubtitle: '',
 
     popular: 'Populaire',
     perSession: '/ séance',
@@ -414,8 +414,7 @@ export const fr = {
     heroTitle: 'Infos pratiques',
     heroSubtitle: "Très facile d’accès : Skeepskool est l’École de Surf de la Plage Centrale du Porge.",
     infoTitle: 'Nos coordonnées',
-    infoLead:
-      'En voiture, au rond-point de la plage, prenez à droite puis à gauche à l’intersection suivante : vous arrivez devant l’école, devant un grand parking.',
+    infoLead: '',
     address: 'Plage Centrale, Le Porge Océan, 33680 Gironde',
     addressDetail: '40 m au nord de l’accès principal à la plage, au pied de la dune côté forêt.',
     openMaps: 'Ouvrir dans Google Maps',
