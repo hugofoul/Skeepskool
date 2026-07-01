@@ -404,53 +404,44 @@ export default function Home() {
       </section>
 
       {/* ---------------- FAQ ---------------- */}
-      <section className="bg-lightGray py-16 sm:py-20">
+      <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-3xl px-4">
           <Reveal>
-            <h2 className="text-center text-3xl font-black text-royalBlue sm:text-4xl">
+            <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">
               {lang === 'fr' ? 'Questions fréquentes' : 'FAQ'}
             </h2>
-            <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
-            <p className="mx-auto mt-5 max-w-2xl text-center text-sm text-dark/70 sm:text-base">
-              {lang === 'fr'
-                ? 'Tout ce qu’il faut savoir avant de réserver votre cours ou votre location.'
-                : 'Everything you need to know before booking your lesson or rental.'}
-            </p>
+            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
           </Reveal>
 
-          <div className="mt-10 space-y-3">
+          <div className="mt-12 space-y-4">
             {faqItems.map((item, index) => {
               const isOpen = openFaqIndex === index
               return (
                 <Reveal key={item.question.en} delay={index * 60}>
-                  <div className="overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition-shadow hover:shadow-md">
+                  <div className="border-l-4 border-yellow py-4">
                     <button
                       type="button"
                       onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                      className={`flex w-full cursor-pointer items-center justify-between gap-4 px-6 py-5 text-left transition ${
-                        isOpen ? 'bg-lightGray/60' : 'hover:bg-lightGray/40'
-                      }`}
+                      className="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-3 text-left transition hover:text-royalBlue"
                       aria-expanded={isOpen}
                     >
-                      <span className="text-base font-extrabold text-royalBlue sm:text-lg">
+                      <span className="text-base font-bold text-dark sm:text-lg">
                         {lang === 'fr' ? item.question.fr : item.question.en}
                       </span>
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red/10">
-                        <ChevronDown
-                          className={`h-5 w-5 text-red transition-transform duration-300 ${
-                            isOpen ? 'rotate-180' : 'rotate-0'
-                          }`}
-                        />
-                      </span>
+                      <ChevronDown
+                        className={`h-5 w-5 shrink-0 text-yellow transition-transform duration-300 ${
+                          isOpen ? 'rotate-180' : 'rotate-0'
+                        }`}
+                      />
                     </button>
 
                     <div
                       className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                        isOpen ? 'max-h-[320px] opacity-100' : 'max-h-0 opacity-0'
+                        isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                       }`}
                     >
-                      <div className="ml-2 border-l-4 border-yellow px-6 pb-5 text-dark">
-                        <p className="leading-relaxed text-dark/85">
+                      <div className="px-5 pb-4">
+                        <p className="leading-relaxed text-dark/80">
                           {lang === 'fr' ? item.answer.fr : item.answer.en}
                         </p>
                         {item.link && (
