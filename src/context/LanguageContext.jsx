@@ -1,8 +1,9 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { fr } from '../translations/fr.js'
 import { en } from '../translations/en.js'
+import { de } from '../translations/de.js'
 
-const dictionaries = { fr, en }
+const dictionaries = { fr, en, de }
 
 export const LanguageContext = createContext({
   lang: 'fr',
@@ -16,7 +17,7 @@ export function LanguageProvider({ children }) {
   const [lang, setLang] = useState(() => {
     if (typeof window === 'undefined') return 'fr'
     const stored = window.localStorage.getItem(STORAGE_KEY)
-    return stored === 'en' || stored === 'fr' ? stored : 'fr'
+    return stored === 'en' || stored === 'fr' || stored === 'de' ? stored : 'fr'
   })
 
   useEffect(() => {

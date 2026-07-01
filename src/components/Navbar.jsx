@@ -6,7 +6,7 @@ import { CONTACT } from '../config/site.js'
 import { buildSrcSet } from '../utils/responsiveImage.js'
 
 export default function Navbar() {
-  const { lang, toggle, t } = useLang()
+  const { lang, setLang, t } = useLang()
   const [open, setOpen] = useState(false)
   const location = useLocation()
 
@@ -34,15 +34,21 @@ export default function Navbar() {
     ].join(' ')
 
   const LangToggle = ({ className = '' }) => (
-    <button
-      onClick={toggle}
-      aria-label={lang === 'fr' ? 'Switch to English' : 'Passer en français'}
-      className={`inline-flex items-center gap-1 rounded-full bg-yellow px-3 py-1.5 text-sm font-bold text-royalBlue transition-transform hover:scale-105 ${className}`}
+    <div
+      aria-label="Language selector"
+      className={`inline-flex items-center gap-1 rounded-full bg-yellow px-2 py-1 text-sm font-bold text-royalBlue ${className}`}
     >
-      <span className={lang === 'fr' ? 'opacity-100' : 'opacity-50'}>FR</span>
-      <span className="opacity-60">|</span>
-      <span className={lang === 'en' ? 'opacity-100' : 'opacity-50'}>EN</span>
-    </button>
+      {['fr', 'en', 'de'].map((code) => (
+        <button
+          key={code}
+          onClick={() => setLang(code)}
+          aria-label={`Switch language to ${code.toUpperCase()}`}
+          className={`rounded-full px-2 py-0.5 transition ${lang === code ? 'bg-royalBlue text-white' : 'text-royalBlue/70 hover:text-royalBlue'}`}
+        >
+          {code.toUpperCase()}
+        </button>
+      ))}
+    </div>
   )
 
   return (
