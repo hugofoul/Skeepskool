@@ -48,9 +48,66 @@ function toParagraphs(rawText) {
   return paragraphs
 }
 
-export function useSurfConditions({ fallbackParagraphs = [] }) {
+function normalizeLine(line) {
+  return line
+    .replace(/^[-•]\s*/, '')
+    .replace(/^\uFEFF/, '')
+    .trim()
+}
+
+function buildWeekendParagraphs(rawText, lang) {
+  const lines = rawText
+    .split(/\r?\n/)
+    .map((line) => decodeCsvCell(line))
+    .map(normalizeLine)
+    .filter(Boolean)
+
+  if (!lines.length) return []
+
+  const detailLine =
+    lines.find((line) => /vagues?/i.test(line) && /vent/i.test(line)) ||
+    lines.find((line) => /conditions? de surf/i.test(line)) ||
+    ''
+
+  const waterLine =
+    lines.find((line) => /\beau\b/i.test(line) && /\d+\s*°?\s*c/i.test(line)) ||
+    lines.find((line) => /water/i.test(line) && /\d+\s*°?\s*c/i.test(line)) ||
+    ''
+
+  const vibeLine =
+    lines.find((line) => /tous les niveaux/i.test(line)) ||
+    lines.find((line) => /all levels/i.test(line)) ||
+    ''
+
+  const details = detailLine ? detailLine.replace(/^.*?:\s*/, '').trim() : ''
+
+  const paragraphs = []
+
+  if (details) {
+    if (lang === 'fr') {
+      paragraphs.push(`Prévisions pour ce week-end : ${details}`)
+    } else {
+      paragraphs.push(`Forecast for this weekend: ${details}`)
+    }
+  }
+
+  if (waterLine) {
+    paragraphs.push(waterLine)
+  }
+
+  if (vibeLine) {
+    paragraphs.push(vibeLine)
+  }
+
+  return paragraphs
+}
+
+export function useSurfConditions({ lang = 'fr', fallbackParagraphs = [] }) {
   const csvUrl =
-    import.meta.env.VITE_GOOGLE_SHEETS_CONDITIONS_CSV_URL?.trim() || DEFAULT_CONDITIONS_CSV_URL
+    import.meta.env.VITE_WEEKLY_BULLETIN_CSV_URL?.trim() ||
+    import.meta.env.VITE_GOOGLE_SHEETS_CONDITIONS_CSV_URL?.trim() ||
+    DEFAULT_CONDITIONS_CSV_URL
+
   const fallbackValue = useMemo(() => fallbackParagraphs, [fallbackParagraphs])
   const [state, setState] = useState({
     paragraphs: fallbackValue,
@@ -68,7 +125,8 @@ export function useSurfConditions({ fallbackParagraphs = [] }) {
         }
 
         const text = await response.text()
-        const paragraphs = toParagraphs(text)
+        const weekendParagraphs = buildWeekendParagraphs(text, lang)
+        const paragraphs = weekendParagraphs.length ? weekendParagraphs : toParagraphs(text)
 
         if (!cancelled) {
           setState({
@@ -88,7 +146,7 @@ export function useSurfConditions({ fallbackParagraphs = [] }) {
     return () => {
       cancelled = true
     }
-  }, [csvUrl, fallbackValue])
+  }, [csvUrl, fallbackValue, lang])
 
   return {
     ...state,

@@ -145,6 +145,7 @@ export default function Home() {
   ]
 
   const surfConditions = useSurfConditions({
+    lang,
     fallbackParagraphs: h.surfConditions.fallbackParagraphs,
   })
 

@@ -65,7 +65,7 @@ export const en = {
     },
     surfConditions: {
       badge: 'Conditions',
-      title: 'Forecast surf conditions for the next days',
+      title: 'Forecast surf conditions for this weekend',
       fallbackParagraphs: ['Conditions update coming soon.'],
     },
 

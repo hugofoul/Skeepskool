@@ -3,6 +3,21 @@ import { useEffect, useMemo, useState } from 'react'
 const DEFAULT_SCHEDULE_CSV_URL =
   'https://docs.google.com/spreadsheets/d/e/2PACX-1vR64XSBpt3_1ZfQ2u_povtkQcJv1iGnxdGpjlaWnDKguUiFFwfdV1tB2GpqzmL-0btADUB_pS-CgZML/pub?gid=0&single=true&output=csv'
 
+const MONTH_INDEX = {
+  janvier: 0,
+  fevrier: 1,
+  mars: 2,
+  avril: 3,
+  mai: 4,
+  juin: 5,
+  juillet: 6,
+  aout: 7,
+  septembre: 8,
+  octobre: 9,
+  novembre: 10,
+  decembre: 11,
+}
+
 function parseCsvLine(line) {
   const values = []
   let current = ''
@@ -38,6 +53,7 @@ function parseCsvLine(line) {
 function normalizeHeader(value) {
   return value
     .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^\w\s-]/g, '')
     .toLowerCase()
     .trim()
@@ -74,13 +90,47 @@ function capitalize(value) {
   return value ? value.charAt(0).toUpperCase() + value.slice(1) : value
 }
 
-function mapScheduleRows(rawRows, lang, fallbackDays, allLevelsLabel) {
-  if (!rawRows.length) {
-    return fallbackDays
+function normalizeBulletLine(line) {
+  return line
+    .replace(/^[-•]\s*/, '')
+    .replace(/^\uFEFF/, '')
+    .trim()
+}
+
+function normalizeMonthKey(value) {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+}
+
+function toDateFromFrenchParts(dayRaw, monthRaw) {
+  const monthIndex = MONTH_INDEX[normalizeMonthKey(monthRaw)]
+  if (monthIndex === undefined) return null
+
+  const now = new Date()
+  const day = Number(dayRaw.replace(/er$/i, ''))
+  const currentYear = now.getFullYear()
+  const currentMonth = now.getMonth()
+
+  const candidateThisYear = new Date(currentYear, monthIndex, day)
+  const diffMonths = monthIndex - currentMonth
+
+  if (diffMonths < -8) {
+    return new Date(currentYear + 1, monthIndex, day)
   }
 
-  const today = startOfDay(new Date())
+  if (diffMonths > 8) {
+    return new Date(currentYear - 1, monthIndex, day)
+  }
 
+  return candidateThisYear
+}
+
+function buildDaysFromEntries(entries, lang, fallbackDays) {
+  if (!entries.length) return fallbackDays
+
+  const today = startOfDay(new Date())
   const dayFormatter = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-US', {
     weekday: 'long',
     day: 'numeric',
@@ -88,27 +138,22 @@ function mapScheduleRows(rawRows, lang, fallbackDays, allLevelsLabel) {
 
   const groupedDays = new Map()
 
-  rawRows.forEach((row) => {
-    const date = parseDate(row.jour || row.date || row.day)
-    const time = normalizeTime(row.heure || row.time || row.hour)
-    const type = row.type || ''
-    const level = row.niveau || row.level || allLevelsLabel
+  entries.forEach((entry) => {
+    if (!entry.date || !entry.time) return
+    if (startOfDay(entry.date) < today) return
 
-    if (!date || !time) return
+    const key = `${entry.date.getFullYear()}-${entry.date.getMonth()}-${entry.date.getDate()}`
+    const dayLabel = capitalize(dayFormatter.format(entry.date))
 
-    if (startOfDay(date) < today) return
-
-    const key = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
-    const dayLabel = capitalize(dayFormatter.format(date))
     const slot = {
-      time,
-      type,
-      level: level || allLevelsLabel,
-      sortKey: `${key}-${time}`,
+      time: entry.time,
+      type: entry.type || '',
+      level: entry.level,
+      sortKey: `${key}-${entry.time}`,
     }
 
     if (!groupedDays.has(key)) {
-      groupedDays.set(key, { day: dayLabel, date, slots: [slot] })
+      groupedDays.set(key, { day: dayLabel, date: entry.date, slots: [slot] })
       return
     }
 
@@ -127,8 +172,74 @@ function mapScheduleRows(rawRows, lang, fallbackDays, allLevelsLabel) {
   return days.length ? days : fallbackDays
 }
 
+function mapScheduleRows(rawRows, lang, fallbackDays, allLevelsLabel) {
+  if (!rawRows.length) {
+    return fallbackDays
+  }
+
+  const entries = rawRows.map((row) => {
+    const date = parseDate(row.jour || row.date || row.day)
+    const time = normalizeTime(row.heure || row.time || row.hour)
+
+    return {
+      date,
+      time,
+      type: row.type || '',
+      level: row.niveau || row.level || allLevelsLabel,
+    }
+  })
+
+  return buildDaysFromEntries(entries, lang, fallbackDays)
+}
+
+function parseBulletinEntries(rawText, allLevelsLabel) {
+  const lines = rawText
+    .split(/\r?\n/)
+    .map(normalizeBulletLine)
+    .filter(Boolean)
+
+  const entries = []
+
+  lines.forEach((line) => {
+    const dateMatch = line.match(/^(?:[a-zA-ZÀ-ÿ]+)\s+(\d{1,2}(?:er)?)\s+([a-zA-ZÀ-ÿ]+)\s+à\s+(.+)$/i)
+    if (!dateMatch) return
+
+    const [, dayRaw, monthRaw, afterAt] = dateMatch
+    const date = toDateFromFrenchParts(dayRaw, monthRaw)
+    if (!date) return
+
+    const times = [...afterAt.matchAll(/(\d{1,2})h(?:(\d{2}))?/gi)].map((match) => {
+      const hours = String(Number(match[1])).padStart(2, '0')
+      const minutes = match[2] || '00'
+      return `${hours}:${minutes}`
+    })
+
+    if (!times.length) return
+
+    const extraMatch = line.match(/\(([^)]+)\)/)
+    const extra = extraMatch ? extraMatch[1] : ''
+    const type = /sunset|afterwork/i.test(extra) ? 'Sunset-afterwork' : ''
+    const level = extra && !/sunset|afterwork/i.test(extra) ? extra : allLevelsLabel
+
+    times.forEach((time) => {
+      entries.push({ date, time, type, level })
+    })
+  })
+
+  return entries
+}
+
+function mapBulletinText(rawText, lang, fallbackDays, allLevelsLabel) {
+  const entries = parseBulletinEntries(rawText, allLevelsLabel)
+  return buildDaysFromEntries(entries, lang, fallbackDays)
+}
+
 export function useWeeklySchedule({ lang, fallbackDays = [], allLevelsLabel = 'Tous niveaux' }) {
-  const csvUrl = import.meta.env.VITE_GOOGLE_SHEETS_CSV_URL?.trim() || DEFAULT_SCHEDULE_CSV_URL
+  const csvUrl =
+    import.meta.env.VITE_WEEKLY_BULLETIN_CSV_URL?.trim() ||
+    import.meta.env.VITE_GOOGLE_SHEETS_CSV_URL?.trim() ||
+    DEFAULT_SCHEDULE_CSV_URL
+
   const fallbackValue = useMemo(() => fallbackDays, [fallbackDays])
   const [state, setState] = useState({
     days: fallbackValue,
@@ -151,23 +262,24 @@ export function useWeeklySchedule({ lang, fallbackDays = [], allLevelsLabel = 'T
           .map((line) => line.trim())
           .filter(Boolean)
 
-        if (lines.length < 2) {
-          if (!cancelled) {
-            setState({ days: fallbackValue, isLive: false })
-          }
-          return
+        let days = fallbackValue
+
+        if (lines.length >= 2) {
+          const headers = parseCsvLine(lines[0]).map(normalizeHeader)
+          const rows = lines.slice(1).map((line) => {
+            const values = parseCsvLine(line)
+            return headers.reduce((record, header, index) => {
+              record[header] = values[index] || ''
+              return record
+            }, {})
+          })
+
+          days = mapScheduleRows(rows, lang, fallbackValue, allLevelsLabel)
         }
 
-        const headers = parseCsvLine(lines[0]).map(normalizeHeader)
-        const rows = lines.slice(1).map((line) => {
-          const values = parseCsvLine(line)
-          return headers.reduce((record, header, index) => {
-            record[header] = values[index] || ''
-            return record
-          }, {})
-        })
-
-        const days = mapScheduleRows(rows, lang, fallbackValue, allLevelsLabel)
+        if (days === fallbackValue) {
+          days = mapBulletinText(csv, lang, fallbackValue, allLevelsLabel)
+        }
 
         if (!cancelled) {
           setState({
