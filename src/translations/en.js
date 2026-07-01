@@ -294,7 +294,7 @@ export const en = {
     title: 'Book',
     subtitle: 'Send your request in a few clicks',
     intro:
-      'To confirm your booking, payment must already be completed by bank transfer or Paylib before submitting this form.',
+      'To confirm your booking, payment must already be completed by bank transfer before submitting this form.',
 
     contactTitle: 'Contact information',
     firstName: 'First name',
@@ -331,8 +331,8 @@ export const en = {
 
     commonTitle: 'Shared information',
     startDate: 'Approximate start date',
-    startDateNote: 'For bookings within less than 7 days, please call us directly so we can give you the most suitable slot.',
-    shortNoticeAlert: 'For bookings within less than 7 days, please call the school directly.',
+    startDateNote: 'For bookings within less than 3 days, please call us directly so we can give you the most suitable slot.',
+    shortNoticeAlert: 'For bookings within less than 3 days, please call the school directly.',
     paymentType: 'Payment type',
     payerName: 'Person who made the transfer / payment',
     sameAsContactSurfer: 'Auto-fill Surfer 1 with contact information',
@@ -341,13 +341,12 @@ export const en = {
 
     paymentMethods: [
       { value: 'transfer', label: 'Bank transfer' },
-      { value: 'paylib', label: 'Paylib' },
     ],
 
     totalLabel: 'Total:',
     warning:
       '⚠️ Important — Your booking is only confirmed once payment has been made BEFORE submitting this form.',
-    paylibLabel: '💳 Paylib: 06 70 60 84 26 (Skeepskool)',
+    paylibLabel: '',
     ibanLabel: '🏦 Bank transfer IBAN: FR76 1027 8022 8200 0205 3750 133 — BIC: CMCIFR2A',
     warningFooter: 'Once payment is done, tick the confirmation checkbox and click Send.',
     callWeekNote: '📞 Please call the school 1 week before your arrival to confirm your slot.',
@@ -405,6 +404,7 @@ export const en = {
         text: 'Bodyboard is ideal to have fun fast from your very first waves; surf to progress standing up on the board.',
       },
     ],
+    callNote: 'Want to reserve your board and wetsuit? Feel free to call us.',
     cta: 'Contact us',
   },
 

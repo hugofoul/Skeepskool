@@ -152,6 +152,13 @@ export default function Rental() {
           </div>
 
           <div className="mt-14 text-center">
+            {r.callNote ? (
+              <div className="mx-auto mb-6 max-w-2xl rounded-2xl border-2 border-red bg-red/10 px-5 py-4 shadow-sm sm:px-6 sm:py-5">
+                <p className="text-base font-extrabold leading-relaxed text-red sm:text-xl">
+                  {r.callNote}
+                </p>
+              </div>
+            ) : null}
             <CTAButton to="/contact" className="text-lg">
               {r.cta}
             </CTAButton>

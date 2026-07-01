@@ -23,6 +23,7 @@ const highlightIcons = [Waves, LifeBuoy, null]
 export default function Home() {
   const { t, lang } = useLang()
   const h = t.home
+  const heroSlogan = "Apprendre le surf dans les règles de l'art"
   const [openFaqIndex, setOpenFaqIndex] = useState(0)
 
   const faqItems = [
@@ -175,11 +176,13 @@ export default function Home() {
           decoding="async"
         />
         <div className="absolute inset-0 bg-royalBlue/50" />
-        <div className="relative z-10 mx-auto max-w-3xl px-4 text-center text-white">
-          <h1 className="animate-fadeInUp text-5xl font-black tracking-tight drop-shadow-lg sm:text-7xl lg:text-8xl">
-            {h.heroTitle}
-          </h1>
-          <p className="mx-auto mt-4 max-w-xl text-base text-white/90 sm:text-lg">
+        <div className="relative z-10 mx-auto max-w-4xl px-4 text-center text-white">
+          <div className="mx-auto max-w-3xl rounded-2xl bg-black/20 px-5 py-4 shadow-xl ring-1 ring-white/25 backdrop-blur-[2px] sm:px-8 sm:py-6">
+            <h1 className="animate-fadeInUp mx-auto text-3xl font-bold leading-[1.35] tracking-[0.01em] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] md:text-5xl">
+              {heroSlogan}
+            </h1>
+          </div>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/95 sm:text-lg">
             {lang === 'fr'
               ? h.heroSubtitle
               : '40 m north of the main access to Le Porge central beach, our school welcomes you at the foot of the dune and pine forest for surf lessons at the gates of Bordeaux.'}

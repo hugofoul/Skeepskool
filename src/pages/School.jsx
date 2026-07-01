@@ -10,6 +10,7 @@ const sectionImages = [images.schoolSpot, images.schoolPedagogy, images.schoolTe
 const valueIcons = [Waves, Handshake, TrendingUp]
 const teamImages = [teamPhotos.pierre, teamPhotos.mariane, teamPhotos.manoa, teamPhotos.hugo]
 const teamImagePositions = ['object-cover object-top', 'object-cover object-top', 'object-cover', 'object-cover']
+const teamImageScales = ['group-hover:scale-105', 'scale-90 group-hover:scale-95', 'group-hover:scale-105', 'group-hover:scale-105']
 
 export default function School() {
   const { t, lang } = useLang()
@@ -120,7 +121,7 @@ export default function School() {
                     srcSet={buildSrcSet(teamImages[i])}
                     sizes={DEFAULT_SIZES}
                     alt={member.name}
-                    className={`h-full w-full ${teamImagePositions[i]} transition-transform duration-500 group-hover:scale-105`}
+                    className={`h-full w-full ${teamImagePositions[i]} ${teamImageScales[i]} transition-transform duration-500`}
                     loading="lazy"
                   />
                   <span className="absolute bottom-3 left-3 rounded-full bg-yellow px-3 py-1 text-xs font-bold text-royalBlue">

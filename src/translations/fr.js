@@ -30,9 +30,9 @@ export const fr = {
   // ---- Home ----
   home: {
     heroTitle: 'SKEEPSKOOL',
-    heroTagline: "Vis l'océan",
+    heroTagline: 'Sécurité, technique et sens marin',
     heroSubtitle:
-      'A 40m au nord de l\'accès principal de la plage centrale du Porge, notre école vous attend au pied de la dune et de la forêt pour des cours de surf aux portes de Bordeaux.',
+      'Apprendre le surf dans les règles de l\'art. A 40m au nord de l\'accès principal de la plage centrale du Porge, notre école vous attend au pied de la dune et de la forêt pour des cours aux portes de Bordeaux.',
     campingNotePrefix: 'L’école de surf la plus proche du ',
     campingNoteLink: 'Camping La Grigne',
     heroCta: 'Réserver',
@@ -56,7 +56,7 @@ export const fr = {
 
     aboutTitle: 'Le surf aux portes de Bordeaux',
     aboutText:
-      "La plage océan la plus proche de Bordeaux. Cours de surf dès 5 ans, encadrés par des moniteurs diplômés d'État.",
+      "La plage océan la plus proche de Bordeaux. Cours de surf dès 5 ans, encadrés par des moniteurs diplômés d'État, d'avril à novembre.",
     schedulePreview: {
       badge: 'Planning de la semaine',
       title: 'Consultez les prochains créneaux en un coup d’œil',
@@ -272,12 +272,12 @@ export const fr = {
   },
 
   schedule: {
-    title: 'Horaires des cours',
+    title: 'Horaires des cours de la semaine',
     liveLabel: 'Planning en direct',
     fallbackLabel: 'Aucun cours programmé',
     allLevels: 'Tous niveaux',
     callWidgetTitle: 'Appelez-nous pour réserver',
-    callWidgetText: 'Une question sur les créneaux ou envie de bloquer votre place rapidement ? Appelez l\'école.',
+    callWidgetText: 'Appelez-nous pour réserver : nous avons peut-être d\'autres créneaux.',
     callWidgetCta: 'Appeler maintenant',
     fallbackDays: [
       { day: 'Lundi', slots: [] },
@@ -294,7 +294,7 @@ export const fr = {
     title: 'Réserver',
     subtitle: 'Envoyez votre demande en quelques clics',
     intro:
-      'Pour valider votre réservation, le paiement doit déjà être effectué par virement ou Paylib avant l\'envoi de ce formulaire.',
+      'Pour valider votre réservation, le paiement doit déjà être effectué par virement avant l\'envoi de ce formulaire.',
 
     contactTitle: 'Informations de contact',
     firstName: 'Prénom',
@@ -331,8 +331,8 @@ export const fr = {
 
     commonTitle: 'Informations communes',
     startDate: 'Date de début approximative',
-    startDateNote: 'Pour une réservation à moins de 7 jours, appelez-nous directement : on vous donnera le créneau le plus adapté.',
-    shortNoticeAlert: 'Pour les réservations à moins de 7 jours, merci d’appeler l’école directement.',
+    startDateNote: 'Pour une réservation à moins de 3 jours, appelez-nous directement : on vous donnera le créneau le plus adapté.',
+    shortNoticeAlert: 'Pour les réservations à moins de 3 jours, merci d’appeler l’école directement.',
     paymentType: 'Type de paiement',
     payerName: 'Personne qui a fait le virement / paiement',
     sameAsContactSurfer: 'Remplir automatiquement le Surfeur 1 avec les informations de contact',
@@ -341,13 +341,12 @@ export const fr = {
 
     paymentMethods: [
       { value: 'transfer', label: 'Virement bancaire' },
-      { value: 'paylib', label: 'Paylib' },
     ],
 
     totalLabel: 'Total :',
     warning:
       '⚠️ Attention — Pour que votre réservation soit validée, le paiement doit être effectué AVANT d\'envoyer ce formulaire.',
-    paylibLabel: '💳 Paylib : 06 70 60 84 26 (Skeepskool)',
+    paylibLabel: '',
     ibanLabel: '🏦 Virement IBAN : FR76 1027 8022 8200 0205 3750 133 — BIC : CMCIFR2A',
     warningFooter: 'Une fois le paiement effectué, cochez la case de confirmation puis cliquez sur Envoyer.',
     callWeekNote: '📞 Merci d\'appeler l\'école 1 semaine avant votre arrivée pour confirmer le créneau.',
@@ -406,6 +405,7 @@ export const fr = {
         text: 'Le bodyboard est idéal pour s’amuser vite dès les premières vagues ; le surf pour progresser debout sur la planche.',
       },
     ],
+    callNote: 'Vous voulez réserver vos planches et votre combinaison ? N\'hésitez pas à nous téléphoner.',
     cta: 'Nous contacter',
   },
 
@@ -424,7 +424,7 @@ export const fr = {
     email: 'skeepskool@hotmail.com',
 
     seasonTitle: "Horaires d'ouverture",
-    season: 'Ouvert des vacances de Pâques à la Toussaint.',
+    season: "Ouvert d'avril à novembre.",
     seasonHighlight: '9h - 19h, tous les jours',
 
     whatsappTitle: 'Horaires des cours sur WhatsApp',
@@ -496,7 +496,7 @@ export const fr = {
     campingTitle: 'Où dormir',
     camping: {
       name: 'Camping La Grigne ★★★',
-      text: 'Skeepskool est à deux pas du Camping municipal La Grigne, au bord de l’océan Atlantique. Accès direct à la plage à pied ou à vélo, cadre naturel préservé et ambiance familiale — l’idéal pour combiner vacances et sessions de surf.',
+      text: 'Skeepskool est en face du Camping municipal La Grigne, au bord de l’océan Atlantique. Accès direct à la plage à pied ou à vélo, cadre naturel préservé et ambiance familiale — l’idéal pour combiner vacances et sessions de surf.',
       address: '35 avenue de l’Océan, 33680 Le Porge-Océan',
       phone: '+33 5 56 26 54 88',
       season: 'Ouvert du 4 avril au 1ᵉʳ novembre',

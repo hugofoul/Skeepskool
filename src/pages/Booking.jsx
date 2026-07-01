@@ -56,7 +56,7 @@ export default function Booking() {
   }, [startDate])
 
   const isShortNotice =
-    daysUntilStartDate !== null && daysUntilStartDate >= 0 && daysUntilStartDate < 7
+    daysUntilStartDate !== null && daysUntilStartDate >= 0 && daysUntilStartDate < 3
 
   const scrollToField = (element) => {
     if (!element) return
@@ -466,7 +466,7 @@ export default function Booking() {
 
             <Reveal className="rounded-2xl border-2 border-red bg-yellow p-6 text-royalBlue shadow-md">
               <p className="text-base font-black leading-relaxed">{b.warning}</p>
-              <p className="mt-3 text-sm font-semibold">{b.paylibLabel}</p>
+              {b.paylibLabel && <p className="mt-3 text-sm font-semibold">{b.paylibLabel}</p>}
               <p className="mt-2 text-sm font-semibold">{b.ibanLabel}</p>
               <p className="mt-3 text-sm font-semibold">{b.warningFooter}</p>
               <p className="mt-3 text-sm font-extrabold">{b.callWeekNote}</p>
