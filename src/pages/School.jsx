@@ -74,7 +74,7 @@ export default function School() {
       })}
 
       {/* ---- Values block ---- */}
-      <section className="bg-royalBlue py-16 text-white sm:py-24">
+      <section id="valeurs" className="scroll-mt-24 bg-royalBlue py-16 text-white sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-center text-3xl font-black sm:text-4xl">{s.valuesTitle}</h2>
@@ -85,11 +85,11 @@ export default function School() {
               </p>
             )}
           </Reveal>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
+          <div className={`mt-12 grid gap-8 ${s.values.length === 1 ? 'md:grid-cols-1' : 'md:grid-cols-3'}`}>
             {s.values.map((v, i) => {
               const Icon = valueIcons[i]
               return (
-                <Reveal key={v.title} delay={i * 120} className="text-center">
+                <Reveal key={v.title} delay={i * 120} className="mx-auto text-center md:max-w-md">
                   <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/10">
                     <Icon className="h-8 w-8 text-yellow" />
                   </span>

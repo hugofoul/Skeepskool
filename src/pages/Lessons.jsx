@@ -25,6 +25,7 @@ const factIcons = [Clock, Users, Backpack, ShieldCheck]
 export default function Lessons() {
   const { t, lang } = useLang()
   const l = t.lessons
+  const bookingPath = lang === 'fr' ? '/reserver' : '/book'
 
   return (
     <div>
@@ -163,6 +164,44 @@ export default function Lessons() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-12 sm:py-14">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <Reveal className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-royalBlue via-[#1b4f73] to-[#2a6f95] p-7 text-white shadow-xl ring-1 ring-black/10 sm:p-10">
+            <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-yellow/35 blur-2xl" />
+            <div className="pointer-events-none absolute -bottom-20 -left-20 h-52 w-52 rounded-full bg-red/20 blur-3xl" />
+            <div className="pointer-events-none absolute right-12 top-10 h-3 w-3 rounded-full bg-yellow/80" />
+            <div className="pointer-events-none absolute right-20 top-20 h-2 w-2 rounded-full bg-white/80" />
+            <div className="pointer-events-none absolute left-10 top-14 h-2.5 w-2.5 rounded-full bg-yellow/70" />
+
+            <div className="relative z-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+              <div>
+                <span className="inline-flex items-center gap-2 rounded-full border border-yellow/50 bg-yellow/25 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-yellow">
+                  <Waves className="h-4 w-4" /> {l.giftExperienceBadge}
+                </span>
+                <h2 className="mt-4 text-2xl font-black leading-tight text-yellow sm:text-3xl">
+                  {l.giftExperienceTitle}
+                </h2>
+                <p className="mt-4 text-base font-semibold leading-relaxed text-white/95 sm:text-lg">
+                  {l.giftExperienceText1}
+                </p>
+                <div className="mt-6">
+                  <CTAButton to={bookingPath} className="bg-red hover:bg-yellow hover:text-royalBlue">
+                    {l.giftExperienceCta}
+                  </CTAButton>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-white/25 bg-white/15 p-5 backdrop-blur-sm">
+                <p className="text-sm font-semibold leading-relaxed text-white/90 sm:text-base">
+                  {l.giftExperienceText2}
+                </p>
+                <div className="mt-4 h-1.5 w-20 rounded-full bg-yellow" />
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 

@@ -66,6 +66,7 @@ export default function Booking() {
   const [surfers, setSurfers] = useState([{ ...initialSurfer }])
   const nextSurferId = useRef(2)
   const [startDate, setStartDate] = useState('')
+  const [isGiftVoucher, setIsGiftVoucher] = useState(false)
   const [paymentType, setPaymentType] = useState('transfer')
   const [payerName, setPayerName] = useState('')
   const [sameAsContactSurfer, setSameAsContactSurfer] = useState(false)
@@ -178,14 +179,14 @@ export default function Booking() {
     }
     setPhoneError('')
 
-    if (isShortNotice) {
+    if (!isGiftVoucher && isShortNotice) {
       setDateError(b.shortNoticeAlert)
       scrollToField(startDateInputRef.current)
       return
     }
     setDateError('')
 
-    const selectedDate = startDate || b.unknownDate
+    const selectedDate = isGiftVoucher ? b.giftVoucherDateValue : (startDate || b.unknownDate)
     const safeMessage = message.trim() || b.none
     const fullName = `${contact.firstName} ${contact.lastName}`.trim()
 
@@ -207,6 +208,7 @@ export default function Booking() {
       b.whatsappHeader,
       `${b.whatsappContact} ${fullName} - ${fullPhone}`,
       `${b.whatsappDate} ${selectedDate}`,
+      `${b.whatsappGiftVoucher} ${isGiftVoucher ? b.giftVoucherYes : b.giftVoucherNo}`,
       `${b.whatsappTotal} ${total}€`,
       b.whatsappPayment,
       `${b.whatsappPaymentType} ${paymentMethodByValue.get(paymentType)}`,
@@ -227,6 +229,7 @@ export default function Booking() {
       surfers_count: surfers.length,
       total_eur: total,
       payment_type: paymentType,
+      is_gift_voucher: isGiftVoucher,
     })
 
     const displayName = contact.firstName || b.firstName
@@ -496,11 +499,25 @@ export default function Booking() {
                       if (dateError) setDateError('')
                     }}
                     min={todayDate}
-                    required
+                    required={!isGiftVoucher}
+                    disabled={isGiftVoucher}
                   />
                   {(isShortNotice || dateError) && (
                     <span className="mt-2 block text-xs font-bold text-red">{b.shortNoticeAlert}</span>
                   )}
+                </label>
+
+                <label className="flex items-start gap-3 rounded-xl bg-lightGray p-3 text-sm font-semibold text-royalBlue">
+                  <input
+                    type="checkbox"
+                    className="mt-0.5 h-4 w-4 rounded border-dark/30 text-royalBlue focus:ring-royalBlue"
+                    checked={isGiftVoucher}
+                    onChange={(e) => {
+                      setIsGiftVoucher(e.target.checked)
+                      if (e.target.checked && dateError) setDateError('')
+                    }}
+                  />
+                  <span>{b.giftVoucherCheckbox}</span>
                 </label>
 
                 <label className="block sm:max-w-sm">

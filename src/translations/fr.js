@@ -133,15 +133,15 @@ export const fr = {
     values: [
       {
         title: 'Sens marin',
-        text: "Lire les vagues, comprendre les courants, respecter l'océan. Nous vous apprenons à évoluer dans le milieu marin avec intelligence et humilité.",
+        text: 'Savoir quand et où surfer, lire les vagues, identifier les dangers et les zones adaptées à chaque niveau.',
       },
       {
         title: 'Technique',
-        text: 'Des bases solides pour une progression durable. Chaque geste est travaillé, chaque session vous rapproche du surfeur que vous voulez devenir.',
+        text: 'Position, équilibre, timing, lecture de la vague. Nos moniteurs vous transmettent les fondamentaux pour une progression solide et durable.',
       },
       {
         title: 'Sécurité avant tout',
-        text: "Chaque cours commence par les règles de sécurité. Sur l'eau comme sur le sable, votre sécurité et celle des autres est notre priorité absolue.",
+        text: 'On vous apprend la sécurité avec les vagues, la planche, les courants et les autres surfeurs.',
       },
     ],
     badge: 'Labellisée École Française de Surf',
@@ -229,30 +229,16 @@ export const fr = {
     goodToKnowTitle: 'Bon à savoir',
     goodToKnow: [
       {
-        question: 'Quand faut-il arriver avant le cours ?',
-        answer: 'Présentez-vous 20 minutes avant le début du cours.',
+        question: 'Je n’ai jamais fait de surf, puis-je prendre un cours chez vous ?',
+        answer: 'Oui, bien sûr. Nos cours accueillent tous les niveaux, même les grands débutants. L’approche est progressive, ludique et personnalisée, avec le matériel adapté pour vous mettre en confiance dès la première séance. Vous pouvez aussi découvrir la page École et la page Formules pour en savoir plus.',
       },
       {
-        question: 'Le premier cours se passe comment ?',
-        answer: 'Pour un premier cours, le temps sur le sable est plus long (bases et sécurité).',
-      },
-      {
-        question: 'Comment sont formés les groupes ?',
-        answer: 'Les groupes sont constitués par niveau pour une progression optimale.',
-      },
-      {
-        question: 'Où voir les horaires mis à jour ?',
-        answer: 'Les horaires des cours sont publiés en temps réel sur la communauté WhatsApp.',
+        question: 'Les courants et les marées sont-ils un danger pour apprendre ?',
+        answer: 'Nous adaptons chaque cours aux conditions du jour. Grâce à l’analyse du spot et au sens marin transmis par les moniteurs, vous apprenez à lire l’océan, à comprendre les marées et à repérer les zones adaptées à votre niveau.',
       },
     ],
     faqTitle: 'Questions fréquentes',
-    faq: [
-      {
-        question: 'Que faut-il prévoir avant le cours ?',
-        answer:
-          'Arrivez 20 minutes avant le début du cours avec votre maillot de bain, de l\'eau et de la crème solaire.',
-      },
-    ],
+    faq: [],
     pricesTitle: 'Nos formules & tarifs',
     pricesSubtitle: '',
 
@@ -286,6 +272,11 @@ export const fr = {
     teamLinkTitle: 'Encadré par une équipe passionnée',
     teamLinkText: 'Tous nos cours sont assurés par des moniteurs diplômés d’État. Faites connaissance avec l’équipe Skeepskool.',
     teamLinkCta: 'Découvrir les moniteurs',
+    giftExperienceBadge: 'Bon cadeau',
+    giftExperienceTitle: 'Offrir un bon cadeau surf',
+    giftExperienceText1: 'Vous cherchez une idée cadeau simple et originale ? Offrez une session de surf à vivre sur l’eau, seul, en famille ou entre amis.',
+    giftExperienceText2: 'Nos bons cadeaux sont valables d’avril à novembre.',
+    giftExperienceCta: 'Offrir maintenant',
     weeklySchedule: {
       badge: 'Horaires de la semaine',
       title: 'Le planning des cours mis à jour chaque semaine',
@@ -357,6 +348,10 @@ export const fr = {
     commonTitle: 'Informations communes',
     startDate: 'Date de début approximative',
     startDateNote: 'Pour une réservation à moins de 3 jours, appelez-nous directement : on vous donnera le créneau le plus adapté.',
+    giftVoucherCheckbox: 'C\'est un bon cadeau (date à définir plus tard)',
+    giftVoucherDateValue: 'Bon cadeau (date à définir)',
+    giftVoucherYes: 'Oui',
+    giftVoucherNo: 'Non',
     shortNoticeAlert: 'Pour les réservations à moins de 3 jours, merci d’appeler l’école directement.',
     paymentType: 'Type de paiement',
     payerName: 'Personne qui a fait le virement / paiement',
@@ -387,6 +382,7 @@ export const fr = {
     whatsappHeader: 'Nouvelle réservation Skeepskool',
     whatsappContact: 'Contact :',
     whatsappDate: 'Date souhaitée :',
+    whatsappGiftVoucher: 'Bon cadeau :',
     whatsappTotal: 'Total :',
     whatsappSurfers: 'Surfeurs :',
     whatsappMessage: 'Message :',

@@ -36,102 +36,48 @@ export default function Home() {
   const faqItems = [
     {
       question: {
-        fr: 'Quand faut-il arriver avant le cours ?',
-        en: 'When should I arrive before the lesson?',
-        de: 'Wann sollte ich vor dem Kurs ankommen?',
+        fr: 'Je n’ai jamais fait de surf, puis-je quand même prendre un cours chez vous ?',
+        en: 'I have never surfed before. Can I still take a lesson with you?',
+        de: 'Ich habe noch nie gesurft. Kann ich trotzdem einen Kurs bei euch machen?',
       },
       answer: {
-        fr: 'Présentez-vous 20 minutes avant le début du cours.',
-        en: 'Please arrive 20 minutes before the lesson starts.',
-        de: 'Bitte komme 20 Minuten vor Kursbeginn an.',
+        fr: 'Oui, bien sûr. Nos cours sont ouverts à tous, même si vous débutez complètement. On privilégie une progression simple, ludique et personnalisée, avec des conseils adaptés à votre niveau et du matériel qui facilite l’apprentissage dès la première séance.',
+        en: 'Yes, absolutely. Our lessons are open to everyone, even complete beginners. We focus on simple, fun and personalized progression, with coaching adapted to your level and equipment that helps you learn from the first session. If you want to discuss your needs, contact us.',
+        de: 'Ja, natürlich. Unsere Kurse sind für alle offen, auch für absolute Anfänger. Wir setzen auf eine einfache, spielerische und individuelle Progression, mit Tipps passend zu deinem Niveau und Material, das den Einstieg von der ersten Session an erleichtert. Wenn du Fragen hast, kontaktiere uns.',
       },
+      links: [
+        { to: '/ecole#valeurs', fr: 'Découvrir le sens marin →', en: 'Discover ocean awareness →', de: 'Meeresverständnis entdecken →' },
+        { to: '/cours', fr: 'Voir les formules →', en: 'See packages →', de: 'Pakete ansehen →' },
+      ],
     },
     {
       question: {
-        fr: 'Le premier cours se passe comment ?',
-        en: 'What happens during the first lesson?',
-        de: 'Wie läuft die erste Stunde ab?',
+        fr: 'Est-ce que je dois savoir nager ?',
+        en: 'Should I know how to swim?',
+        de: 'Sollte ich schwimmen koennen?',
       },
       answer: {
-        fr: 'Pour un premier cours, le temps sur le sable est plus long (bases et sécurité).',
-        en: 'For a first lesson, more time is spent on the sand covering the basics and safety.',
-        de: 'In der ersten Stunde verbringen wir mehr Zeit am Strand (Grundlagen und Sicherheit).',
-      },
-    },
-    {
-      question: {
-        fr: 'Comment sont formés les groupes ?',
-        en: 'How are groups formed?',
-        de: 'Wie werden die Gruppen gebildet?',
-      },
-      answer: {
-        fr: 'Les groupes sont constitués par niveau pour une progression optimale, et limités à 8 personnes maximum.',
-        en: 'Groups are formed by level for optimal progression, and limited to 8 people maximum.',
-        de: 'Die Gruppen werden nach Niveau gebildet und auf maximal 8 Personen begrenzt.',
-      },
-    },
-    {
-      question: {
-        fr: 'Où voir les horaires mis à jour ?',
-        en: 'Where can I see the updated schedule?',
-        de: 'Wo sehe ich den aktualisierten Stundenplan?',
-      },
-      answer: {
-        fr: 'Les horaires sont publiés en temps réel sur la communauté WhatsApp.',
-        en: 'The schedule is published in real time on the WhatsApp community.',
-        de: 'Der Stundenplan wird in Echtzeit in der WhatsApp-Community veröffentlicht.',
-      },
-      link: { to: '/horaires', fr: 'Voir les horaires →', en: 'See schedule →', de: 'Stundenplan ansehen →' },
-    },
-    {
-      question: {
-        fr: 'Que faut-il prévoir avant le cours ?',
-        en: 'What should I bring to the lesson?',
-        de: 'Was sollte ich zum Kurs mitbringen?',
-      },
-      answer: {
-        fr: 'Arrivez 20 minutes avant avec votre maillot de bain, de l\'eau et de la crème solaire.',
-        en: 'Arrive 20 minutes early with your swimsuit, water, and sunscreen.',
-        de: 'Komm 20 Minuten früher mit Badebekleidung, Wasser und Sonnencreme.',
-      },
-    },
-    {
-      question: {
-        fr: 'Quels documents faut-il apporter ?',
-        en: 'What documents do I need to bring?',
-        de: 'Welche Dokumente muss ich mitbringen?',
-      },
-      answer: {
-        fr: 'Pensez à apporter votre carte d\'identité ainsi que votre maillot de bain, de l\'eau et de la crème solaire.',
-        en: 'Please bring your ID card along with your swimsuit, water, and sunscreen.',
-        de: 'Bitte bring deinen Ausweis sowie Badebekleidung, Wasser und Sonnencreme mit.',
-      },
-    },
-    {
-      question: {
-        fr: 'Faut-il savoir nager ?',
-        en: 'Do I need to know how to swim?',
-        de: 'Muss ich schwimmen können?',
-      },
-      answer: {
-        fr: 'Il est recommandé de savoir nager. Une aisance dans l\'eau est nécessaire pour pratiquer le surf en toute sécurité.',
-        en: 'Swimming ability is recommended. Feeling comfortable in the water is essential to surf safely.',
-        de: 'Schwimmkenntnisse werden empfohlen. Sicherheit im Wasser ist wichtig, um sicher zu surfen.',
+        fr: 'Si vous n\'avez pas peur de mettre la tête sous l’eau, vous pouvez venir jouer dans les vagues et découvrir l’Océan dans notre école de surf. L’apprentissage ludique permet à vos enfants dès 5 ans de s’initier en s’amusant dans des eaux peu profondes en toute sérénité. Le surf est la meilleure des activités pour découvrir l’Océan.',
+        en: 'If putting your head under water does not scare you, you can come have fun in the waves and discover the ocean with us. Our playful teaching approach helps children from age 5 learn with confidence in shallow water. Surfing is one of the best ways to discover the ocean.',
+        de: 'Wenn es dir nichts ausmacht, den Kopf unter Wasser zu haben, kannst du mit uns in den Wellen spielen und den Ozean entdecken. Unsere spielerische Lernmethode hilft Kindern ab 5 Jahren, in flachem Wasser sicher und mit Spaß einzusteigen. Surfen ist eine der besten Aktivitäten, um den Ozean kennenzulernen.',
       },
       link: { to: '/ecole', fr: 'En savoir plus sur l\'école →', en: 'Learn more about the school →', de: 'Mehr über die Schule →' },
     },
     {
       question: {
-        fr: 'Que se passe-t-il si les conditions sont mauvaises ?',
-        en: 'What happens if conditions are bad?',
-        de: 'Was passiert bei schlechten Bedingungen?',
+        fr: 'Les courants et les grandes marées sont-ils un danger pour l’apprentissage ?',
+        en: 'Are currents and big tides dangerous for learning?',
+        de: 'Sind Strömungen und große Gezeiten beim Lernen gefährlich?',
       },
       answer: {
-        fr: 'En cas de conditions dangereuses, le cours est reporté ou remboursé. Nous vous prévenons dès que possible.',
-        en: 'If conditions are unsafe, the lesson is rescheduled or refunded. We notify you as soon as possible.',
-        de: 'Bei gefährlichen Bedingungen wird der Kurs verschoben oder erstattet. Wir informieren dich so schnell wie möglich.',
+        fr: 'Nos moniteurs analysent l’océan avant chaque session pour choisir la zone la plus adaptée au niveau du groupe. Le sens marin fait partie de notre pédagogie : comprendre les marées, lire les courants et reconnaître les zones à éviter permet d’apprendre dans de bonnes conditions, avec sérénité.',
+        en: 'Our instructors assess the ocean before every session to choose the area that best matches the group level. Ocean awareness is part of our teaching: understanding tides, reading currents and identifying areas to avoid helps you learn in safe and comfortable conditions.',
+        de: 'Unsere Trainer analysieren vor jeder Session den Ozean, um den Bereich zu wählen, der am besten zum Gruppenniveau passt. Meeresverständnis ist Teil unserer Pädagogik: Gezeiten verstehen, Strömungen lesen und kritische Zonen erkennen hilft beim sicheren und entspannten Lernen.',
       },
-      link: { to: '/contact', fr: 'Nous contacter →', en: 'Contact us →', de: 'Kontakt aufnehmen →' },
+      links: [
+        { to: '/ecole#valeurs', fr: 'Nos valeurs : le sens marin →', en: 'Our values: ocean awareness →', de: 'Unsere Werte: Meeresverständnis →' },
+        { to: '/cours', fr: 'Voir nos formules →', en: 'See our packages →', de: 'Unsere Pakete ansehen →' },
+      ],
     },
     {
       question: {
@@ -140,24 +86,11 @@ export default function Home() {
         de: 'Kann ich vor Ort bezahlen?',
       },
       answer: {
-        fr: 'Oui ! Vous pouvez régler sur place en espèces, par virement bancaire ou avec des chèques vacances. Pour garantir votre place à l\'avance, le paiement par virement ou Paylib est recommandé.',
+        fr: 'Oui ! Vous pouvez régler sur place en espèces, virement bancaire, chèque ou avec des chèques vacances. Pour garantir votre place à l\'avance, le paiement par virement est recommandé.',
         en: 'Yes! You can pay on site in cash, by bank transfer, or with holiday vouchers (chèques vacances). To secure your spot in advance, payment by bank transfer or Paylib is recommended.',
         de: 'Ja! Du kannst vor Ort bar, per Überweisung oder mit Urlaubsgutscheinen bezahlen. Um deinen Platz zu sichern, empfehlen wir Überweisung im Voraus.',
       },
       link: { to: '/reserver', fr: 'Réserver et payer →', en: 'Book and pay →', de: 'Buchen und bezahlen →' },
-    },
-    {
-      question: {
-        fr: 'Combien de personnes par groupe ?',
-        en: 'How many people per group?',
-        de: 'Wie viele Personen sind pro Gruppe?',
-      },
-      answer: {
-        fr: 'Les groupes sont limités à 8 personnes maximum pour garantir un encadrement de qualité.',
-        en: 'Groups are limited to 8 people maximum to ensure quality supervision.',
-        de: 'Die Gruppen sind auf maximal 8 Personen begrenzt, um eine hochwertige Betreuung sicherzustellen.',
-      },
-      link: { to: '/cours', fr: 'Voir les formules →', en: 'See packages →', de: 'Pakete ansehen →' },
     },
     {
       question: {
@@ -486,6 +419,19 @@ export default function Home() {
                           >
                             {pickLang(item.link.fr, item.link.en, item.link.de ?? item.link.en)}
                           </Link>
+                        )}
+                        {item.links && item.links.length > 0 && (
+                          <div className="mt-3 flex flex-wrap gap-3">
+                            {item.links.map((link) => (
+                              <Link
+                                key={`${link.to}-${link.en}`}
+                                to={link.to}
+                                className="inline-block text-red font-semibold hover:underline"
+                              >
+                                {pickLang(link.fr, link.en, link.de ?? link.en)}
+                              </Link>
+                            ))}
+                          </div>
                         )}
                       </div>
                     </div>
