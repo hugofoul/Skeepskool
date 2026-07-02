@@ -195,7 +195,7 @@ export default function Home() {
         )}
       />
       {/* ---------------- HERO ---------------- */}
-      <section className="relative flex min-h-[88vh] items-start justify-center overflow-hidden pt-10 md:items-center md:pt-0">
+      <section className="relative flex min-h-[88vh] items-center justify-center overflow-hidden">
         <img
           src={images.homeHero}
           srcSet={buildSrcSet(images.homeHero)}
@@ -207,7 +207,7 @@ export default function Home() {
           decoding="async"
         />
         <div className="absolute inset-0 bg-royalBlue/50" />
-        <div className="relative z-10 mx-auto max-w-4xl -translate-y-10 px-4 text-center text-white md:-translate-y-4 lg:-translate-y-12">
+        <div className="relative z-10 mx-auto max-w-4xl translate-y-4 px-4 text-center text-white md:-translate-y-4 lg:-translate-y-12">
           <h1 className="animate-fadeInUp mx-auto max-w-4xl px-2 text-3xl font-bold leading-[1.3] tracking-[0.01em] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] md:text-5xl lg:text-6xl xl:text-7xl">
             {heroSlogan}
           </h1>
@@ -216,7 +216,7 @@ export default function Home() {
               {h.heroSubtitle}
             </p>
           )}
-          <p className="mx-auto mt-3 max-w-xl text-sm font-medium text-white/85 sm:text-base">
+          <p className="mx-auto mt-5 max-w-xl text-base font-semibold text-white/90 sm:text-lg">
             {h.campingNotePrefix}
             <a
               href="https://camping-leporge.fr/"
@@ -228,7 +228,7 @@ export default function Home() {
             </a>
             .
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <CTAButton
               to={lang === 'fr' ? '/reserver' : '/book'}
               aria-label={pickLang('Reserver un creneau de cours', 'Book a lesson slot', 'Einen Kurs-Slot buchen')}
@@ -246,7 +246,7 @@ export default function Home() {
               {h.heroSecondaryCta}
             </CTAButton>
           </div>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
             {h.heroTrustItems.map((item) => (
               <span
                 key={item}
