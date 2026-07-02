@@ -53,17 +53,17 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-royalBlue shadow-lg">
-      <nav className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center px-4 py-3 sm:px-6 md:flex md:justify-between lg:px-8">
+      <nav className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center px-4 py-3 sm:px-6 md:flex md:justify-between lg:pl-2 lg:pr-8">
         {/* Left placeholder to keep centered logo on mobile */}
         <div className="h-7 w-7 md:hidden" aria-hidden="true" />
 
         {/* Brand */}
         <Link to="/" className="group flex items-center justify-self-center md:justify-self-auto">
-          <div className="h-[4.5rem] w-[15rem] overflow-hidden sm:h-[6rem] sm:w-[20rem]">
+          <div className="h-[4.5rem] w-[15rem] overflow-hidden sm:h-[4.5rem] sm:w-[15rem] md:h-[3.75rem] md:w-[12.5rem] lg:h-[4rem] lg:w-[13.5rem]">
             <img
               src="/logo-skeepskool-2026.svg"
               srcSet={buildSrcSet('/logo-skeepskool-2026.svg')}
-              sizes="192px"
+              sizes="(max-width: 1024px) 200px, 216px"
               alt="Skeepskool Surfing Le Porge"
               className="h-full w-full object-contain object-center transition-transform duration-300 group-hover:scale-[1.03]"
             />
@@ -87,7 +87,7 @@ export default function Navbar() {
         <div className="flex items-center justify-self-end gap-3">
           <a
             href={`tel:${CONTACT.phoneSecondary}`}
-            className="hidden items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-yellow hover:text-royalBlue lg:inline-flex"
+            className="hidden shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-yellow hover:text-royalBlue lg:inline-flex"
           >
             <Phone className="h-4 w-4 text-yellow" />
             {CONTACT.phoneSecondaryDisplay}
