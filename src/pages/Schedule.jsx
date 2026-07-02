@@ -6,6 +6,7 @@ import Reveal from '../components/Reveal.jsx'
 import SEO from '../components/SEO.jsx'
 import { Phone } from 'lucide-react'
 import { CONTACT } from '../config/site.js'
+import { images } from '../data/images.js'
 
 export default function Schedule() {
   const { t, lang } = useLang()
@@ -38,6 +39,7 @@ export default function Schedule() {
         fallbackLabel={s.fallbackLabel}
         days={schedule.days}
         isLive={schedule.isLive}
+        image={images.fondpages}
       />
 
       <section className="bg-white pb-16 pt-4 sm:pb-20 sm:pt-6">

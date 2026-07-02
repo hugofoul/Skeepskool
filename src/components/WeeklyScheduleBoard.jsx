@@ -1,5 +1,6 @@
 import { Clock3 } from 'lucide-react'
 import Reveal from './Reveal.jsx'
+import { buildSrcSet, HERO_SIZES } from '../utils/responsiveImage.js'
 
 export default function WeeklyScheduleBoard({
   title,
@@ -7,10 +8,27 @@ export default function WeeklyScheduleBoard({
   fallbackLabel,
   days,
   isLive,
+  image,
 }) {
   return (
     <section className="relative overflow-hidden bg-[#f3f7fd] py-16 sm:py-20">
-      <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-[#d7e7ff] via-[#f3f7fd] to-transparent" />
+      {image && (
+        <>
+          <img
+            src={image}
+            srcSet={buildSrcSet(image)}
+            sizes={HERO_SIZES}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover opacity-20"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-royalBlue/10" />
+        </>
+      )}
+      <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-[#d7e7ff]/90 via-[#f3f7fd]/90 to-transparent" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">

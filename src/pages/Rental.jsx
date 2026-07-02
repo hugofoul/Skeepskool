@@ -28,7 +28,7 @@ export default function Rental() {
             ? 'Verleih von Surfboards, Bodyboards und Neoprenanzügen direkt am Strand von Le Porge Océan. Ab 10€. Sunset-Slot verfügbar.'
             : "Surfboard, bodyboard and wetsuit rental right by the beach at Le Porge Océan. From €10. Sunset slot available.")}
       />
-      <PageHero title={r.heroTitle} subtitle={r.heroSubtitle} image={images.rentalHero} />
+      <PageHero title={r.heroTitle} subtitle={r.heroSubtitle} image={images.fondpages} />
 
       <section className="bg-white py-6 sm:py-8">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

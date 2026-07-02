@@ -14,6 +14,7 @@ const u = (id, w = 1600) => `https://images.unsplash.com/photo-${id}?w=${w}&q=80
 export const images = {
   // Accueil
   homeHero: '/images/vague_avec_planche_hero.jpg', // Accueil > grand hero (version optimisee)
+  fondpages: '/images/fondpages.JPG', // Image de fond unifiee pour les bandeaux du haut
 
   // L'école
   schoolHero: '/images/vague.webp', // L'école > bandeau du haut

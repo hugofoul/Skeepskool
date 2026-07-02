@@ -16,6 +16,36 @@ const initialSurfer = {
   packageValue: 'single',
 }
 
+const priorityCountryCallingCodes = [
+  { value: '+33', label: 'France (+33)' },
+  { value: '+49', label: 'Allemagne (+49)' },
+  { value: '+31', label: 'Pays-Bas (+31)' },
+  { value: '+32', label: 'Belgique (+32)' },
+]
+
+const countryCallingCodes = [
+  { value: '+41', label: 'Suisse (+41)' },
+  { value: '+34', label: 'Espagne (+34)' },
+  { value: '+39', label: 'Italie (+39)' },
+  { value: '+44', label: 'Royaume-Uni (+44)' },
+  { value: '+353', label: 'Irlande (+353)' },
+  { value: '+352', label: 'Luxembourg (+352)' },
+  { value: '+351', label: 'Portugal (+351)' },
+  { value: '+43', label: 'Autriche (+43)' },
+  { value: '+45', label: 'Danemark (+45)' },
+  { value: '+46', label: 'Suede (+46)' },
+  { value: '+47', label: 'Norvege (+47)' },
+  { value: '+48', label: 'Pologne (+48)' },
+  { value: '+420', label: 'Tchequie (+420)' },
+  { value: '+30', label: 'Grece (+30)' },
+  { value: '+212', label: 'Maroc (+212)' },
+  { value: '+213', label: 'Algerie (+213)' },
+  { value: '+216', label: 'Tunisie (+216)' },
+  { value: '+1', label: 'USA/Canada (+1)' },
+  { value: '+55', label: 'Bresil (+55)' },
+  { value: '+61', label: 'Australie (+61)' },
+]
+
 export default function Booking() {
   const { t, lang } = useLang()
   const b = t.booking
@@ -29,6 +59,8 @@ export default function Booking() {
   const [contact, setContact] = useState({
     firstName: '',
     lastName: '',
+    phoneCountryCode: '+33',
+    customPhoneCountryCode: '',
     phone: '',
   })
   const [surfers, setSurfers] = useState([{ ...initialSurfer }])
@@ -64,11 +96,16 @@ export default function Booking() {
     element.focus({ preventScroll: true })
   }
 
+  const buildFullPhone = ({ phoneCountryCode, customPhoneCountryCode, phone }) => {
+    const selectedCode = phoneCountryCode === 'custom' ? customPhoneCountryCode : phoneCountryCode
+    return `${selectedCode} ${phone}`.replace(/\s+/g, ' ').trim()
+  }
+
   const isValidPhone = (phoneValue) => {
     const trimmed = phoneValue.trim()
-    const basicFormatOk = /^\+?[0-9\s().-]{8,20}$/.test(trimmed)
+    const basicFormatOk = /^\+?[0-9\s().-]{8,22}$/.test(trimmed)
     const digitsOnly = trimmed.replace(/\D/g, '')
-    return basicFormatOk && digitsOnly.length >= 10
+    return basicFormatOk && digitsOnly.length >= 8 && digitsOnly.length <= 15
   }
 
   useEffect(() => {
@@ -127,7 +164,14 @@ export default function Booking() {
       return
     }
 
-    if (!isValidPhone(contact.phone)) {
+    const fullPhone = buildFullPhone(contact)
+
+    if (contact.phoneCountryCode === 'custom' && !/^\+[0-9]{1,4}$/.test(contact.customPhoneCountryCode.trim())) {
+      setPhoneError(lang === 'fr' ? 'Indicatif invalide (ex: +33).' : 'Invalid calling code (e.g. +33).')
+      return
+    }
+
+    if (!isValidPhone(fullPhone)) {
       setPhoneError(b.phoneInvalid)
       scrollToField(phoneInputRef.current)
       return
@@ -161,7 +205,7 @@ export default function Booking() {
 
     const whatsappMessage = [
       b.whatsappHeader,
-      `${b.whatsappContact} ${fullName} — 📞 ${contact.phone}`,
+      `${b.whatsappContact} ${fullName} - ${fullPhone}`,
       `${b.whatsappDate} ${selectedDate}`,
       `${b.whatsappTotal} ${total}€`,
       b.whatsappPayment,
@@ -206,7 +250,7 @@ export default function Booking() {
             ? 'Buche deinen Surfkurs bei Skeepskool in Le Porge Océan. Wähle dein Paket und sichere deinen Platz online.'
             : "Book your surf lesson at Skeepskool, surf school at Le Porge Océan. Choose your package and secure your spot online.")}
       />
-      <PageHero title={b.title} subtitle={b.subtitle} image={images.lessonsHero} />
+      <PageHero title={b.title} subtitle={b.subtitle} image={images.fondpages} />
 
       <section className="bg-lightGray py-14 sm:py-16">
         <div className="mx-auto w-full max-w-[680px] px-4 sm:px-6">
@@ -254,22 +298,69 @@ export default function Booking() {
 
                 <label className="block sm:col-span-2">
                   <span className="mb-2 block text-sm font-semibold text-dark">{b.phone}</span>
-                  <input
-                    ref={phoneInputRef}
-                    type="tel"
-                    className={inputClass}
-                    value={contact.phone}
-                    onChange={(e) => {
-                      setContact((prev) => ({ ...prev, phone: e.target.value }))
-                      if (phoneError) setPhoneError('')
-                    }}
-                    inputMode="tel"
-                    autoComplete="tel"
-                    pattern="^\\+?[0-9\\s().-]{8,20}$"
-                    title={b.phoneHint}
-                    required
-                  />
-                  <span className="mt-2 block text-xs font-medium text-dark/70">{b.phoneHint}</span>
+                  <div className="grid gap-3 sm:grid-cols-[170px_1fr]">
+                    <select
+                      className={inputClass}
+                      value={contact.phoneCountryCode}
+                      onChange={(e) => {
+                        const nextCode = e.target.value
+                        setContact((prev) => ({
+                          ...prev,
+                          phoneCountryCode: nextCode,
+                          customPhoneCountryCode: nextCode === 'custom' ? prev.customPhoneCountryCode : '',
+                        }))
+                        if (phoneError) setPhoneError('')
+                      }}
+                      autoComplete="tel-country-code"
+                      aria-label="Indicatif pays"
+                    >
+                      {priorityCountryCallingCodes.map((code) => (
+                        <option key={`priority-${code.value}`} value={code.value}>
+                          {code.label}
+                        </option>
+                      ))}
+                      <option disabled>──────────</option>
+                      {countryCallingCodes.map((code) => (
+                        <option key={code.value} value={code.value}>
+                          {code.label}
+                        </option>
+                      ))}
+                      <option value="custom">
+                        {lang === 'fr' ? 'Autre indicatif...' : 'Other calling code...'}
+                      </option>
+                    </select>
+                    {contact.phoneCountryCode === 'custom' && (
+                      <input
+                        type="text"
+                        className={inputClass}
+                        value={contact.customPhoneCountryCode}
+                        onChange={(e) => {
+                          setContact((prev) => ({ ...prev, customPhoneCountryCode: e.target.value }))
+                          if (phoneError) setPhoneError('')
+                        }}
+                        placeholder={lang === 'fr' ? 'Indicatif ex: +33' : 'Code e.g. +33'}
+                        inputMode="tel"
+                        pattern="^\\+[0-9]{1,4}$"
+                        title={lang === 'fr' ? 'Format requis: + suivi de 1 a 4 chiffres.' : 'Required format: + followed by 1 to 4 digits.'}
+                        required
+                      />
+                    )}
+                    <input
+                      ref={phoneInputRef}
+                      type="tel"
+                      className={inputClass}
+                      value={contact.phone}
+                      onChange={(e) => {
+                        setContact((prev) => ({ ...prev, phone: e.target.value }))
+                        if (phoneError) setPhoneError('')
+                      }}
+                      inputMode="tel"
+                      autoComplete="tel-national"
+                      pattern="^[0-9\\s().-]{6,18}$"
+                      title={b.phoneHint}
+                      required
+                    />
+                  </div>
                   {phoneError && <span className="mt-1 block text-xs font-bold text-red">{phoneError}</span>}
                 </label>
               </div>

@@ -42,17 +42,12 @@ export default function Lessons() {
             ? 'Gruppen- und Privat-Surfkurse ab 40€. Pakete mit 3, 5, 10 oder 20 Einheiten. Material und Versicherung inklusive. Le Porge Océan, Gironde.'
             : "Group and private surf lessons from €40. Packs of 3, 5, 10 or 20 sessions. Equipment and insurance included. Le Porge Océan, Gironde.")}
       />
-      <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.lessonsHero} />
+      <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.fondpages} />
 
       {/* ---- Lesson presentation ---- */}
       <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-2">
-            <Reveal>
-              <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{l.aboutTitle}</h2>
-              <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
-              <p className="mt-5 text-lg leading-relaxed text-dark/80">{l.aboutLead}</p>
-            </Reveal>
             <Reveal
               delay={120}
               className="overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10"
@@ -65,6 +60,11 @@ export default function Lessons() {
                 className="h-72 w-full object-cover sm:h-96"
                 loading="lazy"
               />
+            </Reveal>
+            <Reveal>
+              <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{l.aboutTitle}</h2>
+              <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+              <p className="mt-5 text-lg leading-relaxed text-dark/80">{l.aboutLead}</p>
             </Reveal>
           </div>
 

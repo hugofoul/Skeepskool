@@ -27,7 +27,7 @@ export default function Around() {
             ? 'Unterkünfte, Aktivitäten und gute Adressen rund um Le Porge Océan, Gironde. Alles für deinen Surfaufenthalt.'
             : "Accommodation, activities and local tips around Le Porge Océan, Gironde. Everything to make the most of your surf stay.")}
       />
-      <PageHero title={a.heroTitle} image={images.aroundHero} />
+      <PageHero title={a.heroTitle} image={images.fondpages} />
 
       {/* ---- Camping ---- */}
       <section id="camping-la-grigne" className="bg-lightGray py-16 sm:py-20">

@@ -2,6 +2,7 @@ import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
 import Reveal from '../components/Reveal.jsx'
 import SEO from '../components/SEO.jsx'
+import { images } from '../data/images.js'
 
 export default function Legal() {
   const { t, lang } = useLang()
@@ -23,7 +24,7 @@ export default function Legal() {
             : 'Legal notice, privacy policy and regulatory information for Skeepskool.'
         }
       />
-      <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} />
+      <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.fondpages} />
 
       <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">

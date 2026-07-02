@@ -58,7 +58,7 @@ export default function PhotoAlbum() {
         subtitle={
           lang === 'fr' ? 'Photos Skeepskool' : (lang === 'de' ? 'Skeepskool Fotos' : 'Skeepskool photos')
         }
-        image={images.homeHero}
+        image={images.fondpages}
       />
 
       <section className="bg-white py-16 sm:py-20">
