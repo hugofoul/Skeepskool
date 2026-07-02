@@ -23,7 +23,14 @@ const highlightIcons = [Waves, LifeBuoy, null]
 export default function Home() {
   const { t, lang } = useLang()
   const h = t.home
-  const heroSlogan = "Apprendre le surf dans les règles de l'art"
+  const isFr = lang === 'fr'
+  const isDe = lang === 'de'
+  const pickLang = (frText, enText, deText) => (isFr ? frText : (isDe ? deText : enText))
+  const heroSlogan = pickLang(
+    "Apprendre le surf dans les règles de l'art",
+    'Learning to surf the right way',
+    'Surfen lernen nach allen Regeln der Kunst',
+  )
   const [openFaqIndex, setOpenFaqIndex] = useState(0)
 
   const faqItems = [
@@ -31,117 +38,139 @@ export default function Home() {
       question: {
         fr: 'Quand faut-il arriver avant le cours ?',
         en: 'When should I arrive before the lesson?',
+        de: 'Wann sollte ich vor dem Kurs ankommen?',
       },
       answer: {
         fr: 'Présentez-vous 20 minutes avant le début du cours.',
         en: 'Please arrive 20 minutes before the lesson starts.',
+        de: 'Bitte komme 20 Minuten vor Kursbeginn an.',
       },
     },
     {
       question: {
         fr: 'Le premier cours se passe comment ?',
         en: 'What happens during the first lesson?',
+        de: 'Wie läuft die erste Stunde ab?',
       },
       answer: {
         fr: 'Pour un premier cours, le temps sur le sable est plus long (bases et sécurité).',
         en: 'For a first lesson, more time is spent on the sand covering the basics and safety.',
+        de: 'In der ersten Stunde verbringen wir mehr Zeit am Strand (Grundlagen und Sicherheit).',
       },
     },
     {
       question: {
         fr: 'Comment sont formés les groupes ?',
         en: 'How are groups formed?',
+        de: 'Wie werden die Gruppen gebildet?',
       },
       answer: {
         fr: 'Les groupes sont constitués par niveau pour une progression optimale, et limités à 8 personnes maximum.',
         en: 'Groups are formed by level for optimal progression, and limited to 8 people maximum.',
+        de: 'Die Gruppen werden nach Niveau gebildet und auf maximal 8 Personen begrenzt.',
       },
     },
     {
       question: {
         fr: 'Où voir les horaires mis à jour ?',
         en: 'Where can I see the updated schedule?',
+        de: 'Wo sehe ich den aktualisierten Stundenplan?',
       },
       answer: {
         fr: 'Les horaires sont publiés en temps réel sur la communauté WhatsApp.',
         en: 'The schedule is published in real time on the WhatsApp community.',
+        de: 'Der Stundenplan wird in Echtzeit in der WhatsApp-Community veröffentlicht.',
       },
-      link: { to: '/horaires', fr: 'Voir les horaires →', en: 'See schedule →' },
+      link: { to: '/horaires', fr: 'Voir les horaires →', en: 'See schedule →', de: 'Stundenplan ansehen →' },
     },
     {
       question: {
         fr: 'Que faut-il prévoir avant le cours ?',
         en: 'What should I bring to the lesson?',
+        de: 'Was sollte ich zum Kurs mitbringen?',
       },
       answer: {
         fr: 'Arrivez 20 minutes avant avec votre maillot de bain, de l\'eau et de la crème solaire.',
         en: 'Arrive 20 minutes early with your swimsuit, water, and sunscreen.',
+        de: 'Komm 20 Minuten früher mit Badebekleidung, Wasser und Sonnencreme.',
       },
     },
     {
       question: {
         fr: 'Quels documents faut-il apporter ?',
         en: 'What documents do I need to bring?',
+        de: 'Welche Dokumente muss ich mitbringen?',
       },
       answer: {
         fr: 'Pensez à apporter votre carte d\'identité ainsi que votre maillot de bain, de l\'eau et de la crème solaire.',
         en: 'Please bring your ID card along with your swimsuit, water, and sunscreen.',
+        de: 'Bitte bring deinen Ausweis sowie Badebekleidung, Wasser und Sonnencreme mit.',
       },
     },
     {
       question: {
         fr: 'Faut-il savoir nager ?',
         en: 'Do I need to know how to swim?',
+        de: 'Muss ich schwimmen können?',
       },
       answer: {
         fr: 'Il est recommandé de savoir nager. Une aisance dans l\'eau est nécessaire pour pratiquer le surf en toute sécurité.',
         en: 'Swimming ability is recommended. Feeling comfortable in the water is essential to surf safely.',
+        de: 'Schwimmkenntnisse werden empfohlen. Sicherheit im Wasser ist wichtig, um sicher zu surfen.',
       },
-      link: { to: '/ecole', fr: 'En savoir plus sur l\'école →', en: 'Learn more about the school →' },
+      link: { to: '/ecole', fr: 'En savoir plus sur l\'école →', en: 'Learn more about the school →', de: 'Mehr über die Schule →' },
     },
     {
       question: {
         fr: 'Que se passe-t-il si les conditions sont mauvaises ?',
         en: 'What happens if conditions are bad?',
+        de: 'Was passiert bei schlechten Bedingungen?',
       },
       answer: {
         fr: 'En cas de conditions dangereuses, le cours est reporté ou remboursé. Nous vous prévenons dès que possible.',
         en: 'If conditions are unsafe, the lesson is rescheduled or refunded. We notify you as soon as possible.',
+        de: 'Bei gefährlichen Bedingungen wird der Kurs verschoben oder erstattet. Wir informieren dich so schnell wie möglich.',
       },
-      link: { to: '/contact', fr: 'Nous contacter →', en: 'Contact us →' },
+      link: { to: '/contact', fr: 'Nous contacter →', en: 'Contact us →', de: 'Kontakt aufnehmen →' },
     },
     {
       question: {
         fr: 'Peut-on payer sur place ?',
         en: 'Can I pay on site?',
+        de: 'Kann ich vor Ort bezahlen?',
       },
       answer: {
         fr: 'Oui ! Vous pouvez régler sur place en espèces, par virement bancaire ou avec des chèques vacances. Pour garantir votre place à l\'avance, le paiement par virement ou Paylib est recommandé.',
         en: 'Yes! You can pay on site in cash, by bank transfer, or with holiday vouchers (chèques vacances). To secure your spot in advance, payment by bank transfer or Paylib is recommended.',
+        de: 'Ja! Du kannst vor Ort bar, per Überweisung oder mit Urlaubsgutscheinen bezahlen. Um deinen Platz zu sichern, empfehlen wir Überweisung im Voraus.',
       },
-      link: { to: '/reserver', fr: 'Réserver et payer →', en: 'Book and pay →' },
+      link: { to: '/reserver', fr: 'Réserver et payer →', en: 'Book and pay →', de: 'Buchen und bezahlen →' },
     },
     {
       question: {
         fr: 'Combien de personnes par groupe ?',
         en: 'How many people per group?',
+        de: 'Wie viele Personen sind pro Gruppe?',
       },
       answer: {
         fr: 'Les groupes sont limités à 8 personnes maximum pour garantir un encadrement de qualité.',
         en: 'Groups are limited to 8 people maximum to ensure quality supervision.',
+        de: 'Die Gruppen sind auf maximal 8 Personen begrenzt, um eine hochwertige Betreuung sicherzustellen.',
       },
-      link: { to: '/cours', fr: 'Voir les formules →', en: 'See packages →' },
+      link: { to: '/cours', fr: 'Voir les formules →', en: 'See packages →', de: 'Pakete ansehen →' },
     },
     {
       question: {
         fr: 'Peut-on louer du matériel sans prendre de cours ?',
         en: 'Can I rent equipment without taking a lesson?',
+        de: 'Kann ich Material mieten, ohne einen Kurs zu buchen?',
       },
       answer: {
         fr: 'Oui, la location est ouverte à tous. Cependant, nous déconseillons fortement la location sans encadrement si vous avez moins de 10 heures de cours avec un moniteur diplômé. En dessous de ce niveau, la pratique du surf peut être dangereuse pour vous et pour les autres surfeurs.',
         en: 'Yes, rental is open to everyone. However, we strongly advise against renting without supervision if you have fewer than 10 hours of lessons with a qualified instructor. Below this level, surfing can be dangerous for yourself and for other surfers.',
+        de: 'Ja, der Verleih ist für alle offen. Wir raten jedoch vom Surfen ohne Betreuung ab, wenn du weniger als 10 Stunden Unterricht mit einem qualifizierten Lehrer hattest.',
       },
-      link: { to: '/location', fr: 'Voir les tarifs location →', en: 'See rental prices →' },
+      link: { to: '/location', fr: 'Voir les tarifs location →', en: 'See rental prices →', de: 'Verleihpreise ansehen →' },
     },
   ]
 
@@ -159,9 +188,11 @@ export default function Home() {
           { hrefLang: 'en', path: '/' },
           { hrefLang: 'x-default', path: '/' },
         ]}
-        description={lang === 'fr'
-          ? "École de surf labellisée FFS à Le Porge Océan, Gironde. Cours collectifs et particuliers dès 5 ans, location de matériel. Moniteurs diplômés d'État. 50 min de Bordeaux."
-          : "FFS-certified surf school at Le Porge Océan, Gironde. Group and private lessons from age 5, equipment rental. State-certified instructors. 50 min from Bordeaux."}
+        description={pickLang(
+          "École de surf labellisée FFS à Le Porge Océan, Gironde. Cours collectifs et particuliers dès 5 ans, location de matériel. Moniteurs diplômés d'État. 50 min de Bordeaux.",
+          'FFS-certified surf school at Le Porge Océan, Gironde. Group and private lessons from age 5, equipment rental. State-certified instructors. 50 min from Bordeaux.',
+          'FFS-zertifizierte Surfschule in Le Porge Océan, Gironde. Gruppen- und Privatkurse ab 5 Jahren, Materialverleih, staatlich geprüfte Lehrer. 50 Minuten von Bordeaux.',
+        )}
       />
       {/* ---------------- HERO ---------------- */}
       <section className="relative flex min-h-[88vh] items-center justify-center overflow-hidden">
@@ -183,9 +214,7 @@ export default function Home() {
             </h1>
           </div>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/95 sm:text-lg">
-            {lang === 'fr'
-              ? h.heroSubtitle
-              : '40 m north of the main access to Le Porge central beach, our school welcomes you at the foot of the dune and pine forest for surf lessons at the gates of Bordeaux.'}
+            {h.heroSubtitle}
           </p>
           <p className="mx-auto mt-3 max-w-xl text-sm font-medium text-white/85 sm:text-base">
             {h.campingNotePrefix}
@@ -193,7 +222,7 @@ export default function Home() {
               href="https://camping-leporge.fr/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-white transition-colors hover:text-yellow"
+              className="font-bold text-yellow transition-colors hover:text-white"
             >
               {h.campingNoteLink}
             </a>
@@ -202,7 +231,7 @@ export default function Home() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <CTAButton
               to={lang === 'fr' ? '/reserver' : '/book'}
-              aria-label={lang === 'fr' ? 'Reserver un creneau de cours' : 'Book a lesson slot'}
+              aria-label={pickLang('Reserver un creneau de cours', 'Book a lesson slot', 'Einen Kurs-Slot buchen')}
               className="px-6 py-3"
             >
               <CalendarCheck2 className="h-5 w-5" />
@@ -210,7 +239,7 @@ export default function Home() {
             </CTAButton>
             <CTAButton
               href={`tel:${CONTACT.phonePrimary}`}
-              aria-label={lang === 'fr' ? 'Appeler Skeepskool' : 'Call Skeepskool'}
+              aria-label={pickLang('Appeler Skeepskool', 'Call Skeepskool', 'Skeepskool anrufen')}
               className="bg-white px-6 py-3 !text-royalBlue hover:bg-yellow"
             >
               <Phone className="h-5 w-5" />
@@ -231,7 +260,7 @@ export default function Home() {
 
         <div className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-center text-white/90">
           <p className="text-[10px] font-semibold uppercase tracking-[0.2em]">
-            {lang === 'fr' ? 'Faites defiler' : 'Scroll'}
+            {pickLang('Faites defiler', 'Scroll', 'Scrollen')}
           </p>
           <span className="mt-1 block text-sm leading-none animate-bounce">↓</span>
         </div>
@@ -252,7 +281,7 @@ export default function Home() {
                   {i === 2 ? (
                     <img
                       src="/images/ffs-officiel-portrait.png"
-                      alt={lang === 'fr' ? 'Logo École Française de Surf' : 'French Surf School logo'}
+                      alt={pickLang('Logo École Française de Surf', 'French Surf School logo', 'Logo der Französischen Surfschule')}
                       className="h-12 w-12 object-contain"
                       loading="lazy"
                       decoding="async"
@@ -291,9 +320,11 @@ export default function Home() {
           </Reveal>
           <div className="mt-8 flex flex-col items-center gap-4 text-center">
             <p className="max-w-2xl text-sm font-medium text-dark/70 sm:text-base">
-              {lang === 'fr'
-                ? 'Envie d’en voir plus ? Ouvrez l’album photo pour découvrir le spot, les sessions et l’ambiance à l’eau.'
-                : 'Want to see more? Open the photo album to discover the spot, sessions and life in the water.'}
+              {pickLang(
+                'Envie d’en voir plus ? Ouvrez l’album photo pour découvrir le spot, les sessions et l’ambiance à l’eau.',
+                'Want to see more? Open the photo album to discover the spot, sessions and life in the water.',
+                'Lust auf mehr? Öffne das Fotoalbum und entdecke den Spot, die Sessions und das Leben im Wasser.',
+              )}
             </p>
             <CTAButton
               href="/album-photo"
@@ -301,7 +332,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="border border-black/10 !bg-white px-5 py-2.5 text-sm font-medium !text-royalBlue shadow-sm shadow-black/5 hover:-translate-y-0.5 hover:border-yellow hover:!bg-yellow hover:shadow-md"
             >
-              {lang === 'fr' ? 'Voir l’album photo' : 'View photo album'}
+              {pickLang('Voir l’album photo', 'View photo album', 'Fotoalbum ansehen')}
             </CTAButton>
           </div>
         </div>
@@ -412,7 +443,7 @@ export default function Home() {
         <div className="mx-auto max-w-3xl px-4">
           <Reveal>
             <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">
-              {lang === 'fr' ? 'Questions fréquentes' : 'FAQ'}
+              {pickLang('Questions fréquentes', 'FAQ', 'Häufige Fragen')}
             </h2>
             <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
           </Reveal>
@@ -430,7 +461,7 @@ export default function Home() {
                       aria-expanded={isOpen}
                     >
                       <span className="text-base font-bold text-dark sm:text-lg">
-                        {lang === 'fr' ? item.question.fr : item.question.en}
+                        {pickLang(item.question.fr, item.question.en, item.question.de ?? item.question.en)}
                       </span>
                       <ChevronDown
                         className={`h-5 w-5 shrink-0 text-yellow transition-transform duration-300 ${
@@ -446,14 +477,14 @@ export default function Home() {
                     >
                       <div className="px-5 pb-4">
                         <p className="leading-relaxed text-dark/80">
-                          {lang === 'fr' ? item.answer.fr : item.answer.en}
+                          {pickLang(item.answer.fr, item.answer.en, item.answer.de ?? item.answer.en)}
                         </p>
                         {item.link && (
                           <Link
                             to={item.link.to}
                             className="mt-3 inline-block text-red font-semibold hover:underline"
                           >
-                            {lang === 'fr' ? item.link.fr : item.link.en}
+                            {pickLang(item.link.fr, item.link.en, item.link.de ?? item.link.en)}
                           </Link>
                         )}
                       </div>

@@ -15,7 +15,7 @@ export default function Rental() {
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? 'Location de matériel' : 'Equipment Rental'}
+        title={lang === 'fr' ? 'Location de matériel' : (lang === 'de' ? 'Materialverleih' : 'Equipment Rental')}
         path={lang === 'fr' ? '/location' : '/rental'}
         alternates={[
           { hrefLang: 'fr-FR', path: '/location' },
@@ -24,7 +24,9 @@ export default function Rental() {
         ]}
         description={lang === 'fr'
           ? "Location de planches de surf, bodyboards et combinaisons à la sortie de la plage du Porge Océan. À partir de 10€. Créneau sunset disponible."
-          : "Surfboard, bodyboard and wetsuit rental right by the beach at Le Porge Océan. From €10. Sunset slot available."}
+          : (lang === 'de'
+            ? 'Verleih von Surfboards, Bodyboards und Neoprenanzügen direkt am Strand von Le Porge Océan. Ab 10€. Sunset-Slot verfügbar.'
+            : "Surfboard, bodyboard and wetsuit rental right by the beach at Le Porge Océan. From €10. Sunset slot available.")}
       />
       <PageHero title={r.heroTitle} subtitle={r.heroSubtitle} image={images.rentalHero} />
 

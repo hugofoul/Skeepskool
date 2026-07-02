@@ -19,7 +19,7 @@ export default function School() {
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? "L'École" : 'The School'}
+        title={lang === 'fr' ? "L'École" : (lang === 'de' ? 'Die Schule' : 'The School')}
         path={lang === 'fr' ? '/ecole' : '/school'}
         alternates={[
           { hrefLang: 'fr-FR', path: '/ecole' },
@@ -28,7 +28,9 @@ export default function School() {
         ]}
         description={lang === 'fr'
           ? "Découvrez l'école Skeepskool : spot préservé entre dunes et forêt de pins au Porge Océan, moniteurs diplômés, label École Française de Surf."
-          : "Discover Skeepskool surf school: a preserved spot between dunes and pine forest at Le Porge Océan, certified instructors, FFS label."}
+          : (lang === 'de'
+            ? 'Entdecke die Surfschule Skeepskool: geschützter Spot zwischen Dünen und Pinienwald in Le Porge Océan, qualifizierte Lehrer, FFS-Label.'
+            : "Discover Skeepskool surf school: a preserved spot between dunes and pine forest at Le Porge Océan, certified instructors, FFS label.")}
       />
       <PageHero title={s.heroTitle} subtitle={s.heroSubtitle} image={images.schoolHero} />
 

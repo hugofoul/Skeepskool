@@ -37,7 +37,7 @@ export default function PhotoAlbum() {
   return (
     <div className="bg-lightGray">
       <SEO
-        title={lang === 'fr' ? 'Album photo' : 'Photo album'}
+        title={lang === 'fr' ? 'Album photo' : (lang === 'de' ? 'Fotoalbum' : 'Photo album')}
         path="/album-photo"
         alternates={[
           { hrefLang: 'fr-FR', path: '/album-photo' },
@@ -47,14 +47,16 @@ export default function PhotoAlbum() {
         description={
           lang === 'fr'
             ? 'Album photo Skeepskool : vagues, élèves sur l’eau, lumières de fin de journée et ambiance surf.'
-            : 'Skeepskool photo album: waves, students in the water, golden light and surf atmosphere.'
+            : (lang === 'de'
+              ? 'Skeepskool Fotoalbum: Wellen, Schüler im Wasser, Abendlicht und Surf-Atmosphäre.'
+              : 'Skeepskool photo album: waves, students in the water, golden light and surf atmosphere.')
         }
       />
 
       <PageHero
-        title={lang === 'fr' ? 'Album photo' : 'Photo album'}
+        title={lang === 'fr' ? 'Album photo' : (lang === 'de' ? 'Fotoalbum' : 'Photo album')}
         subtitle={
-          lang === 'fr' ? 'Photos Skeepskool' : 'Skeepskool photos'
+          lang === 'fr' ? 'Photos Skeepskool' : (lang === 'de' ? 'Skeepskool Fotos' : 'Skeepskool photos')
         }
         image={images.homeHero}
       />
@@ -63,12 +65,14 @@ export default function PhotoAlbum() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full bg-lightGray px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-royalBlue">
-              {lang === 'fr' ? 'Collection' : 'Collection'}
+              {lang === 'de' ? 'Sammlung' : 'Collection'}
             </span>
             <p className="mt-5 text-lg leading-relaxed text-dark/75">
               {lang === 'fr'
                 ? 'Des images simples et naturelles du spot, des sessions et de l’ambiance à l’eau.'
-                : 'Simple, natural images of the spot, the sessions and the atmosphere in the water.'}
+                : (lang === 'de'
+                  ? 'Einfache und natürliche Bilder vom Spot, den Sessions und der Stimmung im Wasser.'
+                  : 'Simple, natural images of the spot, the sessions and the atmosphere in the water.')}
             </p>
           </div>
 
@@ -101,7 +105,7 @@ export default function PhotoAlbum() {
           className="fixed inset-0 z-[60] flex items-center justify-center bg-dark/90 p-4 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
-          aria-label={lang === 'fr' ? 'Visionneuse photo' : 'Photo viewer'}
+          aria-label={lang === 'fr' ? 'Visionneuse photo' : (lang === 'de' ? 'Fotoanzeige' : 'Photo viewer')}
           onClick={closePhoto}
         >
           <div

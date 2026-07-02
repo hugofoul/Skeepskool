@@ -131,7 +131,8 @@ function buildDaysFromEntries(entries, lang, fallbackDays) {
   if (!entries.length) return fallbackDays
 
   const today = startOfDay(new Date())
-  const dayFormatter = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-US', {
+  const dayLocale = lang === 'fr' ? 'fr-FR' : (lang === 'de' ? 'de-DE' : 'en-US')
+  const dayFormatter = new Intl.DateTimeFormat(dayLocale, {
     weekday: 'long',
     day: 'numeric',
   })

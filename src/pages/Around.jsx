@@ -14,7 +14,7 @@ export default function Around() {
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? 'Autour de nous' : 'Around Us'}
+        title={lang === 'fr' ? 'Autour de nous' : (lang === 'de' ? 'Rund um uns' : 'Around Us')}
         path={lang === 'fr' ? '/autour' : '/around'}
         alternates={[
           { hrefLang: 'fr-FR', path: '/autour' },
@@ -23,7 +23,9 @@ export default function Around() {
         ]}
         description={lang === 'fr'
           ? "Hébergements, activités et bonnes adresses autour de la plage du Porge Océan, Gironde. Tout pour profiter de votre séjour surf."
-          : "Accommodation, activities and local tips around Le Porge Océan, Gironde. Everything to make the most of your surf stay."}
+          : (lang === 'de'
+            ? 'Unterkünfte, Aktivitäten und gute Adressen rund um Le Porge Océan, Gironde. Alles für deinen Surfaufenthalt.'
+            : "Accommodation, activities and local tips around Le Porge Océan, Gironde. Everything to make the most of your surf stay.")}
       />
       <PageHero title={a.heroTitle} image={images.aroundHero} />
 

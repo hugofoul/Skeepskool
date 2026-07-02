@@ -28,7 +28,7 @@ export default function Contact() {
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? 'Infos pratiques' : 'Practical Info'}
+        title={lang === 'fr' ? 'Infos pratiques' : (lang === 'de' ? 'Praktische Infos' : 'Practical Info')}
         path="/contact"
         alternates={[
           { hrefLang: 'fr-FR', path: '/contact' },
@@ -37,7 +37,9 @@ export default function Contact() {
         ]}
         description={lang === 'fr'
           ? "Comment venir au Porge Océan, horaires d'ouverture, numéros de téléphone, accès bus depuis Bordeaux. École de surf Skeepskool."
-          : "How to reach Le Porge Océan, opening hours, phone numbers, bus access from Bordeaux. Skeepskool surf school."}
+          : (lang === 'de'
+            ? 'Anreise nach Le Porge Océan, Öffnungszeiten, Telefonnummern und Busverbindung ab Bordeaux. Surfschule Skeepskool.'
+            : "How to reach Le Porge Océan, opening hours, phone numbers, bus access from Bordeaux. Skeepskool surf school.")}
       />
       <PageHero title={c.heroTitle} subtitle={c.heroSubtitle} image={images.contactHero} />
 

@@ -29,7 +29,7 @@ export default function Lessons() {
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? 'Formules & Tarifs' : 'Packages & Prices'}
+        title={lang === 'fr' ? 'Formules & Tarifs' : (lang === 'de' ? 'Kurse & Preise' : 'Packages & Prices')}
         path={lang === 'fr' ? '/cours' : '/lessons'}
         alternates={[
           { hrefLang: 'fr-FR', path: '/cours' },
@@ -38,7 +38,9 @@ export default function Lessons() {
         ]}
         description={lang === 'fr'
           ? "Cours de surf collectifs et particuliers à partir de 40€. Packs 3, 5, 10 ou 20 séances. Matériel et assurance inclus. Le Porge Océan, Gironde."
-          : "Group and private surf lessons from €40. Packs of 3, 5, 10 or 20 sessions. Equipment and insurance included. Le Porge Océan, Gironde."}
+          : (lang === 'de'
+            ? 'Gruppen- und Privat-Surfkurse ab 40€. Pakete mit 3, 5, 10 oder 20 Einheiten. Material und Versicherung inklusive. Le Porge Océan, Gironde.'
+            : "Group and private surf lessons from €40. Packs of 3, 5, 10 or 20 sessions. Equipment and insurance included. Le Porge Océan, Gironde.")}
       />
       <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.lessonsHero} />
 

@@ -35,7 +35,7 @@ export const images = {
 
   // Autour de nous
   aroundHero: '/images/dune-foret.webp', // Autour de nous > bandeau du haut
-  aroundCamping: '/images/camping.jpg', // Autour de nous > section Camping
+  aroundCamping: '/images/accueil-camping-la-grigne-2.jpg', // Autour de nous > section Camping
   aroundTourism: '/images/plage.jpg', // Autour de nous > Office de tourisme
 }
 
@@ -164,6 +164,54 @@ export const photoGallery = [
   {
     src: '/images/vague_avec_planche_hero.jpg',
     alt: 'Grand visuel de vague avec planche de surf',
+  },
+  {
+    src: '/images/accueil-camping-la-grigne-2.jpg',
+    alt: 'Vue du camping La Grigne',
+  },
+  {
+    src: '/images/charlie.jpeg',
+    alt: 'Session de surf encadrée par Charlie',
+  },
+  {
+    src: '/images/charliecours.jpg',
+    alt: 'Cours de surf au Porge Océan',
+  },
+  {
+    src: '/images/planches.jpg',
+    alt: 'Planches de surf préparées pour la session',
+  },
+  {
+    src: '/images/sunset1.jpeg',
+    alt: 'Session au coucher du soleil',
+  },
+  {
+    src: '/images/vague_avec_planche.jpg',
+    alt: 'Vague avec planche en premier plan',
+  },
+  {
+    src: '/images/vague.jpg',
+    alt: 'Vague atlantique sur le spot du Porge',
+  },
+  {
+    src: '/images/dune-foret.jpg',
+    alt: 'Dunes et forêt autour du spot',
+  },
+  {
+    src: '/images/DSC_0880.JPG',
+    alt: 'Photo de session surf DSC 0880',
+  },
+  {
+    src: '/images/DSC_5586.jpg',
+    alt: 'Photo de session surf DSC 5586',
+  },
+  {
+    src: '/images/288509_2276646957644_6309143_o.jpg',
+    alt: 'Archive surf 288509',
+  },
+  {
+    src: '/images/290693_2276636797390_3586123_o.jpg',
+    alt: 'Archive surf 290693',
   },
 ]
 

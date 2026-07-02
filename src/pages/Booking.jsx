@@ -193,7 +193,7 @@ export default function Booking() {
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? 'Réserver' : 'Book a Lesson'}
+        title={lang === 'fr' ? 'Réserver' : (lang === 'de' ? 'Buchen' : 'Book a Lesson')}
         path={lang === 'fr' ? '/reserver' : '/book'}
         alternates={[
           { hrefLang: 'fr-FR', path: '/reserver' },
@@ -202,7 +202,9 @@ export default function Booking() {
         ]}
         description={lang === 'fr'
           ? "Réservez votre cours de surf à Skeepskool, école de surf au Porge Océan. Choisissez votre formule et validez votre place en ligne."
-          : "Book your surf lesson at Skeepskool, surf school at Le Porge Océan. Choose your package and secure your spot online."}
+          : (lang === 'de'
+            ? 'Buche deinen Surfkurs bei Skeepskool in Le Porge Océan. Wähle dein Paket und sichere deinen Platz online.'
+            : "Book your surf lesson at Skeepskool, surf school at Le Porge Océan. Choose your package and secure your spot online.")}
       />
       <PageHero title={b.title} subtitle={b.subtitle} image={images.lessonsHero} />
 

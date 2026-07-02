@@ -32,7 +32,7 @@ export const fr = {
     heroTitle: 'SKEEPSKOOL',
     heroTagline: 'Sécurité, technique et sens marin',
     heroSubtitle:
-      'Apprendre le surf dans les règles de l\'art. A 40m au nord de l\'accès principal de la plage centrale du Porge, notre école vous attend au pied de la dune et de la forêt pour des cours aux portes de Bordeaux.',
+      'A 40m au nord de l\'accès principal de la plage centrale du Porge, notre école vous attend au pied de la dune et de la forêt pour des cours aux portes de Bordeaux.',
     campingNotePrefix: 'L’école de surf la plus proche du ',
     campingNoteLink: 'Camping La Grigne',
     heroCta: 'Réserver',
@@ -188,16 +188,32 @@ export const fr = {
         text: 'Rendez-vous à la cabane Skeepskool 20 minutes avant le début du cours pour récupérer votre combinaison et la planche choisie par votre moniteur.',
       },
       {
-        title: 'Échauffement & théorie',
-        text: 'Le moniteur vous emmène sur le sable pour un échauffement, un point sur les conditions du jour et les règles de sécurité essentielles.',
+        title: 'Checkpoint',
+        text: 'Arrêt en haut de la dune pour analyser les conditions de mer (taille des vagues, marée, vent, relief de la plage et courants de baïnes) afin de choisir l’endroit le plus adapté. Car le surf, c’est avant tout de l’observation !',
+      },
+      {
+        title: 'Échauffement',
+        text: 'Échauffement de tout le corps afin de rentrer dans l’eau dans de bonnes conditions.',
+      },
+      {
+        title: 'Consignes de sécurité',
+        text: 'Apprentissage et rappel des consignes de sécurité avant chaque cours en fonction des conditions et du niveau de chacun.',
       },
       {
         title: 'Dans l’eau',
         text: 'Place à la pratique ! Les débutants surfent dans les mousses, les plus à l’aise vont chercher les vagues du large. Le moniteur reste avec vous dans l’eau.',
       },
       {
-        title: 'Bilan & progression',
-        text: 'En fin de séance, le moniteur vous donne ses conseils personnalisés pour continuer à progresser à la prochaine session.',
+        title: 'Étirements',
+        text: 'Quelques minutes d’étirements afin de gagner en souplesse et de favoriser la récupération.',
+      },
+      {
+        title: 'Bilan de séance',
+        text: 'Analyse de fin de séance sur : ce qui a changé au niveau des conditions de mer et du spot de surf ; la sécurité (comportements à risques lors de la session) ; la technique (rappel de ce qui a été appris pendant la séance, conseils de réussite et perspectives de progression pour les prochaines séances).',
+      },
+      {
+        title: 'Retour à l’école',
+        text: 'Retour à l’école : ranger sa planche et rincer sa combinaison ; checkout à l’accueil sur le bon déroulement de la séance ; vérifier l’horaire pour son prochain cours.',
       },
     ],
     includedTitle: 'Tout est compris dans le prix',

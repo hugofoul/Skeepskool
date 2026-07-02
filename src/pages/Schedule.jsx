@@ -19,7 +19,7 @@ export default function Schedule() {
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? 'Horaires des cours' : 'Lesson Schedule'}
+        title={lang === 'fr' ? 'Horaires des cours' : (lang === 'de' ? 'Kurszeiten' : 'Lesson Schedule')}
         path={lang === 'fr' ? '/horaires' : '/schedule'}
         alternates={[
           { hrefLang: 'fr-FR', path: '/horaires' },
@@ -28,7 +28,9 @@ export default function Schedule() {
         ]}
         description={lang === 'fr'
           ? "Planning des cours de surf en direct à Skeepskool. Créneaux collectifs, sessions enfants et cours Sunset au Porge Océan."
-          : "Live surf lesson schedule at Skeepskool. Group slots, kids sessions and Sunset lessons at Le Porge Océan."}
+          : (lang === 'de'
+            ? 'Live-Surfstundenplan bei Skeepskool. Gruppen-Slots, Kinder-Sessions und Sunset-Kurse in Le Porge Océan.'
+            : "Live surf lesson schedule at Skeepskool. Group slots, kids sessions and Sunset lessons at Le Porge Océan.")}
       />
       <WeeklyScheduleBoard
         title={s.title}
