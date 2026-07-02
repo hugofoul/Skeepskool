@@ -1,46 +1,14 @@
 import { Clock3 } from 'lucide-react'
 import Reveal from './Reveal.jsx'
-import { buildSrcSet, HERO_SIZES } from '../utils/responsiveImage.js'
 
 export default function WeeklyScheduleBoard({
-  title,
-  liveLabel,
   fallbackLabel,
   days,
-  isLive,
-  image,
 }) {
   return (
-    <section className="relative overflow-hidden bg-[#f3f7fd] py-16 sm:py-20">
-      {image && (
-        <>
-          <img
-            src={image}
-            srcSet={buildSrcSet(image)}
-            sizes={HERO_SIZES}
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-x-0 top-0 h-64 w-full object-cover opacity-35 sm:h-72"
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-          />
-          <div className="absolute inset-x-0 top-0 h-64 bg-royalBlue/15 sm:h-72" />
-        </>
-      )}
-      <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-[#d7e7ff]/90 via-[#f3f7fd]/90 to-transparent" />
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Reveal>
-          <div className="max-w-3xl">
-            <h1 className="mt-5 text-3xl font-black text-royalBlue sm:text-4xl">{title}</h1>
-            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
-            <p className="mt-4 text-sm font-semibold leading-relaxed text-royalBlue sm:text-base">
-              {isLive ? liveLabel : fallbackLabel}
-            </p>
-          </div>
-        </Reveal>
-
-        <div className="mt-20 grid gap-6 md:mt-24 md:grid-cols-2 xl:grid-cols-4">
+    <section className="bg-[#f3f7fd] py-20 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {days.map((day, index) => (
             <Reveal
               key={day.day}

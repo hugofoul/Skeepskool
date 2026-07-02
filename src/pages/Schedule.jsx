@@ -1,6 +1,7 @@
 import { useLang } from '../hooks/useLang.js'
 import { useWeeklySchedule } from '../hooks/useWeeklySchedule.js'
 import WeeklyScheduleBoard from '../components/WeeklyScheduleBoard.jsx'
+import PageHero from '../components/PageHero.jsx'
 import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import SEO from '../components/SEO.jsx'
@@ -33,13 +34,14 @@ export default function Schedule() {
             ? 'Live-Surfstundenplan bei Skeepskool. Gruppen-Slots, Kinder-Sessions und Sunset-Kurse in Le Porge Océan.'
             : "Live surf lesson schedule at Skeepskool. Group slots, kids sessions and Sunset lessons at Le Porge Océan.")}
       />
-      <WeeklyScheduleBoard
+      <PageHero
         title={s.title}
-        liveLabel={s.liveLabel}
+        subtitle={schedule.isLive ? s.liveLabel : s.fallbackLabel}
+        image={images.fondpages}
+      />
+      <WeeklyScheduleBoard
         fallbackLabel={s.fallbackLabel}
         days={schedule.days}
-        isLive={schedule.isLive}
-        image={images.fondpages}
       />
 
       <section className="bg-white pb-16 pt-4 sm:pb-20 sm:pt-6">
