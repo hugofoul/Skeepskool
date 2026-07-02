@@ -25,13 +25,13 @@ export default function Footer() {
         {/* Col 1 — Brand */}
         <div>
           <Link to="/" className="inline-flex items-center">
-            <div className="h-20 w-56 overflow-hidden">
+            <div className="h-28 w-80 overflow-hidden">
               <img
-                src="/logo-skeepskool-new.svg"
-                srcSet={buildSrcSet('/logo-skeepskool-new.svg')}
+                src="/logo-skeepskool-2026.svg"
+                srcSet={buildSrcSet('/logo-skeepskool-2026.svg')}
                 sizes="224px"
                 alt="Skeepskool Surfing Le Porge"
-                className="h-[132%] w-full -translate-y-[11%] object-contain object-top"
+                className="h-full w-full object-contain object-center"
               />
             </div>
           </Link>

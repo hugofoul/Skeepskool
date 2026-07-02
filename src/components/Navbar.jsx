@@ -59,13 +59,13 @@ export default function Navbar() {
 
         {/* Brand */}
         <Link to="/" className="group flex items-center justify-self-center md:justify-self-auto">
-          <div className="h-14 w-44 overflow-hidden sm:h-16 sm:w-48">
+          <div className="h-[4.5rem] w-[15rem] overflow-hidden sm:h-[6rem] sm:w-[20rem]">
             <img
-              src="/logo-skeepskool-new.svg"
-              srcSet={buildSrcSet('/logo-skeepskool-new.svg')}
+              src="/logo-skeepskool-2026.svg"
+              srcSet={buildSrcSet('/logo-skeepskool-2026.svg')}
               sizes="192px"
               alt="Skeepskool Surfing Le Porge"
-              className="h-[132%] w-full -translate-y-[11%] object-contain object-top transition-transform duration-300 group-hover:scale-[1.03]"
+              className="h-full w-full object-contain object-center transition-transform duration-300 group-hover:scale-[1.03]"
             />
           </div>
         </Link>

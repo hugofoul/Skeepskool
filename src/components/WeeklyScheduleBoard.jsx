@@ -20,12 +20,12 @@ export default function WeeklyScheduleBoard({
             sizes={HERO_SIZES}
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 h-full w-full object-cover opacity-20"
+            className="absolute inset-x-0 top-0 h-64 w-full object-cover opacity-35 sm:h-72"
             loading="eager"
             fetchPriority="high"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-royalBlue/10" />
+          <div className="absolute inset-x-0 top-0 h-64 bg-royalBlue/15 sm:h-72" />
         </>
       )}
       <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-[#d7e7ff]/90 via-[#f3f7fd]/90 to-transparent" />
@@ -40,7 +40,7 @@ export default function WeeklyScheduleBoard({
           </div>
         </Reveal>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-20 grid gap-6 md:mt-24 md:grid-cols-2 xl:grid-cols-4">
           {days.map((day, index) => (
             <Reveal
               key={day.day}
