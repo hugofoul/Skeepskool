@@ -129,10 +129,20 @@ export const fr = {
       },
     ],
     valuesTitle: 'Nos valeurs',
+    valuesSubtitle: "Vous apprendre le surf étape par étape dans les règles de l'art.",
     values: [
-      { title: "Respect de l'océan", text: "Préserver le spot et la nature qui nous entoure." },
-      { title: 'Partage & Communauté', text: "Transmettre la culture surf et l'esprit d'équipe." },
-      { title: 'Progression', text: 'Faire progresser chacun, à son rythme, en confiance.' },
+      {
+        title: 'Sens marin',
+        text: "Lire les vagues, comprendre les courants, respecter l'océan. Nous vous apprenons à évoluer dans le milieu marin avec intelligence et humilité.",
+      },
+      {
+        title: 'Technique',
+        text: 'Des bases solides pour une progression durable. Chaque geste est travaillé, chaque session vous rapproche du surfeur que vous voulez devenir.',
+      },
+      {
+        title: 'Sécurité avant tout',
+        text: "Chaque cours commence par les règles de sécurité. Sur l'eau comme sur le sable, votre sécurité et celle des autres est notre priorité absolue.",
+      },
     ],
     badge: 'Labellisée École Française de Surf',
 

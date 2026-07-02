@@ -131,9 +131,18 @@ export const en = {
     ],
     valuesTitle: 'Our values',
     values: [
-      { title: 'Ocean Respect', text: 'Preserving the spot and the nature around us.' },
-      { title: 'Sharing & Community', text: 'Passing on surf culture and team spirit.' },
-      { title: 'Progress for All', text: 'Helping everyone improve, at their own pace, with confidence.' },
+      {
+        title: 'Ocean sense',
+        text: 'Reading waves, understanding currents, respecting the ocean. We teach you to move through the marine environment with intelligence and humility.',
+      },
+      {
+        title: 'Technique & Progression',
+        text: 'Solid foundations for lasting progress. Every move is refined, every session brings you closer to the surfer you want to be.',
+      },
+      {
+        title: 'Safety first',
+        text: "Every lesson starts with safety rules. In the water and on the beach, your safety and everyone else's is our absolute priority.",
+      },
     ],
     badge: 'Certified French Surf School',
 

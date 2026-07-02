@@ -79,6 +79,11 @@ export default function School() {
           <Reveal>
             <h2 className="text-center text-3xl font-black sm:text-4xl">{s.valuesTitle}</h2>
             <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
+            {s.valuesSubtitle && (
+              <p className="mx-auto mt-5 max-w-3xl text-center text-base text-white/85 sm:text-lg">
+                {s.valuesSubtitle}
+              </p>
+            )}
           </Reveal>
           <div className="mt-12 grid gap-8 md:grid-cols-3">
             {s.values.map((v, i) => {
