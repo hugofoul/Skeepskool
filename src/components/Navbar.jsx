@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Menu, X, Phone } from 'lucide-react'
+import { Menu, X, Phone, ChevronDown } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import { CONTACT } from '../config/site.js'
 import { buildSrcSet } from '../utils/responsiveImage.js'
@@ -34,31 +34,28 @@ export default function Navbar() {
     ].join(' ')
 
   const LangToggle = ({ className = '' }) => (
-    <div
-      aria-label="Language selector"
-      className={`inline-flex items-center gap-1 rounded-full bg-yellow px-2 py-1 text-sm font-bold text-royalBlue ${className}`}
-    >
-      {['fr', 'en', 'de'].map((code) => (
-        <button
-          key={code}
-          onClick={() => setLang(code)}
-          aria-label={`Switch language to ${code.toUpperCase()}`}
-          className={`rounded-full px-2 py-0.5 transition ${lang === code ? 'bg-royalBlue text-white' : 'text-royalBlue/70 hover:text-royalBlue'}`}
-        >
-          {code.toUpperCase()}
-        </button>
-      ))}
-    </div>
+    <label aria-label="Language selector" className={`relative inline-flex items-center ${className}`}>
+      <select
+        value={lang}
+        onChange={(e) => setLang(e.target.value)}
+        className="h-9 cursor-pointer appearance-none rounded-full bg-white pl-3 pr-9 text-sm font-semibold leading-none text-royalBlue ring-1 ring-yellow/80 shadow-sm transition hover:bg-yellow/10 focus:outline-none focus:ring-2 focus:ring-yellow"
+      >
+        <option value="fr" className="text-royalBlue">FR</option>
+        <option value="en" className="text-royalBlue">EN</option>
+        <option value="de" className="text-royalBlue">DE</option>
+      </select>
+      <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-royalBlue" />
+    </label>
   )
 
   return (
     <header className="sticky top-0 z-50 bg-royalBlue shadow-lg">
-      <nav className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center px-4 py-3 sm:px-6 md:flex md:justify-between lg:pl-2 lg:pr-8">
+      <nav className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center px-4 py-3 sm:px-6 md:flex md:justify-between lg:pl-0 lg:pr-8">
         {/* Left placeholder to keep centered logo on mobile */}
         <div className="h-7 w-7 md:hidden" aria-hidden="true" />
 
         {/* Brand */}
-        <Link to="/" className="group flex items-center justify-self-center md:justify-self-auto">
+        <Link to="/" className="group flex items-center justify-self-center md:-ml-4 md:justify-self-auto lg:-ml-6">
           <div className="h-[4.5rem] w-[15rem] overflow-hidden sm:h-[4.5rem] sm:w-[15rem] md:h-[3.75rem] md:w-[12.5rem] lg:h-[4rem] lg:w-[13.5rem]">
             <img
               src="/logo-skeepskool-2026.svg"
@@ -92,7 +89,7 @@ export default function Navbar() {
             <Phone className="h-4 w-4 text-yellow" />
             {CONTACT.phoneSecondaryDisplay}
           </a>
-          <LangToggle className="hidden md:inline-flex" />
+          <LangToggle className="hidden md:inline-flex md:translate-y-0.5" />
           <button
             onClick={() => setOpen((v) => !v)}
             className="text-white md:hidden"
