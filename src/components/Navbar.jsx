@@ -110,14 +110,14 @@ export default function Navbar() {
           open ? 'max-h-[80vh] border-t border-white/10 opacity-100' : 'max-h-0 border-t border-transparent opacity-0'
         }`}
       >
-        <div className={`px-4 pb-5 pt-2 transition-transform duration-300 ${open ? 'translate-y-0' : '-translate-y-2'}`}>
+        <div className={`px-3 pb-5 pt-2 transition-transform duration-300 ${open ? 'translate-y-0' : '-translate-y-2'}`}>
           <div className="flex flex-col gap-1">
             {links.map((l) => (
               <NavLink
                 key={l.to}
                 to={l.to}
                 className={({ isActive }) =>
-                  `rounded-lg px-3 py-3 text-base font-semibold transition-colors ${
+                  `rounded-lg px-2 py-2.5 text-[0.95rem] font-semibold leading-tight tracking-tight transition-colors sm:px-3 sm:text-base ${
                     isActive ? 'bg-white/10 text-yellow' : 'text-white hover:bg-white/10'
                   }`
                 }
@@ -127,7 +127,7 @@ export default function Navbar() {
             ))}
             <a
               href={`tel:${CONTACT.phoneSecondary}`}
-              className="mt-1 flex items-center gap-2 rounded-lg px-3 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
+              className="mt-1 flex items-center gap-2 rounded-lg px-2 py-2.5 text-[0.95rem] font-semibold whitespace-nowrap text-white transition-colors hover:bg-white/10 sm:px-3 sm:text-base"
             >
               <Phone className="h-5 w-5 text-yellow" />
               {CONTACT.phoneSecondaryDisplay}
