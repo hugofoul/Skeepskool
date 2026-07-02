@@ -31,20 +31,12 @@ export default function WeeklyScheduleBoard({
       <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-[#d7e7ff]/90 via-[#f3f7fd]/90 to-transparent" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl">
-              <h1 className="mt-5 text-3xl font-black text-royalBlue sm:text-4xl">{title}</h1>
-              <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
-            </div>
-            <span
-              className={`inline-flex items-center self-start rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider ${
-                isLive
-                  ? 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-300'
-                  : 'bg-white text-royalBlue ring-1 ring-black/10'
-              }`}
-            >
+          <div className="max-w-3xl">
+            <h1 className="mt-5 text-3xl font-black text-royalBlue sm:text-4xl">{title}</h1>
+            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+            <p className="mt-4 text-sm font-semibold leading-relaxed text-royalBlue sm:text-base">
               {isLive ? liveLabel : fallbackLabel}
-            </span>
+            </p>
           </div>
         </Reveal>
 

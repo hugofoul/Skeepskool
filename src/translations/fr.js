@@ -31,10 +31,9 @@ export const fr = {
   home: {
     heroTitle: 'SKEEPSKOOL',
     heroTagline: 'Sécurité, technique et sens marin',
-    heroSubtitle:
-      'A 40m au nord de l\'accès principal de la plage centrale du Porge, notre école vous attend au pied de la dune et de la forêt pour des cours aux portes de Bordeaux.',
+    heroSubtitle: '',
     campingNotePrefix: 'L’école de surf la plus proche du ',
-    campingNoteLink: 'Camping La Grigne',
+    campingNoteLink: 'Camping La Grigne et Bordeaux',
     heroCta: 'Réserver',
     heroSecondaryCta: 'Appeler maintenant',
     heroTrustItems: ['Moniteurs diplomes d\'Etat', 'Des 5 ans', 'Materiel inclus'],
@@ -114,7 +113,7 @@ export const fr = {
         tag: 'Le spot',
         title: 'Entre dunes et forêt de pins',
         text:
-          "Nichée entre dunes et forêt de pins, la plage du Porge Océan est un spot préservé aux portes de Bordeaux. Un cadre naturel exceptionnel pour apprendre le surf dans les meilleures conditions.",
+          "Nichée entre dunes et forêt de pins, la Plage Centrale du Porge Océan est un spot préservé aux portes de Bordeaux. Un cadre naturel exceptionnel pour apprendre le surf dans les meilleures conditions.",
       },
       {
         tag: 'Notre pédagogie',
