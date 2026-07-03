@@ -67,6 +67,7 @@ export default function Booking() {
   const nextSurferId = useRef(2)
   const [startDate, setStartDate] = useState('')
   const [isGiftVoucher, setIsGiftVoucher] = useState(false)
+  const [needsGiftVisual, setNeedsGiftVisual] = useState(false)
   const [paymentType, setPaymentType] = useState('transfer')
   const [payerName, setPayerName] = useState('')
   const [sameAsContactSurfer, setSameAsContactSurfer] = useState(false)
@@ -196,8 +197,11 @@ export default function Booking() {
 
     const surfersLines = surfers
       .map((surfer, index) => {
-        const ageSuffix = b.whatsappSurferLine === 'Surfer' ? ' y/o' : ' ans'
         const surferName = `${surfer.firstName} ${surfer.lastName}`.trim()
+        if (isGiftVoucher) {
+          return `- ${b.whatsappSurferLine} ${index + 1}: ${surferName}, ${packageByValue.get(surfer.packageValue)}`
+        }
+        const ageSuffix = b.whatsappSurferLine === 'Surfer' ? ' y/o' : ' ans'
         return `- ${b.whatsappSurferLine} ${index + 1}: ${surferName}, ${surfer.age}${ageSuffix}, ${levelByValue.get(
           surfer.level,
         )}, ${packageByValue.get(surfer.packageValue)}`
@@ -209,6 +213,7 @@ export default function Booking() {
       `${b.whatsappContact} ${fullName} - ${fullPhone}`,
       `${b.whatsappDate} ${selectedDate}`,
       `${b.whatsappGiftVoucher} ${isGiftVoucher ? b.giftVoucherYes : b.giftVoucherNo}`,
+      `${b.whatsappGiftVisual} ${needsGiftVisual ? b.giftVoucherYes : b.giftVoucherNo}`,
       `${b.whatsappTotal} ${total}€`,
       b.whatsappPayment,
       `${b.whatsappPaymentType} ${paymentMethodByValue.get(paymentType)}`,
@@ -257,12 +262,80 @@ export default function Booking() {
 
       <section className="bg-lightGray py-14 sm:py-16">
         <div className="mx-auto w-full max-w-[680px] px-4 sm:px-6">
-          <Reveal className="rounded-2xl bg-royalBlue p-6 text-white shadow-lg sm:p-7">
-            <p className="text-sm font-semibold leading-relaxed sm:text-base">{b.intro}</p>
-          </Reveal>
+          <Reveal className="overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-black/5">
+            <div className="bg-gradient-to-r from-royalBlue to-[#2c65da] px-5 py-5 text-white sm:px-6">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-yellow/90">
+                {lang === 'fr' ? 'Reservation' : (lang === 'de' ? 'Buchung' : 'Booking')}
+              </p>
+              <p className="mt-2 text-sm font-semibold leading-relaxed text-white/95 sm:text-base">{b.intro}</p>
+            </div>
 
-          <Reveal className="mt-4 rounded-2xl border border-yellow/50 bg-yellow px-5 py-4 text-royalBlue shadow-md sm:px-6">
-            <p className="text-sm font-black leading-relaxed sm:text-base">{b.startDateNote}</p>
+            <div className="grid gap-4 px-5 py-5 sm:px-6">
+              <div className="rounded-xl border border-red/30 bg-red/10 px-4 py-3">
+                <p className="text-sm font-extrabold text-royalBlue sm:text-base">
+                  {lang === 'fr'
+                    ? 'Choisissez votre type de reservation : cours classique ou bon cadeau.'
+                    : (lang === 'de'
+                      ? 'Waehle deinen Buchungstyp: Standardkurs oder Geschenkgutschein.'
+                      : 'Choose your booking type: standard lesson or gift voucher.')}
+                </p>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2" role="radiogroup" aria-label="Booking type">
+                <button
+                  type="button"
+                  onClick={() => setIsGiftVoucher(false)}
+                  aria-pressed={!isGiftVoucher}
+                  className={`relative rounded-2xl border-2 px-4 py-4 text-left transition ${
+                    !isGiftVoucher
+                      ? 'border-royalBlue bg-royalBlue text-white shadow-lg'
+                      : 'border-transparent bg-lightGray text-royalBlue ring-1 ring-black/5 hover:border-royalBlue/40 hover:bg-white'
+                  }`}
+                >
+                  {!isGiftVoucher && (
+                    <span className="absolute right-3 top-3 rounded-full bg-yellow px-2 py-0.5 text-xs font-extrabold text-royalBlue">
+                      {lang === 'fr' ? 'Selectionne' : (lang === 'de' ? 'Aktiv' : 'Selected')}
+                    </span>
+                  )}
+                  <p className="text-xs font-extrabold uppercase tracking-wider opacity-80">
+                    {lang === 'fr' ? 'Reservation classique' : (lang === 'de' ? 'Normale Buchung' : 'Standard booking')}
+                  </p>
+                  <p className="mt-1 text-sm font-bold sm:text-base">
+                    {lang === 'fr' ? 'Je reserve un cours' : (lang === 'de' ? 'Ich buche einen Kurs' : 'I am booking a lesson')}
+                  </p>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsGiftVoucher(true)
+                    if (dateError) setDateError('')
+                  }}
+                  aria-pressed={isGiftVoucher}
+                  className={`relative rounded-2xl border-2 px-4 py-4 text-left transition ${
+                    isGiftVoucher
+                      ? 'border-red bg-red text-white shadow-lg'
+                      : 'border-transparent bg-lightGray text-royalBlue ring-1 ring-black/5 hover:border-red/40 hover:bg-white'
+                  }`}
+                >
+                  {isGiftVoucher && (
+                    <span className="absolute right-3 top-3 rounded-full bg-yellow px-2 py-0.5 text-xs font-extrabold text-royalBlue">
+                      {lang === 'fr' ? 'Selectionne' : (lang === 'de' ? 'Aktiv' : 'Selected')}
+                    </span>
+                  )}
+                  <p className="text-xs font-extrabold uppercase tracking-wider opacity-85">
+                    {lang === 'fr' ? 'Bon cadeau' : (lang === 'de' ? 'Geschenkgutschein' : 'Gift voucher')}
+                  </p>
+                  <p className="mt-2 text-sm font-bold sm:text-base">{b.giftVoucherCheckbox}</p>
+                </button>
+              </div>
+
+              {!isGiftVoucher && (
+                <div className="rounded-xl border border-yellow/50 bg-yellow/25 px-4 py-3">
+                  <p className="text-sm font-bold leading-relaxed text-royalBlue">{b.startDateNote}</p>
+                </div>
+              )}
+            </div>
           </Reveal>
 
           <form
@@ -275,7 +348,7 @@ export default function Booking() {
             className="mt-8 space-y-8"
           >
             <Reveal className="rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5 sm:p-7">
-              <h2 className="text-xl font-black text-royalBlue">{b.contactTitle}</h2>
+              <h2 className="text-xl font-black text-royalBlue">{isGiftVoucher ? b.contactTitleGift : b.contactTitle}</h2>
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
                 <label className="block">
                   <span className="mb-2 block text-sm font-semibold text-dark">{b.firstName}</span>
@@ -372,15 +445,17 @@ export default function Booking() {
             <Reveal className="rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5 sm:p-7">
               <h2 className="text-xl font-black text-royalBlue">{b.surfersTitle}</h2>
 
-              <label className="mt-5 flex items-start gap-3 rounded-xl bg-lightGray p-3 text-sm font-semibold text-royalBlue">
-                <input
-                  type="checkbox"
-                  className="mt-0.5 h-4 w-4 rounded border-dark/30 text-royalBlue focus:ring-royalBlue"
-                  checked={sameAsContactSurfer}
-                  onChange={(e) => setSameAsContactSurfer(e.target.checked)}
-                />
-                <span>{b.sameAsContactSurfer}</span>
-              </label>
+              {!isGiftVoucher && (
+                <label className="mt-5 flex items-start gap-3 rounded-xl bg-lightGray p-3 text-sm font-semibold text-royalBlue">
+                  <input
+                    type="checkbox"
+                    className="mt-0.5 h-4 w-4 rounded border-dark/30 text-royalBlue focus:ring-royalBlue"
+                    checked={sameAsContactSurfer}
+                    onChange={(e) => setSameAsContactSurfer(e.target.checked)}
+                  />
+                  <span>{b.sameAsContactSurfer}</span>
+                </label>
+              )}
 
               <div className="mt-5 space-y-5">
                 {surfers.map((surfer, index) => (
@@ -426,36 +501,40 @@ export default function Booking() {
                         />
                       </label>
 
-                      <label className="block">
-                        <span className="mb-2 block text-sm font-semibold text-dark">{b.surferAge}</span>
-                        <input
-                          type="number"
-                          min="1"
-                          className={inputClass}
-                          value={surfer.age}
-                          onChange={(e) => updateSurfer(index, 'age', e.target.value)}
-                          required
-                        />
-                      </label>
+                      {!isGiftVoucher && (
+                        <>
+                          <label className="block">
+                            <span className="mb-2 block text-sm font-semibold text-dark">{b.surferAge}</span>
+                            <input
+                              type="number"
+                              min="1"
+                              className={inputClass}
+                              value={surfer.age}
+                              onChange={(e) => updateSurfer(index, 'age', e.target.value)}
+                              required
+                            />
+                          </label>
 
-                      <label className="block">
-                        <span className="mb-2 block text-sm font-semibold text-dark">{b.surferLevel}</span>
-                        <select
-                          className={inputClass}
-                          value={surfer.level}
-                          onChange={(e) => updateSurfer(index, 'level', e.target.value)}
-                          required
-                        >
-                          {b.levels.map((level) => (
-                            <option key={level.value} value={level.value}>
-                              {level.label}
-                            </option>
-                          ))}
-                        </select>
-                      </label>
+                          <label className="block">
+                            <span className="mb-2 block text-sm font-semibold text-dark">{b.surferLevel}</span>
+                            <select
+                              className={inputClass}
+                              value={surfer.level}
+                              onChange={(e) => updateSurfer(index, 'level', e.target.value)}
+                              required
+                            >
+                              {b.levels.map((level) => (
+                                <option key={level.value} value={level.value}>
+                                  {level.label}
+                                </option>
+                              ))}
+                            </select>
+                          </label>
+                        </>
+                      )}
 
                       <label className="block sm:col-span-2">
-                        <span className="mb-2 block text-sm font-semibold text-dark">{b.surferPackage}</span>
+                        <span className="mb-2 block text-sm font-semibold text-dark">{isGiftVoucher ? b.surferPackageGift : b.surferPackage}</span>
                         <select
                           className={inputClass}
                           value={surfer.packageValue}
@@ -487,38 +566,38 @@ export default function Booking() {
               <h2 className="text-xl font-black text-royalBlue">{b.commonTitle}</h2>
 
               <div className="mt-5 space-y-4">
-                <label className="block">
-                  <span className="mb-2 block text-sm font-semibold text-dark">{b.startDate}</span>
-                  <input
-                    ref={startDateInputRef}
-                    type="date"
-                    className={inputClass}
-                    value={startDate}
-                    onChange={(e) => {
-                      setStartDate(e.target.value)
-                      if (dateError) setDateError('')
-                    }}
-                    min={todayDate}
-                    required={!isGiftVoucher}
-                    disabled={isGiftVoucher}
-                  />
-                  {(isShortNotice || dateError) && (
-                    <span className="mt-2 block text-xs font-bold text-red">{b.shortNoticeAlert}</span>
-                  )}
-                </label>
+                {!isGiftVoucher && (
+                  <label className="block">
+                    <span className="mb-2 block text-sm font-semibold text-dark">{b.startDate}</span>
+                    <input
+                      ref={startDateInputRef}
+                      type="date"
+                      className={inputClass}
+                      value={startDate}
+                      onChange={(e) => {
+                        setStartDate(e.target.value)
+                        if (dateError) setDateError('')
+                      }}
+                      min={todayDate}
+                      required
+                    />
+                    {(isShortNotice || dateError) && (
+                      <span className="mt-2 block text-xs font-bold text-red">{b.shortNoticeAlert}</span>
+                    )}
+                  </label>
+                )}
 
-                <label className="flex items-start gap-3 rounded-xl bg-lightGray p-3 text-sm font-semibold text-royalBlue">
-                  <input
-                    type="checkbox"
-                    className="mt-0.5 h-4 w-4 rounded border-dark/30 text-royalBlue focus:ring-royalBlue"
-                    checked={isGiftVoucher}
-                    onChange={(e) => {
-                      setIsGiftVoucher(e.target.checked)
-                      if (e.target.checked && dateError) setDateError('')
-                    }}
-                  />
-                  <span>{b.giftVoucherCheckbox}</span>
-                </label>
+                {isGiftVoucher && (
+                  <label className="flex items-start gap-3 rounded-xl bg-lightGray p-3 text-sm font-semibold text-royalBlue">
+                    <input
+                      type="checkbox"
+                      className="mt-0.5 h-4 w-4 rounded border-dark/30 text-royalBlue focus:ring-royalBlue"
+                      checked={needsGiftVisual}
+                      onChange={(e) => setNeedsGiftVisual(e.target.checked)}
+                    />
+                    <span>{b.giftVisualCheckbox}</span>
+                  </label>
+                )}
 
                 <label className="block sm:max-w-sm">
                   <span className="mb-2 block text-sm font-semibold text-dark">{b.paymentType}</span>

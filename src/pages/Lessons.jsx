@@ -169,36 +169,48 @@ export default function Lessons() {
 
       <section className="bg-white py-12 sm:py-14">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <Reveal className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-royalBlue via-[#1b4f73] to-[#2a6f95] p-7 text-white shadow-xl ring-1 ring-black/10 sm:p-10">
-            <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-yellow/35 blur-2xl" />
-            <div className="pointer-events-none absolute -bottom-20 -left-20 h-52 w-52 rounded-full bg-red/20 blur-3xl" />
-            <div className="pointer-events-none absolute right-12 top-10 h-3 w-3 rounded-full bg-yellow/80" />
-            <div className="pointer-events-none absolute right-20 top-20 h-2 w-2 rounded-full bg-white/80" />
-            <div className="pointer-events-none absolute left-10 top-14 h-2.5 w-2.5 rounded-full bg-yellow/70" />
-
-            <div className="relative z-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-              <div>
-                <span className="inline-flex items-center gap-2 rounded-full border border-yellow/50 bg-yellow/25 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-yellow">
+          <Reveal className="overflow-hidden rounded-3xl bg-royalBlue shadow-xl ring-1 ring-black/10">
+            <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
+              <a
+                href="/images/bon-cadeau.jpg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative block min-h-[320px] sm:min-h-[420px]"
+                aria-label={lang === 'fr' ? 'Ouvrir le visuel du bon cadeau' : 'Open gift voucher visual'}
+              >
+                <img
+                  src="/images/bon-cadeau.jpg"
+                  alt={lang === 'fr' ? 'Visuel bon cadeau' : 'Gift voucher visual'}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                <div className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full bg-yellow px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-royalBlue sm:left-6 sm:top-6">
                   <Waves className="h-4 w-4" /> {l.giftExperienceBadge}
-                </span>
-                <h2 className="mt-4 text-2xl font-black leading-tight text-yellow sm:text-3xl">
-                  {l.giftExperienceTitle}
-                </h2>
-                <p className="mt-4 text-base font-semibold leading-relaxed text-white/95 sm:text-lg">
+                </div>
+                <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-6 sm:right-6">
+                  <h2 className="text-2xl font-black leading-tight text-white drop-shadow sm:text-3xl">
+                    {l.giftExperienceTitle}
+                  </h2>
+                  <p className="mt-2 text-xs font-bold uppercase tracking-wider text-white/90">
+                    {lang === 'fr' ? 'Cliquer pour ouvrir le visuel' : (lang === 'de' ? 'Zum Oeffnen klicken' : 'Click to open visual')}
+                  </p>
+                </div>
+              </a>
+
+              <div className="flex flex-col justify-center p-7 text-white sm:p-10">
+                <p className="text-base font-semibold leading-relaxed text-white/95 sm:text-lg">
                   {l.giftExperienceText1}
                 </p>
+                <p className="mt-4 text-sm font-semibold leading-relaxed text-white/85 sm:text-base">
+                  {l.giftExperienceText2}
+                </p>
+                <div className="mt-6 h-1.5 w-20 rounded-full bg-yellow" />
                 <div className="mt-6">
                   <CTAButton to={bookingPath} className="bg-red hover:bg-yellow hover:text-royalBlue">
                     {l.giftExperienceCta}
                   </CTAButton>
                 </div>
-              </div>
-
-              <div className="rounded-2xl border border-white/25 bg-white/15 p-5 backdrop-blur-sm">
-                <p className="text-sm font-semibold leading-relaxed text-white/90 sm:text-base">
-                  {l.giftExperienceText2}
-                </p>
-                <div className="mt-4 h-1.5 w-20 rounded-full bg-yellow" />
               </div>
             </div>
           </Reveal>

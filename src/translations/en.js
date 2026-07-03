@@ -311,6 +311,7 @@ export const en = {
       'To confirm your booking, payment must already be completed by bank transfer before submitting this form.',
 
     contactTitle: 'Contact information',
+    contactTitleGift: 'Contact information (person offering the gift)',
     firstName: 'First name',
     lastName: 'Last name',
     phone: 'Phone number',
@@ -324,6 +325,7 @@ export const en = {
     surferAge: 'Age',
     surferLevel: 'Level',
     surferPackage: 'Package',
+    surferPackageGift: 'Gifted package',
     addSurfer: '+ Add a surfer',
     removeSurfer: 'Remove',
 
@@ -350,6 +352,7 @@ export const en = {
     giftVoucherDateValue: 'Gift voucher (date to be defined)',
     giftVoucherYes: 'Yes',
     giftVoucherNo: 'No',
+    giftVisualCheckbox: 'I need a visual card to offer the gift voucher',
     shortNoticeAlert: 'For bookings within less than 3 days, please call the school directly.',
     paymentType: 'Payment type',
     payerName: 'Person who made the transfer / payment',
@@ -381,6 +384,7 @@ export const en = {
     whatsappContact: 'Contact:',
     whatsappDate: 'Preferred date:',
     whatsappGiftVoucher: 'Gift voucher:',
+    whatsappGiftVisual: 'Gift visual:',
     whatsappTotal: 'Total:',
     whatsappSurfers: 'Surfers:',
     whatsappMessage: 'Message:',
