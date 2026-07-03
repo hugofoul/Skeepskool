@@ -22,6 +22,7 @@ import { buildSrcSet, DEFAULT_SIZES } from '../utils/responsiveImage.js'
 const POPULAR_INDEX = 2
 
 const factIcons = [Clock, Users, Backpack, ShieldCheck]
+const packageByCardIndex = ['single', 'pack3', 'pack5', 'pack10', 'pack20', 'private']
 
 export default function Lessons() {
   const { t, lang } = useLang()
@@ -238,8 +239,8 @@ export default function Lessons() {
             <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{l.pricesTitle}</h2>
             <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
             <p className="mt-5 text-lg text-dark/75">{l.pricesSubtitle}</p>
-            <p className="mx-auto mt-5 inline-flex items-center gap-2 rounded-full bg-yellow/20 px-4 py-2 text-sm font-bold text-royalBlue ring-1 ring-yellow">
-              <ShieldCheck className="h-4 w-4" />
+            <p className="mx-auto mt-5 inline-flex items-center gap-2 rounded-full bg-yellow/20 px-5 py-2.5 text-base font-bold text-royalBlue ring-1 ring-yellow sm:text-lg">
+              <ShieldCheck className="h-5 w-5" />
               {l.validityNote}
             </p>
           </Reveal>
@@ -247,7 +248,7 @@ export default function Lessons() {
       </section>
 
       {/* ---- Pricing cards ---- */}
-      <section className="bg-white py-14">
+      <section className="bg-white pb-14 pt-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {l.cards.map((card, i) => {
@@ -277,7 +278,7 @@ export default function Lessons() {
                       <p className="mt-1 text-sm font-medium text-dark/60">{card.note}</p>
                     )}
                     <div className="mt-6 pt-2">
-                      <CTAButton to="/contact" className="w-full">
+                      <CTAButton to={`${bookingPath}?package=${packageByCardIndex[i]}`} className="w-full">
                         {t.bookNow}
                       </CTAButton>
                     </div>
@@ -307,7 +308,7 @@ export default function Lessons() {
               <div className="flex flex-col items-center justify-center rounded-2xl bg-white/10 p-8 text-center">
                 <p className="text-6xl font-black text-yellow">{l.comboPrice}</p>
                 <div className="mt-5">
-                  <CTAButton to="/contact" className="bg-red hover:bg-yellow">
+                  <CTAButton to={`${bookingPath}?package=combo`} className="bg-red hover:bg-yellow">
                     {l.cta}
                   </CTAButton>
                 </div>

@@ -274,8 +274,8 @@ export const fr = {
     teamLinkCta: 'Découvrir les moniteurs',
     giftExperienceBadge: 'Bon cadeau',
     giftExperienceTitle: 'Offrir un bon cadeau surf',
-    giftExperienceText1: 'Vous cherchez une idée cadeau simple et originale ? Offrez une session de surf à vivre sur l’eau, seul, en famille ou entre amis.',
-    giftExperienceText2: 'Nos bons cadeaux sont valables d’avril à novembre.',
+    giftExperienceText1: 'Vous cherchez une idée cadeau simple et originale ? Offrez un cours ou un stage de surf.',
+    giftExperienceText2: 'Nos bons cadeaux sont valables 1 an.',
     giftExperienceCta: 'Offrir maintenant',
     weeklySchedule: {
       badge: 'Horaires de la semaine',
@@ -379,8 +379,8 @@ export const fr = {
     none: 'Aucun',
     unknownDate: 'Non renseignée',
 
-    successLead: 'Merci {name} ! Votre demande a bien été envoyée sur WhatsApp avec paiement indiqué comme effectué.',
-    successEnd: 'Nous vous contacterons rapidement pour confirmer. N\'oubliez pas d\'appeler l\'école 1 semaine avant votre arrivée. À bientôt sur l\'eau ! 🏄',
+    successLead: 'Merci {name} ! Votre demande a bien été envoyée sur WhatsApp.',
+    successEnd: 'Nous vous contacterons rapidement pour confirmer le créneau. À bientôt sur l\'eau ! 🏄',
 
     whatsappHeader: 'Nouvelle réservation Skeepskool',
     whatsappContact: 'Contact :',
@@ -469,6 +469,7 @@ export const fr = {
       parking: 'Parking gratuit à proximité de la plage.',
       busLabel: 'Bus 4210',
       bus: 'Ligne 4210 depuis Bordeaux vers Le Porge. Consultez les arrêts desservis pour Le Porge Océan, puis accès plage à pied.',
+      busLearnMore: 'En savoir plus',
       busBookingNote: 'La réservation se fait exclusivement en ligne sur l’appli Cars Nouvelle-Aquitaine 33.',
       busCta: 'Voir les horaires (PDF)',
       busUrl:

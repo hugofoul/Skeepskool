@@ -155,11 +155,18 @@ export default function Contact() {
                 title={c.findUs.parkingLabel}
                 label={c.findUs.parking}
               />
-              <InfoLine
-                icon={Bus}
-                title={c.findUs.busLabel}
-                label={c.findUs.bus}
-              />
+              <div className="flex items-start gap-4 rounded-xl bg-white p-4 shadow-sm ring-1 ring-black/5">
+                <span className="rounded-lg bg-royalBlue/10 p-2">
+                  <Bus className="h-5 w-5 text-royalBlue" />
+                </span>
+                <div>
+                  <p className="font-bold text-royalBlue">{c.findUs.busLabel}</p>
+                  <p className="text-sm text-dark/80">{c.findUs.bus}</p>
+                  <a href="#bus-details" className="mt-2 inline-block text-sm font-semibold text-red hover:underline">
+                    {c.findUs.busLearnMore}
+                  </a>
+                </div>
+              </div>
               <InfoLine icon={MapPin} title={c.findUs.gpsLabel} label={c.findUs.gps} />
             </Reveal>
 
@@ -199,7 +206,7 @@ export default function Contact() {
               <div>
                 <div className="flex items-center gap-3">
                   <Bus className="h-8 w-8 text-yellow" />
-                  <h3 className="text-2xl font-black sm:text-3xl">{c.findUs.busLabel}</h3>
+                  <h3 id="bus-details" className="scroll-mt-36 sm:scroll-mt-40 text-2xl font-black sm:text-3xl">{c.findUs.busLabel}</h3>
                 </div>
                 <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
                 <p className="mt-5 text-base leading-relaxed text-white/90 sm:text-lg">{c.findUs.bus}</p>

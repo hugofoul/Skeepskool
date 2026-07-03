@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
@@ -49,6 +50,7 @@ const countryCallingCodes = [
 export default function Booking() {
   const { t, lang } = useLang()
   const b = t.booking
+  const location = useLocation()
 
   const todayDate = useMemo(() => {
     const date = new Date()
@@ -127,6 +129,22 @@ export default function Booking() {
     const fullName = `${contact.firstName} ${contact.lastName}`.trim()
     setPayerName(fullName)
   }, [contact.firstName, contact.lastName, sameAsContactPayer])
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const packageFromUrl = params.get('package')
+    if (!packageFromUrl) return
+
+    const allowedPackages = new Set(b.packages.map((pkg) => pkg.value))
+    if (!allowedPackages.has(packageFromUrl)) return
+
+    setSurfers((prev) => {
+      if (!prev.length) return prev
+      return prev.map((surfer, index) =>
+        index === 0 ? { ...surfer, packageValue: packageFromUrl } : surfer,
+      )
+    })
+  }, [location.search, b.packages])
 
   const total = useMemo(() => {
     const packageByValue = new Map(b.packages.map((pkg) => [pkg.value, pkg.price]))
@@ -239,7 +257,7 @@ export default function Booking() {
 
     const displayName = contact.firstName || b.firstName
     const successLead = b.successLead.replace('{name}', displayName)
-    setSuccessMessage(`${successLead}\n${b.callWeekNote}\n${b.successEnd}`)
+    setSuccessMessage(`${successLead}\n${b.successEnd}`)
   }
 
   return (

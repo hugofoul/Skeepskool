@@ -377,8 +377,8 @@ export const en = {
     none: 'None',
     unknownDate: 'Not specified',
 
-    successLead: 'Thank you {name}! Your request has been sent on WhatsApp with payment marked as completed.',
-    successEnd: 'We will contact you shortly to confirm. Do not forget to call the school 1 week before your arrival. See you in the water! 🏄',
+    successLead: 'Thank you {name}! Your request has been sent on WhatsApp.',
+    successEnd: 'We will contact you shortly to confirm your slot. See you in the water! 🏄',
 
     whatsappHeader: 'New Skeepskool Booking',
     whatsappContact: 'Contact:',
@@ -467,6 +467,7 @@ export const en = {
       parking: 'Free parking near the beach.',
       busLabel: 'Bus 4210',
       bus: 'Line 4210 from Bordeaux to Le Porge. Check the stops serving Le Porge Océan, then walk to the beach.',
+      busLearnMore: 'Learn more',
       busBookingNote: 'Booking is available exclusively online on the Cars Nouvelle-Aquitaine 33 app.',
       busCta: 'View timetable (PDF)',
       busUrl:
