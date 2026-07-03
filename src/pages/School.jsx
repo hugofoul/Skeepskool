@@ -152,6 +152,8 @@ export default function School() {
             <span className="flex h-24 w-24 items-center justify-center rounded-2xl bg-white p-2 ring-1 ring-black/10">
               <img
                 src="/images/ffs-officiel-portrait.png"
+                srcSet={buildSrcSet('/images/ffs-officiel-portrait.png')}
+                sizes="96px"
                 alt={lang === 'fr' ? 'Logo École Française de Surf' : 'French Surf School logo'}
                 className="h-full w-full object-contain"
                 loading="lazy"

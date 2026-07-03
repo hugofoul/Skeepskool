@@ -195,9 +195,12 @@ export default function Lessons() {
               >
                 <img
                   src="/images/bon-cadeau.jpg"
+                  srcSet={buildSrcSet('/images/bon-cadeau.jpg')}
+                  sizes="(max-width: 1024px) 100vw, 55vw"
                   alt={lang === 'fr' ? 'Visuel bon cadeau' : 'Gift voucher visual'}
                   className="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                 <div className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full bg-yellow px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-royalBlue sm:left-6 sm:top-6">
@@ -341,8 +344,12 @@ export default function Lessons() {
             <div className="relative flex items-center justify-center bg-black">
               <img
                 src="/images/bon-cadeau.jpg"
+                srcSet={buildSrcSet('/images/bon-cadeau.jpg')}
+                sizes="94vw"
                 alt={lang === 'fr' ? 'Visuel bon cadeau' : 'Gift voucher visual'}
                 className="block h-auto max-h-[calc(100dvh-8rem)] w-auto max-w-[94vw] object-contain sm:max-h-[85dvh]"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

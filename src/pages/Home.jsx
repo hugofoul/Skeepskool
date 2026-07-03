@@ -1,6 +1,5 @@
 import {
   Waves,
-  LifeBuoy,
   Star,
   Phone,
   CalendarCheck2,
@@ -18,7 +17,26 @@ import SEO from '../components/SEO.jsx'
 import { CONTACT } from '../config/site.js'
 import { buildSrcSet, HERO_SIZES } from '../utils/responsiveImage.js'
 
-const highlightIcons = [Waves, LifeBuoy, null]
+const highlightIcons = [Waves, null, null]
+
+function SurfboardIcon({ className = 'h-12 w-12 text-royalBlue' }) {
+  return (
+    <svg viewBox="0 0 64 64" aria-hidden="true" className={className} fill="none">
+      <path
+        d="M32 3c-5 10-9 23-11 39 0 3 2 5 4 5h14c2 0 4-2 4-5C41 26 37 13 32 3z"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M32 9v33" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" opacity="0.9" />
+      <path d="M28.5 47.5l3.5 5 3.5-5" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M23.5 42.5l-2.5 4 3.5-1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M40.5 42.5l2.5 4-3.5-1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M15 55c2.5 0 2.5-1.3 5-1.3s2.5 1.3 5 1.3 2.5-1.3 5-1.3 2.5 1.3 5 1.3 2.5-1.3 5-1.3 2.5 1.3 5 1.3 2.5-1.3 5-1.3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" opacity="0.45" />
+    </svg>
+  )
+}
 
 export default function Home() {
   const { t, lang } = useLang()
@@ -179,16 +197,6 @@ export default function Home() {
               {h.heroSecondaryCta}
             </CTAButton>
           </div>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
-            {h.heroTrustItems.map((item) => (
-              <span
-                key={item}
-                className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
         </div>
 
         <div className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-center text-white/90">
@@ -202,8 +210,8 @@ export default function Home() {
       {/* ---------------- HIGHLIGHTS ---------------- */}
       <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 md:grid-cols-3">
-            {h.highlights.map((card, i) => {
+          <div className="grid gap-6 md:grid-cols-2">
+            {h.highlights.slice(0, 2).map((card, i) => {
               const Icon = highlightIcons[i]
               return (
                 <Reveal
@@ -211,14 +219,8 @@ export default function Home() {
                   delay={i * 120}
                   className="group rounded-2xl border-b-4 border-red bg-white p-8 shadow-md ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1"
                 >
-                  {i === 2 ? (
-                    <img
-                      src="/images/ffs-officiel-portrait.png"
-                      alt={pickLang('Logo École Française de Surf', 'French Surf School logo', 'Logo der Französischen Surfschule')}
-                      className="h-12 w-12 object-contain"
-                      loading="lazy"
-                      decoding="async"
-                    />
+                  {i === 1 ? (
+                    <SurfboardIcon className="h-12 w-12 text-royalBlue" />
                   ) : (
                     <Icon className="h-12 w-12 text-royalBlue" strokeWidth={2} />
                   )}

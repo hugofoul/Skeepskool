@@ -44,8 +44,8 @@ export const fr = {
         text: 'Cours collectifs et particuliers dès 5 ans, encadrés par des moniteurs diplômés.',
       },
       {
-        title: 'Location',
-        text: 'Surf, bodyboard et combinaisons à louer à la sortie de la plage.',
+        title: 'Location de matériel',
+        text: 'Surf, longboard, bodyboard et combinaisons à louer.',
       },
       {
         title: 'Label FFS',
