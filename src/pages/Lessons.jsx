@@ -8,6 +8,7 @@ import {
   Sunset,
   ArrowRight,
 } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
@@ -26,6 +27,20 @@ export default function Lessons() {
   const { t, lang } = useLang()
   const l = t.lessons
   const bookingPath = lang === 'fr' ? '/reserver' : '/book'
+  const [isGiftVisualOpen, setIsGiftVisualOpen] = useState(false)
+
+  useEffect(() => {
+    if (!isGiftVisualOpen) return undefined
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsGiftVisualOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isGiftVisualOpen])
 
   return (
     <div>
@@ -171,10 +186,9 @@ export default function Lessons() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Reveal className="overflow-hidden rounded-3xl bg-royalBlue shadow-xl ring-1 ring-black/10">
             <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
-              <a
-                href="/images/bon-cadeau.jpg"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => setIsGiftVisualOpen(true)}
                 className="relative block min-h-[320px] sm:min-h-[420px]"
                 aria-label={lang === 'fr' ? 'Ouvrir le visuel du bon cadeau' : 'Open gift voucher visual'}
               >
@@ -196,7 +210,7 @@ export default function Lessons() {
                     {lang === 'fr' ? 'Cliquer pour ouvrir le visuel' : (lang === 'de' ? 'Zum Oeffnen klicken' : 'Click to open visual')}
                   </p>
                 </div>
-              </a>
+              </button>
 
               <div className="flex flex-col justify-center p-7 text-white sm:p-10">
                 <p className="text-base font-semibold leading-relaxed text-white/95 sm:text-lg">
@@ -302,6 +316,37 @@ export default function Lessons() {
           </Reveal>
         </div>
       </section>
+
+      {isGiftVisualOpen && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-dark/90 p-4 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-label={lang === 'fr' ? 'Visionneuse bon cadeau' : (lang === 'de' ? 'Geschenkgutschein-Ansicht' : 'Gift voucher viewer')}
+          onClick={() => setIsGiftVisualOpen(false)}
+        >
+          <div
+            className="relative w-fit max-w-[94vw] overflow-hidden rounded-[2rem] bg-black shadow-2xl ring-1 ring-white/10"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setIsGiftVisualOpen(false)}
+              className="absolute right-4 top-4 z-10 rounded-full bg-white/90 px-4 py-2 text-sm font-bold text-royalBlue shadow-lg transition-colors hover:bg-yellow"
+            >
+              ×
+            </button>
+
+            <div className="relative flex items-center justify-center bg-black">
+              <img
+                src="/images/bon-cadeau.jpg"
+                alt={lang === 'fr' ? 'Visuel bon cadeau' : 'Gift voucher visual'}
+                className="block h-auto max-h-[calc(100dvh-8rem)] w-auto max-w-[94vw] object-contain sm:max-h-[85dvh]"
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   )

@@ -292,11 +292,6 @@ export default function Booking() {
                       : 'border-transparent bg-lightGray text-royalBlue ring-1 ring-black/5 hover:border-royalBlue/40 hover:bg-white'
                   }`}
                 >
-                  {!isGiftVoucher && (
-                    <span className="absolute right-3 top-3 rounded-full bg-yellow px-2 py-0.5 text-xs font-extrabold text-royalBlue">
-                      {lang === 'fr' ? 'Selectionne' : (lang === 'de' ? 'Aktiv' : 'Selected')}
-                    </span>
-                  )}
                   <p className="text-xs font-extrabold uppercase tracking-wider opacity-80">
                     {lang === 'fr' ? 'Reservation classique' : (lang === 'de' ? 'Normale Buchung' : 'Standard booking')}
                   </p>
@@ -318,11 +313,6 @@ export default function Booking() {
                       : 'border-transparent bg-lightGray text-royalBlue ring-1 ring-black/5 hover:border-red/40 hover:bg-white'
                   }`}
                 >
-                  {isGiftVoucher && (
-                    <span className="absolute right-3 top-3 rounded-full bg-yellow px-2 py-0.5 text-xs font-extrabold text-royalBlue">
-                      {lang === 'fr' ? 'Selectionne' : (lang === 'de' ? 'Aktiv' : 'Selected')}
-                    </span>
-                  )}
                   <p className="text-xs font-extrabold uppercase tracking-wider opacity-85">
                     {lang === 'fr' ? 'Bon cadeau' : (lang === 'de' ? 'Geschenkgutschein' : 'Gift voucher')}
                   </p>
