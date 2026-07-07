@@ -64,7 +64,7 @@ export default function Home() {
         de: 'Ja, natürlich. Unsere Kurse sind für alle offen, auch für absolute Anfänger. Wir setzen auf eine einfache, spielerische und individuelle Progression, mit Tipps passend zu deinem Niveau und Material, das den Einstieg von der ersten Session an erleichtert. Wenn du Fragen hast, kontaktiere uns.',
       },
       links: [
-        { to: '/ecole#valeurs', fr: 'Découvrir le sens marin →', en: 'Discover ocean awareness →', de: 'Meeresverständnis entdecken →' },
+        { to: '/ecole#valeurs', fr: 'Découvrir l\'école →', en: 'Discover ocean awareness →', de: 'Meeresverständnis entdecken →' },
         { to: '/cours', fr: 'Voir les formules →', en: 'See packages →', de: 'Pakete ansehen →' },
       ],
     },
@@ -159,7 +159,7 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-royalBlue/50" />
         <div className="relative z-10 mx-auto max-w-4xl translate-y-2 px-4 text-center text-white md:-translate-y-4 lg:-translate-y-12">
-          <h1 className="animate-fadeInUp mx-auto max-w-4xl px-2 text-3xl font-bold leading-[1.3] tracking-[0.01em] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] md:text-5xl lg:text-6xl xl:text-7xl">
+          <h1 className="hero-title-font animate-fadeInUp mx-auto max-w-4xl px-2 text-3xl font-bold leading-[1.15] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] md:text-5xl lg:text-6xl xl:text-7xl">
             {heroSlogan}
           </h1>
           {h.heroSubtitle && (

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,6 +15,11 @@ body {
   background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.hero-title-font {
+  font-family: 'DM Serif Display', 'Poppins', system-ui, sans-serif;
+  letter-spacing: 0.01em;
 }
 
 /* Fade-in on scroll utility (toggled via IntersectionObserver) */

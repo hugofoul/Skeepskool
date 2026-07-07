@@ -110,18 +110,20 @@ export default function Rental() {
             ))}
           </div>
 
-          {/* Notes */}
-          <div className="mt-8 space-y-3">
-            <p className="flex items-start gap-2 text-sm font-semibold text-royalBlue">
-              <Waves className="mt-0.5 h-4 w-4 shrink-0 text-royalBlue" />
-              {r.plusNote}
-            </p>
-            <p className="italic text-dark/60">{r.riskNote}</p>
-            <p className="flex items-start gap-2 text-sm font-semibold text-red">
-              <ShieldQuestion className="mt-0.5 h-4 w-4 shrink-0 text-red" />
-              {r.idRequiredNote}
-            </p>
-          </div>
+          {/* Rental conditions */}
+          <Reveal className="mt-8 rounded-2xl border-2 border-royalBlue/20 bg-royalBlue/5 p-5 shadow-sm sm:p-6">
+            <h3 className="text-lg font-black text-royalBlue sm:text-xl">{r.conditionsTitle}</h3>
+            <ul className="mt-4 space-y-3">
+              <li className="flex items-start gap-3 rounded-xl bg-white px-4 py-3 ring-1 ring-black/5">
+                <Waves className="mt-0.5 h-5 w-5 shrink-0 text-royalBlue" />
+                <p className="text-sm font-semibold text-dark sm:text-base">{r.plusNote}</p>
+              </li>
+              <li className="flex items-start gap-3 rounded-xl bg-white px-4 py-3 ring-1 ring-black/5">
+                <ShieldQuestion className="mt-0.5 h-5 w-5 shrink-0 text-red" />
+                <p className="text-sm font-semibold text-dark sm:text-base">{r.idRequiredNote}</p>
+              </li>
+            </ul>
+          </Reveal>
         </div>
       </section>
 
@@ -155,8 +157,8 @@ export default function Rental() {
 
           <div className="mt-14 text-center">
             {r.callNote ? (
-              <div className="mx-auto mb-6 max-w-2xl rounded-2xl border-2 border-red bg-red/10 px-5 py-4 shadow-sm sm:px-6 sm:py-5">
-                <p className="text-base font-extrabold leading-relaxed text-red sm:text-xl">
+              <div className="mx-auto mb-6 max-w-2xl rounded-2xl border-2 border-red/40 bg-gradient-to-r from-red/10 via-yellow/20 to-red/10 px-5 py-4 shadow-md ring-1 ring-red/20 sm:px-6 sm:py-5">
+                <p className="text-base font-black leading-relaxed text-red sm:text-xl">
                   {r.callNote}
                 </p>
               </div>

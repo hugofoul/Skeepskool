@@ -152,7 +152,7 @@ export const fr = {
       {
         name: 'Pierre',
         role: 'Le boss',
-        text: 'Le chef de la bande, pro du bodyboard et du surf foil. Toujours partant pour repousser les limites sur l’eau.',
+        text: 'Passionné de surf depuis son plus jeune âge, il a tout essayé : surf, rescue board, bodyboard, et maintenant surf foil. Il a créé Skeepskool il y a plus de 25 ans.',
       },
       {
         name: 'Mariane',
@@ -402,18 +402,19 @@ export const fr = {
   // ---- Rental ----
   rental: {
     heroTitle: 'Location de matériel',
-    heroSubtitle: 'Surf, bodyboard et combinaisons à la sortie de la plage.',
+    heroSubtitle: 'Surf, bodyboard et combinaisons à la location, à la sortie de la plage.',
+    conditionsTitle: 'Informations pour la location',
     tableHead: ['Matériel', '2H', '4H', 'Journée (9h–19h)', '7 jours', 'Sunset (18h–9h30)'],
     rows: [
       { item: 'Surf / Longboard', prices: ['12€', '18€', '23€', '100€', '18€'] },
       { item: 'Bodyboard', prices: ['10€', '12€', '15€', '80€', '12€'] },
       { item: 'Combinaison (Combi)', prices: ['6€', '8€', '10€', '45€', '8€'] },
     ],
-    riskNote: 'Location à vos risques et périls — non encadrée.',
+    riskNote: 'Location non encadrée : vous surfez sous votre propre responsabilité.',
     safetyRecommendation:
-      'Il est recommande d\'avoir fait au moins 10 seances avec un professeur de surf. La securite est essentielle pour vous et pour les autres : le surf peut etre dangereux.',
-    plusNote: 'Le + : vous pouvez changer de planche pendant toute la durée de la location.',
-    idRequiredNote: 'Une piece d\'identite est obligatoire pour toute location.',
+      'Il est recommande d\'avoir fait au moins 10 seances avec un professeur de surf. La securite est essentielle pour vous et pour les autres : le surf peut etre dangereux. Location non encadrée : vous surfez sous votre propre responsabilité.',
+    plusNote: 'Pendant toute la location, vous pouvez changer de planche à tout moment.',
+    idRequiredNote: 'Une pièce d\'identité est obligatoire pour toute location.',
     sunsetNote: 'Créneau Sunset : de 18h jusqu’au lendemain 9h30.',
     guideTitle: 'Choisir son matériel',
     guide: [
@@ -430,7 +431,7 @@ export const fr = {
         text: 'Le bodyboard est idéal pour s’amuser vite dès les premières vagues ; le surf pour progresser debout sur la planche.',
       },
     ],
-    callNote: 'Vous voulez réserver vos planches et votre combinaison ? N\'hésitez pas à nous téléphoner.',
+    callNote: 'Envie de réserver vos planches et votre combinaison ? Appelez-nous, on vous prépare tout avant votre arrivée.',
     cta: 'Nous contacter',
   },
 

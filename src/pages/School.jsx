@@ -10,7 +10,7 @@ const sectionImages = [images.schoolSpot, images.schoolPedagogy, images.schoolTe
 const valueIcons = [Waves, Handshake, TrendingUp]
 const teamImages = [teamPhotos.pierre, teamPhotos.mariane, teamPhotos.manoa, teamPhotos.hugo]
 const teamImagePositions = ['object-cover object-top', 'object-cover object-top', 'object-cover', 'object-cover']
-const teamImageScales = ['group-hover:scale-105', 'scale-90 group-hover:scale-95', 'group-hover:scale-105', 'group-hover:scale-105']
+const teamImageScales = ['group-hover:scale-105', 'scale-105 group-hover:scale-110', 'group-hover:scale-105', 'group-hover:scale-105']
 
 export default function School() {
   const { t, lang } = useLang()

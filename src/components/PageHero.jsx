@@ -26,7 +26,7 @@ export default function PageHero({ title, subtitle, image }) {
       )}
       <div className="relative mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 sm:py-24 lg:px-8">
         <Reveal>
-          <h1 className="text-4xl font-black text-white sm:text-5xl">{title}</h1>
+          <h1 className="hero-title-font text-4xl font-normal leading-[1.1] text-white sm:text-5xl">{title}</h1>
           <span className="mx-auto mt-4 block h-1.5 w-24 rounded-full bg-yellow" />
           {subtitle && (
             <p className="mx-auto mt-5 max-w-2xl text-lg text-white/90">{subtitle}</p>

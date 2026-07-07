@@ -18,8 +18,8 @@ import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
 import { buildSrcSet, DEFAULT_SIZES } from '../utils/responsiveImage.js'
 
-// Index of the card to highlight as "Popular" (Pack 5 lessons)
-const POPULAR_INDEX = 2
+// Index of the card to highlight as "Popular" (Pack 10 lessons)
+const POPULAR_INDEX = 3
 
 const factIcons = [Clock, Users, Backpack, ShieldCheck]
 const packageByCardIndex = ['single', 'pack3', 'pack5', 'pack10', 'pack20', 'private']

@@ -82,13 +82,22 @@ export default function Navbar() {
 
         {/* Right: lang toggle (desktop) + hamburger (mobile) */}
         <div className="flex items-center justify-self-end gap-3">
-          <a
-            href={`tel:${CONTACT.phoneSecondary}`}
-            className="hidden shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-yellow hover:text-royalBlue lg:inline-flex"
-          >
+          <div className="hidden items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 lg:flex">
             <Phone className="h-4 w-4 text-yellow" />
-            {CONTACT.phoneSecondaryDisplay}
-          </a>
+            <a
+              href={`tel:${CONTACT.phonePrimary}`}
+              className="whitespace-nowrap text-sm font-semibold text-white transition-colors hover:text-yellow"
+            >
+              {CONTACT.phonePrimaryDisplay}
+            </a>
+            <span className="text-white/45">•</span>
+            <a
+              href={`tel:${CONTACT.phoneSecondary}`}
+              className="whitespace-nowrap text-sm font-semibold text-white transition-colors hover:text-yellow"
+            >
+              {CONTACT.phoneSecondaryDisplay}
+            </a>
+          </div>
           <LangToggle className="hidden md:inline-flex md:translate-y-0.5" />
           <button
             onClick={() => setOpen((v) => !v)}
@@ -123,8 +132,15 @@ export default function Navbar() {
               </NavLink>
             ))}
             <a
-              href={`tel:${CONTACT.phoneSecondary}`}
+              href={`tel:${CONTACT.phonePrimary}`}
               className="mt-1 flex items-center gap-2 rounded-lg px-2 py-2.5 text-[0.95rem] font-semibold whitespace-nowrap text-white transition-colors hover:bg-white/10 sm:px-3 sm:text-base"
+            >
+              <Phone className="h-5 w-5 text-yellow" />
+              {CONTACT.phonePrimaryDisplay}
+            </a>
+            <a
+              href={`tel:${CONTACT.phoneSecondary}`}
+              className="flex items-center gap-2 rounded-lg px-2 py-2.5 text-[0.95rem] font-semibold whitespace-nowrap text-white transition-colors hover:bg-white/10 sm:px-3 sm:text-base"
             >
               <Phone className="h-5 w-5 text-yellow" />
               {CONTACT.phoneSecondaryDisplay}

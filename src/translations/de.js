@@ -356,6 +356,7 @@ export const de = {
     ...en.rental,
     heroTitle: 'Materialverleih',
     heroSubtitle: 'Surfboards, Bodyboards und Neoprenanzüge direkt am Strand.',
+    conditionsTitle: 'Mietbedingungen',
     tableHead: ['Material', '2H', '4H', 'Tag (9–19 Uhr)', '7 Tage', 'Sunset (18–9:30 Uhr)'],
     rows: [
       { item: 'Surf / Longboard', prices: ['12€', '18€', '23€', '100€', '18€'] },

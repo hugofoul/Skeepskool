@@ -400,6 +400,7 @@ export const en = {
   rental: {
     heroTitle: 'Equipment rental',
     heroSubtitle: 'Surfboards, bodyboards and wetsuits right by the beach.',
+    conditionsTitle: 'Rental conditions',
     tableHead: ['Equipment', '2H', '4H', 'Day (9am–7pm)', '7 days', 'Sunset (6pm–9:30am)'],
     rows: [
       { item: 'Surf / Longboard', prices: ['12€', '18€', '23€', '100€', '18€'] },
