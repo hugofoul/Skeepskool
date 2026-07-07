@@ -14,6 +14,7 @@ const Around  = lazy(() => import('./pages/Around.jsx'))
 const Contact = lazy(() => import('./pages/Contact.jsx'))
 const PhotoAlbum = lazy(() => import('./pages/PhotoAlbum.jsx'))
 const Booking = lazy(() => import('./pages/Booking.jsx'))
+const GiftVoucher = lazy(() => import('./pages/GiftVoucher.jsx'))
 const Legal   = lazy(() => import('./pages/Legal.jsx'))
 const NotFound = lazy(() => import('./pages/NotFound.jsx'))
 
@@ -59,6 +60,8 @@ export default function App() {
           <Route path="/lessons" element={<Lessons />} />
           <Route path="/reserver" element={<Booking />} />
           <Route path="/book" element={<Booking />} />
+          <Route path="/bon-cadeau" element={<GiftVoucher />} />
+          <Route path="/gift-voucher" element={<GiftVoucher />} />
           <Route path="/horaires" element={<Schedule />} />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/location" element={<Rental />} />

@@ -3,6 +3,7 @@ import { Phone, Mail, Facebook, Instagram, MapPin } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import { CONTACT, MAPS, SOCIAL } from '../config/site.js'
 import { buildSrcSet } from '../utils/responsiveImage.js'
+import { trackEvent } from '../lib/analytics.js'
 
 export default function Footer() {
   const { t } = useLang()
@@ -72,6 +73,7 @@ export default function Footer() {
                 href={MAPS.addressSearch}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent('click_map', { target: MAPS.addressSearch, source: 'footer' })}
                 className="transition-colors hover:text-yellow"
               >
                 Plage Centrale, Le Porge Océan, 33680 Gironde
@@ -79,13 +81,13 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-2">
               <Phone className="h-4 w-4 shrink-0 text-yellow" />
-              <a href={`tel:${CONTACT.phonePrimary}`} className="transition-colors hover:text-yellow">
+              <a href={`tel:${CONTACT.phonePrimary}`} onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phonePrimary}`, source: 'footer' })} className="transition-colors hover:text-yellow">
                 {CONTACT.phonePrimaryDisplay}
               </a>
             </li>
             <li className="flex items-center gap-2">
               <Phone className="h-4 w-4 shrink-0 text-yellow" />
-              <a href={`tel:${CONTACT.phoneSecondary}`} className="transition-colors hover:text-yellow">
+              <a href={`tel:${CONTACT.phoneSecondary}`} onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phoneSecondary}`, source: 'footer' })} className="transition-colors hover:text-yellow">
                 {CONTACT.phoneSecondaryDisplay}
               </a>
             </li>
@@ -93,6 +95,7 @@ export default function Footer() {
               <Mail className="h-4 w-4 shrink-0 text-yellow" />
               <a
                 href={`mailto:${CONTACT.email}`}
+                onClick={() => trackEvent('click_email', { target: `mailto:${CONTACT.email}`, source: 'footer' })}
                 className="transition-colors hover:text-yellow"
               >
                 {CONTACT.email}

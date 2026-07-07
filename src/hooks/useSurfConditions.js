@@ -102,6 +102,15 @@ function buildWeekendParagraphs(rawText, lang) {
   return paragraphs
 }
 
+function isSundayInParis() {
+  const dayName = new Intl.DateTimeFormat('en-US', {
+    weekday: 'short',
+    timeZone: 'Europe/Paris',
+  }).format(new Date())
+
+  return dayName === 'Sun'
+}
+
 export function useSurfConditions({ lang = 'fr', fallbackParagraphs = [] }) {
   const csvUrl =
     import.meta.env.VITE_WEEKLY_BULLETIN_CSV_URL?.trim() ||
@@ -109,8 +118,9 @@ export function useSurfConditions({ lang = 'fr', fallbackParagraphs = [] }) {
     DEFAULT_CONDITIONS_CSV_URL
 
   const fallbackValue = useMemo(() => fallbackParagraphs, [fallbackParagraphs])
+  const shouldDisplay = !isSundayInParis()
   const [state, setState] = useState({
-    paragraphs: fallbackValue,
+    paragraphs: shouldDisplay ? fallbackValue : [],
     isLive: false,
   })
 
@@ -118,6 +128,13 @@ export function useSurfConditions({ lang = 'fr', fallbackParagraphs = [] }) {
     let cancelled = false
 
     async function loadConditions() {
+      if (!shouldDisplay) {
+        if (!cancelled) {
+          setState({ paragraphs: [], isLive: false })
+        }
+        return
+      }
+
       try {
         const response = await fetch(csvUrl)
         if (!response.ok) {
@@ -146,10 +163,11 @@ export function useSurfConditions({ lang = 'fr', fallbackParagraphs = [] }) {
     return () => {
       cancelled = true
     }
-  }, [csvUrl, fallbackValue, lang])
+  }, [csvUrl, fallbackValue, lang, shouldDisplay])
 
   return {
     ...state,
+    shouldDisplay,
     csvUrl,
   }
 }

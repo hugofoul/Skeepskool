@@ -33,8 +33,8 @@ export const en = {
     heroTagline: 'Live the Ocean',
     heroSubtitle:
       '40 m north of the main access to Le Porge central beach, our school welcomes you at the foot of the dune and pine forest for surf lessons at the gates of Bordeaux.',
-    campingNotePrefix: 'Right next to ',
-    campingNoteLink: 'Camping La Grigne',
+    campingNotePrefix: 'The surf school closest to ',
+    campingNoteLink: 'Camping La Grigne and Bordeaux',
     heroCta: 'Book now',
     heroSecondaryCta: 'Call now',
     heroTrustItems: ['State-certified instructors', 'From age 5', 'Equipment included'],
@@ -152,7 +152,7 @@ export const en = {
       {
         name: 'Pierre',
         role: 'The boss',
-        text: 'The leader of the crew, a bodyboard and surf foil pro. Always up for pushing the limits in the water.',
+        text: 'Passionate about the ocean from an early age, he explored every board-riding discipline, from surfing to rescue board, including bodyboarding and now surf foil, before creating Skeepskool more than 25 years ago.',
       },
       {
         name: 'Mariane',

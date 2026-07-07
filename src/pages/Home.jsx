@@ -46,8 +46,8 @@ export default function Home() {
   const pickLang = (frText, enText, deText) => (isFr ? frText : (isDe ? deText : enText))
   const heroSlogan = pickLang(
     "Bienvenue à l'école de surf de la Plage Centrale du Porge",
-    'Learning to surf the right way',
-    'Surfen lernen nach allen Regeln der Kunst',
+    'Welcome to the surf school of Le Porge Central Beach',
+    'Willkommen in der Surfschule am Zentralstrand von Le Porge',
   )
   const [openFaqIndex, setOpenFaqIndex] = useState(0)
 
@@ -292,28 +292,30 @@ export default function Home() {
       </section>
 
       {/* ---------------- SURF CONDITIONS ---------------- */}
-      <section className="bg-lightGray py-16 sm:py-20">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <Reveal className="rounded-3xl border-l-4 border-red bg-white p-7 shadow-lg ring-1 ring-black/5 sm:p-10">
-            <span className="inline-flex items-center gap-2 rounded-full bg-royalBlue/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-royalBlue">
-              <Waves className="h-4 w-4 text-red" />
-              {h.surfConditions.badge}
-            </span>
-            <h2 className="mt-5 text-3xl font-black text-royalBlue sm:text-4xl">
-              {h.surfConditions.title}
-            </h2>
-            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+      {surfConditions.shouldDisplay && (
+        <section className="bg-lightGray py-16 sm:py-20">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <Reveal className="rounded-3xl border-l-4 border-red bg-white p-7 shadow-lg ring-1 ring-black/5 sm:p-10">
+              <span className="inline-flex items-center gap-2 rounded-full bg-royalBlue/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-royalBlue">
+                <Waves className="h-4 w-4 text-red" />
+                {h.surfConditions.badge}
+              </span>
+              <h2 className="mt-5 text-3xl font-black text-royalBlue sm:text-4xl">
+                {h.surfConditions.title}
+              </h2>
+              <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
 
-            <div className="mt-6 space-y-4">
-              {surfConditions.paragraphs.map((paragraph, index) => (
-                <p key={`surf-condition-${index}`} className="text-base leading-relaxed text-dark/80 sm:text-lg">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
+              <div className="mt-6 space-y-4">
+                {surfConditions.paragraphs.map((paragraph, index) => (
+                  <p key={`surf-condition-${index}`} className="text-base leading-relaxed text-dark/80 sm:text-lg">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* ---------------- GOOGLE REVIEWS CTA ---------------- */}
       <section className="bg-royalBlue py-14 text-white">

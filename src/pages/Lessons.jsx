@@ -16,6 +16,7 @@ import SEO from '../components/SEO.jsx'
 import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
+import { SITE_URL } from '../config/site.js'
 import { buildSrcSet, DEFAULT_SIZES } from '../utils/responsiveImage.js'
 
 // Index of the card to highlight as "Popular" (Pack 10 lessons)
@@ -29,6 +30,82 @@ export default function Lessons() {
   const l = t.lessons
   const bookingPath = lang === 'fr' ? '/reserver' : '/book'
   const [isGiftVisualOpen, setIsGiftVisualOpen] = useState(false)
+
+  const parseEuroPrice = (value) => {
+    const parsed = Number.parseFloat(String(value || '').replace(',', '.').replace(/[^0-9.]/g, ''))
+    return Number.isFinite(parsed) ? parsed : null
+  }
+
+  const offers = l.cards
+    .map((card, index) => {
+      const price = parseEuroPrice(card.price)
+      if (price === null) return null
+
+      return {
+        '@type': 'Offer',
+        priceCurrency: 'EUR',
+        price,
+        availability: 'https://schema.org/InStock',
+        url: `${SITE_URL}${bookingPath}?package=${packageByCardIndex[index]}`,
+        itemOffered: {
+          '@type': 'Service',
+          name: card.name,
+          description: card.detail,
+        },
+      }
+    })
+    .filter(Boolean)
+
+  const faqEntries = [...(l.goodToKnow || []), ...(l.faq || [])]
+    .filter((item) => item?.question && item?.answer)
+    .map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    }))
+
+  const lessonsPath = lang === 'fr' ? '/cours' : '/lessons'
+  const breadcrumbName = lang === 'fr' ? 'Cours & Tarifs' : (lang === 'de' ? 'Kurse & Preise' : 'Lessons & Prices')
+  const lessonsStructuredData = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: lang === 'fr' ? 'Accueil' : (lang === 'de' ? 'Startseite' : 'Home'),
+          item: `${SITE_URL}/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: breadcrumbName,
+          item: `${SITE_URL}${lessonsPath}`,
+        },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqEntries,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: breadcrumbName,
+      serviceType: breadcrumbName,
+      provider: {
+        '@type': 'SportsActivityLocation',
+        name: 'Skeepskool',
+      },
+      areaServed: 'Le Porge Océan',
+      offers,
+    },
+  ]
 
   useEffect(() => {
     if (!isGiftVisualOpen) return undefined
@@ -48,6 +125,7 @@ export default function Lessons() {
       <SEO
         title={lang === 'fr' ? 'Formules & Tarifs' : (lang === 'de' ? 'Kurse & Preise' : 'Packages & Prices')}
         path={lang === 'fr' ? '/cours' : '/lessons'}
+        lang={lang}
         alternates={[
           { hrefLang: 'fr-FR', path: '/cours' },
           { hrefLang: 'en', path: '/lessons' },
@@ -58,6 +136,7 @@ export default function Lessons() {
           : (lang === 'de'
             ? 'Gruppen- und Privat-Surfkurse ab 40€. Pakete mit 3, 5, 10 oder 20 Einheiten. Material und Versicherung inklusive. Le Porge Océan, Gironde.'
             : "Group and private surf lessons from €40. Packs of 3, 5, 10 or 20 sessions. Equipment and insurance included. Le Porge Océan, Gironde.")}
+        structuredData={lessonsStructuredData}
       />
       <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.fondpages} />
 

@@ -3,7 +3,7 @@ import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
 import { photoGallery, images } from '../data/images.js'
-import { buildSrcSet, DEFAULT_SIZES } from '../utils/responsiveImage.js'
+import { buildSrcSet, ALBUM_SIZES } from '../utils/responsiveImage.js'
 
 export default function PhotoAlbum() {
   const { lang } = useLang()
@@ -87,7 +87,7 @@ export default function PhotoAlbum() {
                 <img
                   src={photo.src}
                   srcSet={buildSrcSet(photo.src)}
-                  sizes={DEFAULT_SIZES}
+                  sizes={ALBUM_SIZES}
                   alt={photo.alt}
                   className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   loading={index < 2 ? 'eager' : 'lazy'}

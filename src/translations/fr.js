@@ -152,7 +152,7 @@ export const fr = {
       {
         name: 'Pierre',
         role: 'Le boss',
-        text: 'Passionné de surf depuis son plus jeune âge, il a tout essayé : surf, rescue board, bodyboard, et maintenant surf foil. Il a créé Skeepskool il y a plus de 25 ans.',
+        text: 'Passionné par l’océan depuis son plus jeune âge, il a exploré toutes les disciplines de glisse, du surf au rescue board, en passant par le bodyboard et aujourd’hui le surf foil, avant de créer Skeepskool il y a plus de 25 ans.',
       },
       {
         name: 'Mariane',

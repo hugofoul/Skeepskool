@@ -4,6 +4,7 @@ import { Menu, X, Phone, ChevronDown } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import { CONTACT } from '../config/site.js'
 import { buildSrcSet } from '../utils/responsiveImage.js'
+import { trackEvent } from '../lib/analytics.js'
 
 export default function Navbar() {
   const { lang, setLang, t } = useLang()
@@ -37,7 +38,13 @@ export default function Navbar() {
     <label aria-label="Language selector" className={`relative inline-flex items-center ${className}`}>
       <select
         value={lang}
-        onChange={(e) => setLang(e.target.value)}
+        onChange={(e) => {
+          const nextLang = e.target.value
+          if (nextLang !== lang) {
+            trackEvent('language_changed', { from_lang: lang, to_lang: nextLang })
+          }
+          setLang(nextLang)
+        }}
         className="h-9 cursor-pointer appearance-none rounded-full bg-royalBlue pl-3 pr-9 text-sm font-semibold leading-none text-white ring-1 ring-yellow shadow-sm transition hover:bg-[#244fc8] focus:outline-none focus:ring-2 focus:ring-yellow"
       >
         <option value="fr" className="text-royalBlue">FR</option>
@@ -82,22 +89,14 @@ export default function Navbar() {
 
         {/* Right: lang toggle (desktop) + hamburger (mobile) */}
         <div className="flex items-center justify-self-end gap-3">
-          <div className="hidden items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 lg:flex">
+          <a
+            href={`tel:${CONTACT.phonePrimary}`}
+            onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phonePrimary}`, source: 'navbar_desktop' })}
+            className="hidden shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-yellow hover:text-royalBlue lg:inline-flex"
+          >
             <Phone className="h-4 w-4 text-yellow" />
-            <a
-              href={`tel:${CONTACT.phonePrimary}`}
-              className="whitespace-nowrap text-sm font-semibold text-white transition-colors hover:text-yellow"
-            >
-              {CONTACT.phonePrimaryDisplay}
-            </a>
-            <span className="text-white/45">•</span>
-            <a
-              href={`tel:${CONTACT.phoneSecondary}`}
-              className="whitespace-nowrap text-sm font-semibold text-white transition-colors hover:text-yellow"
-            >
-              {CONTACT.phoneSecondaryDisplay}
-            </a>
-          </div>
+            {CONTACT.phonePrimaryDisplay}
+          </a>
           <LangToggle className="hidden md:inline-flex md:translate-y-0.5" />
           <button
             onClick={() => setOpen((v) => !v)}
@@ -133,17 +132,11 @@ export default function Navbar() {
             ))}
             <a
               href={`tel:${CONTACT.phonePrimary}`}
+              onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phonePrimary}`, source: 'navbar_mobile' })}
               className="mt-1 flex items-center gap-2 rounded-lg px-2 py-2.5 text-[0.95rem] font-semibold whitespace-nowrap text-white transition-colors hover:bg-white/10 sm:px-3 sm:text-base"
             >
               <Phone className="h-5 w-5 text-yellow" />
               {CONTACT.phonePrimaryDisplay}
-            </a>
-            <a
-              href={`tel:${CONTACT.phoneSecondary}`}
-              className="flex items-center gap-2 rounded-lg px-2 py-2.5 text-[0.95rem] font-semibold whitespace-nowrap text-white transition-colors hover:bg-white/10 sm:px-3 sm:text-base"
-            >
-              <Phone className="h-5 w-5 text-yellow" />
-              {CONTACT.phoneSecondaryDisplay}
             </a>
             <div className="pt-3">
               <LangToggle />

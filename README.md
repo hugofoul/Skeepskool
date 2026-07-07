@@ -268,7 +268,7 @@ npm run preview
 
 ## 🔗 Liens importants
 
-- **Site en ligne** : https://skeepskool.fr
+- **Site en ligne** : https://www.leporge-ecoledesurf.com
 - **Vercel Dashboard** : https://vercel.com
 - **Google Maps** : Intégré dans Contact
 - **WhatsApp Community** : Lien dans le site

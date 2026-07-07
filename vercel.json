@@ -6,12 +6,22 @@
     { "source": "/ecole-de-surf", "destination": "/ecole", "permanent": true },
     { "source": "/cours-de-surf", "destination": "/cours", "permanent": true },
     { "source": "/tarifs", "destination": "/cours", "permanent": true },
+    { "source": "/tarifs/", "destination": "/cours", "permanent": true },
+    { "source": "/locations", "destination": "/location", "permanent": true },
+    { "source": "/locations/", "destination": "/location", "permanent": true },
+    { "source": "/plan-dacces", "destination": "/contact", "permanent": true },
+    { "source": "/plan-dacces/", "destination": "/contact", "permanent": true },
     { "source": "/booking", "destination": "/reserver", "permanent": true },
     { "source": "/reservation", "destination": "/reserver", "permanent": true },
+    { "source": "/reserver-en-ligne", "destination": "/reserver", "permanent": true },
+    { "source": "/reserver-en-ligne/", "destination": "/reserver", "permanent": true },
+    { "source": "/recevoir-un-bon-cadeau-cours-de-surf", "destination": "/bon-cadeau", "permanent": true },
+    { "source": "/recevoir-un-bon-cadeau-cours-de-surf/", "destination": "/bon-cadeau", "permanent": true },
     { "source": "/planning", "destination": "/horaires", "permanent": true },
     { "source": "/location-de-surf", "destination": "/location", "permanent": true },
     { "source": "/autour-de-nous", "destination": "/autour", "permanent": true },
-    { "source": "/mentions-legales.html", "destination": "/mentions-legales", "permanent": true }
+    { "source": "/mentions-legales.html", "destination": "/mentions-legales", "permanent": true },
+    { "source": "/mentions-legales/", "destination": "/mentions-legales", "permanent": true }
   ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }

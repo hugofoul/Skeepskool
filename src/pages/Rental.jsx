@@ -5,6 +5,7 @@ import SEO from '../components/SEO.jsx'
 import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
+import { SITE_URL } from '../config/site.js'
 
 const guideIcons = [Waves, ShieldQuestion, Info]
 
@@ -12,11 +13,91 @@ export default function Rental() {
   const { t, lang } = useLang()
   const r = t.rental
 
+  const parseEuroPrice = (value) => {
+    const parsed = Number.parseFloat(String(value || '').replace(',', '.').replace(/[^0-9.]/g, ''))
+    return Number.isFinite(parsed) ? parsed : null
+  }
+
+  const rentalOffers = r.rows
+    .map((row) => {
+      const prices = (row.prices || []).map(parseEuroPrice).filter((price) => price !== null)
+      if (!prices.length) return null
+
+      const minPrice = Math.min(...prices)
+      return {
+        '@type': 'Offer',
+        priceCurrency: 'EUR',
+        price: minPrice,
+        availability: 'https://schema.org/InStock',
+        url: `${SITE_URL}${lang === 'fr' ? '/location' : '/rental'}`,
+        itemOffered: {
+          '@type': 'Service',
+          name: row.item,
+          description: lang === 'fr'
+            ? `Location à partir de ${minPrice}€.`
+            : (lang === 'de' ? `Verleih ab ${minPrice}€.` : `Rental from €${minPrice}.`),
+        },
+      }
+    })
+    .filter(Boolean)
+
+  const rentalFaqEntries = (r.guide || [])
+    .filter((entry) => entry?.title && entry?.text)
+    .map((entry) => ({
+      '@type': 'Question',
+      name: entry.title,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: entry.text,
+      },
+    }))
+
+  const rentalPath = lang === 'fr' ? '/location' : '/rental'
+  const rentalName = lang === 'fr' ? 'Location de matériel' : (lang === 'de' ? 'Materialverleih' : 'Equipment Rental')
+  const rentalStructuredData = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: lang === 'fr' ? 'Accueil' : (lang === 'de' ? 'Startseite' : 'Home'),
+          item: `${SITE_URL}/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: rentalName,
+          item: `${SITE_URL}${rentalPath}`,
+        },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: rentalFaqEntries,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: rentalName,
+      serviceType: rentalName,
+      provider: {
+        '@type': 'SportsActivityLocation',
+        name: 'Skeepskool',
+      },
+      areaServed: 'Le Porge Océan',
+      offers: rentalOffers,
+    },
+  ]
+
   return (
     <div>
       <SEO
         title={lang === 'fr' ? 'Location de matériel' : (lang === 'de' ? 'Materialverleih' : 'Equipment Rental')}
         path={lang === 'fr' ? '/location' : '/rental'}
+        lang={lang}
         alternates={[
           { hrefLang: 'fr-FR', path: '/location' },
           { hrefLang: 'en', path: '/rental' },
@@ -27,6 +108,7 @@ export default function Rental() {
           : (lang === 'de'
             ? 'Verleih von Surfboards, Bodyboards und Neoprenanzügen direkt am Strand von Le Porge Océan. Ab 10€. Sunset-Slot verfügbar.'
             : "Surfboard, bodyboard and wetsuit rental right by the beach at Le Porge Océan. From €10. Sunset slot available.")}
+        structuredData={rentalStructuredData}
       />
       <PageHero title={r.heroTitle} subtitle={r.heroSubtitle} image={images.fondpages} />
 

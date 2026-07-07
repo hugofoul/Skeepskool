@@ -135,7 +135,7 @@ export const de = {
       {
         name: 'Pierre',
         role: 'Der Boss',
-        text: 'Kopf des Teams, Bodyboard- und Surf-Foil-Profi, immer bereit für neue Herausforderungen.',
+        text: 'Seit seiner frühen Kindheit vom Ozean begeistert, hat er alle Board-Disziplinen ausprobiert: vom Surfen über Rescue Board und Bodyboard bis hin zum heutigen Surf Foil, bevor er Skeepskool vor mehr als 25 Jahren gründete.',
       },
       {
         name: 'Mariane',

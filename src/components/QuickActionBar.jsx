@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { Phone, CalendarCheck2 } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import { CONTACT } from '../config/site.js'
+import { trackEvent } from '../lib/analytics.js'
 
 export default function QuickActionBar() {
   const { lang, t } = useLang()
@@ -20,6 +21,7 @@ export default function QuickActionBar() {
       <div className="grid grid-cols-2 gap-2">
         <a
           href={`tel:${CONTACT.phonePrimary}`}
+          onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phonePrimary}`, source: 'quick_action_bar' })}
           className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-3 py-3 text-sm font-extrabold text-royalBlue"
         >
           <Phone className="h-4 w-4" />

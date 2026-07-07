@@ -28,6 +28,18 @@ export default function CTAButton({
       cta_label: label,
     })
 
+    if (target.startsWith('tel:')) {
+      trackEvent('click_phone', { target })
+    }
+
+    if (target.includes('wa.me') || target.includes('whatsapp')) {
+      trackEvent('click_whatsapp', { target })
+    }
+
+    if (target === '/reserver' || target === '/book') {
+      trackEvent('click_booking_cta', { target })
+    }
+
     if (
       target === '/reserver' ||
       target === '/book' ||

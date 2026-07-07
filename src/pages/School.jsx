@@ -4,7 +4,7 @@ import { images, teamPhotos } from '../data/images.js'
 import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
 import Reveal from '../components/Reveal.jsx'
-import { buildSrcSet, DEFAULT_SIZES } from '../utils/responsiveImage.js'
+import { buildSrcSet, DEFAULT_SIZES, GRID_CARD_SIZES } from '../utils/responsiveImage.js'
 
 const sectionImages = [images.schoolSpot, images.schoolPedagogy, images.schoolTeamSection]
 const valueIcons = [Waves, Handshake, TrendingUp]
@@ -126,7 +126,7 @@ export default function School() {
                   <img
                     src={teamImages[i]}
                     srcSet={buildSrcSet(teamImages[i])}
-                    sizes={DEFAULT_SIZES}
+                    sizes={GRID_CARD_SIZES}
                     alt={member.name}
                     className={`h-full w-full ${teamImagePositions[i]} ${teamImageScales[i]} transition-transform duration-500`}
                     loading="lazy"

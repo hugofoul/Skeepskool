@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://skeepskool.fr'
+export const SITE_URL = 'https://www.leporge-ecoledesurf.com'
 
 export const CONTACT = {
   phonePrimary: '+33670608426',

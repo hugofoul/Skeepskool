@@ -5,8 +5,8 @@ import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
-import { CONTACT } from '../config/site.js'
-import { trackConversion } from '../lib/analytics.js'
+import { CONTACT, SITE_URL } from '../config/site.js'
+import { trackConversion, trackEvent } from '../lib/analytics.js'
 
 const initialSurfer = {
   id: 1,
@@ -52,6 +52,91 @@ export default function Booking() {
   const b = t.booking
   const location = useLocation()
 
+  const bookingPath = lang === 'fr' ? '/reserver' : '/book'
+  const bookingName = lang === 'fr' ? 'Réserver' : (lang === 'de' ? 'Buchen' : 'Book a Lesson')
+
+  const bookingOffers = (b.packages || [])
+    .filter((pkg) => Number.isFinite(pkg?.price))
+    .map((pkg) => ({
+      '@type': 'Offer',
+      priceCurrency: 'EUR',
+      price: pkg.price,
+      availability: 'https://schema.org/InStock',
+      url: `${SITE_URL}${bookingPath}?package=${pkg.value}`,
+      itemOffered: {
+        '@type': 'Service',
+        name: pkg.label,
+      },
+    }))
+
+  const bookingFaqEntries = [
+    {
+      question: lang === 'fr'
+        ? 'Quand dois-je payer pour valider ma réservation ?'
+        : (lang === 'de' ? 'Wann muss ich zahlen, um die Buchung zu bestätigen?' : 'When should I pay to confirm my booking?'),
+      answer: b.warning,
+    },
+    {
+      question: lang === 'fr'
+        ? 'Que faire si je réserve à moins de 3 jours ?'
+        : (lang === 'de' ? 'Was tun bei einer Buchung in weniger als 3 Tagen?' : 'What if I book less than 3 days in advance?'),
+      answer: b.startDateNote,
+    },
+    {
+      question: lang === 'fr'
+        ? 'Le paiement doit-il déjà être effectué avant le formulaire ?'
+        : (lang === 'de' ? 'Muss die Zahlung vor dem Formular bereits erfolgt sein?' : 'Must payment be completed before submitting the form?'),
+      answer: b.intro,
+    },
+  ]
+    .filter((entry) => entry.question && entry.answer)
+    .map((entry) => ({
+      '@type': 'Question',
+      name: entry.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: entry.answer,
+      },
+    }))
+
+  const bookingStructuredData = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: lang === 'fr' ? 'Accueil' : (lang === 'de' ? 'Startseite' : 'Home'),
+          item: `${SITE_URL}/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: bookingName,
+          item: `${SITE_URL}${bookingPath}`,
+        },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: bookingFaqEntries,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: bookingName,
+      serviceType: bookingName,
+      provider: {
+        '@type': 'SportsActivityLocation',
+        name: 'Skeepskool',
+      },
+      areaServed: 'Le Porge Océan',
+      offers: bookingOffers,
+    },
+  ]
+
   const todayDate = useMemo(() => {
     const date = new Date()
     date.setHours(0, 0, 0, 0)
@@ -79,6 +164,10 @@ export default function Booking() {
   const [successMessage, setSuccessMessage] = useState('')
   const [phoneError, setPhoneError] = useState('')
   const [dateError, setDateError] = useState('')
+  const [hasStartedForm, setHasStartedForm] = useState(false)
+  const [whatsappDeepLink, setWhatsappDeepLink] = useState('')
+  const [whatsappPayload, setWhatsappPayload] = useState('')
+  const [copyFeedback, setCopyFeedback] = useState('')
   const formRef = useRef(null)
   const phoneInputRef = useRef(null)
   const startDateInputRef = useRef(null)
@@ -154,6 +243,12 @@ export default function Booking() {
   const inputClass =
     'w-full rounded-xl border border-dark/20 bg-white px-4 py-3 text-sm text-dark shadow-sm outline-none transition focus:border-royalBlue focus:ring-2 focus:ring-royalBlue/20'
 
+  const markFormStarted = () => {
+    if (hasStartedForm) return
+    setHasStartedForm(true)
+    trackEvent('booking_form_started', { lang })
+  }
+
   const updateSurfer = (index, field, value) => {
     setSurfers((prev) =>
       prev.map((surfer, i) => (i === index ? { ...surfer, [field]: value } : surfer)),
@@ -178,6 +273,7 @@ export default function Booking() {
     event.preventDefault()
 
     if (!event.currentTarget.checkValidity()) {
+      trackEvent('booking_form_error', { reason: 'invalid_required_fields' })
       event.currentTarget.reportValidity()
       const firstInvalid = event.currentTarget.querySelector(':invalid')
       scrollToField(firstInvalid)
@@ -188,11 +284,13 @@ export default function Booking() {
 
     if (contact.phoneCountryCode === 'custom' && !/^\+[0-9]{1,4}$/.test(contact.customPhoneCountryCode.trim())) {
       setPhoneError(lang === 'fr' ? 'Indicatif invalide (ex: +33).' : 'Invalid calling code (e.g. +33).')
+      trackEvent('booking_form_error', { reason: 'invalid_country_code' })
       return
     }
 
     if (!isValidPhone(fullPhone)) {
       setPhoneError(b.phoneInvalid)
+      trackEvent('booking_form_error', { reason: 'invalid_phone' })
       scrollToField(phoneInputRef.current)
       return
     }
@@ -200,6 +298,7 @@ export default function Booking() {
 
     if (!isGiftVoucher && isShortNotice) {
       setDateError(b.shortNoticeAlert)
+      trackEvent('booking_form_error', { reason: 'short_notice_phone_required' })
       scrollToField(startDateInputRef.current)
       return
     }
@@ -246,7 +345,12 @@ export default function Booking() {
     ].join('\n')
 
     const encoded = encodeURIComponent(whatsappMessage)
-    window.open(`https://wa.me/${CONTACT.whatsappNumber}?text=${encoded}`, '_blank', 'noopener,noreferrer')
+    const whatsappUrl = `https://wa.me/${CONTACT.whatsappNumber}?text=${encoded}`
+    setWhatsappPayload(whatsappMessage)
+    setWhatsappDeepLink(whatsappUrl)
+    setCopyFeedback('')
+    trackEvent('click_whatsapp', { source: 'booking_form', target: whatsappUrl })
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
 
     trackConversion('booking_form_submitted', {
       surfers_count: surfers.length,
@@ -264,7 +368,8 @@ export default function Booking() {
     <div>
       <SEO
         title={lang === 'fr' ? 'Réserver' : (lang === 'de' ? 'Buchen' : 'Book a Lesson')}
-        path={lang === 'fr' ? '/reserver' : '/book'}
+        path={bookingPath}
+        lang={lang}
         alternates={[
           { hrefLang: 'fr-FR', path: '/reserver' },
           { hrefLang: 'en', path: '/book' },
@@ -275,6 +380,7 @@ export default function Booking() {
           : (lang === 'de'
             ? 'Buche deinen Surfkurs bei Skeepskool in Le Porge Océan. Wähle dein Paket und sichere deinen Platz online.'
             : "Book your surf lesson at Skeepskool, surf school at Le Porge Océan. Choose your package and secure your spot online.")}
+        structuredData={bookingStructuredData}
       />
       <PageHero title={b.title} subtitle={b.subtitle} image={images.fondpages} />
 
@@ -302,7 +408,10 @@ export default function Booking() {
               <div className="grid gap-3 sm:grid-cols-2" role="radiogroup" aria-label="Booking type">
                 <button
                   type="button"
-                  onClick={() => setIsGiftVoucher(false)}
+                  onClick={() => {
+                    setIsGiftVoucher(false)
+                    trackEvent('gift_voucher_selected', { selected: false })
+                  }}
                   aria-pressed={!isGiftVoucher}
                   className={`relative rounded-2xl border-2 px-4 py-4 text-left transition ${
                     !isGiftVoucher
@@ -322,6 +431,7 @@ export default function Booking() {
                   type="button"
                   onClick={() => {
                     setIsGiftVoucher(true)
+                    trackEvent('gift_voucher_selected', { selected: true })
                     if (dateError) setDateError('')
                   }}
                   aria-pressed={isGiftVoucher}
@@ -348,6 +458,7 @@ export default function Booking() {
 
           <form
             ref={formRef}
+            onFocusCapture={markFormStarted}
             onInvalidCapture={(e) => {
               e.preventDefault()
               scrollToField(e.target)
@@ -546,7 +657,13 @@ export default function Booking() {
                         <select
                           className={inputClass}
                           value={surfer.packageValue}
-                          onChange={(e) => updateSurfer(index, 'packageValue', e.target.value)}
+                          onChange={(e) => {
+                            updateSurfer(index, 'packageValue', e.target.value)
+                            trackEvent('package_selected', {
+                              surfer_index: index + 1,
+                              package_value: e.target.value,
+                            })
+                          }}
                           required
                         >
                           {b.packages.map((pkg) => (
@@ -696,6 +813,45 @@ export default function Booking() {
                 <p className="whitespace-pre-line text-sm font-semibold leading-relaxed text-royalBlue sm:text-base">
                   {successMessage}
                 </p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  {whatsappDeepLink && (
+                    <a
+                      href={whatsappDeepLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackEvent('click_whatsapp', { source: 'booking_success_box', target: whatsappDeepLink })}
+                      className="inline-flex items-center justify-center rounded-full bg-green-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-green-700"
+                    >
+                      {lang === 'fr' ? 'Ouvrir WhatsApp' : (lang === 'de' ? 'WhatsApp öffnen' : 'Open WhatsApp')}
+                    </a>
+                  )}
+                  {whatsappPayload && (
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        try {
+                          await navigator.clipboard.writeText(whatsappPayload)
+                          setCopyFeedback(lang === 'fr' ? 'Message copié.' : (lang === 'de' ? 'Nachricht kopiert.' : 'Message copied.'))
+                        } catch {
+                          setCopyFeedback(lang === 'fr' ? 'Impossible de copier automatiquement.' : (lang === 'de' ? 'Automatisches Kopieren fehlgeschlagen.' : 'Unable to copy automatically.'))
+                        }
+                      }}
+                      className="inline-flex items-center justify-center rounded-full border border-royalBlue px-4 py-2 text-sm font-bold text-royalBlue transition hover:bg-royalBlue hover:text-white"
+                    >
+                      {lang === 'fr' ? 'Copier le message' : (lang === 'de' ? 'Nachricht kopieren' : 'Copy message')}
+                    </button>
+                  )}
+                  <a
+                    href={`tel:${CONTACT.phonePrimary}`}
+                    onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phonePrimary}`, source: 'booking_success_box' })}
+                    className="inline-flex items-center justify-center rounded-full border border-red px-4 py-2 text-sm font-bold text-red transition hover:bg-red hover:text-white"
+                  >
+                    {lang === 'fr' ? 'Appeler l’école' : (lang === 'de' ? 'Schule anrufen' : 'Call the school')}
+                  </a>
+                </div>
+                {copyFeedback && (
+                  <p className="mt-3 text-xs font-semibold text-royalBlue/80">{copyFeedback}</p>
+                )}
               </Reveal>
             )}
           </form>

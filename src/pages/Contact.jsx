@@ -17,6 +17,7 @@ import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
 import { CONTACT, MAPS, SOCIAL } from '../config/site.js'
 import { buildSrcSet, DEFAULT_SIZES } from '../utils/responsiveImage.js'
+import { trackEvent } from '../lib/analytics.js'
 
 const MAP_SRC =
   'https://www.google.com/maps?q=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge&z=14&output=embed'
@@ -54,10 +55,10 @@ export default function Contact() {
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2">
             <InfoCard icon={Phone}>
-              <a href={`tel:${CONTACT.phonePrimary}`} className="block font-semibold text-dark hover:text-red">
+              <a href={`tel:${CONTACT.phonePrimary}`} onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phonePrimary}`, source: 'contact_page' })} className="block font-semibold text-dark hover:text-red">
                 {CONTACT.phonePrimaryDisplay}
               </a>
-              <a href={`tel:${CONTACT.phoneSecondary}`} className="block font-semibold text-dark hover:text-red">
+              <a href={`tel:${CONTACT.phoneSecondary}`} onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phoneSecondary}`, source: 'contact_page' })} className="block font-semibold text-dark hover:text-red">
                 {CONTACT.phoneSecondaryDisplay}
               </a>
             </InfoCard>
@@ -173,7 +174,7 @@ export default function Contact() {
             {/* Map + access plan */}
             <Reveal delay={120} className="space-y-5">
               <div className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-black/10">
-                <a href={images.contactPlan} target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le plan d’accès en grand">
+                <a href={images.contactPlan} target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le plan d’accès en grand" onClick={() => trackEvent('click_map', { target: images.contactPlan, source: 'contact_plan' })}>
                   <img
                     src={images.contactPlan}
                     srcSet={buildSrcSet(images.contactPlan)}
