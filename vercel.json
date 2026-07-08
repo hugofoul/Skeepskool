@@ -19,7 +19,9 @@
     { "source": "/recevoir-un-bon-cadeau-cours-de-surf/", "destination": "/bon-cadeau", "permanent": true },
     { "source": "/planning", "destination": "/horaires", "permanent": true },
     { "source": "/location-de-surf", "destination": "/location", "permanent": true },
-    { "source": "/autour-de-nous", "destination": "/autour", "permanent": true },
+    { "source": "/autour-de-nous", "destination": "/contact", "permanent": true },
+    { "source": "/autour", "destination": "/contact", "permanent": true },
+    { "source": "/around", "destination": "/contact", "permanent": true },
     { "source": "/mentions-legales.html", "destination": "/mentions-legales", "permanent": true },
     { "source": "/mentions-legales/", "destination": "/mentions-legales", "permanent": true }
   ],

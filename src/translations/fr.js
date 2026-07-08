@@ -18,9 +18,10 @@ export const fr = {
   nav: {
     home: 'Accueil',
     school: 'École',
-    lessons: 'Formules',
-    photos: 'Photos',
+    lessons: 'Cours',
+    photos: 'Gallerie',
     book: 'Réserver',
+    cart: 'Panier',
     schedule: 'Horaires',
     rental: 'Location',
     around: 'Autour',
@@ -33,7 +34,8 @@ export const fr = {
     heroTagline: 'Sécurité, technique et sens marin',
     heroSubtitle: '',
     campingNotePrefix: 'L’école de surf la plus proche du ',
-    campingNoteLink: 'Camping La Grigne et Bordeaux',
+    campingNoteLink: 'Camping La Grigne',
+    campingNoteSuffix: ' et de Bordeaux',
     heroCta: 'Réserver',
     heroSecondaryCta: 'Appeler maintenant',
     heroTrustItems: ['Moniteurs diplomes d\'Etat', 'Des 5 ans', 'Materiel inclus'],
@@ -107,7 +109,7 @@ export const fr = {
   // ---- School ----
   school: {
     heroTitle: "L'école",
-    heroSubtitle: 'Un spot préservé, une équipe passionnée, un label de confiance.',
+    heroSubtitle: 'Un spot préservé, une équipe passionnée, un label de qualité.',
     sections: [
       {
         tag: 'Le spot',
@@ -308,7 +310,7 @@ export const fr = {
 
   booking: {
     title: 'Réserver',
-    subtitle: 'Envoyez votre demande en quelques clics',
+    subtitle: '',
     intro:
       'Pour valider votre réservation, le paiement doit déjà être effectué par virement avant l\'envoi de ce formulaire.',
 
@@ -368,11 +370,11 @@ export const fr = {
 
     totalLabel: 'Total :',
     warning:
-      '⚠️ Attention — Pour que votre réservation soit validée, le paiement doit être effectué AVANT d\'envoyer ce formulaire.',
+      'Attention — Pour que votre réservation soit validée, le paiement doit être effectué AVANT d\'envoyer ce formulaire.',
     paylibLabel: '',
-    ibanLabel: '🏦 Virement IBAN : FR76 1027 8022 8200 0205 3750 133 — BIC : CMCIFR2A',
+    ibanLabel: 'Virement IBAN : FR76 1027 8022 8200 0205 3750 133 — BIC : CMCIFR2A',
     warningFooter: 'Une fois le paiement effectué, cochez la case de confirmation puis cliquez sur Envoyer.',
-    callWeekNote: '📞 Merci d\'appeler l\'école 1 semaine avant votre arrivée pour confirmer le créneau.',
+    callWeekNote: 'Merci d\'appeler l\'école 1 semaine avant votre arrivée pour confirmer le créneau.',
     paidCheckbox: 'Je confirme avoir déjà effectué le paiement avant envoi du formulaire.',
 
     submit: 'Envoyer',

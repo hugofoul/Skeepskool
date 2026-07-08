@@ -6,7 +6,7 @@ import SEO from '../components/SEO.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { buildSrcSet, DEFAULT_SIZES, GRID_CARD_SIZES } from '../utils/responsiveImage.js'
 
-const sectionImages = [images.schoolSpot, images.schoolPedagogy, images.schoolTeamSection]
+const sectionImages = [images.schoolSpot, '/images/img_2093.jpg', images.schoolTeamSection]
 const valueIcons = [Waves, Handshake, TrendingUp]
 const teamImages = [teamPhotos.pierre, teamPhotos.mariane, teamPhotos.manoa, teamPhotos.hugo]
 const teamImagePositions = ['object-cover object-top', 'object-cover object-top', 'object-cover', 'object-cover']

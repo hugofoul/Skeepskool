@@ -17,27 +17,6 @@ import SEO from '../components/SEO.jsx'
 import { CONTACT } from '../config/site.js'
 import { buildSrcSet, HERO_SIZES } from '../utils/responsiveImage.js'
 
-const highlightIcons = [Waves, null, null]
-
-function SurfboardIcon({ className = 'h-12 w-12 text-royalBlue' }) {
-  return (
-    <svg viewBox="0 0 64 64" aria-hidden="true" className={className} fill="none">
-      <path
-        d="M32 3c-5 10-9 23-11 39 0 3 2 5 4 5h14c2 0 4-2 4-5C41 26 37 13 32 3z"
-        stroke="currentColor"
-        strokeWidth="3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M32 9v33" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" opacity="0.9" />
-      <path d="M28.5 47.5l3.5 5 3.5-5" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M23.5 42.5l-2.5 4 3.5-1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M40.5 42.5l2.5 4-3.5-1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M15 55c2.5 0 2.5-1.3 5-1.3s2.5 1.3 5 1.3 2.5-1.3 5-1.3 2.5 1.3 5 1.3 2.5-1.3 5-1.3 2.5 1.3 5 1.3 2.5-1.3 5-1.3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" opacity="0.45" />
-    </svg>
-  )
-}
-
 export default function Home() {
   const { t, lang } = useLang()
   const h = t.home
@@ -117,9 +96,9 @@ export default function Home() {
         de: 'Kann ich Material mieten, ohne einen Kurs zu buchen?',
       },
       answer: {
-        fr: 'Oui, la location est ouverte à tous. Cependant, nous déconseillons fortement la location sans encadrement si vous avez moins de 10 heures de cours avec un moniteur diplômé. En dessous de ce niveau, la pratique du surf peut être dangereuse pour vous et pour les autres surfeurs.',
-        en: 'Yes, rental is open to everyone. However, we strongly advise against renting without supervision if you have fewer than 10 hours of lessons with a qualified instructor. Below this level, surfing can be dangerous for yourself and for other surfers.',
-        de: 'Ja, der Verleih ist für alle offen. Wir raten jedoch vom Surfen ohne Betreuung ab, wenn du weniger als 10 Stunden Unterricht mit einem qualifizierten Lehrer hattest.',
+        fr: 'Oui, la location est ouverte à tous. Cependant, nous déconseillons fortement la location sans encadrement si vous avez moins de 10 séances avec un moniteur diplômé. En dessous de ce niveau, la pratique du surf peut être dangereuse pour vous et pour les autres surfeurs.',
+        en: 'Yes, rental is open to everyone. However, we strongly advise against renting without supervision if you have fewer than 10 lessons with a qualified instructor. Below this level, surfing can be dangerous for yourself and for other surfers.',
+        de: 'Ja, der Verleih ist für alle offen. Wir raten jedoch vom Surfen ohne Betreuung ab, wenn du weniger als 10 Kurseinheiten mit einem qualifizierten Lehrer hattest.',
       },
       link: { to: '/location', fr: 'Voir les tarifs location →', en: 'See rental prices →', de: 'Verleihpreise ansehen →' },
     },
@@ -167,7 +146,7 @@ export default function Home() {
               {h.heroSubtitle}
             </p>
           )}
-          <p className="mx-auto mt-5 max-w-xl text-base font-semibold text-white/90 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-xl whitespace-nowrap text-base font-semibold text-white/90 sm:text-lg">
             {h.campingNotePrefix}
             <a
               href="https://camping-leporge.fr/"
@@ -177,7 +156,7 @@ export default function Home() {
             >
               {h.campingNoteLink}
             </a>
-            .
+            <span className="text-yellow">{h.campingNoteSuffix || ''}</span>
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <CTAButton
@@ -212,34 +191,42 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-6 md:grid-cols-2">
             {h.highlights.slice(0, 2).map((card, i) => {
-              const Icon = highlightIcons[i]
+              const visualSrc = i === 0 ? '/images/charliecours.webp' : '/images/ecole.jpeg'
               return (
                 <Reveal
                   key={card.title}
                   delay={i * 120}
-                  className="group rounded-2xl border-b-4 border-red bg-white p-8 shadow-md ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1"
+                  className="group overflow-hidden rounded-3xl border border-black/10 bg-white shadow-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
                 >
-                  {i === 1 ? (
-                    <SurfboardIcon className="h-12 w-12 text-royalBlue" />
-                  ) : (
-                    <Icon className="h-12 w-12 text-royalBlue" strokeWidth={2} />
-                  )}
-                  <h3 className="mt-4 text-xl font-extrabold text-royalBlue">{card.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-dark/75">{card.text}</p>
-                  {i === 0 && (
-                    <div className="mt-5">
-                      <CTAButton to="/cours" className="px-4 py-2 text-sm">
-                        {t.learnMore}
-                      </CTAButton>
-                    </div>
-                  )}
-                  {i === 1 && (
-                    <div className="mt-5">
-                      <CTAButton to="/location" className="px-4 py-2 text-sm">
-                        {t.learnMore}
-                      </CTAButton>
-                    </div>
-                  )}
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={visualSrc}
+                      srcSet={buildSrcSet(visualSrc)}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      alt={card.title}
+                      className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                      loading="lazy"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+                  </div>
+                  <div className="flex min-h-[220px] flex-col p-6">
+                    <h3 className="text-2xl font-black text-royalBlue">{card.title}</h3>
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-dark/75">{card.text}</p>
+                    {i === 0 && (
+                      <div className="mt-5">
+                        <CTAButton to="/cours" className="px-4 py-2 text-sm">
+                          {t.learnMore}
+                        </CTAButton>
+                      </div>
+                    )}
+                    {i === 1 && (
+                      <div className="mt-5">
+                        <CTAButton to="/location" className="px-4 py-2 text-sm">
+                          {t.learnMore}
+                        </CTAButton>
+                      </div>
+                    )}
+                  </div>
                 </Reveal>
               )
             })}
@@ -273,24 +260,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- ABOUT SNIPPET ---------------- */}
-      <section className="bg-royalBlue py-16 text-white sm:py-24">
-        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
-          <Reveal>
-            <span className="inline-block h-1 w-16 rounded bg-yellow" />
-            <h2 className="mt-6 text-3xl font-black sm:text-4xl">{h.aboutTitle}</h2>
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/90">
-              {h.aboutText}
-            </p>
-            <div className="mt-8">
-              <CTAButton to="/ecole" className="bg-yellow text-royalBlue hover:bg-white">
-                {t.learnMore}
-              </CTAButton>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ---------------- SURF CONDITIONS ---------------- */}
       {surfConditions.shouldDisplay && (
         <section className="bg-lightGray py-16 sm:py-20">
@@ -316,34 +285,6 @@ export default function Home() {
           </div>
         </section>
       )}
-
-      {/* ---------------- GOOGLE REVIEWS CTA ---------------- */}
-      <section className="bg-royalBlue py-14 text-white">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <Reveal className="overflow-hidden rounded-3xl bg-yellow/10 shadow-lg ring-1 ring-yellow/20">
-            <div className="flex flex-col items-center gap-6 p-8 text-center sm:flex-row sm:p-10 sm:text-left">
-              <div className="flex gap-1 shrink-0">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-6 w-6 fill-yellow text-yellow" />
-                ))}
-              </div>
-              <div className="flex-1">
-                <h3 className="text-xl font-black text-white">{h.reviewsTitle}</h3>
-                <p className="mt-2 text-sm text-white/85">{h.reviewsText}</p>
-              </div>
-              <CTAButton
-                href={h.reviewsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shrink-0 bg-yellow text-royalBlue hover:bg-white"
-              >
-                <Star className="h-4 w-4" />
-                {h.reviewsCta}
-              </CTAButton>
-            </div>
-          </Reveal>
-        </div>
-      </section>
 
       {/* ---------------- TESTIMONIALS ---------------- */}
       <section className="bg-white py-16 sm:py-24">

@@ -47,7 +47,7 @@ export const carousel = [
   { src: '/images/coucher2.webp', alt: 'Planches de surf alignées' },
   { src: '/images/charliecours.webp', alt: 'Plage du Porge Océan' },
   { src: '/images/coucher.jpg', alt: 'Vague atlantique qui déferle' },
-  { src: '/images/sunset4.jpeg', alt: 'Groupe de surfeurs sur la plage' },
+  { src: '/images/img_2177.jpg', alt: 'Groupe de surfeurs sur la plage' },
 ]
 
 // Home page photo gallery — used for the “plus de photos” section.

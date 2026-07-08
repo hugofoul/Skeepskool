@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Menu, X, Phone, ChevronDown } from 'lucide-react'
+import { Menu, X, Phone, ChevronDown, ShoppingCart } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import { CONTACT } from '../config/site.js'
 import { buildSrcSet } from '../utils/responsiveImage.js'
@@ -19,13 +19,13 @@ export default function Navbar() {
   const links = [
     { to: '/ecole', label: t.nav.school },
     { to: '/cours', label: t.nav.lessons },
-    { to: lang === 'fr' ? '/reserver' : '/book', label: t.nav.book, match: ['/reserver', '/book'] },
-    { to: '/horaires', label: t.nav.schedule },
     { to: '/location', label: t.nav.rental },
+    { to: '/horaires', label: t.nav.schedule },
     { to: '/album-photo', label: t.nav.photos, match: ['/album-photo', '/photos'] },
-    { to: '/autour', label: t.nav.around },
     { to: '/contact', label: t.nav.contact },
   ]
+
+  const bookingPath = lang === 'fr' ? '/reserver' : '/book'
 
   const linkClass = (isActive) =>
     [
@@ -45,7 +45,7 @@ export default function Navbar() {
           }
           setLang(nextLang)
         }}
-        className="h-9 cursor-pointer appearance-none rounded-full bg-royalBlue pl-3 pr-9 text-sm font-semibold leading-none text-white ring-1 ring-yellow shadow-sm transition hover:bg-[#244fc8] focus:outline-none focus:ring-2 focus:ring-yellow"
+        className="h-9 cursor-pointer appearance-none rounded-full bg-royalBlue pl-3 pr-9 text-sm font-semibold leading-none text-white shadow-sm transition hover:bg-[#244fc8] focus:outline-none"
       >
         <option value="fr" className="text-royalBlue">FR</option>
         <option value="en" className="text-royalBlue">EN</option>
@@ -97,6 +97,14 @@ export default function Navbar() {
             <Phone className="h-4 w-4 text-yellow" />
             {CONTACT.phonePrimaryDisplay}
           </a>
+          <Link
+            to={bookingPath}
+            onClick={() => trackEvent('click_booking_cta', { target: bookingPath, source: 'navbar_desktop_cart' })}
+            className="hidden shrink-0 items-center gap-1.5 rounded-full bg-red px-3 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-yellow hover:text-royalBlue lg:inline-flex"
+          >
+            <ShoppingCart className="h-4 w-4" />
+            {t.nav.cart}
+          </Link>
           <LangToggle className="hidden md:inline-flex md:translate-y-0.5" />
           <button
             onClick={() => setOpen((v) => !v)}
@@ -138,6 +146,20 @@ export default function Navbar() {
               <Phone className="h-5 w-5 text-yellow" />
               {CONTACT.phonePrimaryDisplay}
             </a>
+            <NavLink
+              to={bookingPath}
+              onClick={() => trackEvent('click_booking_cta', { target: bookingPath, source: 'navbar_mobile_cart' })}
+              className={({ isActive }) =>
+                `rounded-lg px-2 py-2.5 text-[0.95rem] font-semibold leading-tight tracking-tight transition-colors sm:px-3 sm:text-base ${
+                  isActive || ['/reserver', '/book'].includes(location.pathname)
+                    ? 'bg-white/10 text-yellow'
+                    : 'text-white hover:bg-white/10'
+                }`
+              }
+            >
+              <ShoppingCart className="mr-2 inline h-4 w-4" />
+              {t.nav.cart}
+            </NavLink>
             <div className="pt-3">
               <LangToggle />
             </div>

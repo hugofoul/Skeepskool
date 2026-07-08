@@ -18,9 +18,10 @@ export const en = {
   nav: {
     home: 'Home',
     school: 'School',
-    lessons: 'Packages',
-    photos: 'Photos',
+    lessons: 'Lessons',
+    photos: 'Gallery',
     book: 'Book',
+    cart: 'Cart',
     schedule: 'Schedule',
     rental: 'Rental',
     around: 'Around',
@@ -34,7 +35,8 @@ export const en = {
     heroSubtitle:
       '40 m north of the main access to Le Porge central beach, our school welcomes you at the foot of the dune and pine forest for surf lessons at the gates of Bordeaux.',
     campingNotePrefix: 'The surf school closest to ',
-    campingNoteLink: 'Camping La Grigne and Bordeaux',
+    campingNoteLink: 'Camping La Grigne',
+    campingNoteSuffix: ' and Bordeaux',
     heroCta: 'Book now',
     heroSecondaryCta: 'Call now',
     heroTrustItems: ['State-certified instructors', 'From age 5', 'Equipment included'],
@@ -108,7 +110,7 @@ export const en = {
   // ---- School ----
   school: {
     heroTitle: 'The school',
-    heroSubtitle: 'A preserved spot, a passionate team, a trusted label.',
+    heroSubtitle: 'A preserved spot, a passionate team, a quality label.',
     sections: [
       {
         tag: 'The spot',
@@ -306,7 +308,7 @@ export const en = {
 
   booking: {
     title: 'Book',
-    subtitle: 'Send your request in a few clicks',
+    subtitle: '',
     intro:
       'To confirm your booking, payment must already be completed by bank transfer before submitting this form.',
 
@@ -366,11 +368,11 @@ export const en = {
 
     totalLabel: 'Total:',
     warning:
-      '⚠️ Important — Your booking is only confirmed once payment has been made BEFORE submitting this form.',
+      'Important — Your booking is only confirmed once payment has been made BEFORE submitting this form.',
     paylibLabel: '',
-    ibanLabel: '🏦 Bank transfer IBAN: FR76 1027 8022 8200 0205 3750 133 — BIC: CMCIFR2A',
+    ibanLabel: 'Bank transfer IBAN: FR76 1027 8022 8200 0205 3750 133 — BIC: CMCIFR2A',
     warningFooter: 'Once payment is done, tick the confirmation checkbox and click Send.',
-    callWeekNote: '📞 Please call the school 1 week before your arrival to confirm your slot.',
+    callWeekNote: 'Please call the school 1 week before your arrival to confirm your slot.',
     paidCheckbox: 'I confirm payment has already been made before submitting this form.',
 
     submit: 'Send',

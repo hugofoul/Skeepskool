@@ -1,5 +1,5 @@
 import { useEffect, lazy, Suspense } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import QuickActionBar from './components/QuickActionBar.jsx'
@@ -10,7 +10,6 @@ const School  = lazy(() => import('./pages/School.jsx'))
 const Lessons = lazy(() => import('./pages/Lessons.jsx'))
 const Schedule = lazy(() => import('./pages/Schedule.jsx'))
 const Rental  = lazy(() => import('./pages/Rental.jsx'))
-const Around  = lazy(() => import('./pages/Around.jsx'))
 const Contact = lazy(() => import('./pages/Contact.jsx'))
 const PhotoAlbum = lazy(() => import('./pages/PhotoAlbum.jsx'))
 const Booking = lazy(() => import('./pages/Booking.jsx'))
@@ -66,8 +65,8 @@ export default function App() {
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/location" element={<Rental />} />
           <Route path="/rental" element={<Rental />} />
-          <Route path="/autour" element={<Around />} />
-          <Route path="/around" element={<Around />} />
+          <Route path="/autour" element={<Navigate to="/contact" replace />} />
+          <Route path="/around" element={<Navigate to="/contact" replace />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/album-photo" element={<PhotoAlbum />} />
           <Route path="/photos" element={<PhotoAlbum />} />

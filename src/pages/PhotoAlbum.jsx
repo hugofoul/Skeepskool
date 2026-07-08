@@ -37,7 +37,7 @@ export default function PhotoAlbum() {
   return (
     <div className="bg-lightGray">
       <SEO
-        title={lang === 'fr' ? 'Album photo' : (lang === 'de' ? 'Fotoalbum' : 'Photo album')}
+        title={lang === 'fr' ? 'Gallerie' : (lang === 'de' ? 'Galerie' : 'Gallery')}
         path="/album-photo"
         alternates={[
           { hrefLang: 'fr-FR', path: '/album-photo' },
@@ -54,9 +54,9 @@ export default function PhotoAlbum() {
       />
 
       <PageHero
-        title={lang === 'fr' ? 'Album photo' : (lang === 'de' ? 'Fotoalbum' : 'Photo album')}
+        title={lang === 'fr' ? 'Gallerie' : (lang === 'de' ? 'Galerie' : 'Gallery')}
         subtitle={
-          lang === 'fr' ? 'Photos Skeepskool' : (lang === 'de' ? 'Skeepskool Fotos' : 'Skeepskool photos')
+          lang === 'fr' ? 'Gallerie Skeepskool' : (lang === 'de' ? 'Skeepskool Galerie' : 'Skeepskool gallery')
         }
         image={images.fondpages}
       />
