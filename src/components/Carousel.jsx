@@ -9,7 +9,6 @@ import { buildSrcSet } from '../utils/responsiveImage.js'
 export default function Carousel({ slides = [], interval = 4500 }) {
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
-  const [autoPlay, setAutoPlay] = useState(true)
   const [dragDelta, setDragDelta] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const count = slides.length
@@ -22,13 +21,13 @@ export default function Carousel({ slides = [], interval = 4500 }) {
   const prev = useCallback(() => goTo(index - 1), [goTo, index])
 
   useEffect(() => {
-    if (count <= 1 || paused || !autoPlay) return
+    if (count <= 1 || paused) return
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduce) return
 
     timer.current = setTimeout(() => goTo(index + 1), interval)
     return () => clearTimeout(timer.current)
-  }, [index, paused, autoPlay, count, interval, goTo])
+  }, [index, paused, count, interval, goTo])
 
   const onDragStart = useCallback((clientX) => {
     startXRef.current = clientX
@@ -110,7 +109,7 @@ export default function Carousel({ slides = [], interval = 4500 }) {
     >
       {/* Track */}
       <div
-        aria-live={paused || !autoPlay ? 'polite' : 'off'}
+        aria-live={paused ? 'polite' : 'off'}
         className={`flex ${isDragging ? '' : 'transition-transform duration-700 ease-out'}`}
         style={{ transform: `translateX(calc(-${index * 100}% + ${dragDelta}px))` }}
       >
@@ -147,14 +146,6 @@ export default function Carousel({ slides = [], interval = 4500 }) {
         className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/85 p-2 text-royalBlue shadow-md transition-colors hover:bg-yellow"
       >
         <ChevronRight className="h-6 w-6" />
-      </button>
-
-      <button
-        onClick={() => setAutoPlay((value) => !value)}
-        aria-label={autoPlay ? 'Mettre en pause le carrousel' : 'Relancer le carrousel'}
-        className="absolute right-3 top-3 rounded-full bg-white/85 px-3 py-1 text-xs font-bold text-royalBlue shadow-md transition-colors hover:bg-yellow"
-      >
-        {autoPlay ? 'Pause' : 'Play'}
       </button>
 
       {/* Dots */}

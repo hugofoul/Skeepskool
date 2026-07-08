@@ -153,7 +153,7 @@ export default function Booking() {
   const [surfers, setSurfers] = useState([{ ...initialSurfer }])
   const nextSurferId = useRef(2)
   const [startDate, setStartDate] = useState('')
-  const [isGiftVoucher, setIsGiftVoucher] = useState(false)
+  const [isGiftVoucher, setIsGiftVoucher] = useState(null)
   const [needsGiftVisual, setNeedsGiftVisual] = useState(false)
   const [paymentType, setPaymentType] = useState('transfer')
   const [payerName, setPayerName] = useState('')
@@ -171,6 +171,7 @@ export default function Booking() {
   const formRef = useRef(null)
   const phoneInputRef = useRef(null)
   const startDateInputRef = useRef(null)
+  const bookingTypeSelected = isGiftVoucher !== null
 
   const daysUntilStartDate = useMemo(() => {
     if (!startDate) return null
@@ -296,7 +297,7 @@ export default function Booking() {
     }
     setPhoneError('')
 
-    if (!isGiftVoucher && isShortNotice) {
+    if (isGiftVoucher === false && isShortNotice) {
       setDateError(b.shortNoticeAlert)
       trackEvent('booking_form_error', { reason: 'short_notice_phone_required' })
       scrollToField(startDateInputRef.current)
@@ -304,7 +305,7 @@ export default function Booking() {
     }
     setDateError('')
 
-    const selectedDate = isGiftVoucher ? b.giftVoucherDateValue : (startDate || b.unknownDate)
+    const selectedDate = isGiftVoucher === true ? b.giftVoucherDateValue : (startDate || b.unknownDate)
     const safeMessage = message.trim() || b.none
     const fullName = `${contact.firstName} ${contact.lastName}`.trim()
 
@@ -315,7 +316,7 @@ export default function Booking() {
     const surfersLines = surfers
       .map((surfer, index) => {
         const surferName = `${surfer.firstName} ${surfer.lastName}`.trim()
-        if (isGiftVoucher) {
+        if (isGiftVoucher === true) {
           return `- ${b.whatsappSurferLine} ${index + 1}: ${surferName}, ${packageByValue.get(surfer.packageValue)}`
         }
         const ageSuffix = b.whatsappSurferLine === 'Surfer' ? ' y/o' : ' ans'
@@ -329,7 +330,7 @@ export default function Booking() {
       b.whatsappHeader,
       `${b.whatsappContact} ${fullName} - ${fullPhone}`,
       `${b.whatsappDate} ${selectedDate}`,
-      `${b.whatsappGiftVoucher} ${isGiftVoucher ? b.giftVoucherYes : b.giftVoucherNo}`,
+      `${b.whatsappGiftVoucher} ${isGiftVoucher === true ? b.giftVoucherYes : b.giftVoucherNo}`,
       `${b.whatsappGiftVisual} ${needsGiftVisual ? b.giftVoucherYes : b.giftVoucherNo}`,
       `${b.whatsappTotal} ${total}€`,
       b.whatsappPayment,
@@ -399,11 +400,11 @@ export default function Booking() {
                     setIsGiftVoucher(false)
                     trackEvent('gift_voucher_selected', { selected: false })
                   }}
-                  aria-pressed={!isGiftVoucher}
+                  aria-pressed={isGiftVoucher === false}
                   className={`relative rounded-2xl border-2 px-4 py-4 text-left transition ${
-                    !isGiftVoucher
+                    isGiftVoucher === false
                       ? 'border-royalBlue bg-royalBlue text-white shadow-lg'
-                      : 'border-transparent bg-lightGray text-royalBlue ring-1 ring-black/5 hover:border-royalBlue/40 hover:bg-white'
+                      : 'border-white/70 bg-white text-royalBlue ring-1 ring-black/5 hover:border-royalBlue/40 hover:bg-white'
                   }`}
                 >
                   <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] opacity-80">
@@ -424,11 +425,11 @@ export default function Booking() {
                     trackEvent('gift_voucher_selected', { selected: true })
                     if (dateError) setDateError('')
                   }}
-                  aria-pressed={isGiftVoucher}
+                  aria-pressed={isGiftVoucher === true}
                   className={`relative rounded-2xl border-2 px-4 py-4 text-left transition ${
-                    isGiftVoucher
+                    isGiftVoucher === true
                       ? 'border-red bg-red text-white shadow-lg'
-                      : 'border-transparent bg-lightGray text-royalBlue ring-1 ring-black/5 hover:border-red/40 hover:bg-white'
+                      : 'border-white/70 bg-white text-royalBlue ring-1 ring-black/5 hover:border-red/40 hover:bg-white'
                   }`}
                 >
                   <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] opacity-85">
@@ -440,6 +441,14 @@ export default function Booking() {
                   </p>
                 </button>
               </div>
+
+              {!bookingTypeSelected && (
+                <div className="rounded-xl border border-royalBlue/20 bg-lightGray px-4 py-3">
+                  <p className="text-sm font-semibold text-royalBlue">
+                    {lang === 'fr' ? 'Choisissez d\'abord le type de réservation.' : (lang === 'de' ? 'Bitte waehle zuerst den Buchungstyp.' : 'Please choose your booking type first.')}
+                  </p>
+                </div>
+              )}
             </div>
           </Reveal>
 
@@ -454,7 +463,7 @@ export default function Booking() {
             className="mt-8 space-y-8"
           >
             <Reveal className="rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5 sm:p-7">
-              <h2 className="text-xl font-black text-royalBlue">{isGiftVoucher ? b.contactTitleGift : b.contactTitle}</h2>
+              <h2 className="text-xl font-black text-royalBlue">{isGiftVoucher === true ? b.contactTitleGift : b.contactTitle}</h2>
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
                 <label className="block">
                   <span className="mb-2 block text-sm font-semibold text-dark">{b.firstName}</span>
@@ -551,7 +560,7 @@ export default function Booking() {
             <Reveal className="rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5 sm:p-7">
               <h2 className="text-xl font-black text-royalBlue">{b.surfersTitle}</h2>
 
-              {!isGiftVoucher && (
+              {isGiftVoucher === false && (
                 <label className="mt-5 flex items-start gap-3 rounded-xl bg-lightGray p-3 text-sm font-semibold text-royalBlue">
                   <input
                     type="checkbox"
@@ -607,7 +616,7 @@ export default function Booking() {
                         />
                       </label>
 
-                      {!isGiftVoucher && (
+                      {isGiftVoucher === false && (
                         <>
                           <label className="block">
                             <span className="mb-2 block text-sm font-semibold text-dark">{b.surferAge}</span>
@@ -640,7 +649,7 @@ export default function Booking() {
                       )}
 
                       <label className="block sm:col-span-2">
-                        <span className="mb-2 block text-sm font-semibold text-dark">{isGiftVoucher ? b.surferPackageGift : b.surferPackage}</span>
+                        <span className="mb-2 block text-sm font-semibold text-dark">{isGiftVoucher === true ? b.surferPackageGift : b.surferPackage}</span>
                         <select
                           className={inputClass}
                           value={surfer.packageValue}
@@ -678,7 +687,7 @@ export default function Booking() {
               <h2 className="text-xl font-black text-royalBlue">{b.commonTitle}</h2>
 
               <div className="mt-5 space-y-4">
-                {!isGiftVoucher && (
+                {isGiftVoucher === false && (
                   <label className="block">
                     <span className="mb-2 block text-sm font-semibold text-dark">{b.startDate}</span>
                     <input
@@ -699,7 +708,7 @@ export default function Booking() {
                   </label>
                 )}
 
-                {isGiftVoucher && (
+                {isGiftVoucher === true && (
                   <label className="flex items-start gap-3 rounded-xl bg-lightGray p-3 text-sm font-semibold text-royalBlue">
                     <input
                       type="checkbox"
@@ -789,6 +798,7 @@ export default function Booking() {
             <Reveal>
               <button
                 type="submit"
+                disabled={!bookingTypeSelected}
                 className="w-full rounded-xl bg-red px-6 py-3 text-base font-black text-white shadow-md transition hover:bg-yellow hover:text-royalBlue"
               >
                 {b.submit}

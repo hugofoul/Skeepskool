@@ -73,13 +73,13 @@ export default function PhotoAlbum() {
             </p>
           </div>
 
-          <div className="mt-10 columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
+          <div className="mt-8 columns-2 gap-2 sm:mt-10 sm:columns-2 sm:gap-4 lg:columns-3 xl:columns-4">
             {photoGallery.map((photo, index) => (
               <button
                 key={photo.src}
                 type="button"
                 onClick={() => openPhoto(index)}
-                className={`group mb-4 block w-full overflow-hidden rounded-[2rem] text-left shadow-xl ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-yellow focus:ring-offset-2 ${photo.className ?? ''}`}
+                className={`group mb-2 block w-full overflow-hidden rounded-xl text-left shadow-md ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-yellow focus:ring-offset-2 sm:mb-4 sm:rounded-[2rem] sm:shadow-xl ${photo.className ?? ''}`}
               >
                 <img
                   src={photo.src}

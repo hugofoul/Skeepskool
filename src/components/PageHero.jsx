@@ -24,12 +24,12 @@ export default function PageHero({ title, subtitle, image }) {
           <div className="absolute inset-0 bg-royalBlue/30" />
         </>
       )}
-      <div className="relative mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 sm:py-24 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 py-10 text-center sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <Reveal>
-          <h1 className="hero-title-font text-4xl font-normal leading-[1.1] text-white sm:text-5xl">{title}</h1>
-          <span className="mx-auto mt-4 block h-1.5 w-24 rounded-full bg-yellow" />
+          <h1 className="hero-title-font text-[2rem] font-normal leading-[1.1] text-white sm:text-5xl">{title}</h1>
+          <span className="mx-auto mt-3 block h-1.5 w-24 rounded-full bg-yellow" />
           {subtitle && (
-            <p className="mx-auto mt-5 max-w-2xl text-lg text-white/90">{subtitle}</p>
+            <p className="mx-auto mt-3 max-w-2xl text-sm text-white/90 sm:mt-5 sm:text-lg">{subtitle}</p>
           )}
         </Reveal>
       </div>
