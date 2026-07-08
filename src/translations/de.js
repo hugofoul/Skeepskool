@@ -259,9 +259,9 @@ export const de = {
     weeklySchedule: {
       ...en.lessons.weeklySchedule,
       badge: 'Wochenplan',
-      title: 'Kursplanung jede Woche aktualisiert',
-      subtitle: 'Alle Kurszeiten im Tab Stundenplan in einer klaren Wochenansicht.',
-      openPlanning: 'Tab Stundenplan öffnen',
+      title: 'Kursplan der Woche',
+      subtitle: '',
+      openPlanning: 'Stundenplan ansehen',
       contactCta: 'Diesen Slot buchen',
     },
     cta: 'Jetzt buchen',

@@ -387,22 +387,9 @@ export default function Booking() {
       <section className="bg-lightGray py-14 sm:py-16">
         <div className="mx-auto w-full max-w-[680px] px-4 sm:px-6">
           <Reveal className="overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-black/5">
-            <div className="bg-gradient-to-r from-royalBlue to-[#2c65da] px-5 py-5 text-white sm:px-6">
-              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-yellow/90">
-                {lang === 'fr' ? 'Reservation' : (lang === 'de' ? 'Buchung' : 'Booking')}
-              </p>
-              <p className="mt-2 text-sm font-semibold leading-relaxed text-white/95 sm:text-base">{b.intro}</p>
-            </div>
-
             <div className="grid gap-4 px-5 py-5 sm:px-6">
-              <div className="rounded-xl border border-red/30 bg-red/10 px-4 py-3">
-                <p className="text-sm font-extrabold text-royalBlue sm:text-base">
-                  {lang === 'fr'
-                    ? 'Choisissez votre type de reservation : cours classique ou bon cadeau.'
-                    : (lang === 'de'
-                      ? 'Waehle deinen Buchungstyp: Standardkurs oder Geschenkgutschein.'
-                      : 'Choose your booking type: standard lesson or gift voucher.')}
-                </p>
+              <div className="rounded-xl border border-yellow/50 bg-yellow/25 px-4 py-3">
+                <p className="text-sm font-bold leading-relaxed text-royalBlue">{b.startDateNote}</p>
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2" role="radiogroup" aria-label="Booking type">
@@ -419,11 +406,14 @@ export default function Booking() {
                       : 'border-transparent bg-lightGray text-royalBlue ring-1 ring-black/5 hover:border-royalBlue/40 hover:bg-white'
                   }`}
                 >
-                  <p className="text-xs font-extrabold uppercase tracking-wider opacity-80">
-                    {lang === 'fr' ? 'Reservation classique' : (lang === 'de' ? 'Normale Buchung' : 'Standard booking')}
+                  <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] opacity-80">
+                    {lang === 'fr' ? 'Cours classique' : (lang === 'de' ? 'Klassischer Kurs' : 'Classic lesson')}
                   </p>
-                  <p className="mt-1 text-sm font-bold sm:text-base">
+                  <p className="mt-1 text-base font-black sm:text-lg">
                     {lang === 'fr' ? 'Je reserve un cours' : (lang === 'de' ? 'Ich buche einen Kurs' : 'I am booking a lesson')}
+                  </p>
+                  <p className="mt-1 text-xs font-semibold opacity-90">
+                    {lang === 'fr' ? 'Séances de surf en collectif ou en privé' : (lang === 'de' ? 'Surfkurse in Gruppe oder privat' : 'Group or private surf lessons')}
                   </p>
                 </button>
 
@@ -441,18 +431,15 @@ export default function Booking() {
                       : 'border-transparent bg-lightGray text-royalBlue ring-1 ring-black/5 hover:border-red/40 hover:bg-white'
                   }`}
                 >
-                  <p className="text-xs font-extrabold uppercase tracking-wider opacity-85">
+                  <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] opacity-85">
                     {lang === 'fr' ? 'Bon cadeau' : (lang === 'de' ? 'Geschenkgutschein' : 'Gift voucher')}
                   </p>
-                  <p className="mt-2 text-sm font-bold sm:text-base">{b.giftVoucherCheckbox}</p>
+                  <p className="mt-1 text-base font-black sm:text-lg">{b.giftVoucherCheckbox}</p>
+                  <p className="mt-1 text-xs font-semibold opacity-90">
+                    {lang === 'fr' ? 'Offrez une séance ou un pack à la personne de votre choix' : (lang === 'de' ? 'Verschenke eine Session oder ein Paket deiner Wahl' : 'Offer a session or package to someone you choose')}
+                  </p>
                 </button>
               </div>
-
-              {!isGiftVoucher && (
-                <div className="rounded-xl border border-yellow/50 bg-yellow/25 px-4 py-3">
-                  <p className="text-sm font-bold leading-relaxed text-royalBlue">{b.startDateNote}</p>
-                </div>
-              )}
             </div>
           </Reveal>
 

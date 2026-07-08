@@ -20,7 +20,6 @@ export default function Navbar() {
     { to: '/ecole', label: t.nav.school },
     { to: '/cours', label: t.nav.lessons },
     { to: '/location', label: t.nav.rental },
-    { to: '/horaires', label: t.nav.schedule },
     { to: '/album-photo', label: t.nav.photos, match: ['/album-photo', '/photos'] },
     { to: '/contact', label: t.nav.contact },
   ]
@@ -62,7 +61,7 @@ export default function Navbar() {
         <div className="h-7 w-7 md:hidden" aria-hidden="true" />
 
         {/* Brand */}
-        <Link to="/" className="group flex items-center justify-self-center md:-ml-4 md:justify-self-auto lg:-ml-6">
+        <a href="/" className="group flex items-center justify-self-center md:-ml-4 md:justify-self-auto lg:-ml-6" aria-label="Retour à l'accueil">
           <div className="h-[4.5rem] w-[15rem] overflow-hidden sm:h-[4.5rem] sm:w-[15rem] md:h-[3.75rem] md:w-[12.5rem] lg:h-[4rem] lg:w-[13.5rem]">
             <img
               src="/logo-skeepskool-2026.svg"
@@ -72,7 +71,7 @@ export default function Navbar() {
               className="h-full w-full object-contain object-center transition-transform duration-300 group-hover:scale-[1.03]"
             />
           </div>
-        </Link>
+        </a>
 
         {/* Center links (desktop) */}
         <div className="hidden items-center gap-8 md:flex">

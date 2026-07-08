@@ -279,9 +279,9 @@ export const en = {
     giftExperienceCta: 'Book or gift now',
     weeklySchedule: {
       badge: 'Weekly timetable',
-      title: 'Lesson planning updated every week',
-      subtitle: 'Find the full lesson details in the Schedule tab, with a clear weekly layout.',
-      openPlanning: 'Open the Schedule tab',
+      title: 'Lesson schedule for the week',
+      subtitle: '',
+      openPlanning: 'See schedule',
       contactCta: 'Book this slot',
     },
     cta: 'Book now',

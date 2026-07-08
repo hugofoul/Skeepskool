@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLang } from '../hooks/useLang.js'
+import { useWeeklySchedule } from '../hooks/useWeeklySchedule.js'
 import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
 import CTAButton from '../components/CTAButton.jsx'
@@ -28,8 +29,16 @@ const packageByCardIndex = ['single', 'pack3', 'pack5', 'pack10', 'pack20', 'pri
 export default function Lessons() {
   const { t, lang } = useLang()
   const l = t.lessons
+  const s = t.schedule
   const bookingPath = lang === 'fr' ? '/reserver' : '/book'
+  const schedulePath = lang === 'fr' ? '/horaires' : '/schedule'
   const [isGiftVisualOpen, setIsGiftVisualOpen] = useState(false)
+  const schedule = useWeeklySchedule({
+    lang,
+    fallbackDays: s.fallbackDays,
+    allLevelsLabel: s.allLevels,
+  })
+  const nextTwoDays = schedule.days.slice(0, 2)
 
   const parseEuroPrice = (value) => {
     const parsed = Number.parseFloat(String(value || '').replace(',', '.').replace(/[^0-9.]/g, ''))
@@ -259,6 +268,63 @@ export default function Lessons() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ---- Next 2 days schedule preview ---- */}
+      <section className="bg-lightGray py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <span className="inline-flex items-center gap-2 rounded-full bg-royalBlue/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-royalBlue">
+              {l.weeklySchedule.badge}
+            </span>
+            <h2 className="mt-4 text-3xl font-black text-royalBlue sm:text-4xl">{l.weeklySchedule.title}</h2>
+            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+            <p className="mt-4 max-w-3xl text-base text-dark/75 sm:text-lg">{l.weeklySchedule.subtitle}</p>
+          </Reveal>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {nextTwoDays.map((day, index) => (
+              <Reveal
+                key={day.day}
+                delay={index * 100}
+                className="overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-black/5"
+              >
+                <div className="bg-royalBlue px-5 py-4 text-white">
+                  <h3 className="text-2xl font-black">{day.day}</h3>
+                </div>
+                <div className="space-y-2 p-5">
+                  {day.slots.length ? day.slots.map((slot) => (
+                    <div
+                      key={`${day.day}-${slot.time}-${slot.type}-${slot.level}`}
+                      className="rounded-xl bg-lightGray px-4 py-3"
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="text-base font-black text-dark">{slot.time}</p>
+                        {slot.type?.includes('Sunset') && (
+                          <span className="rounded-lg bg-yellow px-2 py-1 text-[10px] font-bold uppercase text-red">Sunset</span>
+                        )}
+                      </div>
+                      <p className="mt-1 text-xs font-bold uppercase tracking-tight text-royalBlue/80">{slot.level}</p>
+                    </div>
+                  )) : (
+                    <div className="rounded-xl bg-lightGray px-4 py-4 text-sm font-medium text-dark/60">
+                      {s.fallbackLabel}
+                    </div>
+                  )}
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={150} className="mt-8 flex flex-wrap items-center gap-3">
+            <CTAButton to={schedulePath} className="bg-royalBlue hover:bg-red">
+              {l.weeklySchedule.openPlanning}
+            </CTAButton>
+            <CTAButton to={bookingPath} className="bg-red hover:bg-yellow hover:text-royalBlue">
+              {l.weeklySchedule.contactCta}
+            </CTAButton>
+          </Reveal>
         </div>
       </section>
 
