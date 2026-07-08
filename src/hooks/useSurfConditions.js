@@ -102,13 +102,13 @@ function buildWeekendParagraphs(rawText, lang) {
   return paragraphs
 }
 
-function isSundayInParis() {
+function shouldDisplaySurfConditionsInParis() {
   const dayName = new Intl.DateTimeFormat('en-US', {
     weekday: 'short',
     timeZone: 'Europe/Paris',
   }).format(new Date())
 
-  return dayName === 'Sun'
+  return ['Thu', 'Fri', 'Sat', 'Sun'].includes(dayName)
 }
 
 export function useSurfConditions({ lang = 'fr', fallbackParagraphs = [] }) {
@@ -118,7 +118,7 @@ export function useSurfConditions({ lang = 'fr', fallbackParagraphs = [] }) {
     DEFAULT_CONDITIONS_CSV_URL
 
   const fallbackValue = useMemo(() => fallbackParagraphs, [fallbackParagraphs])
-  const shouldDisplay = !isSundayInParis()
+  const shouldDisplay = shouldDisplaySurfConditionsInParis()
   const [state, setState] = useState({
     paragraphs: shouldDisplay ? fallbackValue : [],
     isLive: false,

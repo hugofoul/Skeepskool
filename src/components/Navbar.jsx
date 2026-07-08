@@ -100,9 +100,9 @@ export default function Navbar() {
           <Link
             to={bookingPath}
             onClick={() => trackEvent('click_booking_cta', { target: bookingPath, source: 'navbar_desktop_cart' })}
-            className="hidden shrink-0 items-center gap-1.5 rounded-full bg-red px-3 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-yellow hover:text-royalBlue lg:inline-flex"
+            className="hidden shrink-0 items-center gap-1.5 rounded-full bg-red px-2.5 py-1 text-xs font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue lg:inline-flex"
           >
-            <ShoppingCart className="h-4 w-4" />
+            <ShoppingCart className="h-3.5 w-3.5" />
             {t.nav.cart}
           </Link>
           <LangToggle className="hidden md:inline-flex md:translate-y-0.5" />
@@ -149,15 +149,9 @@ export default function Navbar() {
             <NavLink
               to={bookingPath}
               onClick={() => trackEvent('click_booking_cta', { target: bookingPath, source: 'navbar_mobile_cart' })}
-              className={({ isActive }) =>
-                `rounded-lg px-2 py-2.5 text-[0.95rem] font-semibold leading-tight tracking-tight transition-colors sm:px-3 sm:text-base ${
-                  isActive || ['/reserver', '/book'].includes(location.pathname)
-                    ? 'bg-white/10 text-yellow'
-                    : 'text-white hover:bg-white/10'
-                }`
-              }
+              className="mt-1 inline-flex w-fit items-center self-start rounded-full bg-red px-3 py-1.5 text-sm font-bold leading-tight text-white transition-colors hover:bg-yellow hover:text-royalBlue"
             >
-              <ShoppingCart className="mr-2 inline h-4 w-4" />
+              <ShoppingCart className="mr-1.5 inline h-3.5 w-3.5" />
               {t.nav.cart}
             </NavLink>
             <div className="pt-3">
