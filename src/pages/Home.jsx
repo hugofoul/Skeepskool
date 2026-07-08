@@ -110,7 +110,7 @@ export default function Home() {
   })
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <SEO
         path="/"
         alternates={[
@@ -125,7 +125,7 @@ export default function Home() {
         )}
       />
       {/* ---------------- HERO ---------------- */}
-      <section className="relative flex min-h-[88vh] items-center justify-center overflow-hidden">
+      <section className="relative flex min-h-[82vh] items-center justify-center overflow-hidden sm:min-h-[88vh]">
         <img
           src={images.homeHero}
           srcSet={buildSrcSet(images.homeHero)}
@@ -138,7 +138,7 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-royalBlue/50" />
         <div className="relative z-10 mx-auto max-w-4xl translate-y-2 px-4 text-center text-white md:-translate-y-4 lg:-translate-y-12">
-          <h1 className="hero-title-font animate-fadeInUp mx-auto max-w-4xl px-2 text-3xl font-bold leading-[1.15] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] md:text-5xl lg:text-6xl xl:text-7xl">
+          <h1 className="hero-title-font animate-fadeInUp mx-auto max-w-4xl px-2 text-[1.9rem] font-bold leading-[1.15] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
             {heroSlogan}
           </h1>
           {h.heroSubtitle && (
@@ -146,7 +146,7 @@ export default function Home() {
               {h.heroSubtitle}
             </p>
           )}
-          <p className="mx-auto mt-5 max-w-xl whitespace-nowrap text-base font-semibold text-white/90 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-xl px-2 text-sm font-semibold leading-snug text-white/90 sm:whitespace-nowrap sm:text-lg sm:leading-normal">
             {h.campingNotePrefix}
             <a
               href="https://camping-leporge.fr/"
@@ -158,11 +158,11 @@ export default function Home() {
             </a>
             <span className="text-yellow">{h.campingNoteSuffix || ''}</span>
           </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-10 flex w-full flex-wrap items-center justify-center gap-3">
             <CTAButton
               to={lang === 'fr' ? '/reserver' : '/book'}
               aria-label={pickLang('Reserver un creneau de cours', 'Book a lesson slot', 'Einen Kurs-Slot buchen')}
-              className="px-6 py-3"
+              className="w-full justify-center px-6 py-3 sm:w-auto"
             >
               <CalendarCheck2 className="h-5 w-5" />
               {h.heroCta}
@@ -170,7 +170,7 @@ export default function Home() {
             <CTAButton
               href={`tel:${CONTACT.phonePrimary}`}
               aria-label={pickLang('Appeler Skeepskool', 'Call Skeepskool', 'Skeepskool anrufen')}
-              className="bg-white px-6 py-3 !text-royalBlue hover:bg-yellow"
+              className="w-full justify-center bg-white px-6 py-3 !text-royalBlue hover:bg-yellow sm:w-auto"
             >
               <Phone className="h-5 w-5" />
               {h.heroSecondaryCta}

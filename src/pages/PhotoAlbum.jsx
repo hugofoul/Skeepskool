@@ -37,7 +37,7 @@ export default function PhotoAlbum() {
   return (
     <div className="bg-lightGray">
       <SEO
-        title={lang === 'fr' ? 'Gallerie' : (lang === 'de' ? 'Galerie' : 'Gallery')}
+        title={lang === 'fr' ? 'Gallerie Photo' : (lang === 'de' ? 'Foto Galerie' : 'Photo Gallery')}
         path="/album-photo"
         alternates={[
           { hrefLang: 'fr-FR', path: '/album-photo' },
@@ -54,10 +54,7 @@ export default function PhotoAlbum() {
       />
 
       <PageHero
-        title={lang === 'fr' ? 'Gallerie' : (lang === 'de' ? 'Galerie' : 'Gallery')}
-        subtitle={
-          lang === 'fr' ? 'Gallerie Skeepskool' : (lang === 'de' ? 'Skeepskool Galerie' : 'Skeepskool gallery')
-        }
+        title={lang === 'fr' ? 'Gallerie Photo' : (lang === 'de' ? 'Foto Galerie' : 'Photo Gallery')}
         image={images.fondpages}
       />
 
@@ -69,7 +66,7 @@ export default function PhotoAlbum() {
             </span>
             <p className="mt-5 text-lg leading-relaxed text-dark/75">
               {lang === 'fr'
-                ? 'Des images simples et naturelles du spot, des sessions et de l’ambiance à l’eau.'
+                ? "Des images du spot, des sessions et de l'ambiance à l'eau"
                 : (lang === 'de'
                   ? 'Einfache und natürliche Bilder vom Spot, den Sessions und der Stimmung im Wasser.'
                   : 'Simple, natural images of the spot, the sessions and the atmosphere in the water.')}

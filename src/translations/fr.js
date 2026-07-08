@@ -131,7 +131,7 @@ export const fr = {
       },
     ],
     valuesTitle: 'Nos valeurs',
-    valuesSubtitle: "Vous apprendre le surf étape par étape dans les règles de l'art.",
+    valuesSubtitle: "Vous apprendre le surf étape par étape dans les règles de l'art",
     values: [
       {
         title: 'Sens marin',
