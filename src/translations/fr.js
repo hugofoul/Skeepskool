@@ -19,6 +19,7 @@ export const fr = {
     home: 'Accueil',
     school: 'École',
     lessons: 'Cours',
+    gift: 'Bon cadeau',
     photos: 'Gallerie',
     book: 'Réserver',
     cart: 'Panier',
@@ -309,7 +310,7 @@ export const fr = {
   },
 
   booking: {
-    title: 'Réserver',
+    title: 'Panier',
     subtitle: '',
     intro:
       'Pour valider votre réservation, le paiement doit déjà être effectué par virement avant l\'envoi de ce formulaire.',
@@ -374,7 +375,7 @@ export const fr = {
     paylibLabel: '',
     ibanLabel: 'Virement IBAN : FR76 1027 8022 8200 0205 3750 133 — BIC : CMCIFR2A',
     warningFooter: 'Une fois le paiement effectué, cochez la case de confirmation puis cliquez sur Envoyer.',
-    callWeekNote: 'Merci d\'appeler l\'école 1 semaine avant votre arrivée pour confirmer le créneau.',
+    callWeekNote: 'Merci d\'appeler l\'école 3 jours avant votre arrivée pour confirmer le créneau.',
     paidCheckbox: 'Je confirme avoir déjà effectué le paiement avant envoi du formulaire.',
 
     submit: 'Envoyer',
@@ -395,7 +396,7 @@ export const fr = {
     whatsappPayment: 'Paiement : Déjà effectué',
     whatsappPaymentType: 'Type de paiement :',
     whatsappPayerName: 'Payeur :',
-    whatsappCallWeek: 'Je contacterai l\'école 1 semaine avant l\'arrivée.',
+    whatsappCallWeek: 'Je contacterai l\'école 3 jours avant l\'arrivée.',
     whatsappClosing:
       'Merci de confirmer la disponibilité.',
     whatsappSurferLine: 'Surfeur',

@@ -62,15 +62,10 @@ export default function PhotoAlbum() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full bg-lightGray px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-royalBlue">
-              {lang === 'de' ? 'Sammlung' : 'Collection'}
-            </span>
-            <p className="mt-5 text-lg leading-relaxed text-dark/75">
               {lang === 'fr'
                 ? "Des images du spot, des sessions et de l'ambiance à l'eau"
-                : (lang === 'de'
-                  ? 'Einfache und natürliche Bilder vom Spot, den Sessions und der Stimmung im Wasser.'
-                  : 'Simple, natural images of the spot, the sessions and the atmosphere in the water.')}
-            </p>
+                : (lang === 'de' ? 'Sammlung' : 'Collection')}
+            </span>
           </div>
 
           <div className="mt-8 columns-2 gap-2 sm:mt-10 sm:columns-2 sm:gap-4 lg:columns-3 xl:columns-4">

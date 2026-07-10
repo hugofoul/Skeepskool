@@ -53,7 +53,7 @@ export default function Booking() {
   const location = useLocation()
 
   const bookingPath = lang === 'fr' ? '/reserver' : '/book'
-  const bookingName = lang === 'fr' ? 'Réserver' : (lang === 'de' ? 'Buchen' : 'Book a Lesson')
+  const bookingName = lang === 'fr' ? 'Panier' : (lang === 'de' ? 'Warenkorb' : 'Cart')
 
   const bookingOffers = (b.packages || [])
     .filter((pkg) => Number.isFinite(pkg?.price))
@@ -153,8 +153,6 @@ export default function Booking() {
   const [surfers, setSurfers] = useState([{ ...initialSurfer }])
   const nextSurferId = useRef(2)
   const [startDate, setStartDate] = useState('')
-  const [isGiftVoucher, setIsGiftVoucher] = useState(null)
-  const [needsGiftVisual, setNeedsGiftVisual] = useState(false)
   const [paymentType, setPaymentType] = useState('transfer')
   const [payerName, setPayerName] = useState('')
   const [sameAsContactSurfer, setSameAsContactSurfer] = useState(false)
@@ -171,7 +169,6 @@ export default function Booking() {
   const formRef = useRef(null)
   const phoneInputRef = useRef(null)
   const startDateInputRef = useRef(null)
-  const bookingTypeSelected = isGiftVoucher !== null
 
   const daysUntilStartDate = useMemo(() => {
     if (!startDate) return null
@@ -297,7 +294,7 @@ export default function Booking() {
     }
     setPhoneError('')
 
-    if (isGiftVoucher === false && isShortNotice) {
+    if (isShortNotice) {
       setDateError(b.shortNoticeAlert)
       trackEvent('booking_form_error', { reason: 'short_notice_phone_required' })
       scrollToField(startDateInputRef.current)
@@ -305,7 +302,7 @@ export default function Booking() {
     }
     setDateError('')
 
-    const selectedDate = isGiftVoucher === true ? b.giftVoucherDateValue : (startDate || b.unknownDate)
+    const selectedDate = startDate || b.unknownDate
     const safeMessage = message.trim() || b.none
     const fullName = `${contact.firstName} ${contact.lastName}`.trim()
 
@@ -316,9 +313,6 @@ export default function Booking() {
     const surfersLines = surfers
       .map((surfer, index) => {
         const surferName = `${surfer.firstName} ${surfer.lastName}`.trim()
-        if (isGiftVoucher === true) {
-          return `- ${b.whatsappSurferLine} ${index + 1}: ${surferName}, ${packageByValue.get(surfer.packageValue)}`
-        }
         const ageSuffix = b.whatsappSurferLine === 'Surfer' ? ' y/o' : ' ans'
         return `- ${b.whatsappSurferLine} ${index + 1}: ${surferName}, ${surfer.age}${ageSuffix}, ${levelByValue.get(
           surfer.level,
@@ -330,8 +324,8 @@ export default function Booking() {
       b.whatsappHeader,
       `${b.whatsappContact} ${fullName} - ${fullPhone}`,
       `${b.whatsappDate} ${selectedDate}`,
-      `${b.whatsappGiftVoucher} ${isGiftVoucher === true ? b.giftVoucherYes : b.giftVoucherNo}`,
-      `${b.whatsappGiftVisual} ${needsGiftVisual ? b.giftVoucherYes : b.giftVoucherNo}`,
+      `${b.whatsappGiftVoucher} ${b.giftVoucherNo}`,
+      `${b.whatsappGiftVisual} ${b.giftVoucherNo}`,
       `${b.whatsappTotal} ${total}€`,
       b.whatsappPayment,
       `${b.whatsappPaymentType} ${paymentMethodByValue.get(paymentType)}`,
@@ -357,7 +351,7 @@ export default function Booking() {
       surfers_count: surfers.length,
       total_eur: total,
       payment_type: paymentType,
-      is_gift_voucher: isGiftVoucher,
+      is_gift_voucher: false,
     })
 
     const displayName = contact.firstName || b.firstName
@@ -368,7 +362,7 @@ export default function Booking() {
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? 'Réserver' : (lang === 'de' ? 'Buchen' : 'Book a Lesson')}
+        title={lang === 'fr' ? 'Panier' : (lang === 'de' ? 'Warenkorb' : 'Cart')}
         path={bookingPath}
         lang={lang}
         alternates={[
@@ -377,10 +371,10 @@ export default function Booking() {
           { hrefLang: 'x-default', path: '/reserver' },
         ]}
         description={lang === 'fr'
-          ? "Réservez votre cours de surf à Skeepskool, école de surf au Porge Océan. Choisissez votre formule et validez votre place en ligne."
+          ? "Panier Skeepskool : achetez vos cours de surf à l'avance et réservez votre créneau en ligne."
           : (lang === 'de'
-            ? 'Buche deinen Surfkurs bei Skeepskool in Le Porge Océan. Wähle dein Paket und sichere deinen Platz online.'
-            : "Book your surf lesson at Skeepskool, surf school at Le Porge Océan. Choose your package and secure your spot online.")}
+            ? 'Skeepskool Warenkorb: Kaufe Surfkurse im Voraus und sichere dir deinen Slot online.'
+            : "Skeepskool cart: buy surf lessons in advance and secure your slot online." )}
         structuredData={bookingStructuredData}
       />
       <PageHero title={b.title} subtitle={b.subtitle} image={images.fondpages} />
@@ -393,62 +387,15 @@ export default function Booking() {
                 <p className="text-sm font-bold leading-relaxed text-royalBlue">{b.startDateNote}</p>
               </div>
 
-              <div className="grid gap-3 sm:grid-cols-2" role="radiogroup" aria-label="Booking type">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsGiftVoucher(false)
-                    trackEvent('gift_voucher_selected', { selected: false })
-                  }}
-                  aria-pressed={isGiftVoucher === false}
-                  className={`relative rounded-2xl border-2 px-4 py-4 text-left transition ${
-                    isGiftVoucher === false
-                      ? 'border-royalBlue bg-royalBlue text-white shadow-lg'
-                      : 'border-white/70 bg-white text-royalBlue ring-1 ring-black/5 hover:border-royalBlue/40 hover:bg-white'
-                  }`}
-                >
-                  <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] opacity-80">
-                    {lang === 'fr' ? 'Cours classique' : (lang === 'de' ? 'Klassischer Kurs' : 'Classic lesson')}
-                  </p>
-                  <p className="mt-1 text-base font-black sm:text-lg">
-                    {lang === 'fr' ? 'Je reserve un cours' : (lang === 'de' ? 'Ich buche einen Kurs' : 'I am booking a lesson')}
-                  </p>
-                  <p className="mt-1 text-xs font-semibold opacity-90">
-                    {lang === 'fr' ? 'Séances de surf en collectif ou en privé' : (lang === 'de' ? 'Surfkurse in Gruppe oder privat' : 'Group or private surf lessons')}
-                  </p>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsGiftVoucher(true)
-                    trackEvent('gift_voucher_selected', { selected: true })
-                    if (dateError) setDateError('')
-                  }}
-                  aria-pressed={isGiftVoucher === true}
-                  className={`relative rounded-2xl border-2 px-4 py-4 text-left transition ${
-                    isGiftVoucher === true
-                      ? 'border-red bg-red text-white shadow-lg'
-                      : 'border-white/70 bg-white text-royalBlue ring-1 ring-black/5 hover:border-red/40 hover:bg-white'
-                  }`}
-                >
-                  <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] opacity-85">
-                    {lang === 'fr' ? 'Bon cadeau' : (lang === 'de' ? 'Geschenkgutschein' : 'Gift voucher')}
-                  </p>
-                  <p className="mt-1 text-base font-black sm:text-lg">{b.giftVoucherCheckbox}</p>
-                  <p className="mt-1 text-xs font-semibold opacity-90">
-                    {lang === 'fr' ? 'Offrez une séance ou un pack à la personne de votre choix' : (lang === 'de' ? 'Verschenke eine Session oder ein Paket deiner Wahl' : 'Offer a session or package to someone you choose')}
-                  </p>
-                </button>
+              <div className="rounded-xl border border-royalBlue/30 bg-white px-4 py-3">
+                <p className="text-sm font-extrabold text-royalBlue sm:text-base">
+                  {lang === 'fr'
+                    ? 'Panier cours : achat de cours à l\'avance.'
+                    : (lang === 'de'
+                      ? 'Kurs-Warenkorb: Surfkurse im Voraus kaufen.'
+                      : 'Lesson cart: buy lessons in advance.')}
+                </p>
               </div>
-
-              {!bookingTypeSelected && (
-                <div className="rounded-xl border border-royalBlue/20 bg-lightGray px-4 py-3">
-                  <p className="text-sm font-semibold text-royalBlue">
-                    {lang === 'fr' ? 'Choisissez d\'abord le type de réservation.' : (lang === 'de' ? 'Bitte waehle zuerst den Buchungstyp.' : 'Please choose your booking type first.')}
-                  </p>
-                </div>
-              )}
             </div>
           </Reveal>
 
@@ -463,7 +410,7 @@ export default function Booking() {
             className="mt-8 space-y-8"
           >
             <Reveal className="rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5 sm:p-7">
-              <h2 className="text-xl font-black text-royalBlue">{isGiftVoucher === true ? b.contactTitleGift : b.contactTitle}</h2>
+              <h2 className="text-xl font-black text-royalBlue">{b.contactTitle}</h2>
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
                 <label className="block">
                   <span className="mb-2 block text-sm font-semibold text-dark">{b.firstName}</span>
@@ -560,17 +507,15 @@ export default function Booking() {
             <Reveal className="rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5 sm:p-7">
               <h2 className="text-xl font-black text-royalBlue">{b.surfersTitle}</h2>
 
-              {isGiftVoucher === false && (
-                <label className="mt-5 flex items-start gap-3 rounded-xl bg-lightGray p-3 text-sm font-semibold text-royalBlue">
-                  <input
-                    type="checkbox"
-                    className="mt-0.5 h-4 w-4 rounded border-dark/30 text-royalBlue focus:ring-royalBlue"
-                    checked={sameAsContactSurfer}
-                    onChange={(e) => setSameAsContactSurfer(e.target.checked)}
-                  />
-                  <span>{b.sameAsContactSurfer}</span>
-                </label>
-              )}
+              <label className="mt-5 flex items-start gap-3 rounded-xl bg-lightGray p-3 text-sm font-semibold text-royalBlue">
+                <input
+                  type="checkbox"
+                  className="mt-0.5 h-4 w-4 rounded border-dark/30 text-royalBlue focus:ring-royalBlue"
+                  checked={sameAsContactSurfer}
+                  onChange={(e) => setSameAsContactSurfer(e.target.checked)}
+                />
+                <span>{b.sameAsContactSurfer}</span>
+              </label>
 
               <div className="mt-5 space-y-5">
                 {surfers.map((surfer, index) => (
@@ -616,40 +561,36 @@ export default function Booking() {
                         />
                       </label>
 
-                      {isGiftVoucher === false && (
-                        <>
-                          <label className="block">
-                            <span className="mb-2 block text-sm font-semibold text-dark">{b.surferAge}</span>
-                            <input
-                              type="number"
-                              min="1"
-                              className={inputClass}
-                              value={surfer.age}
-                              onChange={(e) => updateSurfer(index, 'age', e.target.value)}
-                              required
-                            />
-                          </label>
+                      <label className="block">
+                        <span className="mb-2 block text-sm font-semibold text-dark">{b.surferAge}</span>
+                        <input
+                          type="number"
+                          min="1"
+                          className={inputClass}
+                          value={surfer.age}
+                          onChange={(e) => updateSurfer(index, 'age', e.target.value)}
+                          required
+                        />
+                      </label>
 
-                          <label className="block">
-                            <span className="mb-2 block text-sm font-semibold text-dark">{b.surferLevel}</span>
-                            <select
-                              className={inputClass}
-                              value={surfer.level}
-                              onChange={(e) => updateSurfer(index, 'level', e.target.value)}
-                              required
-                            >
-                              {b.levels.map((level) => (
-                                <option key={level.value} value={level.value}>
-                                  {level.label}
-                                </option>
-                              ))}
-                            </select>
-                          </label>
-                        </>
-                      )}
+                      <label className="block">
+                        <span className="mb-2 block text-sm font-semibold text-dark">{b.surferLevel}</span>
+                        <select
+                          className={inputClass}
+                          value={surfer.level}
+                          onChange={(e) => updateSurfer(index, 'level', e.target.value)}
+                          required
+                        >
+                          {b.levels.map((level) => (
+                            <option key={level.value} value={level.value}>
+                              {level.label}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
 
                       <label className="block sm:col-span-2">
-                        <span className="mb-2 block text-sm font-semibold text-dark">{isGiftVoucher === true ? b.surferPackageGift : b.surferPackage}</span>
+                        <span className="mb-2 block text-sm font-semibold text-dark">{b.surferPackage}</span>
                         <select
                           className={inputClass}
                           value={surfer.packageValue}
@@ -687,38 +628,24 @@ export default function Booking() {
               <h2 className="text-xl font-black text-royalBlue">{b.commonTitle}</h2>
 
               <div className="mt-5 space-y-4">
-                {isGiftVoucher === false && (
-                  <label className="block">
-                    <span className="mb-2 block text-sm font-semibold text-dark">{b.startDate}</span>
-                    <input
-                      ref={startDateInputRef}
-                      type="date"
-                      className={inputClass}
-                      value={startDate}
-                      onChange={(e) => {
-                        setStartDate(e.target.value)
-                        if (dateError) setDateError('')
-                      }}
-                      min={todayDate}
-                      required
-                    />
-                    {(isShortNotice || dateError) && (
-                      <span className="mt-2 block text-xs font-bold text-red">{b.shortNoticeAlert}</span>
-                    )}
-                  </label>
-                )}
-
-                {isGiftVoucher === true && (
-                  <label className="flex items-start gap-3 rounded-xl bg-lightGray p-3 text-sm font-semibold text-royalBlue">
-                    <input
-                      type="checkbox"
-                      className="mt-0.5 h-4 w-4 rounded border-dark/30 text-royalBlue focus:ring-royalBlue"
-                      checked={needsGiftVisual}
-                      onChange={(e) => setNeedsGiftVisual(e.target.checked)}
-                    />
-                    <span>{b.giftVisualCheckbox}</span>
-                  </label>
-                )}
+                <label className="block">
+                  <span className="mb-2 block text-sm font-semibold text-dark">{b.startDate}</span>
+                  <input
+                    ref={startDateInputRef}
+                    type="date"
+                    className={inputClass}
+                    value={startDate}
+                    onChange={(e) => {
+                      setStartDate(e.target.value)
+                      if (dateError) setDateError('')
+                    }}
+                    min={todayDate}
+                    required
+                  />
+                  {(isShortNotice || dateError) && (
+                    <span className="mt-2 block text-xs font-bold text-red">{b.shortNoticeAlert}</span>
+                  )}
+                </label>
 
                 <label className="block sm:max-w-sm">
                   <span className="mb-2 block text-sm font-semibold text-dark">{b.paymentType}</span>
@@ -798,7 +725,6 @@ export default function Booking() {
             <Reveal>
               <button
                 type="submit"
-                disabled={!bookingTypeSelected}
                 className="w-full rounded-xl bg-red px-6 py-3 text-base font-black text-white shadow-md transition hover:bg-yellow hover:text-royalBlue"
               >
                 {b.submit}

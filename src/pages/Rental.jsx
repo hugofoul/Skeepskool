@@ -1,4 +1,4 @@
-import { Waves, ShieldQuestion, Info } from 'lucide-react'
+import { Waves, ShieldQuestion, Info, Phone } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
@@ -239,14 +239,15 @@ export default function Rental() {
 
           <div className="mt-14 text-center">
             {r.callNote ? (
-              <div className="mx-auto mb-6 max-w-2xl rounded-2xl border-2 border-red/40 bg-gradient-to-r from-red/10 via-yellow/20 to-red/10 px-5 py-4 shadow-md ring-1 ring-red/20 sm:px-6 sm:py-5">
-                <p className="text-base font-black leading-relaxed text-red sm:text-xl">
+              <div className="mx-auto mb-6 max-w-3xl rounded-3xl border border-royalBlue/20 bg-white px-5 py-5 shadow-lg ring-1 ring-black/5 sm:px-7 sm:py-6">
+                <p className="inline-flex items-start gap-2 text-base font-extrabold leading-relaxed text-royalBlue sm:text-xl">
+                  <Phone className="mt-1 h-5 w-5 shrink-0 text-red" />
                   {r.callNote}
                 </p>
               </div>
             ) : null}
             <CTAButton to="/contact" className="text-lg">
-              {r.cta}
+              {r.cta || (lang === 'fr' ? 'Nous contacter' : (lang === 'de' ? 'Kontakt' : 'Contact us'))}
             </CTAButton>
           </div>
         </div>

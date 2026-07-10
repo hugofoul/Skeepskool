@@ -19,6 +19,7 @@ export const en = {
     home: 'Home',
     school: 'School',
     lessons: 'Lessons',
+    gift: 'Voucher',
     photos: 'Gallery',
     book: 'Book',
     cart: 'Cart',
@@ -307,7 +308,7 @@ export const en = {
   },
 
   booking: {
-    title: 'Book',
+    title: 'Cart',
     subtitle: '',
     intro:
       'To confirm your booking, payment must already be completed by bank transfer before submitting this form.',

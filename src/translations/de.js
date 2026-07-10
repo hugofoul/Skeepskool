@@ -19,6 +19,7 @@ export const de = {
     home: 'Startseite',
     school: 'Schule',
     lessons: 'Kurse',
+    gift: 'Gutschein',
     photos: 'Galerie',
     book: 'Buchen',
     cart: 'Warenkorb',
@@ -289,7 +290,7 @@ export const de = {
 
   booking: {
     ...en.booking,
-    title: 'Buchen',
+    title: 'Warenkorb',
     subtitle: '',
     intro: 'Zur Bestätigung deiner Buchung muss die Zahlung per Überweisung vor dem Absenden bereits erfolgt sein.',
     contactTitle: 'Kontaktinformationen',

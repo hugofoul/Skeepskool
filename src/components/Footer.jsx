@@ -6,17 +6,16 @@ import { buildSrcSet } from '../utils/responsiveImage.js'
 import { trackEvent } from '../lib/analytics.js'
 
 export default function Footer() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const year = new Date().getFullYear()
 
   const links = [
     { to: '/', label: t.nav.home },
     { to: '/ecole', label: t.nav.school },
     { to: '/cours', label: t.nav.lessons },
-    { to: '/horaires', label: t.nav.schedule },
     { to: '/location', label: t.nav.rental },
+    { to: lang === 'fr' ? '/bon-cadeau' : '/gift-voucher', label: t.nav.gift },
     { to: '/album-photo', label: t.nav.photos },
-    { to: '/autour', label: t.nav.around },
     { to: '/contact', label: t.nav.contact },
   ]
 

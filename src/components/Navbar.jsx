@@ -20,6 +20,7 @@ export default function Navbar() {
     { to: '/ecole', label: t.nav.school },
     { to: '/cours', label: t.nav.lessons },
     { to: '/location', label: t.nav.rental },
+    { to: lang === 'fr' ? '/bon-cadeau' : '/gift-voucher', label: t.nav.gift, match: ['/bon-cadeau', '/gift-voucher'] },
     { to: '/album-photo', label: t.nav.photos, match: ['/album-photo', '/photos'] },
     { to: '/contact', label: t.nav.contact },
   ]
