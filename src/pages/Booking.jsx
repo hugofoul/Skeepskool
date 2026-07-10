@@ -307,16 +307,12 @@ export default function Booking() {
     const fullName = `${contact.firstName} ${contact.lastName}`.trim()
 
     const packageByValue = new Map(b.packages.map((pkg) => [pkg.value, pkg.label]))
-    const levelByValue = new Map(b.levels.map((level) => [level.value, level.label]))
     const paymentMethodByValue = new Map(b.paymentMethods.map((method) => [method.value, method.label]))
 
     const surfersLines = surfers
       .map((surfer, index) => {
         const surferName = `${surfer.firstName} ${surfer.lastName}`.trim()
-        const ageSuffix = b.whatsappSurferLine === 'Surfer' ? ' y/o' : ' ans'
-        return `- ${b.whatsappSurferLine} ${index + 1}: ${surferName}, ${surfer.age}${ageSuffix}, ${levelByValue.get(
-          surfer.level,
-        )}, ${packageByValue.get(surfer.packageValue)}`
+        return `- ${b.whatsappSurferLine} ${index + 1}: ${surferName}, ${packageByValue.get(surfer.packageValue)}`
       })
       .join('\n')
 
@@ -559,34 +555,6 @@ export default function Booking() {
                           onChange={(e) => updateSurfer(index, 'lastName', e.target.value)}
                           required
                         />
-                      </label>
-
-                      <label className="block">
-                        <span className="mb-2 block text-sm font-semibold text-dark">{b.surferAge}</span>
-                        <input
-                          type="number"
-                          min="1"
-                          className={inputClass}
-                          value={surfer.age}
-                          onChange={(e) => updateSurfer(index, 'age', e.target.value)}
-                          required
-                        />
-                      </label>
-
-                      <label className="block">
-                        <span className="mb-2 block text-sm font-semibold text-dark">{b.surferLevel}</span>
-                        <select
-                          className={inputClass}
-                          value={surfer.level}
-                          onChange={(e) => updateSurfer(index, 'level', e.target.value)}
-                          required
-                        >
-                          {b.levels.map((level) => (
-                            <option key={level.value} value={level.value}>
-                              {level.label}
-                            </option>
-                          ))}
-                        </select>
                       </label>
 
                       <label className="block sm:col-span-2">

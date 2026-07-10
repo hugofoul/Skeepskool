@@ -76,16 +76,31 @@ export default function PhotoAlbum() {
                 onClick={() => openPhoto(index)}
                 className={`group mb-2 block w-full overflow-hidden rounded-xl text-left shadow-md ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-yellow focus:ring-offset-2 sm:mb-4 sm:rounded-[2rem] sm:shadow-xl ${photo.className ?? ''}`}
               >
-                <img
-                  src={photo.src}
-                  srcSet={buildSrcSet(photo.src)}
-                  sizes={ALBUM_SIZES}
-                  alt={photo.alt}
-                  className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                  loading={index < 2 ? 'eager' : 'lazy'}
-                  fetchPriority={index === 0 ? 'high' : 'auto'}
-                  decoding="async"
-                />
+                {photo.type === 'video' ? (
+                  <div className="relative">
+                    <video
+                      src={photo.src}
+                      className="pointer-events-none h-auto w-full object-cover"
+                      muted
+                      playsInline
+                      preload="metadata"
+                    />
+                    <span className="absolute left-3 top-3 rounded-full bg-black/65 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+                      Video
+                    </span>
+                  </div>
+                ) : (
+                  <img
+                    src={photo.src}
+                    srcSet={buildSrcSet(photo.src)}
+                    sizes={ALBUM_SIZES}
+                    alt={photo.alt}
+                    className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    loading={index < 2 ? 'eager' : 'lazy'}
+                    fetchPriority={index === 0 ? 'high' : 'auto'}
+                    decoding="async"
+                  />
+                )}
               </button>
             ))}
           </div>
@@ -113,13 +128,23 @@ export default function PhotoAlbum() {
             </button>
 
             <div className="relative flex items-center justify-center bg-black">
-              <img
-                src={currentPhoto.src}
-                srcSet={buildSrcSet(currentPhoto.src)}
-                sizes="94vw"
-                alt={currentPhoto.alt}
-                className="block h-auto max-h-[calc(100dvh-8rem)] w-auto max-w-[94vw] object-contain sm:max-h-[85dvh]"
-              />
+              {currentPhoto.type === 'video' ? (
+                <video
+                  src={currentPhoto.src}
+                  controls
+                  autoPlay
+                  playsInline
+                  className="block h-auto max-h-[calc(100dvh-8rem)] w-auto max-w-[94vw] object-contain sm:max-h-[85dvh]"
+                />
+              ) : (
+                <img
+                  src={currentPhoto.src}
+                  srcSet={buildSrcSet(currentPhoto.src)}
+                  sizes="94vw"
+                  alt={currentPhoto.alt}
+                  className="block h-auto max-h-[calc(100dvh-8rem)] w-auto max-w-[94vw] object-contain sm:max-h-[85dvh]"
+                />
+              )}
               <button
                 type="button"
                 onClick={() => setActiveIndex((current) => (current - 1 + photoGallery.length) % photoGallery.length)}

@@ -285,7 +285,7 @@ export const fr = {
       title: 'Le planning des cours de la semaine',
       subtitle: '',
       openPlanning: 'Voir les horaires',
-      contactCta: 'Réserver ce créneau',
+      contactCta: 'Reserver',
     },
     cta: 'Réserver maintenant',
   },
@@ -311,7 +311,7 @@ export const fr = {
 
   booking: {
     title: 'Panier',
-    subtitle: '',
+    subtitle: 'Le paiement se fera par virement Bancaire (IBAN)',
     intro:
       'Pour valider votre réservation, le paiement doit déjà être effectué par virement avant l\'envoi de ce formulaire.',
 

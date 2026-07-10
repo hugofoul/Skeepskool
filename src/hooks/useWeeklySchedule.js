@@ -209,20 +209,31 @@ function parseBulletinEntries(rawText, allLevelsLabel) {
     const date = toDateFromFrenchParts(dayRaw, monthRaw)
     if (!date) return
 
-    const times = [...afterAt.matchAll(/(\d{1,2})h(?:(\d{2}))?/gi)].map((match) => {
+    // Parse each time slot independently so annotations are bound to the right hour.
+    const slotMatches = [...afterAt.matchAll(/(\d{1,2})h(?:(\d{2}))?\s*(?:\(([^)]+)\))?/gi)]
+    if (!slotMatches.length) return
+
+    slotMatches.forEach((match) => {
       const hours = String(Number(match[1])).padStart(2, '0')
       const minutes = match[2] || '00'
-      return `${hours}:${minutes}`
-    })
+      const time = `${hours}:${minutes}`
+      const extra = (match[3] || '').trim()
 
-    if (!times.length) return
+      const hasSunset = /sunset|afterwork/i.test(extra)
+      const type = hasSunset ? 'Sunset-afterwork' : ''
 
-    const extraMatch = line.match(/\(([^)]+)\)/)
-    const extra = extraMatch ? extraMatch[1] : ''
-    const type = /sunset|afterwork/i.test(extra) ? 'Sunset-afterwork' : ''
-    const level = extra && !/sunset|afterwork/i.test(extra) ? extra : allLevelsLabel
+      // Keep explicit level info when provided; for sunset-only tags fall back to default level.
+      const cleanedLevel = hasSunset
+        ? extra
+          .replace(/sunset/gi, '')
+          .replace(/afterwork/gi, '')
+          .replace(/[-–—+/|]/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim()
+        : extra
 
-    times.forEach((time) => {
+      const level = cleanedLevel || allLevelsLabel
+
       entries.push({ date, time, type, level })
     })
   })

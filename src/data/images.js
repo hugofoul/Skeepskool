@@ -53,6 +53,12 @@ export const carousel = [
 // Home page photo gallery — used for the “plus de photos” section.
 export const photoGallery = [
   {
+    type: 'video',
+    src: '/videos/player_export 8.mov',
+    alt: 'Session surf en video',
+    className: 'md:col-span-2',
+  },
+  {
     src: '/images/vague_avec_planche.webp',
     alt: 'Planche de surf portée par une vague au large',
     className: 'md:col-span-2 md:row-span-2',
