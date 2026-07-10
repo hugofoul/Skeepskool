@@ -34,7 +34,7 @@ export const fr = {
     heroTitle: 'SKEEPSKOOL',
     heroTagline: 'Sécurité, technique et sens marin',
     heroSubtitle: '',
-    campingNotePrefix: 'L’école de surf la plus proche du ',
+    campingNotePrefix: 'L’école de surf près du ',
     campingNoteLink: 'Camping La Grigne',
     campingNoteSuffix: ' et de Bordeaux',
     heroCta: 'Réserver',

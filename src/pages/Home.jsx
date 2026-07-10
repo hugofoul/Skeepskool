@@ -24,7 +24,7 @@ export default function Home() {
   const isDe = lang === 'de'
   const pickLang = (frText, enText, deText) => (isFr ? frText : (isDe ? deText : enText))
   const heroSlogan = pickLang(
-    "Bienvenue à l'école de surf de la Plage Centrale du Porge",
+    "École de surf de la Plage Centrale du Porge",
     'Welcome to the surf school of Le Porge Central Beach',
     'Willkommen in der Surfschule am Zentralstrand von Le Porge',
   )
@@ -156,7 +156,7 @@ export default function Home() {
             >
               {h.campingNoteLink}
             </a>
-            <span className="text-yellow">{h.campingNoteSuffix || ''}</span>
+            <span className="text-white/90">{h.campingNoteSuffix || ''}</span>
           </p>
           <div className="mt-10 flex w-full flex-wrap items-center justify-center gap-3">
             <CTAButton
