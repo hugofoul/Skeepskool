@@ -142,7 +142,7 @@ export default function Home() {
             {isFr ? (
               <>
                 <span className="block w-full text-center">L'école de surf</span>
-                <span className="block w-full text-center text-[0.62em] font-semibold text-white/92 sm:text-[0.56em]">de la</span>
+                <span className="block w-full text-center text-[0.8rem] font-semibold text-white/92 sm:text-[0.95rem] md:text-[1.05rem] lg:text-[1.15rem]">de la</span>
                 <span className="block w-full whitespace-nowrap text-center">Plage Centrale du Porge</span>
               </>
             ) : (
