@@ -196,6 +196,18 @@ export default function Home() {
           </div>
         </div>
 
+        <div className="home-hero-subline absolute bottom-6 right-4 z-10 sm:bottom-8 sm:right-6 lg:bottom-10 lg:right-10" style={{ animationDelay: '1.8s' }}>
+          <span className="flex h-24 w-24 items-center justify-center sm:h-28 sm:w-28 lg:h-32 lg:w-32">
+            <img
+              src="/images/Web - Logo label EFSurf neutre_quadri-paysage.png"
+              alt={lang === 'fr' ? 'Logo EFSurf' : 'EFSurf logo'}
+              className="h-full w-full object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+          </span>
+        </div>
+
         <div className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-center text-white/90">
           <p className="text-[10px] font-semibold uppercase tracking-[0.2em]">
             {pickLang('Faites defiler', 'Scroll', 'Scrollen')}
