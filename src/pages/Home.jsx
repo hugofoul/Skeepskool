@@ -40,19 +40,6 @@ export default function Home() {
         middle: 'at',
         bottom: 'Le Porge Central Beach',
       })
-  const campingLineLabel = `${h.campingNotePrefix}${h.campingNoteLink}${h.campingNoteSuffix || ''}`
-  const renderAnimatedChars = (text, startIndex, className = '') => (
-    Array.from(text).map((char, index) => (
-      <span
-        key={`${className}-${startIndex + index}-${char}`}
-        aria-hidden="true"
-        className={`home-hero-char ${className}`.trim()}
-        style={{ animationDelay: `${0.95 + (startIndex + index) * 0.035}s` }}
-      >
-        {char === ' ' ? '\u00A0' : char}
-      </span>
-    ))
-  )
   const [openFaqIndex, setOpenFaqIndex] = useState(0)
 
   const faqItems = [
@@ -177,23 +164,17 @@ export default function Home() {
               {h.heroSubtitle}
             </p>
           )}
-          <p aria-label={campingLineLabel} className="mx-auto mt-0 max-w-xl px-2 text-base font-semibold leading-snug text-white/90 sm:whitespace-nowrap sm:text-xl sm:leading-normal">
-            <span aria-hidden="true">
-              {renderAnimatedChars(h.campingNotePrefix, 0)}
-            </span>
+          <p className="home-hero-subline mx-auto mt-0 max-w-xl px-2 text-base font-semibold leading-snug text-white/90 sm:whitespace-nowrap sm:text-xl sm:leading-normal" style={{ animationDelay: '1.55s' }}>
+            {h.campingNotePrefix}
             <a
               href="https://camping-leporge.fr/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-bold text-yellow transition-colors hover:text-white"
             >
-              <span aria-hidden="true">
-                {renderAnimatedChars(h.campingNoteLink, Array.from(h.campingNotePrefix).length, 'text-yellow')}
-              </span>
+              {h.campingNoteLink}
             </a>
-            <span aria-hidden="true" className="text-white/90">
-              {renderAnimatedChars(h.campingNoteSuffix || '', Array.from(h.campingNotePrefix + h.campingNoteLink).length)}
-            </span>
+            <span className="text-white/90">{h.campingNoteSuffix || ''}</span>
           </p>
           <div className="mt-14 flex w-full flex-wrap items-center justify-center gap-5 sm:mt-16 sm:gap-6">
             <CTAButton
