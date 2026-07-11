@@ -141,9 +141,9 @@ export default function Home() {
           <h1 className="animate-fadeInUp mx-auto max-w-4xl px-2 text-[1.9rem] font-bold leading-[1.15] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
             {isFr ? (
               <>
-                <span className="block">L'école de surf</span>
-                <span className="block text-[0.62em] font-semibold text-white/92 sm:text-[0.56em]">de la</span>
-                <span className="block">Plage Centrale du Porge</span>
+                <span className="block">L'ÉCOLE DE SURF</span>
+                <span className="block text-[0.62em] font-semibold text-white/92 sm:text-[0.56em]">DE LA</span>
+                <span className="block">PLAGE CENTRALE DU PORGE</span>
               </>
             ) : (
               heroSlogan
