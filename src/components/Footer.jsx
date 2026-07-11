@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Phone, Mail, Facebook, Instagram, MapPin } from 'lucide-react'
+import { Phone, Facebook, Instagram, MapPin } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import { CONTACT, MAPS, SOCIAL } from '../config/site.js'
 import { buildSrcSet } from '../utils/responsiveImage.js'
@@ -46,7 +46,7 @@ export default function Footer() {
           <h3 className="mb-4 text-sm font-bold uppercase tracking-widest text-yellow">
             {t.footer.quickLinks}
           </h3>
-          <ul className="space-y-2">
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-2">
             {links.map((l) => (
               <li key={l.to}>
                 <Link
@@ -88,16 +88,6 @@ export default function Footer() {
               <Phone className="h-4 w-4 shrink-0 text-yellow" />
               <a href={`tel:${CONTACT.phoneSecondary}`} onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phoneSecondary}`, source: 'footer' })} className="transition-colors hover:text-yellow">
                 {CONTACT.phoneSecondaryDisplay}
-              </a>
-            </li>
-            <li className="flex items-center gap-2">
-              <Mail className="h-4 w-4 shrink-0 text-yellow" />
-              <a
-                href={`mailto:${CONTACT.email}`}
-                onClick={() => trackEvent('click_email', { target: `mailto:${CONTACT.email}`, source: 'footer' })}
-                className="transition-colors hover:text-yellow"
-              >
-                {CONTACT.email}
               </a>
             </li>
           </ul>

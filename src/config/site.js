@@ -1,12 +1,20 @@
 export const SITE_URL = 'https://www.leporge-ecoledesurf.com'
 
+const isHighSeason = () => {
+  const month = new Date().getMonth()
+  return month === 6 || month === 7
+}
+
 export const CONTACT = {
-  phonePrimary: '+33670608426',
+  get phonePrimary() {
+    return isHighSeason() ? '+33650523475' : '+33670608426'
+  },
   phoneSecondary: '+33650523475',
-  phonePrimaryDisplay: '+33 6 70 60 84 26',
+  get phonePrimaryDisplay() {
+    return isHighSeason() ? '+33 6 50 52 34 75' : '+33 6 70 60 84 26'
+  },
   phoneSecondaryDisplay: '+33 6 50 52 34 75',
   whatsappNumber: '33670608426',
-  email: 'skeepskool@hotmail.com',
 }
 
 export const SOCIAL = {

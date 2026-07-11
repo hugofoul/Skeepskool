@@ -196,7 +196,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="home-hero-subline absolute bottom-6 right-4 z-10 sm:bottom-8 sm:right-6 lg:bottom-10 lg:right-10" style={{ animationDelay: '1.8s' }}>
+        <div className="absolute bottom-0 right-4 z-10 sm:bottom-2 sm:right-6 lg:-bottom-2 lg:right-10">
           <span className="flex h-44 w-44 items-center justify-center sm:h-56 sm:w-56 lg:h-72 lg:w-72">
             <img
               src="/images/Web - Logo label EFSurf neutre_blanc-paysage.png"
