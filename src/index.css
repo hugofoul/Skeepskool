@@ -41,7 +41,12 @@ body {
 
 .home-hero-line {
   opacity: 0;
-  animation: homeHeroLineIn 0.7s ease-out forwards;
+  animation: homeHeroLineIn 1.05s ease-out forwards;
+}
+
+.home-hero-subline {
+  opacity: 0;
+  animation: homeHeroLineIn 1.05s ease-out forwards;
 }
 
 /* Fade-in on scroll utility (toggled via IntersectionObserver) */

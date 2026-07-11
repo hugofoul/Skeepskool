@@ -162,7 +162,7 @@ export default function Home() {
               {h.heroSubtitle}
             </p>
           )}
-          <p className="mx-auto mt-0 max-w-xl px-2 text-base font-semibold leading-snug text-white/90 sm:whitespace-nowrap sm:text-xl sm:leading-normal">
+          <p className="home-hero-subline mx-auto mt-0 max-w-xl px-2 text-base font-semibold leading-snug text-white/90 sm:whitespace-nowrap sm:text-xl sm:leading-normal" style={{ animationDelay: '0.48s' }}>
             {h.campingNotePrefix}
             <a
               href="https://camping-leporge.fr/"
