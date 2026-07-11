@@ -154,7 +154,7 @@ export default function Home() {
               {h.heroSubtitle}
             </p>
           )}
-          <p className="mx-auto mt-1 max-w-xl px-2 text-sm font-semibold leading-snug text-white/90 sm:whitespace-nowrap sm:text-lg sm:leading-normal">
+          <p className="mx-auto mt-1 max-w-xl px-2 text-base font-semibold leading-snug text-white/90 sm:whitespace-nowrap sm:text-xl sm:leading-normal">
             {h.campingNotePrefix}
             <a
               href="https://camping-leporge.fr/"
@@ -166,11 +166,11 @@ export default function Home() {
             </a>
             <span className="text-white/90">{h.campingNoteSuffix || ''}</span>
           </p>
-          <div className="mt-10 flex w-full flex-wrap items-center justify-center gap-3">
+          <div className="mt-14 flex w-full flex-wrap items-center justify-center gap-5 sm:mt-16 sm:gap-6">
             <CTAButton
               to={lang === 'fr' ? '/reserver' : '/book'}
               aria-label={pickLang('Reserver un creneau de cours', 'Book a lesson slot', 'Einen Kurs-Slot buchen')}
-              className="w-full justify-center px-6 py-3 sm:w-auto"
+              className="w-full justify-center px-8 py-4 text-base sm:w-auto sm:text-lg"
             >
               <CalendarCheck2 className="h-5 w-5" />
               {h.heroCta}
@@ -178,7 +178,7 @@ export default function Home() {
             <CTAButton
               href={`tel:${CONTACT.phonePrimary}`}
               aria-label={pickLang('Appeler Skeepskool', 'Call Skeepskool', 'Skeepskool anrufen')}
-              className="w-full justify-center bg-white px-6 py-3 !text-royalBlue hover:bg-yellow sm:w-auto"
+              className="w-full justify-center bg-white px-8 py-4 text-base !text-royalBlue hover:bg-yellow sm:w-auto sm:text-lg"
             >
               <Phone className="h-5 w-5" />
               {h.heroSecondaryCta}
