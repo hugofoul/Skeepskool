@@ -23,11 +23,23 @@ export default function Home() {
   const isFr = lang === 'fr'
   const isDe = lang === 'de'
   const pickLang = (frText, enText, deText) => (isFr ? frText : (isDe ? deText : enText))
-  const heroSlogan = pickLang(
-    "École de surf de la Plage Centrale du Porge",
-    'Welcome to the surf school of Le Porge Central Beach',
-    'Willkommen in der Surfschule am Zentralstrand von Le Porge',
-  )
+  const heroTitleLines = isFr
+    ? {
+      top: "L'école de surf",
+      middle: 'de la',
+      bottom: 'Plage Centrale du Porge',
+    }
+    : (isDe
+      ? {
+        top: 'Surfschule',
+        middle: 'am',
+        bottom: 'Zentralstrand Le Porge',
+      }
+      : {
+        top: 'Surf school',
+        middle: 'at',
+        bottom: 'Le Porge Central Beach',
+      })
   const [openFaqIndex, setOpenFaqIndex] = useState(0)
 
   const faqItems = [
@@ -138,16 +150,12 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-royalBlue/50" />
         <div className="relative z-10 mx-auto max-w-4xl -translate-y-8 px-4 text-center text-white md:-translate-y-12 lg:-translate-y-24">
-          <h1 className="home-hero-title-font animate-fadeInUp mx-auto flex max-w-4xl flex-col items-center px-2 text-center text-[1.9rem] font-bold leading-[1.08] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-            {isFr ? (
-              <>
-                <span className="block w-full text-center">L'école de surf</span>
-                <span className="mt-1 block w-full text-center text-[0.9rem] font-semibold text-white/92 sm:mt-1.5 sm:text-[1.05rem] md:text-[1.15rem] lg:text-[1.25rem]">de la</span>
-                <span className="block w-full whitespace-nowrap text-center">Plage Centrale du Porge</span>
-              </>
-            ) : (
-              heroSlogan
-            )}
+          <h1 className="home-hero-title-font mx-auto flex max-w-4xl flex-col items-center px-2 text-center text-[1.9rem] font-bold leading-[1.08] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+            <>
+              <span className="home-hero-line block w-full text-center" style={{ animationDelay: '0.05s' }}>{heroTitleLines.top}</span>
+              <span className="home-hero-line mt-1 block w-full text-center text-[0.9rem] font-semibold text-white/92 sm:mt-1.5 sm:text-[1.05rem] md:text-[1.15rem] lg:text-[1.25rem]" style={{ animationDelay: '0.18s' }}>{heroTitleLines.middle}</span>
+              <span className="home-hero-line block w-full whitespace-nowrap text-center" style={{ animationDelay: '0.31s' }}>{heroTitleLines.bottom}</span>
+            </>
           </h1>
           {h.heroSubtitle && (
             <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/95 sm:text-lg">

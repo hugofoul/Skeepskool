@@ -27,6 +27,23 @@ body {
   letter-spacing: 0.01em;
 }
 
+@keyframes homeHeroLineIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-hero-line {
+  opacity: 0;
+  animation: homeHeroLineIn 0.7s ease-out forwards;
+}
+
 /* Fade-in on scroll utility (toggled via IntersectionObserver) */
 .reveal {
   opacity: 0;

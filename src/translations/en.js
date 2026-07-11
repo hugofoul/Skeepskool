@@ -35,9 +35,9 @@ export const en = {
     heroTagline: 'Live the Ocean',
     heroSubtitle:
       '40 m north of the main access to Le Porge central beach, our school welcomes you at the foot of the dune and pine forest for surf lessons at the gates of Bordeaux.',
-    campingNotePrefix: 'The surf school closest to ',
+    campingNotePrefix: 'Just by ',
     campingNoteLink: 'Camping La Grigne',
-    campingNoteSuffix: ' and Bordeaux',
+    campingNoteSuffix: ' and close to Bordeaux',
     heroCta: 'Book now',
     heroSecondaryCta: 'Call now',
     heroTrustItems: ['State-certified instructors', 'From age 5', 'Equipment included'],

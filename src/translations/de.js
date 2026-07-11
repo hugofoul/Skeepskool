@@ -35,9 +35,9 @@ export const de = {
     heroTagline: 'Lebe den Ozean',
     heroSubtitle:
       '40 m nördlich vom Hauptzugang des Zentralstrands von Le Porge heißt dich unsere Schule am Fuß der Düne und des Pinienwaldes willkommen.',
-    campingNotePrefix: 'Die Surfschule direkt beim ',
+    campingNotePrefix: 'Direkt beim ',
     campingNoteLink: 'Camping La Grigne',
-    campingNoteSuffix: ' und Bordeaux',
+    campingNoteSuffix: ' und nah an Bordeaux',
     heroCta: 'Jetzt buchen',
     heroSecondaryCta: 'Jetzt anrufen',
     heroTrustItems: ['Staatlich geprüfte Lehrer', 'Ab 5 Jahren', 'Material inklusive'],
