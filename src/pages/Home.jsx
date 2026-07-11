@@ -40,6 +40,19 @@ export default function Home() {
         middle: 'at',
         bottom: 'Le Porge Central Beach',
       })
+  const campingLineLabel = `${h.campingNotePrefix}${h.campingNoteLink}${h.campingNoteSuffix || ''}`
+  const renderAnimatedChars = (text, startIndex, className = '') => (
+    Array.from(text).map((char, index) => (
+      <span
+        key={`${className}-${startIndex + index}-${char}`}
+        aria-hidden="true"
+        className={`home-hero-char ${className}`.trim()}
+        style={{ animationDelay: `${0.95 + (startIndex + index) * 0.035}s` }}
+      >
+        {char === ' ' ? '\u00A0' : char}
+      </span>
+    ))
+  )
   const [openFaqIndex, setOpenFaqIndex] = useState(0)
 
   const faqItems = [
@@ -153,8 +166,10 @@ export default function Home() {
           <h1 className="home-hero-title-font mx-auto flex max-w-4xl flex-col items-center px-2 text-center text-[1.9rem] font-bold leading-[1.08] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
             <>
               <span className="home-hero-line block w-full text-center" style={{ animationDelay: '0.05s' }}>{heroTitleLines.top}</span>
-              <span className="home-hero-line mt-1 block w-full text-center text-[0.9rem] font-semibold text-white/92 sm:mt-1.5 sm:text-[1.05rem] md:text-[1.15rem] lg:text-[1.25rem]" style={{ animationDelay: '0.18s' }}>{heroTitleLines.middle}</span>
-              <span className="home-hero-line block w-full whitespace-nowrap text-center" style={{ animationDelay: '0.31s' }}>{heroTitleLines.bottom}</span>
+              <span className="home-hero-line mt-1 flex w-full flex-col items-center text-center sm:mt-1.5" style={{ animationDelay: '0.28s' }}>
+                <span className="block text-[0.9rem] font-semibold text-white/92 sm:text-[1.05rem] md:text-[1.15rem] lg:text-[1.25rem]">{heroTitleLines.middle}</span>
+                <span className="block whitespace-nowrap text-center">{heroTitleLines.bottom}</span>
+              </span>
             </>
           </h1>
           {h.heroSubtitle && (
@@ -162,17 +177,23 @@ export default function Home() {
               {h.heroSubtitle}
             </p>
           )}
-          <p className="home-hero-subline mx-auto mt-0 max-w-xl px-2 text-base font-semibold leading-snug text-white/90 sm:whitespace-nowrap sm:text-xl sm:leading-normal" style={{ animationDelay: '0.48s' }}>
-            {h.campingNotePrefix}
+          <p aria-label={campingLineLabel} className="mx-auto mt-0 max-w-xl px-2 text-base font-semibold leading-snug text-white/90 sm:whitespace-nowrap sm:text-xl sm:leading-normal">
+            <span aria-hidden="true">
+              {renderAnimatedChars(h.campingNotePrefix, 0)}
+            </span>
             <a
               href="https://camping-leporge.fr/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-bold text-yellow transition-colors hover:text-white"
             >
-              {h.campingNoteLink}
+              <span aria-hidden="true">
+                {renderAnimatedChars(h.campingNoteLink, Array.from(h.campingNotePrefix).length, 'text-yellow')}
+              </span>
             </a>
-            <span className="text-white/90">{h.campingNoteSuffix || ''}</span>
+            <span aria-hidden="true" className="text-white/90">
+              {renderAnimatedChars(h.campingNoteSuffix || '', Array.from(h.campingNotePrefix + h.campingNoteLink).length)}
+            </span>
           </p>
           <div className="mt-14 flex w-full flex-wrap items-center justify-center gap-5 sm:mt-16 sm:gap-6">
             <CTAButton
