@@ -138,11 +138,11 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-royalBlue/50" />
         <div className="relative z-10 mx-auto max-w-4xl -translate-y-8 px-4 text-center text-white md:-translate-y-12 lg:-translate-y-24">
-          <h1 className="home-hero-title-font animate-fadeInUp mx-auto flex max-w-4xl flex-col items-center px-2 text-center text-[1.9rem] font-bold leading-[1.15] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+          <h1 className="home-hero-title-font animate-fadeInUp mx-auto flex max-w-4xl flex-col items-center px-2 text-center text-[1.9rem] font-bold leading-[1.08] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
             {isFr ? (
               <>
                 <span className="block w-full text-center">L'école de surf</span>
-                <span className="block w-full text-center text-[0.9rem] font-semibold text-white/92 sm:text-[1.05rem] md:text-[1.15rem] lg:text-[1.25rem]">de la</span>
+                <span className="mt-1 block w-full text-center text-[0.9rem] font-semibold text-white/92 sm:mt-1.5 sm:text-[1.05rem] md:text-[1.15rem] lg:text-[1.25rem]">de la</span>
                 <span className="block w-full whitespace-nowrap text-center">Plage Centrale du Porge</span>
               </>
             ) : (
@@ -154,7 +154,7 @@ export default function Home() {
               {h.heroSubtitle}
             </p>
           )}
-          <p className="mx-auto mt-1 max-w-xl px-2 text-base font-semibold leading-snug text-white/90 sm:whitespace-nowrap sm:text-xl sm:leading-normal">
+          <p className="mx-auto mt-0 max-w-xl px-2 text-base font-semibold leading-snug text-white/90 sm:whitespace-nowrap sm:text-xl sm:leading-normal">
             {h.campingNotePrefix}
             <a
               href="https://camping-leporge.fr/"
