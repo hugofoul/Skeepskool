@@ -138,7 +138,7 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-royalBlue/50" />
         <div className="relative z-10 mx-auto max-w-4xl translate-y-2 px-4 text-center text-white md:-translate-y-4 lg:-translate-y-12">
-          <h1 className="animate-fadeInUp mx-auto max-w-4xl px-2 text-[1.9rem] font-bold leading-[1.15] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+          <h1 className="hero-title-font animate-fadeInUp mx-auto max-w-4xl px-2 text-[1.9rem] font-bold leading-[1.15] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
             {isFr ? (
               <>
                 <span className="block">L'ÉCOLE DE SURF</span>
