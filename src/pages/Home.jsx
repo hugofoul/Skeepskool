@@ -166,7 +166,7 @@ export default function Home() {
           <h1 className="home-hero-title-font mx-auto flex max-w-4xl flex-col items-center px-2 text-center text-[1.9rem] font-bold leading-[1.08] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
             <>
               <span className="home-hero-line block w-full text-center" style={{ animationDelay: '0.05s' }}>{heroTitleLines.top}</span>
-              <span className="home-hero-line mt-1 flex w-full flex-col items-center text-center sm:mt-1.5" style={{ animationDelay: '0.28s' }}>
+              <span className="home-hero-line mt-1 flex w-full flex-col items-center text-center sm:mt-1.5" style={{ animationDelay: '0.75s' }}>
                 <span className="block text-[0.9rem] font-semibold text-white/92 sm:text-[1.05rem] md:text-[1.15rem] lg:text-[1.25rem]">{heroTitleLines.middle}</span>
                 <span className="block whitespace-nowrap text-center">{heroTitleLines.bottom}</span>
               </span>

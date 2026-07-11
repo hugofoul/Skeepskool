@@ -41,12 +41,12 @@ body {
 
 .home-hero-line {
   opacity: 0;
-  animation: homeHeroLineIn 1.45s ease-out forwards;
+  animation: homeHeroLineIn 2.2s ease-out forwards;
 }
 
 .home-hero-subline {
   opacity: 0;
-  animation: homeHeroLineIn 1.45s ease-out forwards;
+  animation: homeHeroLineIn 2.2s ease-out forwards;
 }
 
 @keyframes homeHeroCharIn {
