@@ -34,7 +34,7 @@ export const fr = {
     heroTitle: 'SKEEPSKOOL',
     heroTagline: 'Sécurité, technique et sens marin',
     heroSubtitle: '',
-    campingNotePrefix: 'L’école de surf près du ',
+    campingNotePrefix: 'La plus proche du ',
     campingNoteLink: 'Camping La Grigne',
     campingNoteSuffix: ' et de Bordeaux',
     heroCta: 'Réserver',
@@ -405,7 +405,7 @@ export const fr = {
   // ---- Rental ----
   rental: {
     heroTitle: 'Location de matériel',
-    heroSubtitle: 'Surf, bodyboard et combinaisons à la location, à la sortie de la plage.',
+    heroSubtitle: 'Surf, bodyboard et combinaisons à la location.',
     conditionsTitle: 'Informations pour la location',
     tableHead: ['Matériel', '2H', '4H', 'Journée (9h–19h)', '7 jours', 'Sunset (18h–9h30)'],
     rows: [

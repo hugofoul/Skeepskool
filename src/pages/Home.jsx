@@ -139,7 +139,18 @@ export default function Home() {
         <div className="absolute inset-0 bg-royalBlue/50" />
         <div className="relative z-10 mx-auto max-w-4xl translate-y-2 px-4 text-center text-white md:-translate-y-4 lg:-translate-y-12">
           <h1 className="hero-title-font animate-fadeInUp mx-auto max-w-4xl px-2 text-[1.9rem] font-bold leading-[1.15] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-            {heroSlogan}
+            {isFr ? (
+              <>
+                <span className="block text-[0.52em] font-semibold uppercase tracking-[0.12em] text-white/90 sm:text-[0.46em]">
+                  Bienvenue à
+                </span>
+                <span>École de surf</span>{' '}
+                <span className="text-[0.62em] font-semibold text-white/92 sm:text-[0.56em]">de la</span>{' '}
+                <span>Plage Centrale du Porge</span>
+              </>
+            ) : (
+              heroSlogan
+            )}
           </h1>
           {h.heroSubtitle && (
             <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/95 sm:text-lg">

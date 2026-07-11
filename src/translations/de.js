@@ -358,7 +358,7 @@ export const de = {
   rental: {
     ...en.rental,
     heroTitle: 'Materialverleih',
-    heroSubtitle: 'Surfboards, Bodyboards und Neoprenanzüge direkt am Strand.',
+    heroSubtitle: 'Surfboards, Bodyboards und Neoprenanzüge zum Mieten.',
     conditionsTitle: 'Mietbedingungen',
     tableHead: ['Material', '2H', '4H', 'Tag (9–19 Uhr)', '7 Tage', 'Sunset (18–9:30 Uhr)'],
     rows: [

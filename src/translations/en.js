@@ -402,7 +402,7 @@ export const en = {
   // ---- Rental ----
   rental: {
     heroTitle: 'Equipment rental',
-    heroSubtitle: 'Surfboards, bodyboards and wetsuits right by the beach.',
+    heroSubtitle: 'Surfboards, bodyboards and wetsuits for rent.',
     conditionsTitle: 'Rental conditions',
     tableHead: ['Equipment', '2H', '4H', 'Day (9am–7pm)', '7 days', 'Sunset (6pm–9:30am)'],
     rows: [
