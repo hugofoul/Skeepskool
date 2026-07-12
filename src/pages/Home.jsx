@@ -180,17 +180,17 @@ export default function Home() {
             <CTAButton
               to={lang === 'fr' ? '/reserver' : '/book'}
               aria-label={pickLang('Reserver un creneau de cours', 'Book a lesson slot', 'Einen Kurs-Slot buchen')}
-              className="w-full justify-center px-8 py-4 text-base sm:w-auto sm:text-lg"
+              className="w-full justify-center gap-1 px-2 py-1 text-xs font-semibold !bg-red !text-white !shadow-none hover:!bg-red/90 sm:w-auto sm:gap-2 sm:!rounded-full sm:px-8 sm:py-4 sm:text-lg sm:font-bold sm:!shadow-lg"
             >
-              <CalendarCheck2 className="h-5 w-5" />
+              <CalendarCheck2 className="h-4 w-4 sm:h-5 sm:w-5" />
               {h.heroCta}
             </CTAButton>
             <CTAButton
               href={`tel:${CONTACT.phonePrimary}`}
               aria-label={pickLang('Appeler Skeepskool', 'Call Skeepskool', 'Skeepskool anrufen')}
-              className="w-full justify-center bg-white px-8 py-4 text-base !text-royalBlue hover:bg-yellow sm:w-auto sm:text-lg"
+              className="w-full justify-center gap-1 px-2 py-1 text-xs font-semibold !bg-white !text-royalBlue !shadow-none hover:!bg-yellow sm:w-auto sm:gap-2 sm:!rounded-full sm:px-8 sm:py-4 sm:text-lg sm:font-bold sm:!shadow-lg"
             >
-              <Phone className="h-5 w-5" />
+              <Phone className="h-4 w-4 sm:h-5 sm:w-5" />
               {h.heroSecondaryCta}
             </CTAButton>
           </div>

@@ -24,7 +24,7 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-8 pt-12 sm:px-6 md:grid-cols-3 lg:px-8">
         {/* Col 1 — Brand */}
         <div>
-          <Link to="/" className="inline-flex items-start">
+          <Link to="/" aria-label="Retour a l'accueil" className="inline-block">
             <div className="relative h-24 w-80 overflow-visible">
               <img
                 src="/logo-skeepskool-2026.svg"
@@ -123,7 +123,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/15">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-white/70 sm:flex-row sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 pb-3 pt-5 text-xs text-white/70 sm:flex-row sm:px-6 lg:px-8">
           <p>
             {t.footer.rights} · {year}
           </p>
