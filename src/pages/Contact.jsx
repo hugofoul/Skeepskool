@@ -59,8 +59,8 @@ export default function Contact() {
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2">
             <InfoCard icon={Phone}>
-              <a href={`tel:${CONTACT.phonePrimary}`} onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phonePrimary}`, source: 'contact_page' })} className="block font-semibold text-dark hover:text-red">
-                {CONTACT.phonePrimaryDisplay}
+              <a href="tel:+33670608426" onClick={() => trackEvent('click_phone', { target: 'tel:+33670608426', source: 'contact_page' })} className="block font-semibold text-dark hover:text-red">
+                +33 6 70 60 84 26
               </a>
               <a href={`tel:${CONTACT.phoneSecondary}`} onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phoneSecondary}`, source: 'contact_page' })} className="block font-semibold text-dark hover:text-red">
                 {CONTACT.phoneSecondaryDisplay}

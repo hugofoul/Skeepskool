@@ -21,24 +21,30 @@ export default function Footer() {
 
   return (
     <footer className="bg-royalBlue text-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-8 pt-12 sm:px-6 md:grid-cols-3 lg:px-8">
         {/* Col 1 — Brand */}
         <div>
-          <Link to="/" className="inline-flex items-center">
-            <div className="h-28 w-80 overflow-hidden">
+          <Link to="/" className="inline-flex items-start">
+            <div className="relative h-24 w-80 overflow-visible">
               <img
                 src="/logo-skeepskool-2026.svg"
                 srcSet={buildSrcSet('/logo-skeepskool-2026.svg')}
                 sizes="224px"
                 alt="Skeepskool Surfing Le Porge"
-                className="h-full w-full object-contain object-center"
+                className="h-full w-full object-contain object-top"
+              />
+              <img
+                src="/images/Web - Logo label EFSurf neutre_blanc-paysage.png"
+                alt={lang === 'fr' ? 'Logo federation EFSurf' : 'EFSurf federation logo'}
+                className="absolute left-1/2 top-[106%] h-auto w-56 -translate-x-1/2 -translate-y-1/2 object-contain"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </Link>
-          <p className="mt-4 max-w-xs text-sm text-white/80">{t.footer.tagline}</p>
-          <span className="mt-4 inline-block rounded-full bg-yellow px-3 py-1 text-xs font-bold text-royalBlue">
-            {t.ffsLabel}
-          </span>
+          <p className="mt-20 max-w-sm text-sm text-white/80">
+            {lang === 'fr' ? 'École de surf labellisée FFS au Porge Océan, Gironde.' : t.footer.tagline}
+          </p>
         </div>
 
         {/* Col 2 — Quick links */}
@@ -80,8 +86,8 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-2">
               <Phone className="h-4 w-4 shrink-0 text-yellow" />
-              <a href={`tel:${CONTACT.phonePrimary}`} onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phonePrimary}`, source: 'footer' })} className="transition-colors hover:text-yellow">
-                {CONTACT.phonePrimaryDisplay}
+              <a href="tel:+33670608426" onClick={() => trackEvent('click_phone', { target: 'tel:+33670608426', source: 'footer' })} className="transition-colors hover:text-yellow">
+                +33 6 70 60 84 26
               </a>
             </li>
             <li className="flex items-center gap-2">
