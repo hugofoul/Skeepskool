@@ -176,11 +176,11 @@ export default function Home() {
             </a>
             <span className="text-white/90">{h.campingNoteSuffix || ''}</span>
           </p>
-          <div className="mt-14 flex w-full flex-wrap items-center justify-center gap-5 sm:mt-16 sm:gap-6">
+          <div className="mt-14 flex w-full flex-col items-center justify-center gap-3 sm:mt-16 sm:flex-row sm:gap-6">
             <CTAButton
               to={lang === 'fr' ? '/reserver' : '/book'}
               aria-label={pickLang('Reserver un creneau de cours', 'Book a lesson slot', 'Einen Kurs-Slot buchen')}
-              className="w-full justify-center gap-1 px-2 py-1 text-xs font-semibold !bg-red !text-white !shadow-none hover:!bg-red/90 sm:w-auto sm:gap-2 sm:!rounded-full sm:px-8 sm:py-4 sm:text-lg sm:font-bold sm:!shadow-lg"
+              className="w-auto justify-center gap-1 px-2 py-1 text-xs font-semibold !bg-red !text-white !shadow-none hover:!bg-red/90 sm:gap-2 sm:!rounded-full sm:px-8 sm:py-4 sm:text-lg sm:font-bold sm:!shadow-lg"
             >
               <CalendarCheck2 className="h-4 w-4 sm:h-5 sm:w-5" />
               {h.heroCta}
@@ -188,7 +188,7 @@ export default function Home() {
             <CTAButton
               href={`tel:${CONTACT.phonePrimary}`}
               aria-label={pickLang('Appeler Skeepskool', 'Call Skeepskool', 'Skeepskool anrufen')}
-              className="w-full justify-center gap-1 px-2 py-1 text-xs font-semibold !bg-white !text-royalBlue !shadow-none hover:!bg-yellow sm:w-auto sm:gap-2 sm:!rounded-full sm:px-8 sm:py-4 sm:text-lg sm:font-bold sm:!shadow-lg"
+              className="w-auto justify-center gap-1 px-2 py-1 text-xs font-semibold !bg-white !text-royalBlue !shadow-none hover:!bg-yellow sm:gap-2 sm:!rounded-full sm:px-8 sm:py-4 sm:text-lg sm:font-bold sm:!shadow-lg"
             >
               <Phone className="h-4 w-4 sm:h-5 sm:w-5" />
               {h.heroSecondaryCta}
@@ -196,7 +196,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 right-4 z-10 sm:bottom-2 sm:right-6 lg:-bottom-2 lg:right-10">
+        <div className="absolute bottom-8 right-4 z-10 sm:bottom-2 sm:right-6 lg:-bottom-2 lg:right-10">
           <span className="flex h-44 w-44 items-center justify-center sm:h-56 sm:w-56 lg:h-72 lg:w-72">
             <img
               src="/images/Web - Logo label EFSurf neutre_blanc-paysage.png"
