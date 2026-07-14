@@ -135,6 +135,7 @@ function buildDaysFromEntries(entries, lang, fallbackDays) {
   const dayFormatter = new Intl.DateTimeFormat(dayLocale, {
     weekday: 'long',
     day: 'numeric',
+    month: 'long',
   })
 
   const groupedDays = new Map()
