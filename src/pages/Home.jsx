@@ -156,32 +156,32 @@ export default function Home() {
           fetchPriority="high"
           decoding="async"
         />
-        <div className="relative z-10 mx-auto max-w-4xl -translate-y-8 px-4 text-center text-white md:-translate-y-12 lg:-translate-y-24">
-          <h1 className="home-hero-title-font mx-auto flex max-w-4xl flex-col items-center px-2 text-center text-[1.9rem] font-bold leading-[1.08] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+        <div className="relative z-10 mx-auto max-w-4xl -translate-y-8 px-4 text-center text-royalBlue md:-translate-y-12 lg:-translate-y-24">
+          <h1 className="home-hero-title-font mx-auto flex max-w-4xl flex-col items-center px-2 text-center text-[1.9rem] font-bold leading-[1.08] text-royalBlue drop-shadow-[0_2px_8px_rgba(255,255,255,0.55)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
             <>
               <span className="home-hero-line block w-full text-center" style={{ animationDelay: '0.05s' }}>{heroTitleLines.top}</span>
               <span className="home-hero-line mt-1 flex w-full flex-col items-center text-center sm:mt-1.5" style={{ animationDelay: '0.75s' }}>
-                <span className="block text-[0.9rem] font-semibold text-white/92 sm:text-[1.05rem] md:text-[1.15rem] lg:text-[1.25rem]">{heroTitleLines.middle}</span>
+                <span className="block text-[0.9rem] font-semibold text-royalBlue sm:text-[1.05rem] md:text-[1.15rem] lg:text-[1.25rem]">{heroTitleLines.middle}</span>
                 <span className="block whitespace-nowrap text-center">{heroTitleLines.bottom}</span>
               </span>
             </>
           </h1>
           {h.heroSubtitle && (
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/95 sm:text-lg">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-royalBlue sm:text-lg">
               {h.heroSubtitle}
             </p>
           )}
-          <p className="home-hero-subline mx-auto mt-0 max-w-xl px-2 text-base font-semibold leading-snug text-white/90 sm:whitespace-nowrap sm:text-xl sm:leading-normal" style={{ animationDelay: '1.55s' }}>
+          <p className="home-hero-subline mx-auto mt-0 max-w-xl px-2 text-base font-semibold leading-snug text-royalBlue sm:whitespace-nowrap sm:text-xl sm:leading-normal" style={{ animationDelay: '1.55s' }}>
             {h.campingNotePrefix}
             <a
               href="https://camping-leporge.fr/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-yellow transition-colors hover:text-white"
+              className="font-bold text-red transition-colors hover:text-yellow active:text-white visited:text-white"
             >
               {h.campingNoteLink}
             </a>
-            <span className="text-white/90">{h.campingNoteSuffix || ''}</span>
+            <span className="text-royalBlue">{h.campingNoteSuffix || ''}</span>
           </p>
           <div className="mt-14 flex w-full flex-col items-center justify-center gap-3 sm:mt-16 sm:flex-row sm:gap-12 sm:translate-y-16">
             <CTAButton
@@ -215,7 +215,7 @@ export default function Home() {
           </span>
         </div>
 
-        <div className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-center text-white/90">
+        <div className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-center text-royalBlue">
           <p className="text-[10px] font-semibold uppercase tracking-[0.2em]">
             {pickLang('Faites defiler', 'Scroll', 'Scrollen')}
           </p>
