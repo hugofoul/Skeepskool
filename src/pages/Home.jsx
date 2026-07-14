@@ -151,13 +151,13 @@ export default function Home() {
           srcSet={buildSrcSet(images.homeHero)}
           sizes={HERO_SIZES}
           alt="Surfeur à la plage du Porge Océan"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full rotate-[2deg] scale-[1.46] object-cover object-[96%_center] md:scale-[1.32]"
           loading="eager"
           fetchPriority="high"
           decoding="async"
         />
         <div className="relative z-10 mx-auto max-w-4xl -translate-y-8 px-4 text-center text-royalBlue md:-translate-y-12 lg:-translate-y-24">
-          <h1 className="home-hero-title-font mx-auto flex max-w-4xl flex-col items-center px-2 text-center text-[1.9rem] font-bold leading-[1.08] text-royalBlue drop-shadow-[0_2px_8px_rgba(255,255,255,0.55)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+          <h1 className="home-hero-title-font mx-auto flex max-w-4xl flex-col items-center px-2 text-center text-[1.9rem] font-bold leading-[1.08] text-royalBlue sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
             <>
               <span className="home-hero-line block w-full text-center" style={{ animationDelay: '0.05s' }}>{heroTitleLines.top}</span>
               <span className="home-hero-line mt-1 flex w-full flex-col items-center text-center sm:mt-1.5" style={{ animationDelay: '0.75s' }}>
@@ -215,7 +215,7 @@ export default function Home() {
           </span>
         </div>
 
-        <div className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-center text-royalBlue">
+        <div className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-center text-white/90">
           <p className="text-[10px] font-semibold uppercase tracking-[0.2em]">
             {pickLang('Faites defiler', 'Scroll', 'Scrollen')}
           </p>
