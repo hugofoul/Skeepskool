@@ -370,6 +370,38 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---------------- SCHOOL ADVANTAGES ---------------- */}
+      <section className="bg-lightGray py-16 sm:py-20">
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <Reveal className="rounded-3xl bg-white p-7 shadow-md ring-1 ring-black/5 sm:p-9">
+            <h3 className="text-2xl font-black text-royalBlue sm:text-3xl">{s.coachingTitle}</h3>
+            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+            <ul className="mt-6 space-y-2.5 text-sm font-medium text-dark/80 sm:text-base">
+              {s.coachingItems.map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-red" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-lg font-black text-red sm:text-xl">{s.coachingExperience}</p>
+          </Reveal>
+
+          <Reveal delay={120} className="rounded-3xl bg-white p-7 shadow-md ring-1 ring-black/5 sm:p-9">
+            <h3 className="text-2xl font-black text-royalBlue sm:text-3xl">{s.beachAdvantagesTitle}</h3>
+            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+            <ul className="mt-6 space-y-2.5 text-sm font-medium text-dark/80 sm:text-base">
+              {s.beachAdvantagesItems.map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-red" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ---------------- SURF CONDITIONS ---------------- */}
       {surfConditions.shouldDisplay && (
         <section className="bg-lightGray py-16 sm:py-20">

@@ -151,6 +151,23 @@ export const fr = {
 
     teamTitle: "L'équipe Skeepskool",
     teamSubtitle: 'Une bande de passionnés pour vous accompagner sur l’eau.',
+    coachingTitle: 'Encadrement de qualité',
+    coachingItems: [
+      'Apprendre à surfer en sécurité',
+      'Tous âges, tous niveaux',
+      'Matériel adapté à chacun',
+      'Conseils individualisés',
+      'Diplôme de niveau de la Fédération Française de Surf sur demande',
+    ],
+    coachingExperience: "Plus de 25 ans d'expérience",
+    beachAdvantagesTitle: 'Les avantages de la Plage Centrale',
+    beachAdvantagesItems: [
+      'À côté du Poste de Secours (sécurité avant tout)',
+      'À proximité de la baignade surveillée',
+      'Sur l’accès plage le plus court (avec caillebotis)',
+      'Devant le Camping « La Grigne »',
+      'À côté des restaurants, douches et commodités',
+    ],
     team: [
       {
         name: 'Pierre',

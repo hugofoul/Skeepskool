@@ -151,6 +151,23 @@ export const en = {
 
     teamTitle: 'The Skeepskool team',
     teamSubtitle: 'A crew of passionate people to guide you in the water.',
+    coachingTitle: 'Quality coaching',
+    coachingItems: [
+      'Learn to surf safely',
+      'All ages, all levels',
+      'Suitable equipment for everyone',
+      'Individualized coaching',
+      'FFS level certificate on request',
+    ],
+    coachingExperience: 'More than 25 years of experience',
+    beachAdvantagesTitle: 'The advantages of Plage Centrale',
+    beachAdvantagesItems: [
+      'Next to the lifeguard station (safety first)',
+      'Close to the supervised swimming area',
+      'On the shortest beach access (with duckboards)',
+      'In front of Camping "La Grigne"',
+      'Next to restaurants, showers and facilities',
+    ],
     team: [
       {
         name: 'Pierre',

@@ -134,6 +134,23 @@ export const de = {
     badge: 'Zertifizierte Französische Surfschule',
     teamTitle: 'Das Skeepskool-Team',
     teamSubtitle: 'Ein leidenschaftliches Team, das dich im Wasser begleitet.',
+    coachingTitle: 'Qualitatives Coaching',
+    coachingItems: [
+      'Sicher surfen lernen',
+      'Alle Altersgruppen, alle Niveaus',
+      'Passendes Material für jede Person',
+      'Individuelle Tipps',
+      'FFS-Niveauzertifikat auf Anfrage',
+    ],
+    coachingExperience: 'Mehr als 25 Jahre Erfahrung',
+    beachAdvantagesTitle: 'Die Vorteile der Plage Centrale',
+    beachAdvantagesItems: [
+      'Neben der Rettungsstation (Sicherheit zuerst)',
+      'In der Nähe des überwachten Badebereichs',
+      'Am kürzesten Strandzugang (mit Holzsteg)',
+      'Direkt vor dem Campingplatz "La Grigne"',
+      'Neben Restaurants, Duschen und Annehmlichkeiten',
+    ],
     team: [
       {
         name: 'Pierre',
