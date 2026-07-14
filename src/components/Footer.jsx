@@ -23,7 +23,7 @@ export default function Footer() {
     <footer className="bg-royalBlue text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-8 pt-12 sm:px-6 md:grid-cols-3 lg:px-8">
         {/* Col 1 — Brand */}
-        <div>
+        <div className="flex flex-col items-center text-center">
           <Link to="/" aria-label="Retour a l'accueil" className="inline-block">
             <div className="relative h-24 w-80 overflow-visible">
               <img
@@ -42,7 +42,7 @@ export default function Footer() {
               />
             </div>
           </Link>
-          <p className="mt-20 max-w-sm text-sm text-white/80">
+          <p className="mx-auto mt-20 max-w-sm text-sm text-white/80">
             {lang === 'fr' ? 'École de surf labellisée FFS au Porge Océan, Gironde.' : t.footer.tagline}
           </p>
         </div>

@@ -636,11 +636,7 @@ export default function GiftVoucher() {
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm font-semibold text-royalBlue sm:text-base">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-red" />
-                <span>{lang === 'fr' ? 'Formulaire dedie Bon cadeau, separe du Panier cours.' : (lang === 'de' ? 'Eigenes Geschenkgutschein-Formular, getrennt vom Kurs-Warenkorb.' : 'Dedicated gift voucher form, separated from the lesson cart.')}</span>
-              </li>
-              <li className="flex items-start gap-3 text-sm font-semibold text-royalBlue sm:text-base">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-red" />
-                <span>{lang === 'fr' ? 'Validation finale via WhatsApp pour confirmation rapide.' : (lang === 'de' ? 'Finale Bestatigung per WhatsApp fur schnelle Ruckmeldung.' : 'Final confirmation via WhatsApp for a fast response.')}</span>
+                  <span>{lang === 'fr' ? 'Formulaire dedie Bon cadeau.' : (lang === 'de' ? 'Eigenes Geschenkgutschein-Formular.' : 'Dedicated gift voucher form.')}</span>
               </li>
             </ul>
           </Reveal>
