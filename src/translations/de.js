@@ -149,6 +149,7 @@ export const de = {
       'In der Nähe des überwachten Badebereichs',
       'Am kürzesten Strandzugang (mit Holzsteg)',
       'Direkt vor dem Campingplatz "La Grigne"',
+      'Kostenlose Parkplätze direkt vor der Schule',
       'Neben Restaurants, Duschen und Annehmlichkeiten',
     ],
     team: [

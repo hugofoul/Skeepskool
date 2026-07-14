@@ -80,6 +80,23 @@ body {
   transform: translateY(0);
 }
 
+.reveal.reveal-left {
+  transform: translateX(-40px);
+  transition-duration: 3s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.reveal-right {
+  transform: translateX(40px);
+  transition-duration: 3s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.reveal-left.is-visible,
+.reveal.reveal-right.is-visible {
+  transform: translateX(0);
+}
+
 /* Custom scrollbar accent */
 ::selection {
   background: #f5c400;

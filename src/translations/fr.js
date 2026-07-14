@@ -166,6 +166,7 @@ export const fr = {
       'À proximité de la baignade surveillée',
       'Sur l’accès plage le plus court (avec caillebotis)',
       'Devant le Camping « La Grigne »',
+      'Parking gratuit devant l’école',
       'À côté des restaurants, douches et commodités',
     ],
     team: [

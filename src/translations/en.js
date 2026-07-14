@@ -166,6 +166,7 @@ export const en = {
       'Close to the supervised swimming area',
       'On the shortest beach access (with duckboards)',
       'In front of Camping "La Grigne"',
+      'Free parking in front of the school',
       'Next to restaurants, showers and facilities',
     ],
     team: [

@@ -29,6 +29,7 @@ const packageByCardIndex = ['single', 'pack3', 'pack5', 'pack10', 'pack20', 'pri
 export default function Lessons() {
   const { t, lang } = useLang()
   const l = t.lessons
+  const school = t.school
   const s = t.schedule
   const bookingPath = lang === 'fr' ? '/reserver' : '/book'
   const schedulePath = lang === 'fr' ? '/horaires' : '/schedule'
@@ -193,6 +194,29 @@ export default function Lessons() {
               )
             })}
           </div>
+
+          <Reveal delay={120} className="mt-10 overflow-hidden rounded-3xl bg-gradient-to-br from-royalBlue via-[#2f5fd0] to-[#1a3ebd] p-7 text-white shadow-xl ring-1 ring-black/10 sm:p-9">
+            <div className="grid gap-7 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+              <div>
+                <span className="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-widest text-yellow">
+                  {school.coachingTitle}
+                </span>
+                <h3 className="mt-4 text-3xl font-black text-white sm:text-4xl">{school.coachingTitle}</h3>
+                <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+                <p className="mt-6 inline-flex rounded-full bg-yellow px-4 py-2 text-base font-black text-royalBlue">
+                  {school.coachingExperience}
+                </p>
+              </div>
+
+              <ul className="grid gap-2.5 text-sm font-semibold text-white/95 sm:grid-cols-2 sm:text-base">
+                {school.coachingItems.map((item) => (
+                  <li key={item} className="rounded-xl bg-white/10 px-4 py-3 ring-1 ring-white/15 backdrop-blur-sm">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
 
           {/* Team link */}
           <Reveal delay={150} className="mt-10">

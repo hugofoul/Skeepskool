@@ -272,6 +272,38 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---------------- SCHOOL ADVANTAGES ---------------- */}
+      <section className="bg-lightGray py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal className="reveal-left overflow-hidden rounded-[2rem] bg-white shadow-xl ring-1 ring-black/5">
+            <div className="bg-gradient-to-br from-royalBlue via-[#2f5fd0] to-[#1a3ebd] px-7 py-7 text-white sm:px-9 sm:py-8">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">
+                    {pickLang('Pourquoi venir ici', 'Why choose this spot', 'Warum dieser Spot')}
+                  </p>
+                  <h3 className="mt-2 text-2xl font-black sm:text-3xl">{s.beachAdvantagesTitle}</h3>
+                </div>
+                <span className="inline-flex w-fit rounded-full bg-white/15 px-4 py-2 text-sm font-black text-yellow ring-1 ring-white/25">
+                  {s.coachingExperience}
+                </span>
+              </div>
+            </div>
+
+            <ul className="grid gap-3 p-7 text-sm font-semibold text-dark/80 sm:grid-cols-2 sm:p-9 sm:text-base">
+              {s.beachAdvantagesItems.map((item) => (
+                <li key={item} className="rounded-xl bg-[#f3f7fd] px-4 py-3 ring-1 ring-[#d9e6fb]">
+                  <span className="inline-flex items-start gap-2.5">
+                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-red" />
+                    <span>{item}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ---------------- PHOTO CAROUSEL ---------------- */}
       <section className="bg-lightGray py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -367,38 +399,6 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ---------------- SCHOOL ADVANTAGES ---------------- */}
-      <section className="bg-lightGray py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <Reveal className="rounded-3xl bg-white p-7 shadow-md ring-1 ring-black/5 sm:p-9">
-            <h3 className="text-2xl font-black text-royalBlue sm:text-3xl">{s.coachingTitle}</h3>
-            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
-            <ul className="mt-6 space-y-2.5 text-sm font-medium text-dark/80 sm:text-base">
-              {s.coachingItems.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-red" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 text-lg font-black text-red sm:text-xl">{s.coachingExperience}</p>
-          </Reveal>
-
-          <Reveal delay={120} className="rounded-3xl bg-white p-7 shadow-md ring-1 ring-black/5 sm:p-9">
-            <h3 className="text-2xl font-black text-royalBlue sm:text-3xl">{s.beachAdvantagesTitle}</h3>
-            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
-            <ul className="mt-6 space-y-2.5 text-sm font-medium text-dark/80 sm:text-base">
-              {s.beachAdvantagesItems.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-red" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
         </div>
       </section>
 
