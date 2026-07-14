@@ -15,6 +15,8 @@ const teamImageScales = ['group-hover:scale-105', 'scale-105 group-hover:scale-1
 export default function School() {
   const { t, lang } = useLang()
   const s = t.school
+  const introSections = s.sections.filter((_, index) => index !== 1)
+  const introSectionImages = [sectionImages[0], sectionImages[2]]
 
   return (
     <div>
@@ -35,7 +37,7 @@ export default function School() {
       <PageHero title={s.heroTitle} subtitle={s.heroSubtitle} image={images.fondpages} />
 
       {/* ---- Alternating content sections ---- */}
-      {s.sections.map((sec, i) => {
+      {introSections.map((sec, i) => {
         const even = i % 2 === 0
         return (
           <section key={sec.tag} className={even ? 'bg-white' : 'bg-lightGray'}>
@@ -60,8 +62,8 @@ export default function School() {
                 }`}
               >
                 <img
-                  src={sectionImages[i]}
-                  srcSet={buildSrcSet(sectionImages[i])}
+                  src={introSectionImages[i]}
+                  srcSet={buildSrcSet(introSectionImages[i])}
                   sizes={DEFAULT_SIZES}
                   alt={sec.title}
                   className="h-72 w-full object-cover sm:h-96"

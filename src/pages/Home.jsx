@@ -1,5 +1,7 @@
 import {
   Waves,
+  Handshake,
+  TrendingUp,
   Star,
   Phone,
   CalendarCheck2,
@@ -9,17 +11,23 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLang } from '../hooks/useLang.js'
 import { useSurfConditions } from '../hooks/useSurfConditions.js'
-import { images, carousel } from '../data/images.js'
+import { images, carousel, teamPhotos } from '../data/images.js'
 import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import Carousel from '../components/Carousel.jsx'
 import SEO from '../components/SEO.jsx'
 import { CONTACT } from '../config/site.js'
-import { buildSrcSet, HERO_SIZES } from '../utils/responsiveImage.js'
+import { buildSrcSet, HERO_SIZES, GRID_CARD_SIZES } from '../utils/responsiveImage.js'
+
+const valueIcons = [Waves, Handshake, TrendingUp]
+const teamImages = [teamPhotos.pierre, teamPhotos.mariane, teamPhotos.manoa, teamPhotos.hugo]
+const teamImagePositions = ['object-cover object-top', 'object-cover object-top', 'object-cover', 'object-cover']
+const teamImageScales = ['group-hover:scale-105', 'scale-105 group-hover:scale-110', 'group-hover:scale-105', 'group-hover:scale-105']
 
 export default function Home() {
   const { t, lang } = useLang()
   const h = t.home
+  const s = t.school
   const isFr = lang === 'fr'
   const isDe = lang === 'de'
   const pickLang = (frText, enText, deText) => (isFr ? frText : (isDe ? deText : enText))
@@ -55,7 +63,7 @@ export default function Home() {
         de: 'Ja, natürlich. Unsere Kurse sind für alle offen, auch für absolute Anfänger. Wir setzen auf eine einfache, spielerische und individuelle Progression, mit Tipps passend zu deinem Niveau und Material, das den Einstieg von der ersten Session an erleichtert. Wenn du Fragen hast, kontaktiere uns.',
       },
       links: [
-        { to: '/ecole#valeurs', fr: 'Découvrir l\'école →', en: 'Discover ocean awareness →', de: 'Meeresverständnis entdecken →' },
+        { to: '/#valeurs', fr: 'Découvrir l\'école →', en: 'Discover ocean awareness →', de: 'Meeresverständnis entdecken →' },
         { to: '/cours', fr: 'Voir les formules →', en: 'See packages →', de: 'Pakete ansehen →' },
       ],
     },
@@ -70,7 +78,7 @@ export default function Home() {
         en: 'If putting your head under water does not scare you, you can come have fun in the waves and discover the ocean with us. Our playful teaching approach helps children from age 5 learn with confidence in shallow water. Surfing is one of the best ways to discover the ocean.',
         de: 'Wenn es dir nichts ausmacht, den Kopf unter Wasser zu haben, kannst du mit uns in den Wellen spielen und den Ozean entdecken. Unsere spielerische Lernmethode hilft Kindern ab 5 Jahren, in flachem Wasser sicher und mit Spaß einzusteigen. Surfen ist eine der besten Aktivitäten, um den Ozean kennenzulernen.',
       },
-      link: { to: '/ecole', fr: 'En savoir plus sur l\'école →', en: 'Learn more about the school →', de: 'Mehr über die Schule →' },
+      link: { to: '/#equipe', fr: 'En savoir plus sur l\'école →', en: 'Learn more about the school →', de: 'Mehr über die Schule →' },
     },
     {
       question: {
@@ -84,7 +92,7 @@ export default function Home() {
         de: 'Unsere Trainer analysieren vor jeder Session den Ozean, um den Bereich zu wählen, der am besten zum Gruppenniveau passt. Meeresverständnis ist Teil unserer Pädagogik: Gezeiten verstehen, Strömungen lesen und kritische Zonen erkennen hilft beim sicheren und entspannten Lernen.',
       },
       links: [
-        { to: '/ecole#valeurs', fr: 'Nos valeurs : le sens marin →', en: 'Our values: ocean awareness →', de: 'Unsere Werte: Meeresverständnis →' },
+        { to: '/#valeurs', fr: 'Nos valeurs : le sens marin →', en: 'Our values: ocean awareness →', de: 'Unsere Werte: Meeresverständnis →' },
         { to: '/cours', fr: 'Voir nos formules →', en: 'See our packages →', de: 'Unsere Pakete ansehen →' },
       ],
     },
@@ -191,7 +199,7 @@ export default function Home() {
               className="w-auto justify-center gap-1 px-2 py-1 text-xs font-semibold !bg-white !text-royalBlue !shadow-none hover:!bg-yellow sm:gap-2 sm:!rounded-full sm:px-8 sm:py-4 sm:text-lg sm:font-bold sm:!shadow-lg"
             >
               <Phone className="h-4 w-4 sm:h-5 sm:w-5" />
-              {h.heroSecondaryCta}
+              {pickLang('Appeler', 'Call', 'Anrufen')}
             </CTAButton>
           </div>
         </div>
@@ -286,6 +294,78 @@ export default function Home() {
             >
               {pickLang('Voir l’album photo', 'View photo album', 'Fotoalbum ansehen')}
             </CTAButton>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- SCHOOL VALUES ---------------- */}
+      <section id="valeurs" className="scroll-mt-24 bg-royalBlue py-16 text-white sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <h2 className="text-center text-3xl font-black sm:text-4xl">{s.valuesTitle}</h2>
+            <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
+            {s.valuesSubtitle && (
+              <p className="mx-auto mt-5 max-w-3xl text-center text-base text-white/85 sm:text-lg">
+                {s.valuesSubtitle}
+              </p>
+            )}
+          </Reveal>
+          <div className={`mt-12 grid gap-8 ${s.values.length === 1 ? 'md:grid-cols-1' : 'md:grid-cols-3'}`}>
+            {s.values.map((value, index) => {
+              const Icon = valueIcons[index]
+              return (
+                <Reveal key={value.title} delay={index * 120} className="mx-auto text-center md:max-w-md">
+                  <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/10">
+                    <Icon className="h-8 w-8 text-yellow" />
+                  </span>
+                  <h3 className="mt-5 text-xl font-extrabold">{value.title}</h3>
+                  <p className="mx-auto mt-2 max-w-xs text-sm text-white/80">{value.text}</p>
+                </Reveal>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- SCHOOL TEAM ---------------- */}
+      <section id="equipe" className="scroll-mt-24 bg-white py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <h2 className="text-center text-3xl font-black text-royalBlue sm:text-4xl">
+              {s.teamTitle}
+            </h2>
+            <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
+            <p className="mx-auto mt-5 max-w-2xl text-center text-lg text-dark/75">
+              {s.teamSubtitle}
+            </p>
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {s.team.map((member, index) => (
+              <Reveal
+                key={member.name}
+                delay={(index % 4) * 100}
+                className="group overflow-hidden rounded-2xl bg-lightGray shadow-md ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={teamImages[index]}
+                    srcSet={buildSrcSet(teamImages[index])}
+                    sizes={GRID_CARD_SIZES}
+                    alt={member.name}
+                    className={`h-full w-full ${teamImagePositions[index]} ${teamImageScales[index]} transition-transform duration-500`}
+                    loading="lazy"
+                  />
+                  <span className="absolute bottom-3 left-3 rounded-full bg-yellow px-3 py-1 text-xs font-bold text-royalBlue">
+                    {member.role}
+                  </span>
+                </div>
+                <div className="p-5">
+                  <h3 className="text-xl font-extrabold text-royalBlue">{member.name}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-dark/75">{member.text}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>

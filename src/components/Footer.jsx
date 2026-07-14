@@ -11,7 +11,6 @@ export default function Footer() {
 
   const links = [
     { to: '/', label: t.nav.home },
-    { to: '/ecole', label: t.nav.school },
     { to: '/cours', label: t.nav.lessons },
     { to: '/location', label: t.nav.rental },
     { to: lang === 'fr' ? '/bon-cadeau' : '/gift-voucher', label: t.nav.gift },

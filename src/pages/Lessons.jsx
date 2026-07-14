@@ -197,7 +197,7 @@ export default function Lessons() {
           {/* Team link */}
           <Reveal delay={150} className="mt-10">
             <Link
-              to="/ecole#equipe"
+              to="/#equipe"
               className="group flex flex-col items-start gap-4 rounded-2xl bg-royalBlue p-7 text-white shadow-md ring-1 ring-black/5 transition-colors hover:bg-royalBlue/90 sm:flex-row sm:items-center sm:justify-between"
             >
               <div className="flex items-start gap-4">
