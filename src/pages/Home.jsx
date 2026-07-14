@@ -63,7 +63,7 @@ export default function Home() {
         de: 'Ja, natürlich. Unsere Kurse sind für alle offen, auch für absolute Anfänger. Wir setzen auf eine einfache, spielerische und individuelle Progression, mit Tipps passend zu deinem Niveau und Material, das den Einstieg von der ersten Session an erleichtert. Wenn du Fragen hast, kontaktiere uns.',
       },
       links: [
-        { to: '/#valeurs', fr: 'Découvrir l\'école →', en: 'Discover ocean awareness →', de: 'Meeresverständnis entdecken →' },
+        { to: lang === 'fr' ? '/cours#valeurs' : '/lessons#valeurs', fr: 'Découvrir l\'école →', en: 'Discover ocean awareness →', de: 'Meeresverständnis entdecken →' },
         { to: '/cours', fr: 'Voir les formules →', en: 'See packages →', de: 'Pakete ansehen →' },
       ],
     },
@@ -92,7 +92,7 @@ export default function Home() {
         de: 'Unsere Trainer analysieren vor jeder Session den Ozean, um den Bereich zu wählen, der am besten zum Gruppenniveau passt. Meeresverständnis ist Teil unserer Pädagogik: Gezeiten verstehen, Strömungen lesen und kritische Zonen erkennen hilft beim sicheren und entspannten Lernen.',
       },
       links: [
-        { to: '/#valeurs', fr: 'Nos valeurs : le sens marin →', en: 'Our values: ocean awareness →', de: 'Unsere Werte: Meeresverständnis →' },
+        { to: lang === 'fr' ? '/cours#valeurs' : '/lessons#valeurs', fr: 'Nos valeurs : le sens marin →', en: 'Our values: ocean awareness →', de: 'Unsere Werte: Meeresverständnis →' },
         { to: '/cours', fr: 'Voir nos formules →', en: 'See our packages →', de: 'Unsere Pakete ansehen →' },
       ],
     },
@@ -156,7 +156,6 @@ export default function Home() {
           fetchPriority="high"
           decoding="async"
         />
-        <div className="absolute inset-0 bg-royalBlue/50" />
         <div className="relative z-10 mx-auto max-w-4xl -translate-y-8 px-4 text-center text-white md:-translate-y-12 lg:-translate-y-24">
           <h1 className="home-hero-title-font mx-auto flex max-w-4xl flex-col items-center px-2 text-center text-[1.9rem] font-bold leading-[1.08] text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
             <>
@@ -326,35 +325,6 @@ export default function Home() {
             >
               {pickLang('Voir l’album photo', 'View photo album', 'Fotoalbum ansehen')}
             </CTAButton>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- SCHOOL VALUES ---------------- */}
-      <section id="valeurs" className="scroll-mt-24 bg-royalBlue py-16 text-white sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <h2 className="text-center text-3xl font-black sm:text-4xl">{s.valuesTitle}</h2>
-            <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
-            {s.valuesSubtitle && (
-              <p className="mx-auto mt-5 max-w-3xl text-center text-base text-white/85 sm:text-lg">
-                {s.valuesSubtitle}
-              </p>
-            )}
-          </Reveal>
-          <div className={`mt-12 grid gap-8 ${s.values.length === 1 ? 'md:grid-cols-1' : 'md:grid-cols-3'}`}>
-            {s.values.map((value, index) => {
-              const Icon = valueIcons[index]
-              return (
-                <Reveal key={value.title} delay={index * 120} className="mx-auto text-center md:max-w-md">
-                  <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/10">
-                    <Icon className="h-8 w-8 text-yellow" />
-                  </span>
-                  <h3 className="mt-5 text-xl font-extrabold">{value.title}</h3>
-                  <p className="mx-auto mt-2 max-w-xs text-sm text-white/80">{value.text}</p>
-                </Reveal>
-              )
-            })}
           </div>
         </div>
       </section>

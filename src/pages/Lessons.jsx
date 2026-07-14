@@ -24,6 +24,7 @@ import { buildSrcSet, DEFAULT_SIZES } from '../utils/responsiveImage.js'
 const POPULAR_INDEX = 3
 
 const factIcons = [Clock, Users, Backpack, ShieldCheck]
+const valueIcons = [Waves, Star, ShieldCheck]
 const packageByCardIndex = ['single', 'pack3', 'pack5', 'pack10', 'pack20', 'private']
 
 export default function Lessons() {
@@ -291,6 +292,38 @@ export default function Lessons() {
                 <p className="mt-2 text-sm leading-relaxed text-white/85">{step.text}</p>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---- School values ---- */}
+      <section id="valeurs" className="scroll-mt-24 bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <h2 className="text-center text-3xl font-black text-royalBlue sm:text-4xl">{school.valuesTitle}</h2>
+            <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
+            {school.valuesSubtitle && (
+              <p className="mx-auto mt-5 max-w-3xl text-center text-base text-dark/70 sm:text-lg">{school.valuesSubtitle}</p>
+            )}
+          </Reveal>
+
+          <div className={`mt-12 grid gap-6 ${school.values.length === 1 ? 'md:grid-cols-1' : 'md:grid-cols-3'}`}>
+            {school.values.map((value, index) => {
+              const Icon = valueIcons[index] || ShieldCheck
+              return (
+                <Reveal
+                  key={value.title}
+                  delay={index * 100}
+                  className="rounded-2xl border-b-4 border-red bg-lightGray p-6 text-center shadow-sm"
+                >
+                  <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-royalBlue/10">
+                    <Icon className="h-7 w-7 text-royalBlue" />
+                  </span>
+                  <h3 className="mt-4 text-xl font-extrabold text-royalBlue">{value.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-dark/75">{value.text}</p>
+                </Reveal>
+              )
+            })}
           </div>
         </div>
       </section>
