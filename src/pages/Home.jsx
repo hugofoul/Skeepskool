@@ -187,17 +187,17 @@ export default function Home() {
             <CTAButton
               to={lang === 'fr' ? '/reserver' : '/book'}
               aria-label={pickLang('Reserver un creneau de cours', 'Book a lesson slot', 'Einen Kurs-Slot buchen')}
-              className="w-auto justify-center gap-1 px-2 py-1 text-xs font-semibold !bg-red !text-white !shadow-none hover:!bg-red/90 sm:gap-2 sm:!rounded-full sm:px-8 sm:py-4 sm:text-lg sm:font-bold sm:!shadow-lg"
+              className="w-auto justify-center gap-1.5 px-3 py-2 text-sm font-semibold !bg-red !text-white !shadow-none hover:!bg-red/90 sm:gap-2.5 sm:!rounded-full sm:px-10 sm:py-5 sm:text-xl sm:font-bold sm:!shadow-lg"
             >
-              <CalendarCheck2 className="h-4 w-4 sm:h-5 sm:w-5" />
+              <CalendarCheck2 className="h-5 w-5 sm:h-6 sm:w-6" />
               {h.heroCta}
             </CTAButton>
             <CTAButton
               href={`tel:${CONTACT.phonePrimary}`}
               aria-label={pickLang('Appeler Skeepskool', 'Call Skeepskool', 'Skeepskool anrufen')}
-              className="w-auto justify-center gap-1 px-2 py-1 text-xs font-semibold !bg-white !text-royalBlue !shadow-none hover:!bg-yellow sm:gap-2 sm:!rounded-full sm:px-8 sm:py-4 sm:text-lg sm:font-bold sm:!shadow-lg"
+              className="w-auto justify-center gap-1.5 px-3 py-2 text-sm font-semibold !bg-white !text-royalBlue !shadow-none hover:!bg-yellow sm:gap-2.5 sm:!rounded-full sm:px-10 sm:py-5 sm:text-xl sm:font-bold sm:!shadow-lg"
             >
-              <Phone className="h-4 w-4 sm:h-5 sm:w-5" />
+              <Phone className="h-5 w-5 sm:h-6 sm:w-6" />
               {pickLang('Appeler', 'Call', 'Anrufen')}
             </CTAButton>
           </div>
