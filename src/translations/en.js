@@ -57,6 +57,107 @@ export const en = {
       },
     ],
 
+    offers: {
+      eyebrow: 'OUR PACKAGES',
+      title: 'Find the lesson that fits you',
+      viewAllCta: 'View all lesson packages →',
+      priceFallback: 'Price on request',
+      cards: [
+        {
+          badge: 'DISCOVERY',
+          title: 'Discovery lesson',
+          subtitle: '1 session · 2 h',
+          description: 'Perfect for a first surf experience and your first waves.',
+          pricePrefix: 'From',
+          cta: 'Book now',
+          packageValue: 'single',
+        },
+        {
+          featuredLabel: '★ MOST BOOKED',
+          title: '5-day course',
+          subtitle: '5 sessions · 10 h',
+          description: 'The best way to progress quickly and enjoy surfing day after day.',
+          pricePrefix: 'From',
+          cta: 'Book now',
+          packageValue: 'pack5',
+        },
+        {
+          badge: 'PROGRESSION',
+          title: 'Private lessons',
+          subtitle: '1 to 2 people · 2 h',
+          description: 'Personal coaching for faster progress tailored to your level.',
+          pricePrefix: 'From',
+          cta: 'Book now',
+          packageValue: 'private',
+        },
+      ],
+    },
+
+    rentalShowcase: {
+      eyebrow: 'SURF RENTAL',
+      title: 'Rent your surf gear in Le Porge',
+      intro: 'Boards, wetsuits and equipment adapted to your level for the best session possible.',
+      viewAllCta: 'See all rental options →',
+      cards: [
+        {
+          title: 'Surfboard',
+          description: 'A board adapted to your level and the day conditions.',
+          pricePrefix: 'From',
+          cta: 'See prices',
+        },
+        {
+          title: 'Board + wetsuit',
+          description: 'The complete setup to get in the water with confidence.',
+          pricePrefix: 'From',
+          cta: 'See prices',
+        },
+        {
+          title: 'Multi-day rental',
+          description: 'A smart option to enjoy surfing throughout your stay.',
+          pricePrefix: 'From',
+          cta: 'See prices',
+          priceFallback: 'On request',
+        },
+      ],
+    },
+
+    practical: {
+      infoTitle: 'PRACTICAL INFO',
+      faqTitle: 'FAQ',
+      mapTitle: 'FIND US',
+      mapFrameTitle: 'Skeepskool Le Porge map',
+      itineraryCta: 'Get directions',
+      allQuestionsCta: 'See all questions',
+      infoItems: [
+        { icon: 'map', title: 'Plage Centrale, Le Porge Océan, 33680, Gironde' },
+        { icon: 'drive', title: 'By car', subtitle: '~50 min from Bordeaux via the D6 then the D3 toward Le Porge.' },
+        { icon: 'city', title: 'Nearest cities', subtitle: 'Bordeaux 50 min · Lacanau 20 min · Lège-Cap-Ferret 25 min' },
+        { icon: 'parking', title: 'Parking', subtitle: 'Free parking near the beach.' },
+      ],
+      faqItems: [
+        {
+          question: 'I have never surfed before. Can I still take a lesson with you?',
+          answer: 'Yes, absolutely. Our lessons are open to everyone, even complete beginners. We focus on simple, fun and personalized progression, with coaching adapted to your level and equipment that helps you learn from the first session.',
+        },
+        {
+          question: 'Should I know how to swim?',
+          answer: 'If putting your head under water does not scare you, you can come have fun in the waves and discover the ocean with us. Our playful teaching approach helps children from age 5 learn with confidence in shallow water.',
+        },
+        {
+          question: 'Are currents and big tides dangerous for learning?',
+          answer: 'Our instructors assess the ocean before every session to choose the area that best matches the group level. Ocean awareness is part of our teaching: understanding tides, reading currents and identifying areas to avoid helps you learn in safe and comfortable conditions.',
+        },
+        {
+          question: 'Can I pay on site?',
+          answer: 'Yes. You can pay on site in cash, by bank transfer, or with holiday vouchers. To secure your spot in advance, payment by bank transfer is recommended.',
+        },
+        {
+          question: 'Can I rent equipment without taking a lesson?',
+          answer: 'Yes, rental is open to everyone. However, we strongly advise against renting without supervision if you have fewer than 10 lessons with a qualified instructor.',
+        },
+      ],
+    },
+
     aboutTitle: 'Surfing at the gates of Bordeaux',
     aboutText:
       'The closest ocean beach from Bordeaux. Surf lessons from age 5, supervised by certified state-qualified instructors.',

@@ -56,6 +56,107 @@ export const fr = {
       },
     ],
 
+    offers: {
+      eyebrow: 'NOS FORMULES',
+      title: 'Trouvez le cours qui vous correspond',
+      viewAllCta: 'Voir toutes les formules →',
+      priceFallback: 'Tarif à confirmer',
+      cards: [
+        {
+          badge: 'DÉCOUVERTE',
+          title: 'Cours découverte',
+          subtitle: '1 séance · 2 h',
+          description: 'Parfait pour une première expérience et prendre vos premières vagues.',
+          pricePrefix: 'À partir de',
+          cta: 'Réserver',
+          packageValue: 'single',
+        },
+        {
+          featuredLabel: '★ LE PLUS RÉSERVÉ',
+          title: 'Stage 5 jours',
+          subtitle: '5 séances · 10 h',
+          description: 'La meilleure façon de progresser et de vivre le surf au quotidien.',
+          pricePrefix: 'À partir de',
+          cta: 'Réserver',
+          packageValue: 'pack5',
+        },
+        {
+          badge: 'PROGRESSION',
+          title: 'Cours particuliers',
+          subtitle: '1 à 2 personnes · 2 h',
+          description: 'Un suivi personnalisé pour des progrès rapides et adaptés à votre niveau.',
+          pricePrefix: 'À partir de',
+          cta: 'Réserver',
+          packageValue: 'private',
+        },
+      ],
+    },
+
+    rentalShowcase: {
+      eyebrow: 'LOCATION DE MATÉRIEL',
+      title: 'Louez votre matériel de surf au Porge',
+      intro: 'Planche, combinaison et matériel adapté à votre niveau pour profiter pleinement de votre session.',
+      viewAllCta: 'Découvrir toutes les locations →',
+      cards: [
+        {
+          title: 'Planche de surf',
+          description: 'Une planche adaptée à votre niveau et aux conditions du jour.',
+          pricePrefix: 'À partir de',
+          cta: 'Voir les tarifs',
+        },
+        {
+          title: 'Planche + combinaison',
+          description: 'L’équipement complet pour aller surfer en toute simplicité.',
+          pricePrefix: 'À partir de',
+          cta: 'Voir les tarifs',
+        },
+        {
+          title: 'Location plusieurs jours',
+          description: 'Une formule avantageuse pour profiter du surf pendant tout votre séjour.',
+          pricePrefix: 'À partir de',
+          cta: 'Voir les tarifs',
+          priceFallback: 'Sur demande',
+        },
+      ],
+    },
+
+    practical: {
+      infoTitle: 'INFOS PRATIQUES',
+      faqTitle: 'QUESTIONS FRÉQUENTES',
+      mapTitle: 'NOUS TROUVER',
+      mapFrameTitle: 'Carte Skeepskool Le Porge',
+      itineraryCta: 'Voir l’itinéraire',
+      allQuestionsCta: 'Voir toutes les questions',
+      infoItems: [
+        { icon: 'map', title: 'Plage Centrale, Le Porge Océan, 33680, Gironde' },
+        { icon: 'drive', title: 'En voiture', subtitle: '~50 min depuis Bordeaux via la D6 puis la D3 en direction du Porge.' },
+        { icon: 'city', title: 'Villes les plus proches', subtitle: 'Bordeaux 50 min · Lacanau 20 min · Lège-Cap-Ferret 25 min' },
+        { icon: 'parking', title: 'Stationnement', subtitle: 'Parking gratuit à proximité de la plage.' },
+      ],
+      faqItems: [
+        {
+          question: 'Je n’ai jamais fait de surf, puis-je quand même prendre un cours chez vous ?',
+          answer: 'Oui, bien sûr. Nos cours sont ouverts à tous, même si vous débutez complètement. On privilégie une progression simple, ludique et personnalisée, avec des conseils adaptés à votre niveau et du matériel qui facilite l’apprentissage dès la première séance.',
+        },
+        {
+          question: 'Est-ce que je dois savoir nager ?',
+          answer: 'Si vous n\'avez pas peur de mettre la tête sous l’eau, vous pouvez venir jouer dans les vagues et découvrir l’Océan dans notre école de surf. L’apprentissage ludique permet à vos enfants dès 5 ans de s’initier en s’amusant dans des eaux peu profondes en toute sérénité.',
+        },
+        {
+          question: 'Les courants et les grandes marées sont-ils un danger pour l’apprentissage ?',
+          answer: 'Nos moniteurs analysent l’océan avant chaque session pour choisir la zone la plus adaptée au niveau du groupe. Le sens marin fait partie de notre pédagogie : comprendre les marées, lire les courants et reconnaître les zones à éviter permet d’apprendre dans de bonnes conditions.',
+        },
+        {
+          question: 'Peut-on payer sur place ?',
+          answer: 'Oui. Vous pouvez régler sur place en espèces, virement bancaire, chèque ou avec des chèques vacances. Pour garantir votre place à l’avance, le paiement par virement est recommandé.',
+        },
+        {
+          question: 'Peut-on louer du matériel sans prendre de cours ?',
+          answer: 'Oui, la location est ouverte à tous. Cependant, nous déconseillons fortement la location sans encadrement si vous avez moins de 10 séances avec un moniteur diplômé.',
+        },
+      ],
+    },
+
     aboutTitle: 'Le surf aux portes de Bordeaux',
     aboutText:
       "La plage océan la plus proche de Bordeaux. Cours de surf dès 5 ans, encadrés par des moniteurs diplômés d'État, d'avril à novembre.",

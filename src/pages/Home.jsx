@@ -1,11 +1,15 @@
 import {
   Waves,
-  Handshake,
-  TrendingUp,
   Star,
   Phone,
   CalendarCheck2,
-  ChevronDown,
+  MapPin,
+  Car,
+  ParkingCircle,
+  Tent,
+  ExternalLink,
+  Plus,
+  Minus,
 } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -16,21 +20,122 @@ import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import Carousel from '../components/Carousel.jsx'
 import SEO from '../components/SEO.jsx'
-import { CONTACT } from '../config/site.js'
+import { CONTACT, MAPS } from '../config/site.js'
 import { buildSrcSet, HERO_SIZES, GRID_CARD_SIZES } from '../utils/responsiveImage.js'
 
-const valueIcons = [Waves, Handshake, TrendingUp]
 const teamImages = [teamPhotos.pierre, teamPhotos.mariane, teamPhotos.manoa, teamPhotos.hugo]
 const teamImagePositions = ['object-cover object-top', 'object-cover object-top', 'object-cover', 'object-cover']
 const teamImageScales = ['group-hover:scale-105', 'scale-105 group-hover:scale-110', 'group-hover:scale-105', 'group-hover:scale-105']
+const HOME_MAP_SRC =
+  'https://www.google.com/maps?q=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge&z=14&output=embed'
 
 export default function Home() {
   const { t, lang } = useLang()
   const h = t.home
   const s = t.school
+  const booking = t.booking
+  const rental = t.rental
   const isFr = lang === 'fr'
   const isDe = lang === 'de'
   const pickLang = (frText, enText, deText) => (isFr ? frText : (isDe ? deText : enText))
+  const bookingPath = lang === 'fr' ? '/reserver' : '/book'
+  const lessonsPath = lang === 'fr' ? '/cours' : '/lessons'
+  const rentalPath = lang === 'fr' ? '/location' : '/rental'
+  const [openFaqIndex, setOpenFaqIndex] = useState(0)
+  const [showAllPracticalFaq, setShowAllPracticalFaq] = useState(false)
+
+  const parseEuroPrice = (value) => {
+    const parsed = Number.parseFloat(String(value || '').replace(',', '.').replace(/[^0-9.]/g, ''))
+    return Number.isFinite(parsed) ? parsed : null
+  }
+
+  const formatPrice = (value) => {
+    if (!Number.isFinite(value)) return h?.offers?.priceFallback || ''
+    const locale = lang === 'fr' ? 'fr-FR' : (lang === 'de' ? 'de-DE' : 'en-GB')
+    return new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(value)
+  }
+
+  const packagePrices = new Map((booking.packages || []).map((pkg) => [pkg.value, pkg.price]))
+  const rentalRows = rental.rows || []
+  const surfBoardTwoHours = parseEuroPrice(rentalRows[0]?.prices?.[0])
+  const wetsuitTwoHours = parseEuroPrice(rentalRows[2]?.prices?.[0])
+  const multiDaySurf = parseEuroPrice(rentalRows[0]?.prices?.[3])
+
+  const homeCourseCards = (h.offers?.cards || []).map((card) => ({
+    ...card,
+    price: packagePrices.get(card.packageValue) ?? null,
+  }))
+
+  const homeRentalCards = [
+    {
+      ...h.rentalShowcase.cards[0],
+      price: surfBoardTwoHours,
+    },
+    {
+      ...h.rentalShowcase.cards[1],
+      price:
+        Number.isFinite(surfBoardTwoHours) && Number.isFinite(wetsuitTwoHours)
+          ? surfBoardTwoHours + wetsuitTwoHours
+          : null,
+    },
+    {
+      ...h.rentalShowcase.cards[2],
+      price: multiDaySurf,
+    },
+  ]
+
+  const infoIcons = {
+    map: MapPin,
+    drive: Car,
+    city: MapPin,
+    parking: ParkingCircle,
+    camping: Tent,
+  }
+
+  const homeFaqEntries = (h.practical?.faqItems || [])
+    .filter((item) => item?.question && item?.answer)
+    .map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    }))
+
+  const homeOffers = [
+    ...homeCourseCards,
+    ...homeRentalCards,
+  ]
+    .filter((item) => Number.isFinite(item.price))
+    .map((item) => ({
+      '@type': 'Offer',
+      priceCurrency: 'EUR',
+      price: item.price,
+      availability: 'https://schema.org/InStock',
+      url: item.packageValue ? `${bookingPath}?package=${item.packageValue}` : rentalPath,
+      itemOffered: {
+        '@type': 'Service',
+        name: item.title,
+        description: item.description,
+      },
+    }))
+
+  const homeStructuredData = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: homeFaqEntries,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: lang === 'fr' ? 'Cours et location Skeepskool' : (lang === 'de' ? 'Kurse und Verleih Skeepskool' : 'Skeepskool lessons and rental'),
+      serviceType: lang === 'fr' ? 'Cours de surf et location de matériel' : (lang === 'de' ? 'Surfkurse und Materialverleih' : 'Surf lessons and equipment rental'),
+      areaServed: 'Le Porge Océan',
+      offers: homeOffers,
+    },
+  ]
   const heroTitleLines = isFr
     ? {
       top: "L'école de surf",
@@ -48,82 +153,6 @@ export default function Home() {
         middle: 'at',
         bottom: 'Le Porge Central Beach',
       })
-  const [openFaqIndex, setOpenFaqIndex] = useState(0)
-
-  const faqItems = [
-    {
-      question: {
-        fr: 'Je n’ai jamais fait de surf, puis-je quand même prendre un cours chez vous ?',
-        en: 'I have never surfed before. Can I still take a lesson with you?',
-        de: 'Ich habe noch nie gesurft. Kann ich trotzdem einen Kurs bei euch machen?',
-      },
-      answer: {
-        fr: 'Oui, bien sûr. Nos cours sont ouverts à tous, même si vous débutez complètement. On privilégie une progression simple, ludique et personnalisée, avec des conseils adaptés à votre niveau et du matériel qui facilite l’apprentissage dès la première séance.',
-        en: 'Yes, absolutely. Our lessons are open to everyone, even complete beginners. We focus on simple, fun and personalized progression, with coaching adapted to your level and equipment that helps you learn from the first session. If you want to discuss your needs, contact us.',
-        de: 'Ja, natürlich. Unsere Kurse sind für alle offen, auch für absolute Anfänger. Wir setzen auf eine einfache, spielerische und individuelle Progression, mit Tipps passend zu deinem Niveau und Material, das den Einstieg von der ersten Session an erleichtert. Wenn du Fragen hast, kontaktiere uns.',
-      },
-      links: [
-        { to: lang === 'fr' ? '/cours#valeurs' : '/lessons#valeurs', fr: 'Découvrir l\'école →', en: 'Discover ocean awareness →', de: 'Meeresverständnis entdecken →' },
-        { to: '/cours', fr: 'Voir les formules →', en: 'See packages →', de: 'Pakete ansehen →' },
-      ],
-    },
-    {
-      question: {
-        fr: 'Est-ce que je dois savoir nager ?',
-        en: 'Should I know how to swim?',
-        de: 'Sollte ich schwimmen koennen?',
-      },
-      answer: {
-        fr: 'Si vous n\'avez pas peur de mettre la tête sous l’eau, vous pouvez venir jouer dans les vagues et découvrir l’Océan dans notre école de surf. L’apprentissage ludique permet à vos enfants dès 5 ans de s’initier en s’amusant dans des eaux peu profondes en toute sérénité. Le surf est la meilleure des activités pour découvrir l’Océan.',
-        en: 'If putting your head under water does not scare you, you can come have fun in the waves and discover the ocean with us. Our playful teaching approach helps children from age 5 learn with confidence in shallow water. Surfing is one of the best ways to discover the ocean.',
-        de: 'Wenn es dir nichts ausmacht, den Kopf unter Wasser zu haben, kannst du mit uns in den Wellen spielen und den Ozean entdecken. Unsere spielerische Lernmethode hilft Kindern ab 5 Jahren, in flachem Wasser sicher und mit Spaß einzusteigen. Surfen ist eine der besten Aktivitäten, um den Ozean kennenzulernen.',
-      },
-      link: { to: '/#equipe', fr: 'En savoir plus sur l\'école →', en: 'Learn more about the school →', de: 'Mehr über die Schule →' },
-    },
-    {
-      question: {
-        fr: 'Les courants et les grandes marées sont-ils un danger pour l’apprentissage ?',
-        en: 'Are currents and big tides dangerous for learning?',
-        de: 'Sind Strömungen und große Gezeiten beim Lernen gefährlich?',
-      },
-      answer: {
-        fr: 'Nos moniteurs analysent l’océan avant chaque session pour choisir la zone la plus adaptée au niveau du groupe. Le sens marin fait partie de notre pédagogie : comprendre les marées, lire les courants et reconnaître les zones à éviter permet d’apprendre dans de bonnes conditions, avec sérénité.',
-        en: 'Our instructors assess the ocean before every session to choose the area that best matches the group level. Ocean awareness is part of our teaching: understanding tides, reading currents and identifying areas to avoid helps you learn in safe and comfortable conditions.',
-        de: 'Unsere Trainer analysieren vor jeder Session den Ozean, um den Bereich zu wählen, der am besten zum Gruppenniveau passt. Meeresverständnis ist Teil unserer Pädagogik: Gezeiten verstehen, Strömungen lesen und kritische Zonen erkennen hilft beim sicheren und entspannten Lernen.',
-      },
-      links: [
-        { to: lang === 'fr' ? '/cours#valeurs' : '/lessons#valeurs', fr: 'Nos valeurs : le sens marin →', en: 'Our values: ocean awareness →', de: 'Unsere Werte: Meeresverständnis →' },
-        { to: '/cours', fr: 'Voir nos formules →', en: 'See our packages →', de: 'Unsere Pakete ansehen →' },
-      ],
-    },
-    {
-      question: {
-        fr: 'Peut-on payer sur place ?',
-        en: 'Can I pay on site?',
-        de: 'Kann ich vor Ort bezahlen?',
-      },
-      answer: {
-        fr: 'Oui ! Vous pouvez régler sur place en espèces, virement bancaire, chèque ou avec des chèques vacances. Pour garantir votre place à l\'avance, le paiement par virement est recommandé.',
-        en: 'Yes! You can pay on site in cash, by bank transfer, or with holiday vouchers (chèques vacances). To secure your spot in advance, payment by bank transfer or Paylib is recommended.',
-        de: 'Ja! Du kannst vor Ort bar, per Überweisung oder mit Urlaubsgutscheinen bezahlen. Um deinen Platz zu sichern, empfehlen wir Überweisung im Voraus.',
-      },
-      link: { to: '/reserver', fr: 'Réserver et payer →', en: 'Book and pay →', de: 'Buchen und bezahlen →' },
-    },
-    {
-      question: {
-        fr: 'Peut-on louer du matériel sans prendre de cours ?',
-        en: 'Can I rent equipment without taking a lesson?',
-        de: 'Kann ich Material mieten, ohne einen Kurs zu buchen?',
-      },
-      answer: {
-        fr: 'Oui, la location est ouverte à tous. Cependant, nous déconseillons fortement la location sans encadrement si vous avez moins de 10 séances avec un moniteur diplômé. En dessous de ce niveau, la pratique du surf peut être dangereuse pour vous et pour les autres surfeurs.',
-        en: 'Yes, rental is open to everyone. However, we strongly advise against renting without supervision if you have fewer than 10 lessons with a qualified instructor. Below this level, surfing can be dangerous for yourself and for other surfers.',
-        de: 'Ja, der Verleih ist für alle offen. Wir raten jedoch vom Surfen ohne Betreuung ab, wenn du weniger als 10 Kurseinheiten mit einem qualifizierten Lehrer hattest.',
-      },
-      link: { to: '/location', fr: 'Voir les tarifs location →', en: 'See rental prices →', de: 'Verleihpreise ansehen →' },
-    },
-  ]
-
   const surfConditions = useSurfConditions({
     lang,
     fallbackParagraphs: h.surfConditions.fallbackParagraphs,
@@ -143,6 +172,7 @@ export default function Home() {
           'FFS-certified surf school at Le Porge Océan, Gironde. Group and private lessons from age 5, equipment rental. State-certified instructors. 50 min from Bordeaux.',
           'FFS-zertifizierte Surfschule in Le Porge Océan, Gironde. Gruppen- und Privatkurse ab 5 Jahren, Materialverleih, staatlich geprüfte Lehrer. 50 Minuten von Bordeaux.',
         )}
+        structuredData={homeStructuredData}
       />
       {/* ---------------- HERO ---------------- */}
       <section className="relative flex min-h-[82vh] items-center justify-center overflow-hidden sm:min-h-[88vh]">
@@ -223,83 +253,166 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- HIGHLIGHTS ---------------- */}
-      <section className="bg-white py-16 sm:py-20">
+      {/* ---------------- COURSES ---------------- */}
+      <section className="bg-[#f7f9fc] py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 md:grid-cols-2">
-            {h.highlights.slice(0, 2).map((card, i) => {
-              const visualSrc = i === 0 ? '/images/charliecours.webp' : '/images/ecole.jpeg'
+          <Reveal>
+            <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-royalBlue/80">
+              {h.offers.eyebrow}
+            </p>
+            <h2 className="mt-3 text-center text-3xl font-black text-royalBlue sm:text-4xl">
+              {h.offers.title}
+            </h2>
+          </Reveal>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {homeCourseCards.map((card, index) => {
+              const isFeatured = Boolean(card.featuredLabel)
               return (
                 <Reveal
                   key={card.title}
-                  delay={i * 120}
-                  className="group overflow-hidden rounded-3xl border border-black/10 bg-white shadow-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  delay={index * 90}
+                  className={`flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-black/5 ${isFeatured ? 'xl:-translate-y-1 xl:ring-2 xl:ring-red/20' : ''}`}
                 >
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={visualSrc}
-                      srcSet={buildSrcSet(visualSrc)}
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      alt={card.title}
-                      className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                      loading="lazy"
-                    />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
-                  </div>
-                  <div className="flex min-h-[220px] flex-col p-6">
+                  {isFeatured ? (
+                    <div className="bg-red px-5 py-2 text-center text-xs font-extrabold uppercase tracking-[0.14em] text-white">
+                      {card.featuredLabel}
+                    </div>
+                  ) : (
+                    <div className="px-5 pt-5">
+                      <span className="inline-flex rounded-full bg-royalBlue/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-royalBlue">
+                        {card.badge}
+                      </span>
+                    </div>
+                  )}
+
+                  <div className="flex flex-1 flex-col px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
                     <h3 className="text-2xl font-black text-royalBlue">{card.title}</h3>
-                    <p className="mt-3 flex-1 text-sm leading-relaxed text-dark/75">{card.text}</p>
-                    {i === 0 && (
-                      <div className="mt-5">
-                        <CTAButton to="/cours" className="px-4 py-2 text-sm">
-                          {t.learnMore}
-                        </CTAButton>
-                      </div>
-                    )}
-                    {i === 1 && (
-                      <div className="mt-5">
-                        <CTAButton to="/location" className="px-4 py-2 text-sm">
-                          {t.learnMore}
-                        </CTAButton>
-                      </div>
-                    )}
+                    <p className="mt-1 text-sm font-semibold text-dark/70">{card.subtitle}</p>
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-dark/75">{card.description}</p>
+
+                    <div className="mt-6">
+                      <p className="text-xs font-bold uppercase tracking-[0.14em] text-dark/55">{card.pricePrefix}</p>
+                      <p className="mt-1 text-4xl font-black text-red">{formatPrice(card.price)}</p>
+                    </div>
+
+                    <CTAButton
+                      to={`${bookingPath}?package=${card.packageValue}`}
+                      aria-label={`${card.cta} ${card.title}`}
+                      className="mt-6 w-full justify-center"
+                    >
+                      {card.cta}
+                    </CTAButton>
                   </div>
                 </Reveal>
               )
             })}
           </div>
+
+          <Reveal delay={120} className="mt-8 text-center">
+            <Link to={lessonsPath} className="text-base font-extrabold text-royalBlue transition-colors hover:text-red">
+              {h.offers.viewAllCta}
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------------- RENTAL TEASER ---------------- */}
+      <section className="bg-white py-14 sm:py-16">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <Reveal className="overflow-hidden rounded-3xl border border-black/10 bg-lightGray shadow-md">
+            <div className="grid items-stretch md:grid-cols-[1fr_1.1fr]">
+              <div className="relative min-h-[220px] md:min-h-[260px]">
+                <img
+                  src={images.contactHero}
+                  srcSet={buildSrcSet(images.contactHero)}
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  alt={pickLang('École de surf Skeepskool', 'Skeepskool surf school', 'Skeepskool Surfschule')}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-black/10 to-transparent" />
+              </div>
+
+              <div className="flex flex-col justify-center gap-4 px-6 py-7 sm:px-8 sm:py-9">
+                <h2 className="text-2xl font-black text-royalBlue sm:text-3xl">
+                  {h.highlights[1]?.title || h.rentalShowcase.title}
+                </h2>
+                <p className="text-sm leading-relaxed text-dark/75 sm:text-base">
+                  {h.highlights[1]?.text || h.rentalShowcase.intro}
+                </p>
+
+                <div className="pt-1">
+                  <CTAButton to={rentalPath} className="justify-center px-6 py-3">
+                    {h.rentalShowcase.viewAllCta}
+                  </CTAButton>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ---------------- SCHOOL ADVANTAGES ---------------- */}
-      <section className="bg-lightGray py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal className="reveal-left overflow-hidden rounded-[2rem] bg-white shadow-xl ring-1 ring-black/5">
-            <div className="bg-gradient-to-br from-royalBlue via-[#2f5fd0] to-[#1a3ebd] px-7 py-7 text-white sm:px-9 sm:py-8">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">
-                    {pickLang('Pourquoi venir ici', 'Why choose this spot', 'Warum dieser Spot')}
-                  </p>
-                  <h3 className="mt-2 text-2xl font-black sm:text-3xl">{s.beachAdvantagesTitle}</h3>
-                </div>
-                <span className="inline-flex w-fit rounded-full bg-white/15 px-4 py-2 text-sm font-black text-yellow ring-1 ring-white/25">
-                  {s.coachingExperience}
-                </span>
-              </div>
-            </div>
+      <section className="relative overflow-hidden bg-royalBlue py-16 sm:py-20">
+        <div className="pointer-events-none absolute -left-24 top-8 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 bottom-8 h-64 w-64 rounded-full bg-yellow/20 blur-3xl" />
 
-            <ul className="grid gap-3 p-7 text-sm font-semibold text-dark/80 sm:grid-cols-2 sm:p-9 sm:text-base">
-              {s.beachAdvantagesItems.map((item) => (
-                <li key={item} className="rounded-xl bg-[#f3f7fd] px-4 py-3 ring-1 ring-[#d9e6fb]">
-                  <span className="inline-flex items-start gap-2.5">
-                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-red" />
-                    <span>{item}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">
+                  {pickLang('Le spot du porge', 'Le Porge spot', 'Der Spot in Le Porge')}
+                </p>
+                <h3 className="mt-2 text-3xl font-black text-white sm:text-4xl">{s.beachAdvantagesTitle}</h3>
+              </div>
+              <span className="inline-flex w-fit items-center gap-2 rounded-2xl bg-yellow px-5 py-2.5 text-sm font-black uppercase tracking-[0.06em] text-royalBlue shadow-[0_10px_25px_rgba(0,0,0,0.28)] ring-2 ring-white/70 sm:px-6 sm:py-3 sm:text-base">
+                <Star className="h-4 w-4 fill-royalBlue text-royalBlue" aria-hidden="true" />
+                {s.coachingExperience}
+              </span>
+            </div>
           </Reveal>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-12">
+            <Reveal className="overflow-hidden rounded-3xl shadow-xl ring-1 ring-white/20 lg:col-span-5">
+              <div className="relative h-full min-h-[250px]">
+                <img
+                  src={images.schoolSpot}
+                  srcSet={buildSrcSet(images.schoolSpot)}
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  alt={s.beachAdvantagesTitle}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
+                <div className="absolute bottom-5 left-5 right-5 rounded-2xl bg-white/90 p-4 backdrop-blur-sm">
+                  <p className="text-sm font-bold text-royalBlue sm:text-base">
+                    {pickLang(
+                      'Un cadre naturel unique entre dune, forêt et océan.',
+                      'A unique natural setting between dune, forest and ocean.',
+                      'Ein einzigartiges Naturumfeld zwischen Düne, Wald und Ozean.',
+                    )}
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:col-span-7">
+              {s.beachAdvantagesItems.map((item, index) => (
+                <Reveal
+                  key={item}
+                  delay={index * 80}
+                  className={`rounded-2xl border border-white/25 bg-white/10 p-5 text-white shadow-lg backdrop-blur-sm ${index % 2 === 1 ? 'sm:translate-y-3' : ''}`}
+                >
+                  <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-yellow px-2 text-xs font-black text-royalBlue">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <p className="mt-3 text-sm font-semibold leading-relaxed sm:text-base">{item}</p>
+                </Reveal>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -428,74 +541,112 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- FAQ ---------------- */}
-      <section className="bg-white py-16 sm:py-20">
-        <div className="mx-auto max-w-3xl px-4">
-          <Reveal>
-            <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">
-              {pickLang('Questions fréquentes', 'FAQ', 'Häufige Fragen')}
-            </h2>
-            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
-          </Reveal>
+      {/* ---------------- PRACTICAL / FAQ / MAP ---------------- */}
+      <section className="bg-[#f7f9fc] py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-6 lg:grid-cols-3">
+            <Reveal className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-7">
+              <h2 className="text-2xl font-black text-royalBlue">{h.practical.infoTitle}</h2>
+              <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+              <ul className="mt-6 space-y-4">
+                {h.practical.infoItems.map((item) => {
+                  const Icon = infoIcons[item.icon] || MapPin
+                  return (
+                    <li key={item.title} className="flex items-start gap-3">
+                      <Icon className="mt-0.5 h-5 w-5 shrink-0 text-red" aria-hidden="true" />
+                      <div>
+                        <p className="text-sm font-bold text-dark sm:text-base">{item.title}</p>
+                        {item.subtitle ? <p className="text-sm text-dark/70">{item.subtitle}</p> : null}
+                      </div>
+                    </li>
+                  )
+                })}
+              </ul>
+            </Reveal>
 
-          <div className="mt-12 space-y-4">
-            {faqItems.map((item, index) => {
-              const isOpen = openFaqIndex === index
-              return (
-                <Reveal key={item.question.en} delay={index * 60}>
-                  <div className="border-l-4 border-yellow py-4">
-                    <button
-                      type="button"
-                      onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                      className="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-3 text-left transition hover:text-royalBlue"
-                      aria-expanded={isOpen}
-                    >
-                      <span className="text-base font-bold text-dark sm:text-lg">
-                        {pickLang(item.question.fr, item.question.en, item.question.de ?? item.question.en)}
-                      </span>
-                      <ChevronDown
-                        className={`h-5 w-5 shrink-0 text-yellow transition-transform duration-300 ${
-                          isOpen ? 'rotate-180' : 'rotate-0'
-                        }`}
-                      />
-                    </button>
+            <Reveal delay={80} className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-7">
+              <h2 className="text-2xl font-black text-royalBlue">{h.practical.faqTitle}</h2>
+              <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
 
-                    <div
-                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                        isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                      }`}
-                    >
-                      <div className="px-5 pb-4">
-                        <p className="leading-relaxed text-dark/80">
-                          {pickLang(item.answer.fr, item.answer.en, item.answer.de ?? item.answer.en)}
-                        </p>
-                        {item.link && (
-                          <Link
-                            to={item.link.to}
-                            className="mt-3 inline-block text-red font-semibold hover:underline"
-                          >
-                            {pickLang(item.link.fr, item.link.en, item.link.de ?? item.link.en)}
-                          </Link>
+              <div className="mt-5 divide-y divide-black/10">
+                {h.practical.faqItems.map((item, index) => {
+                  const isOpen = showAllPracticalFaq || openFaqIndex === index
+                  const panelId = `home-practical-faq-panel-${index}`
+                  const buttonId = `home-practical-faq-button-${index}`
+
+                  return (
+                    <div key={item.question} className="py-2">
+                      <button
+                        id={buttonId}
+                        type="button"
+                        onClick={() => {
+                          if (showAllPracticalFaq) setShowAllPracticalFaq(false)
+                          setOpenFaqIndex(isOpen && !showAllPracticalFaq ? null : index)
+                        }}
+                        onKeyDown={(event) => {
+                          if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault()
+                            if (showAllPracticalFaq) setShowAllPracticalFaq(false)
+                            setOpenFaqIndex(isOpen && !showAllPracticalFaq ? null : index)
+                          }
+                        }}
+                        className="flex w-full items-center justify-between gap-3 py-2 text-left"
+                        aria-expanded={isOpen}
+                        aria-controls={panelId}
+                      >
+                        <span className="text-sm font-bold text-dark sm:text-base">{item.question}</span>
+                        {isOpen ? (
+                          <Minus className="h-4 w-4 shrink-0 text-red" aria-hidden="true" />
+                        ) : (
+                          <Plus className="h-4 w-4 shrink-0 text-royalBlue" aria-hidden="true" />
                         )}
-                        {item.links && item.links.length > 0 && (
-                          <div className="mt-3 flex flex-wrap gap-3">
-                            {item.links.map((link) => (
-                              <Link
-                                key={`${link.to}-${link.en}`}
-                                to={link.to}
-                                className="inline-block text-red font-semibold hover:underline"
-                              >
-                                {pickLang(link.fr, link.en, link.de ?? link.en)}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
+                      </button>
+
+                      <div
+                        id={panelId}
+                        role="region"
+                        aria-labelledby={buttonId}
+                        className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
+                      >
+                        <p className="pb-2 pr-6 text-sm leading-relaxed text-dark/75">{item.answer}</p>
                       </div>
                     </div>
-                  </div>
-                </Reveal>
-              )
-            })}
+                  )
+                })}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setShowAllPracticalFaq(true)}
+                className="mt-5 inline-flex items-center font-bold text-royalBlue transition-colors hover:text-red"
+              >
+                {h.practical.allQuestionsCta}
+              </button>
+            </Reveal>
+
+            <Reveal delay={160} className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-7">
+              <h2 className="text-2xl font-black text-royalBlue">{h.practical.mapTitle}</h2>
+              <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+              <div className="mt-5 overflow-hidden rounded-2xl ring-1 ring-black/10">
+                <iframe
+                  title={h.practical.mapFrameTitle}
+                  src={HOME_MAP_SRC}
+                  className="h-64 w-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
+              <a
+                href={MAPS.addressSearch}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 inline-flex items-center gap-2 rounded-full bg-red px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue"
+              >
+                {h.practical.itineraryCta}
+                <ExternalLink className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </Reveal>
           </div>
         </div>
       </section>

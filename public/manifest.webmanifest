@@ -1,0 +1,23 @@
+{
+  "name": "Skeepskool",
+  "short_name": "Skeepskool",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#002654",
+  "theme_color": "#002654",
+  "icons": [
+    {
+      "src": "/images/widget.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/widget.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
