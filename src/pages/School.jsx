@@ -11,6 +11,15 @@ const valueIcons = [Waves, Handshake, TrendingUp]
 const teamImages = [teamPhotos.pierre, teamPhotos.mariane, teamPhotos.manoa, teamPhotos.hugo]
 const teamImagePositions = ['object-cover object-top', 'object-cover object-top', 'object-cover', 'object-cover']
 const teamImageScales = ['group-hover:scale-105', 'scale-105 group-hover:scale-110', 'group-hover:scale-105', 'group-hover:scale-105']
+const teamPortraits = {
+  pierre: teamPhotos.pierre,
+  mariane: teamPhotos.mariane,
+  manua: teamPhotos.manoa,
+  hugo: teamPhotos.hugo,
+  oscar: teamPhotos.oscar,
+  alioune: teamPhotos.alioune,
+  alexandre: teamPhotos.alexandre,
+}
 
 export default function School() {
   const { t, lang } = useLang()
@@ -126,8 +135,8 @@ export default function School() {
               >
                 <div className="relative h-64 overflow-hidden">
                   <img
-                    src={teamImages[i]}
-                    srcSet={buildSrcSet(teamImages[i])}
+                    src={teamPortraits[member.image] || teamImages[i % teamImages.length]}
+                    srcSet={buildSrcSet(teamPortraits[member.image] || teamImages[i % teamImages.length])}
                     sizes={GRID_CARD_SIZES}
                     alt={member.name}
                     className={`h-full w-full ${teamImagePositions[i]} ${teamImageScales[i]} transition-transform duration-500`}

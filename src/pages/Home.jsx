@@ -26,6 +26,15 @@ import { buildSrcSet, HERO_SIZES, GRID_CARD_SIZES } from '../utils/responsiveIma
 const teamImages = [teamPhotos.pierre, teamPhotos.mariane, teamPhotos.manoa, teamPhotos.hugo]
 const teamImagePositions = ['object-cover object-top', 'object-cover object-top', 'object-cover', 'object-cover']
 const teamImageScales = ['group-hover:scale-105', 'scale-105 group-hover:scale-110', 'group-hover:scale-105', 'group-hover:scale-105']
+const teamPortraits = {
+  pierre: teamPhotos.pierre,
+  mariane: teamPhotos.mariane,
+  manua: teamPhotos.manoa,
+  hugo: teamPhotos.hugo,
+  oscar: teamPhotos.oscar,
+  alioune: teamPhotos.alioune,
+  alexandre: teamPhotos.alexandre,
+}
 const HOME_MAP_SRC =
   'https://www.google.com/maps?q=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge&z=14&output=embed'
 
@@ -213,21 +222,21 @@ export default function Home() {
             </a>
             <span className="text-royalBlue">{h.campingNoteSuffix || ''}</span>
           </p>
-          <div className="mt-14 flex w-full flex-col items-center justify-center gap-3 sm:mt-16 sm:flex-row sm:gap-12 sm:translate-y-16">
+          <div className="mt-14 flex w-full flex-col items-center justify-center gap-3 sm:mt-16 sm:flex-row sm:gap-12 sm:translate-y-16 lg:translate-y-36">
             <CTAButton
               to={lang === 'fr' ? '/reserver' : '/book'}
               aria-label={pickLang('Reserver un creneau de cours', 'Book a lesson slot', 'Einen Kurs-Slot buchen')}
-              className="w-auto justify-center gap-1.5 px-3 py-2 text-sm font-semibold !bg-red !text-white !shadow-none hover:!bg-red/90 sm:gap-2.5 sm:!rounded-full sm:px-10 sm:py-5 sm:text-xl sm:font-bold sm:!shadow-lg"
+              className="w-auto justify-center gap-2 px-4 py-3 text-base font-semibold !bg-red !text-white !shadow-none hover:!bg-red/90 sm:gap-3 sm:!rounded-full sm:px-12 sm:py-6 sm:text-2xl sm:font-bold sm:!shadow-lg"
             >
-              <CalendarCheck2 className="h-5 w-5 sm:h-6 sm:w-6" />
+              <CalendarCheck2 className="h-6 w-6 sm:h-7 sm:w-7" />
               {h.heroCta}
             </CTAButton>
             <CTAButton
               href={`tel:${CONTACT.phonePrimary}`}
               aria-label={pickLang('Appeler Skeepskool', 'Call Skeepskool', 'Skeepskool anrufen')}
-              className="w-auto justify-center gap-1.5 px-3 py-2 text-sm font-semibold !bg-white !text-royalBlue !shadow-none hover:!bg-yellow sm:gap-2.5 sm:!rounded-full sm:px-10 sm:py-5 sm:text-xl sm:font-bold sm:!shadow-lg"
+              className="w-auto justify-center gap-2 px-4 py-3 text-base font-semibold !bg-white !text-royalBlue !shadow-none hover:!bg-yellow sm:gap-3 sm:!rounded-full sm:px-12 sm:py-6 sm:text-2xl sm:font-bold sm:!shadow-lg"
             >
-              <Phone className="h-5 w-5 sm:h-6 sm:w-6" />
+              <Phone className="h-6 w-6 sm:h-7 sm:w-7" />
               {pickLang('Appeler', 'Call', 'Anrufen')}
             </CTAButton>
           </div>
@@ -464,8 +473,8 @@ export default function Home() {
               >
                 <div className="relative h-64 overflow-hidden">
                   <img
-                    src={teamImages[index]}
-                    srcSet={buildSrcSet(teamImages[index])}
+                    src={teamPortraits[member.image] || teamImages[index % teamImages.length]}
+                    srcSet={buildSrcSet(teamPortraits[member.image] || teamImages[index % teamImages.length])}
                     sizes={GRID_CARD_SIZES}
                     alt={member.name}
                     className={`h-full w-full ${teamImagePositions[index]} ${teamImageScales[index]} transition-transform duration-500`}
@@ -544,110 +553,112 @@ export default function Home() {
       {/* ---------------- PRACTICAL / FAQ / MAP ---------------- */}
       <section className="bg-[#f7f9fc] py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 lg:grid-cols-3">
-            <Reveal className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-7">
-              <h2 className="text-2xl font-black text-royalBlue">{h.practical.infoTitle}</h2>
-              <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
-              <ul className="mt-6 space-y-4">
-                {h.practical.infoItems.map((item) => {
-                  const Icon = infoIcons[item.icon] || MapPin
-                  return (
-                    <li key={item.title} className="flex items-start gap-3">
-                      <Icon className="mt-0.5 h-5 w-5 shrink-0 text-red" aria-hidden="true" />
-                      <div>
-                        <p className="text-sm font-bold text-dark sm:text-base">{item.title}</p>
-                        {item.subtitle ? <p className="text-sm text-dark/70">{item.subtitle}</p> : null}
-                      </div>
-                    </li>
-                  )
-                })}
-              </ul>
-            </Reveal>
+          <Reveal className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
+            <div className="divide-y divide-black/10 lg:grid lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+              <article className="flex h-full flex-col p-6 sm:p-7">
+                <h2 className="text-2xl font-black text-royalBlue">{h.practical.infoTitle}</h2>
+                <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+                <ul className="mt-6 space-y-4">
+                  {h.practical.infoItems.map((item) => {
+                    const Icon = infoIcons[item.icon] || MapPin
+                    return (
+                      <li key={item.title} className="flex items-start gap-3">
+                        <Icon className="mt-0.5 h-5 w-5 shrink-0 text-red" aria-hidden="true" />
+                        <div>
+                          <p className="text-sm font-bold text-dark sm:text-base">{item.title}</p>
+                          {item.subtitle ? <p className="text-sm text-dark/70">{item.subtitle}</p> : null}
+                        </div>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </article>
 
-            <Reveal delay={80} className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-7">
-              <h2 className="text-2xl font-black text-royalBlue">{h.practical.faqTitle}</h2>
-              <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+              <article className="flex h-full flex-col p-6 sm:p-7">
+                <h2 className="text-2xl font-black text-royalBlue">{h.practical.faqTitle}</h2>
+                <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
 
-              <div className="mt-5 divide-y divide-black/10">
-                {h.practical.faqItems.map((item, index) => {
-                  const isOpen = showAllPracticalFaq || openFaqIndex === index
-                  const panelId = `home-practical-faq-panel-${index}`
-                  const buttonId = `home-practical-faq-button-${index}`
+                <div className="mt-5 divide-y divide-black/10">
+                  {h.practical.faqItems.map((item, index) => {
+                    const isOpen = showAllPracticalFaq || openFaqIndex === index
+                    const panelId = `home-practical-faq-panel-${index}`
+                    const buttonId = `home-practical-faq-button-${index}`
 
-                  return (
-                    <div key={item.question} className="py-2">
-                      <button
-                        id={buttonId}
-                        type="button"
-                        onClick={() => {
-                          if (showAllPracticalFaq) setShowAllPracticalFaq(false)
-                          setOpenFaqIndex(isOpen && !showAllPracticalFaq ? null : index)
-                        }}
-                        onKeyDown={(event) => {
-                          if (event.key === 'Enter' || event.key === ' ') {
-                            event.preventDefault()
+                    return (
+                      <div key={item.question} className="py-2">
+                        <button
+                          id={buttonId}
+                          type="button"
+                          onClick={() => {
                             if (showAllPracticalFaq) setShowAllPracticalFaq(false)
                             setOpenFaqIndex(isOpen && !showAllPracticalFaq ? null : index)
-                          }
-                        }}
-                        className="flex w-full items-center justify-between gap-3 py-2 text-left"
-                        aria-expanded={isOpen}
-                        aria-controls={panelId}
-                      >
-                        <span className="text-sm font-bold text-dark sm:text-base">{item.question}</span>
-                        {isOpen ? (
-                          <Minus className="h-4 w-4 shrink-0 text-red" aria-hidden="true" />
-                        ) : (
-                          <Plus className="h-4 w-4 shrink-0 text-royalBlue" aria-hidden="true" />
-                        )}
-                      </button>
+                          }}
+                          onKeyDown={(event) => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                              event.preventDefault()
+                              if (showAllPracticalFaq) setShowAllPracticalFaq(false)
+                              setOpenFaqIndex(isOpen && !showAllPracticalFaq ? null : index)
+                            }
+                          }}
+                          className="flex w-full items-center justify-between gap-3 py-2 text-left"
+                          aria-expanded={isOpen}
+                          aria-controls={panelId}
+                        >
+                          <span className="text-sm font-bold text-dark sm:text-base">{item.question}</span>
+                          {isOpen ? (
+                            <Minus className="h-4 w-4 shrink-0 text-red" aria-hidden="true" />
+                          ) : (
+                            <Plus className="h-4 w-4 shrink-0 text-royalBlue" aria-hidden="true" />
+                          )}
+                        </button>
 
-                      <div
-                        id={panelId}
-                        role="region"
-                        aria-labelledby={buttonId}
-                        className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
-                      >
-                        <p className="pb-2 pr-6 text-sm leading-relaxed text-dark/75">{item.answer}</p>
+                        <div
+                          id={panelId}
+                          role="region"
+                          aria-labelledby={buttonId}
+                          className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
+                        >
+                          <p className="pb-2 pr-6 text-sm leading-relaxed text-dark/75">{item.answer}</p>
+                        </div>
                       </div>
-                    </div>
-                  )
-                })}
-              </div>
+                    )
+                  })}
+                </div>
 
-              <button
-                type="button"
-                onClick={() => setShowAllPracticalFaq(true)}
-                className="mt-5 inline-flex items-center font-bold text-royalBlue transition-colors hover:text-red"
-              >
-                {h.practical.allQuestionsCta}
-              </button>
-            </Reveal>
+                <button
+                  type="button"
+                  onClick={() => setShowAllPracticalFaq(true)}
+                  className="mt-5 inline-flex items-center font-bold text-royalBlue transition-colors hover:text-red"
+                >
+                  {h.practical.allQuestionsCta}
+                </button>
+              </article>
 
-            <Reveal delay={160} className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-7">
-              <h2 className="text-2xl font-black text-royalBlue">{h.practical.mapTitle}</h2>
-              <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
-              <div className="mt-5 overflow-hidden rounded-2xl ring-1 ring-black/10">
-                <iframe
-                  title={h.practical.mapFrameTitle}
-                  src={HOME_MAP_SRC}
-                  className="h-64 w-full border-0"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen
-                />
-              </div>
-              <a
-                href={MAPS.addressSearch}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center gap-2 rounded-full bg-red px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue"
-              >
-                {h.practical.itineraryCta}
-                <ExternalLink className="h-4 w-4" aria-hidden="true" />
-              </a>
-            </Reveal>
-          </div>
+              <article className="flex h-full flex-col p-6 sm:p-7">
+                <h2 className="text-2xl font-black text-royalBlue">{h.practical.mapTitle}</h2>
+                <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+                <div className="mt-5 overflow-hidden rounded-2xl ring-1 ring-black/10">
+                  <iframe
+                    title={h.practical.mapFrameTitle}
+                    src={HOME_MAP_SRC}
+                    className="h-64 w-full border-0"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    allowFullScreen
+                  />
+                </div>
+                <a
+                  href={MAPS.addressSearch}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex items-center gap-2 rounded-full bg-red px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue"
+                >
+                  {h.practical.itineraryCta}
+                  <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                </a>
+              </article>
+            </div>
+          </Reveal>
         </div>
       </section>
     </div>

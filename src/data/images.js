@@ -228,6 +228,9 @@ export const teamPhotos = {
   mariane: '/images/mariane.jpeg', // u('1494790108377-be9c29b29330', 800)
   manoa: '/images/manu.jpg', //    u('1506794778202-cad84cf45f1d', 800)
   hugo: '/images/hugo.jpg', //      u('1507003211169-0a1dd7228f2d', 800)
+  oscar: '/images/charlie.jpeg',
+  alioune: '/images/boss.jpeg',
+  alexandre: '/images/ffs-officiel-portrait.png',
 }
 
 // Exported so the helper stays available if you switch a line back to Unsplash.
