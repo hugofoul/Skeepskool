@@ -216,7 +216,7 @@ export default function Home() {
               href="https://camping-leporge.fr/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-red transition-colors hover:text-yellow active:text-white visited:text-white"
+              className="font-bold !text-red transition-colors hover:!text-red active:!text-red visited:!text-red"
             >
               {h.campingNoteLink}
             </a>
