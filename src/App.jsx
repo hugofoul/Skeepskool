@@ -19,17 +19,38 @@ const NotFound = lazy(() => import('./pages/NotFound.jsx'))
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
+
   useEffect(() => {
     if (hash) {
-      const el = document.getElementById(hash.slice(1))
-      if (el) {
-        // Wait a tick so the target page has rendered before scrolling.
-        requestAnimationFrame(() => el.scrollIntoView({ behavior: 'smooth' }))
-        return
+      const targetId = hash.slice(1)
+      let attempts = 0
+      let cancelled = false
+
+      const scrollToHashTarget = () => {
+        if (cancelled) return
+
+        const el = document.getElementById(targetId)
+        if (el) {
+          requestAnimationFrame(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }))
+          return
+        }
+
+        attempts += 1
+        if (attempts < 20) {
+          setTimeout(scrollToHashTarget, 60)
+        }
+      }
+
+      scrollToHashTarget()
+
+      return () => {
+        cancelled = true
       }
     }
+
     window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' })
   }, [pathname, hash])
+
   return null
 }
 

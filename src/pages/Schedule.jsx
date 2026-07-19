@@ -12,11 +12,23 @@ import { images } from '../data/images.js'
 export default function Schedule() {
   const { t, lang } = useLang()
   const s = t.schedule
+  const scheduleWindowNote = lang === 'fr'
+    ? 'Les horaires sont établis du jeudi au jeudi, pour s\'assurer des meilleures conditions de mer.'
+    : (lang === 'de'
+      ? 'Die Kurszeiten werden von Donnerstag bis Donnerstag festgelegt, um die besten Meeresbedingungen zu sichern.'
+      : 'Lesson schedules are set from Thursday to Thursday to ensure the best sea conditions.')
   const schedule = useWeeklySchedule({
     lang,
     fallbackDays: s.fallbackDays,
     allLevelsLabel: s.allLevels,
   })
+  const heroSubtitle = (
+    <>
+      {schedule.isLive ? s.liveLabel : s.fallbackLabel}
+      <br />
+      {scheduleWindowNote}
+    </>
+  )
 
   return (
     <div>
@@ -37,9 +49,10 @@ export default function Schedule() {
       />
       <PageHero
         title={s.title}
-        subtitle={schedule.isLive ? s.liveLabel : s.fallbackLabel}
+        subtitle={heroSubtitle}
         image={images.fondpages}
       />
+
       <WeeklyScheduleBoard
         fallbackLabel={s.fallbackLabel}
         days={schedule.days}

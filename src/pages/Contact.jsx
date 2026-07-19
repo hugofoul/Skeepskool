@@ -148,7 +148,7 @@ export default function Contact() {
       <section className="bg-lightGray py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <h2 className="text-3xl font-black text-red sm:text-4xl">{c.findUsTitle}</h2>
+            <h2 id="comment-nous-trouver" className="scroll-mt-28 text-3xl font-black text-red sm:text-4xl">{c.findUsTitle}</h2>
             <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
           </Reveal>
 

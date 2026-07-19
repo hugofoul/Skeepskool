@@ -50,6 +50,8 @@ export default function Home() {
   const bookingPath = lang === 'fr' ? '/reserver' : '/book'
   const lessonsPath = lang === 'fr' ? '/cours' : '/lessons'
   const lessonsPricingPath = `${lessonsPath}#formules-tarifs`
+  const schedulePath = lang === 'fr' ? '/horaires' : '/schedule'
+  const contactFindUsPath = '/contact#comment-nous-trouver'
   const rentalPath = lang === 'fr' ? '/location' : '/rental'
   const [openFaqIndex, setOpenFaqIndex] = useState(0)
   const [showAllPracticalFaq, setShowAllPracticalFaq] = useState(false)
@@ -325,6 +327,16 @@ export default function Home() {
               {h.offers.viewAllCta}
             </Link>
           </Reveal>
+
+          <Reveal delay={160} className="mt-4 text-center">
+            <Link
+              to={schedulePath}
+              className="text-sm font-bold uppercase tracking-[0.12em] text-red transition-colors hover:text-royalBlue"
+            >
+              {pickLang('Voir les horaires de cours de la semaine', 'See this week\'s lesson schedule', 'Wochenplan der Surfkurse ansehen')}
+            </Link>
+          </Reveal>
+
         </div>
       </section>
 
@@ -556,6 +568,12 @@ export default function Home() {
               <article className="flex h-full flex-col p-6 sm:p-7">
                 <h2 className="text-2xl font-black text-royalBlue">{h.practical.infoTitle}</h2>
                 <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+                <Link
+                  to={contactFindUsPath}
+                  className="mt-4 inline-flex items-center font-bold text-red transition-colors hover:text-royalBlue"
+                >
+                  {pickLang('Aller à Comment nous trouver', 'Go to How to find us', 'Zu So findest du uns')}
+                </Link>
                 <ul className="mt-6 space-y-4">
                   {h.practical.infoItems.map((item) => {
                     const Icon = infoIcons[item.icon] || MapPin
