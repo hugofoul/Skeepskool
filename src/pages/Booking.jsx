@@ -364,6 +364,7 @@ export default function Booking() {
         alternates={[
           { hrefLang: 'fr-FR', path: '/reserver' },
           { hrefLang: 'en', path: '/book' },
+          { hrefLang: 'de', path: '/book' },
           { hrefLang: 'x-default', path: '/reserver' },
         ]}
         description={lang === 'fr'

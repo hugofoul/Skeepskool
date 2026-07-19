@@ -29,6 +29,16 @@ export default function Contact() {
   const { t, lang } = useLang()
   const c = t.contact
   const a = t.around
+  const mapPlanAriaLabel = lang === 'fr'
+    ? 'Ouvrir le plan d’accès en grand'
+    : (lang === 'de' ? 'Zugangsplan in Grossansicht oeffnen' : 'Open the access map in full size')
+  const mapPlanAlt = lang === 'fr'
+    ? 'Plan explicatif pour localiser l’école de surf Skeepskool'
+    : (lang === 'de' ? 'Uebersichtsplan zur Lage der Surfschule Skeepskool' : 'Location map to find Skeepskool surf school')
+  const mapPlanTitle = lang === 'fr' ? 'Plan d’accès' : (lang === 'de' ? 'Anfahrtsplan' : 'Access map')
+  const mapPlanHint = lang === 'fr'
+    ? 'Cliquez sur l’image pour l’ouvrir en grand.'
+    : (lang === 'de' ? 'Klicke auf das Bild, um es in Grossansicht zu oeffnen.' : 'Click the image to open it full size.')
 
   return (
     <div>
@@ -38,6 +48,7 @@ export default function Contact() {
         alternates={[
           { hrefLang: 'fr-FR', path: '/contact' },
           { hrefLang: 'en', path: '/contact' },
+          { hrefLang: 'de', path: '/contact' },
           { hrefLang: 'x-default', path: '/contact' },
         ]}
         description={lang === 'fr'
@@ -178,19 +189,19 @@ export default function Contact() {
             {/* Map + access plan */}
             <Reveal delay={120} className="space-y-5">
               <div className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-black/10">
-                <a href={images.contactPlan} target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le plan d’accès en grand" onClick={() => trackEvent('click_map', { target: images.contactPlan, source: 'contact_plan' })}>
+                <a href={images.contactPlan} target="_blank" rel="noopener noreferrer" aria-label={mapPlanAriaLabel} onClick={() => trackEvent('click_map', { target: images.contactPlan, source: 'contact_plan' })}>
                   <img
                     src={images.contactPlan}
                     srcSet={buildSrcSet(images.contactPlan)}
                     sizes={DEFAULT_SIZES}
-                    alt="Plan explicatif pour localiser l’école de surf Skeepskool"
+                    alt={mapPlanAlt}
                     className="h-80 w-full object-cover object-[88%_4%] sm:h-96"
                     loading="lazy"
                   />
                 </a>
                 <div className="p-4">
-                  <p className="text-sm font-semibold text-royalBlue">Plan d’accès</p>
-                  <p className="mt-1 text-sm text-dark/75">Cliquez sur l’image pour l’ouvrir en grand.</p>
+                  <p className="text-sm font-semibold text-royalBlue">{mapPlanTitle}</p>
+                  <p className="mt-1 text-sm text-dark/75">{mapPlanHint}</p>
                 </div>
               </div>
               <div className="overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/10">
@@ -259,16 +270,6 @@ export default function Contact() {
                 )}
               </div>
             </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---- Around integrated into Contact ---- */}
-      <section className="bg-white pt-16 sm:pt-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{a.heroTitle}</h2>
-            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
           </Reveal>
         </div>
       </section>

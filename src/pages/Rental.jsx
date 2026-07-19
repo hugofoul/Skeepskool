@@ -101,6 +101,7 @@ export default function Rental() {
         alternates={[
           { hrefLang: 'fr-FR', path: '/location' },
           { hrefLang: 'en', path: '/rental' },
+          { hrefLang: 'de', path: '/rental' },
           { hrefLang: 'x-default', path: '/location' },
         ]}
         description={lang === 'fr'

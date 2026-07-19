@@ -140,6 +140,7 @@ export default function Lessons() {
         alternates={[
           { hrefLang: 'fr-FR', path: '/cours' },
           { hrefLang: 'en', path: '/lessons' },
+          { hrefLang: 'de', path: '/lessons' },
           { hrefLang: 'x-default', path: '/cours' },
         ]}
         description={lang === 'fr'
@@ -196,26 +197,42 @@ export default function Lessons() {
             })}
           </div>
 
-          <Reveal delay={120} className="mt-10 overflow-hidden rounded-3xl bg-gradient-to-br from-royalBlue via-[#2f5fd0] to-[#1a3ebd] p-7 text-white shadow-xl ring-1 ring-black/10 sm:p-9">
-            <div className="grid gap-7 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-              <div>
-                <span className="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-widest text-yellow">
+          <Reveal delay={120} className="mt-10 overflow-hidden rounded-3xl border border-black/10 bg-white shadow-xl">
+            <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
+              <div className="border-b border-black/10 bg-[#f3f7fd] p-7 sm:p-9 lg:border-b-0 lg:border-r">
+                <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-royalBlue/70">
                   {school.coachingTitle}
-                </span>
-                <h3 className="mt-4 text-3xl font-black text-white sm:text-4xl">{school.coachingTitle}</h3>
-                <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
-                <p className="mt-6 inline-flex rounded-full bg-yellow px-4 py-2 text-base font-black text-royalBlue">
-                  {school.coachingExperience}
+                </p>
+                <h3 className="mt-3 text-3xl font-black leading-tight text-royalBlue sm:text-4xl">
+                  {school.coachingTitle}
+                </h3>
+                <span className="mt-4 block h-1 w-16 rounded bg-red" />
+
+                <div className="mt-7 inline-flex items-center rounded-2xl border-2 border-royalBlue bg-white px-5 py-3 shadow-sm">
+                  <span className="text-base font-black text-royalBlue sm:text-lg">{school.coachingExperience}</span>
+                </div>
+
+                <p className="mt-6 max-w-md text-sm leading-relaxed text-dark/75 sm:text-base">
+                  {lang === 'fr'
+                    ? 'Un accompagnement structuré, progressif et humain pour apprendre avec confiance.'
+                    : (lang === 'de'
+                      ? 'Eine strukturierte, progressive und menschliche Begleitung für sicheres Lernen.'
+                      : 'A structured, progressive and human approach to learn with confidence.')}
                 </p>
               </div>
 
-              <ul className="grid gap-2.5 text-sm font-semibold text-white/95 sm:grid-cols-2 sm:text-base">
-                {school.coachingItems.map((item) => (
-                  <li key={item} className="rounded-xl bg-white/10 px-4 py-3 ring-1 ring-white/15 backdrop-blur-sm">
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <div className="p-7 sm:p-9">
+                <div className="grid gap-3">
+                  {school.coachingItems.map((item) => (
+                    <article
+                      key={item}
+                      className="rounded-xl border-l-4 border-red bg-lightGray px-4 py-3 shadow-sm ring-1 ring-black/5"
+                    >
+                      <p className="text-sm font-semibold leading-relaxed text-dark/85 sm:text-base">{item}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
             </div>
           </Reveal>
 
@@ -438,7 +455,7 @@ export default function Lessons() {
       </section>
 
       {/* ---- Prices heading ---- */}
-      <section className="bg-white pt-16">
+      <section id="formules-tarifs" className="scroll-mt-28 bg-white pt-16">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <Reveal>
             <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{l.pricesTitle}</h2>

@@ -26,6 +26,7 @@ export default function Schedule() {
         alternates={[
           { hrefLang: 'fr-FR', path: '/horaires' },
           { hrefLang: 'en', path: '/schedule' },
+          { hrefLang: 'de', path: '/schedule' },
           { hrefLang: 'x-default', path: '/horaires' },
         ]}
         description={lang === 'fr'

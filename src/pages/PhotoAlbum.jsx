@@ -42,6 +42,7 @@ export default function PhotoAlbum() {
         alternates={[
           { hrefLang: 'fr-FR', path: '/album-photo' },
           { hrefLang: 'en', path: '/album-photo' },
+          { hrefLang: 'de', path: '/album-photo' },
           { hrefLang: 'x-default', path: '/album-photo' },
         ]}
         description={

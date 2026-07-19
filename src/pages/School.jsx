@@ -35,6 +35,7 @@ export default function School() {
         alternates={[
           { hrefLang: 'fr-FR', path: '/ecole' },
           { hrefLang: 'en', path: '/school' },
+          { hrefLang: 'de', path: '/school' },
           { hrefLang: 'x-default', path: '/ecole' },
         ]}
         description={lang === 'fr'

@@ -10,6 +10,18 @@ const OG_LOCALE_BY_LANG = {
   de: 'de_DE',
 }
 
+const SITE_TITLE_SUFFIX = {
+  fr: 'Skeepskool — École de surf Le Porge',
+  en: 'Skeepskool — Surf School Le Porge',
+  de: 'Skeepskool — Surfschule Le Porge',
+}
+
+const DEFAULT_TITLE_BY_LANG = {
+  fr: 'Skeepskool — École de surf à Le Porge Océan | 50 min de Bordeaux',
+  en: 'Skeepskool — Surf School at Le Porge Océan | 50 min from Bordeaux',
+  de: 'Skeepskool — Surfschule in Le Porge Océan | 50 Min. von Bordeaux',
+}
+
 function hrefLangToOgLocale(hrefLang) {
   if (!hrefLang || hrefLang.toLowerCase() === 'x-default') return null
 
@@ -81,9 +93,9 @@ export default function SEO({
       ],
   }
   const allStructuredData = [autoBreadcrumb, ...normalizedStructuredData]
-  const fullTitle = title
-    ? `${title} · Skeepskool — École de surf Le Porge`
-    : 'Skeepskool — École de surf à Le Porge Océan | 50 min de Bordeaux'
+  const titleSuffix = SITE_TITLE_SUFFIX[activeLang] || SITE_TITLE_SUFFIX.fr
+  const defaultTitle = DEFAULT_TITLE_BY_LANG[activeLang] || DEFAULT_TITLE_BY_LANG.fr
+  const fullTitle = title ? `${title} · ${titleSuffix}` : defaultTitle
 
   return (
     <Helmet htmlAttributes={{ lang: activeLang }}>

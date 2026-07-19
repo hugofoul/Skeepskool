@@ -49,6 +49,7 @@ export default function Home() {
   const pickLang = (frText, enText, deText) => (isFr ? frText : (isDe ? deText : enText))
   const bookingPath = lang === 'fr' ? '/reserver' : '/book'
   const lessonsPath = lang === 'fr' ? '/cours' : '/lessons'
+  const lessonsPricingPath = `${lessonsPath}#formules-tarifs`
   const rentalPath = lang === 'fr' ? '/location' : '/rental'
   const [openFaqIndex, setOpenFaqIndex] = useState(0)
   const [showAllPracticalFaq, setShowAllPracticalFaq] = useState(false)
@@ -174,6 +175,7 @@ export default function Home() {
         alternates={[
           { hrefLang: 'fr-FR', path: '/' },
           { hrefLang: 'en', path: '/' },
+          { hrefLang: 'de', path: '/' },
           { hrefLang: 'x-default', path: '/' },
         ]}
         description={pickLang(
@@ -319,7 +321,7 @@ export default function Home() {
           </div>
 
           <Reveal delay={120} className="mt-8 text-center">
-            <Link to={lessonsPath} className="text-base font-extrabold text-royalBlue transition-colors hover:text-red">
+            <Link to={lessonsPricingPath} className="text-base font-extrabold text-royalBlue transition-colors hover:text-red">
               {h.offers.viewAllCta}
             </Link>
           </Reveal>
@@ -365,7 +367,6 @@ export default function Home() {
       {/* ---------------- SCHOOL ADVANTAGES ---------------- */}
       <section className="relative overflow-hidden bg-royalBlue py-16 sm:py-20">
         <div className="pointer-events-none absolute -left-24 top-8 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
-        <div className="pointer-events-none absolute -right-24 bottom-8 h-64 w-64 rounded-full bg-yellow/20 blur-3xl" />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
@@ -407,17 +408,14 @@ export default function Home() {
               </div>
             </Reveal>
 
-            <div className="grid gap-4 sm:grid-cols-2 lg:col-span-7">
+            <div className="grid gap-4 sm:grid-cols-2 sm:auto-rows-fr lg:col-span-7">
               {s.beachAdvantagesItems.map((item, index) => (
                 <Reveal
                   key={item}
                   delay={index * 80}
-                  className={`rounded-2xl border border-white/25 bg-white/10 p-5 text-white shadow-lg backdrop-blur-sm ${index % 2 === 1 ? 'sm:translate-y-3' : ''}`}
+                  className="h-full rounded-2xl border border-white/25 bg-white/10 p-5 text-white shadow-lg backdrop-blur-sm"
                 >
-                  <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-yellow px-2 text-xs font-black text-royalBlue">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <p className="mt-3 text-sm font-semibold leading-relaxed sm:text-base">{item}</p>
+                  <p className="text-sm font-semibold leading-relaxed sm:text-base">{item}</p>
                 </Reveal>
               ))}
             </div>

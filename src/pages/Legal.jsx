@@ -11,17 +11,20 @@ export default function Legal() {
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? 'Mentions légales' : 'Legal Notice'}
+        title={lang === 'fr' ? 'Mentions légales' : (lang === 'de' ? 'Impressum' : 'Legal Notice')}
         path={lang === 'fr' ? '/mentions-legales' : '/legal'}
         alternates={[
           { hrefLang: 'fr-FR', path: '/mentions-legales' },
           { hrefLang: 'en', path: '/legal' },
+          { hrefLang: 'de', path: '/legal' },
           { hrefLang: 'x-default', path: '/mentions-legales' },
         ]}
         description={
           lang === 'fr'
             ? 'Mentions légales, politique de confidentialité et informations réglementaires de Skeepskool.'
-            : 'Legal notice, privacy policy and regulatory information for Skeepskool.'
+            : (lang === 'de'
+              ? 'Impressum, Datenschutzhinweise und rechtliche Informationen von Skeepskool.'
+              : 'Legal notice, privacy policy and regulatory information for Skeepskool.')
         }
       />
       <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.fondpages} />
