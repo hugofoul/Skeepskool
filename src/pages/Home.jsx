@@ -201,7 +201,7 @@ export default function Home() {
           decoding="async"
         />
         <div className="relative z-10 mx-auto max-w-4xl -translate-y-20 px-4 text-center text-royalBlue sm:-translate-y-8 md:-translate-y-12 lg:-translate-y-24">
-          <h1 className="home-hero-title-font mx-auto flex max-w-4xl flex-col items-center px-2 text-center text-[1.9rem] font-bold leading-[1.08] text-royalBlue sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+          <h1 className="home-hero-title-font mx-auto flex max-w-4xl flex-col items-center px-2 text-center text-[2.3rem] font-bold leading-[1.08] text-royalBlue sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
             <>
               <span className="home-hero-line block w-full text-center" style={{ animationDelay: '0.05s' }}>{heroTitleLines.top}</span>
               <span className="home-hero-line mt-1 flex w-full flex-col items-center text-center sm:mt-1.5" style={{ animationDelay: '0.75s' }}>
@@ -226,7 +226,7 @@ export default function Home() {
               {h.heroSubtitle}
             </p>
           )}
-          <p className="home-hero-subline mx-auto mt-0 max-w-xl px-2 text-base font-semibold leading-snug text-royalBlue sm:whitespace-nowrap sm:text-xl sm:leading-normal" style={{ animationDelay: '1.55s' }}>
+          <p className="home-hero-subline mx-auto mt-4 max-w-xl px-2 text-base font-semibold leading-snug text-royalBlue sm:mt-0 sm:whitespace-nowrap sm:text-xl sm:leading-normal" style={{ animationDelay: '1.55s' }}>
             {h.campingNotePrefix}
             <a
               href="https://camping-leporge.fr/"
