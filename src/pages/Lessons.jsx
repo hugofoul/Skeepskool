@@ -177,7 +177,7 @@ export default function Lessons() {
           </div>
 
           {/* Quick facts */}
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid grid-cols-2 gap-5 lg:grid-cols-4">
             {l.quickFacts.map((fact, i) => {
               const Icon = factIcons[i]
               return (
@@ -295,7 +295,7 @@ export default function Lessons() {
             <h2 className="text-3xl font-black sm:text-4xl">{l.stepsTitle}</h2>
             <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
           </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid grid-cols-2 gap-6 lg:grid-cols-4">
             {l.steps.map((step, i) => (
               <Reveal
                 key={step.title}
@@ -472,7 +472,7 @@ export default function Lessons() {
       {/* ---- Pricing cards ---- */}
       <section className="bg-white pb-14 pt-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
             {l.cards.map((card, i) => {
               const popular = i === POPULAR_INDEX
               return (

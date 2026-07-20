@@ -553,7 +553,7 @@ export default function Home() {
             <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
           </Reveal>
 
-          <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
             {h.testimonials.map((rev, i) => (
               <Reveal
                 key={rev.name}
