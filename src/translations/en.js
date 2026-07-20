@@ -272,43 +272,36 @@ export const en = {
     team: [
       {
         name: 'Pierre',
-        role: 'The boss',
         image: 'pierre',
         text: 'Passionate about the ocean from an early age, he explored every board-riding discipline, from surfing to rescue board, including bodyboarding and now surf foil, before creating Skeepskool more than 25 years ago.',
       },
       {
         name: 'Mariane',
-        role: 'The team mum',
         image: 'mariane',
-        text: 'The team mum: she can do it all! Welcome, organisation, advice… nothing gets past her.',
+        text: 'She can do it all: welcome, organisation, advice… nothing gets past her.',
       },
       {
         name: 'Manua',
-        role: 'The cool coach',
         image: 'manua',
-        text: 'The cool coach who comes straight from Tahiti. Good vibes and style guaranteed every session.',
+        text: 'He comes straight from Tahiti. Good vibes and style guaranteed every session.',
       },
       {
         name: 'Hugo',
-        role: 'The cabin keeper',
         image: 'hugo',
-        text: 'The keeper of the cabin! Always there for the gear, the welcome and the good mood.',
+        text: 'Always there for the gear, the welcome and the good mood.',
       },
       {
         name: 'Oscar',
-        role: 'Instructor',
         image: 'oscar',
         text: 'Oscar coaches the students with calm, precision and plenty of energy in the water.',
       },
       {
         name: 'Alioune',
-        role: 'Instructor',
         image: 'alioune',
         text: 'Alioune leads sessions with pedagogy, attention and a strong sense of rhythm.',
       },
       {
         name: 'Alexandre',
-        role: 'At the front desk',
         image: 'alexandre',
         text: 'Alexandre welcomes you, guides you and makes sure everything runs smoothly from the moment you arrive.',
       },

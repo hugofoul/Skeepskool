@@ -121,7 +121,6 @@ export default function School() {
             <h2 className="text-center text-3xl font-black text-royalBlue sm:text-4xl">
               {s.teamTitle}
             </h2>
-            <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
             <p className="mx-auto mt-5 max-w-2xl text-center text-lg text-dark/75">
               {s.teamSubtitle}
             </p>
@@ -143,9 +142,6 @@ export default function School() {
                     className={`h-full w-full ${teamImagePositions[i]} ${teamImageScales[i]} transition-transform duration-500`}
                     loading="lazy"
                   />
-                  <span className="absolute bottom-3 left-3 rounded-full bg-yellow px-3 py-1 text-xs font-bold text-royalBlue">
-                    {member.role}
-                  </span>
                 </div>
                 <div className="p-5">
                   <h3 className="text-xl font-extrabold text-royalBlue">{member.name}</h3>

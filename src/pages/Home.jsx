@@ -153,6 +153,7 @@ export default function Home() {
       top: "L'école de surf",
       middle: 'de la',
       bottom: 'Plage Centrale du Porge',
+      bottomMobile: ['Plage Centrale', 'du Porge'],
     }
     : (isDe
       ? {
@@ -199,13 +200,24 @@ export default function Home() {
           fetchPriority="high"
           decoding="async"
         />
-        <div className="relative z-10 mx-auto max-w-4xl -translate-y-8 px-4 text-center text-royalBlue md:-translate-y-12 lg:-translate-y-24">
+        <div className="relative z-10 mx-auto max-w-4xl -translate-y-20 px-4 text-center text-royalBlue sm:-translate-y-8 md:-translate-y-12 lg:-translate-y-24">
           <h1 className="home-hero-title-font mx-auto flex max-w-4xl flex-col items-center px-2 text-center text-[1.9rem] font-bold leading-[1.08] text-royalBlue sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
             <>
               <span className="home-hero-line block w-full text-center" style={{ animationDelay: '0.05s' }}>{heroTitleLines.top}</span>
               <span className="home-hero-line mt-1 flex w-full flex-col items-center text-center sm:mt-1.5" style={{ animationDelay: '0.75s' }}>
                 <span className="block text-[0.9rem] font-semibold text-royalBlue sm:text-[1.05rem] md:text-[1.15rem] lg:text-[1.25rem]">{heroTitleLines.middle}</span>
-                <span className="block whitespace-nowrap text-center">{heroTitleLines.bottom}</span>
+                <span className="block text-center">
+                  {heroTitleLines.bottomMobile ? (
+                    <>
+                      <span className="sm:hidden">
+                        {heroTitleLines.bottomMobile.map((line, i) => (
+                          <span key={i} className="block">{line}</span>
+                        ))}
+                      </span>
+                      <span className="hidden whitespace-nowrap sm:inline">{heroTitleLines.bottom}</span>
+                    </>
+                  ) : heroTitleLines.bottom}
+                </span>
               </span>
             </>
           </h1>
@@ -224,6 +236,7 @@ export default function Home() {
             >
               {h.campingNoteLink}
             </a>
+            <span className="block sm:hidden" />
             <span className="text-royalBlue">{h.campingNoteSuffix || ''}</span>
           </p>
           <div className="mt-14 flex w-full flex-col items-center justify-center gap-3 sm:mt-16 sm:flex-row sm:gap-12 sm:translate-y-16 lg:translate-y-36">
@@ -474,7 +487,7 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid grid-cols-2 gap-6 lg:grid-cols-4">
             {s.team.map((member, index) => (
               <Reveal
                 key={member.name}
@@ -540,7 +553,7 @@ export default function Home() {
             <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
           </Reveal>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-3">
             {h.testimonials.map((rev, i) => (
               <Reveal
                 key={rev.name}
