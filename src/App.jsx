@@ -3,6 +3,7 @@ import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import QuickActionBar from './components/QuickActionBar.jsx'
+import WhatsAppWidget from './components/WhatsAppWidget.jsx'
 import { trackPageView } from './lib/analytics.js'
 
 const Home    = lazy(() => import('./pages/Home.jsx'))
@@ -98,6 +99,7 @@ export default function App() {
         </Suspense>
       </main>
       <QuickActionBar />
+      <WhatsAppWidget />
       <Footer />
     </div>
   )

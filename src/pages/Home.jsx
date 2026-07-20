@@ -195,7 +195,7 @@ export default function Home() {
           srcSet={buildSrcSet(images.homeHero)}
           sizes={HERO_SIZES}
           alt="Surfeur à la plage du Porge Océan"
-          className="absolute inset-0 h-full w-full rotate-[2deg] scale-[1.46] object-cover object-[96%_center] md:scale-[1.32]"
+          className="absolute inset-0 h-full w-full rotate-[4deg] scale-[1.46] object-cover object-[96%_center] md:scale-[1.32]"
           loading="eager"
           fetchPriority="high"
           decoding="async"
@@ -433,7 +433,7 @@ export default function Home() {
               </div>
             </Reveal>
 
-            <div className="grid gap-4 sm:grid-cols-2 sm:auto-rows-fr lg:col-span-7">
+            <div className="grid grid-cols-3 gap-4 sm:auto-rows-fr sm:grid-cols-2 lg:col-span-7 lg:grid-cols-3">
               {s.beachAdvantagesItems.map((item, index) => (
                 <Reveal
                   key={item}

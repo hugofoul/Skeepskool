@@ -32,13 +32,21 @@ export default function Footer() {
                 alt="Skeepskool Surfing Le Porge"
                 className="h-full w-full object-contain object-top"
               />
-              <img
-                src="/images/Web - Logo label EFSurf neutre_blanc-paysage.png"
-                alt={lang === 'fr' ? 'Logo federation EFSurf' : 'EFSurf federation logo'}
-                className="absolute left-1/2 top-[106%] h-auto w-56 -translate-x-1/2 -translate-y-1/2 object-contain"
-                loading="lazy"
-                decoding="async"
-              />
+              <a 
+                href="https://www.surfingfrance.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Fédération Française de Surf"
+                className="absolute left-1/2 top-[106%] -translate-x-1/2 -translate-y-1/2 inline-block"
+              >
+                <img
+                  src="/images/Web - Logo label EFSurf neutre_blanc-paysage.png"
+                  alt={lang === 'fr' ? 'Logo federation EFSurf' : 'EFSurf federation logo'}
+                  className="h-auto w-56 object-contain hover:opacity-80 transition-opacity"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
             </div>
           </Link>
           <p className="mx-auto mt-20 max-w-sm text-sm text-white/80">
