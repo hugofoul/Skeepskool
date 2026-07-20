@@ -53,7 +53,7 @@ export default function WhatsAppWidget() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Rejoindre WhatsApp"
-      className={`fixed top-24 right-6 z-40 flex items-center gap-3 rounded-full bg-green-500 px-4 py-3 text-white shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 ${
+      className={`fixed top-32 right-6 z-40 flex items-center gap-3 rounded-full bg-green-500 px-4 py-3 text-white shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 ${
         isScrolling ? 'md:px-4 px-3' : ''
       }`}
     >
