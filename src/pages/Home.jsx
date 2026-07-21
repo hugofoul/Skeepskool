@@ -433,16 +433,21 @@ export default function Home() {
               </div>
             </Reveal>
 
-            <div className="grid grid-cols-3 gap-4 sm:auto-rows-fr sm:grid-cols-2 lg:col-span-7 lg:grid-cols-3">
+            <div className="lg:col-span-7">
+              <div className="mt-4 flex flex-col gap-3 sm:mt-6">
               {s.beachAdvantagesItems.map((item, index) => (
                 <Reveal
                   key={item}
                   delay={index * 80}
-                  className="h-full rounded-2xl border border-white/25 bg-white/10 p-5 text-white shadow-lg backdrop-blur-sm"
+                  className="w-full px-1 py-1 text-white"
                 >
-                  <p className="text-sm font-semibold leading-relaxed sm:text-base">{item}</p>
+                  <p className="flex items-start gap-2 text-sm font-semibold leading-relaxed sm:text-base">
+                    <span aria-hidden="true" className="mt-[1px] text-yellow">→</span>
+                    <span>{item}</span>
+                  </p>
                 </Reveal>
               ))}
+              </div>
             </div>
           </div>
         </div>

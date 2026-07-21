@@ -44,7 +44,7 @@ export default function School() {
             ? 'Entdecke die Surfschule Skeepskool: geschützter Spot zwischen Dünen und Pinienwald in Le Porge Océan, qualifizierte Lehrer, FFS-Label.'
             : "Discover Skeepskool surf school: a preserved spot between dunes and pine forest at Le Porge Océan, certified instructors, FFS label.")}
       />
-      <PageHero title={s.heroTitle} subtitle={s.heroSubtitle} image={images.fondpages} />
+      <PageHero title={s.heroTitle} subtitle={s.heroSubtitle} image={images.fondpages} titleClassName="font-bold" />
 
       {/* ---- Alternating content sections ---- */}
       {introSections.map((sec, i) => {

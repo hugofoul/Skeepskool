@@ -446,7 +446,7 @@ export const de = {
   booking: {
     ...en.booking,
     title: 'Warenkorb',
-    subtitle: '',
+    subtitle: 'Die Zahlung erfolgt per Banküberweisung (IBAN).',
     intro: 'Zur Bestätigung deiner Buchung muss die Zahlung per Überweisung vor dem Absenden bereits erfolgt sein.',
     contactTitle: 'Kontaktinformationen',
     contactTitleGift: 'Kontaktinformationen (Person, die das Geschenk anbietet)',

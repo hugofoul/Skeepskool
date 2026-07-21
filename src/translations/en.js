@@ -458,7 +458,7 @@ export const en = {
 
   booking: {
     title: 'Cart',
-    subtitle: '',
+    subtitle: 'Payment will be made by bank transfer (IBAN).',
     intro:
       'To confirm your booking, payment must already be completed by bank transfer before submitting this form.',
 

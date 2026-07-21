@@ -431,7 +431,7 @@ export default function Lessons() {
                 </p>
                 <div className="mt-6 h-1.5 w-20 rounded-full bg-yellow" />
                 <div className="mt-6">
-                  <CTAButton to={bookingPath} className="bg-red hover:bg-yellow hover:text-royalBlue">
+                  <CTAButton to={giftPath} className="bg-red hover:bg-yellow hover:text-royalBlue">
                     {l.giftExperienceCta}
                   </CTAButton>
                 </div>

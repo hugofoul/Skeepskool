@@ -51,6 +51,7 @@ export default function Schedule() {
         title={s.title}
         subtitle={heroSubtitle}
         image={images.fondpages}
+        titleClassName="font-bold"
       />
 
       <WeeklyScheduleBoard

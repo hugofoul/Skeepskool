@@ -57,6 +57,7 @@ export default function PhotoAlbum() {
       <PageHero
         title={lang === 'fr' ? 'Gallerie Photo' : (lang === 'de' ? 'Foto Galerie' : 'Photo Gallery')}
         image={images.fondpages}
+        titleClassName="font-bold"
       />
 
       <section className="bg-white py-16 sm:py-20">

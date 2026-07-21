@@ -57,7 +57,7 @@ export default function Contact() {
             ? 'Anreise nach Le Porge Océan, Öffnungszeiten, Telefonnummern und Busverbindung ab Bordeaux. Surfschule Skeepskool.'
             : "How to reach Le Porge Océan, opening hours, phone numbers, bus access from Bordeaux. Skeepskool surf school.")}
       />
-      <PageHero title={c.heroTitle} subtitle={c.heroSubtitle} image={images.fondpages} />
+      <PageHero title={c.heroTitle} subtitle={c.heroSubtitle} image={images.fondpages} titleClassName="font-bold" />
 
       {/* ---- Info cards ---- */}
       <section className="bg-white py-16 sm:py-20">

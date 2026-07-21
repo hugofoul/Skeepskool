@@ -374,7 +374,7 @@ export default function Booking() {
             : "Skeepskool cart: buy surf lessons in advance and secure your slot online." )}
         structuredData={bookingStructuredData}
       />
-      <PageHero title={b.title} subtitle={b.subtitle} image={images.fondpages} />
+      <PageHero title={b.title} subtitle={b.subtitle} image={images.fondpages} titleClassName="font-bold" />
 
       <section className="bg-lightGray py-14 sm:py-16">
         <div className="mx-auto w-full max-w-[680px] px-4 sm:px-6">
