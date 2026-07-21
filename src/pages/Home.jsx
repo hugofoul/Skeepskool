@@ -239,23 +239,33 @@ export default function Home() {
             <span className="block sm:hidden" />
             <span className="text-royalBlue">{h.campingNoteSuffix || ''}</span>
           </p>
-          <div className="mt-14 flex w-full flex-col items-center justify-center gap-3 sm:mt-16 sm:flex-row sm:gap-12 sm:translate-y-16 lg:translate-y-36">
-            <CTAButton
-              to={lang === 'fr' ? '/reserver' : '/book'}
-              aria-label={pickLang('Reserver un creneau de cours', 'Book a lesson slot', 'Einen Kurs-Slot buchen')}
-              className="w-auto justify-center gap-2 px-4 py-3 text-base font-semibold !bg-red !text-white !shadow-none hover:!bg-red/90 sm:gap-3 sm:!rounded-full sm:px-12 sm:py-6 sm:text-2xl sm:font-bold sm:!shadow-lg"
-            >
-              <CalendarCheck2 className="h-6 w-6 sm:h-7 sm:w-7" />
-              {h.heroCta}
-            </CTAButton>
-            <CTAButton
-              href={`tel:${CONTACT.phonePrimary}`}
-              aria-label={pickLang('Appeler Skeepskool', 'Call Skeepskool', 'Skeepskool anrufen')}
-              className="w-auto justify-center gap-2 px-4 py-3 text-base font-semibold !bg-white !text-royalBlue !shadow-none hover:!bg-yellow sm:gap-3 sm:!rounded-full sm:px-12 sm:py-6 sm:text-2xl sm:font-bold sm:!shadow-lg"
-            >
-              <Phone className="h-6 w-6 sm:h-7 sm:w-7" />
-              {pickLang('Appeler', 'Call', 'Anrufen')}
-            </CTAButton>
+          <div className="mt-14 w-full sm:mt-16 sm:translate-y-16 lg:translate-y-36">
+            <div className="mx-auto mb-3 flex max-w-3xl flex-wrap items-center justify-center gap-2.5 px-2 text-[0.8rem] font-extrabold uppercase tracking-[0.06em] text-royalBlue sm:text-[0.9rem]">
+              <span className="rounded-full bg-white/85 px-3 py-1.5 shadow-sm ring-1 ring-royalBlue/10">
+                {pickLang('9h 19h', '9am 7pm', '9:00 19:00 Uhr')}
+              </span>
+              <span className="rounded-full bg-white/85 px-3 py-1.5 shadow-sm ring-1 ring-royalBlue/10">
+                {pickLang('Cours tous les jours d\'avril à novembre', 'Lessons every day from April to November', 'Kurse jeden Tag von April bis November')}
+              </span>
+            </div>
+            <div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:gap-12">
+              <CTAButton
+                to={lang === 'fr' ? '/reserver' : '/book'}
+                aria-label={pickLang('Reserver un creneau de cours', 'Book a lesson slot', 'Einen Kurs-Slot buchen')}
+                className="w-auto justify-center gap-2 px-4 py-3 text-base font-semibold !bg-red !text-white !shadow-none hover:!bg-red/90 sm:gap-3 sm:!rounded-full sm:px-12 sm:py-6 sm:text-2xl sm:font-bold sm:!shadow-lg"
+              >
+                <CalendarCheck2 className="h-6 w-6 sm:h-7 sm:w-7" />
+                {h.heroCta}
+              </CTAButton>
+              <CTAButton
+                href={`tel:${CONTACT.phonePrimary}`}
+                aria-label={pickLang('Appeler Skeepskool', 'Call Skeepskool', 'Skeepskool anrufen')}
+                className="w-auto justify-center gap-2 px-4 py-3 text-base font-semibold !bg-white !text-royalBlue !shadow-none hover:!bg-yellow sm:gap-3 sm:!rounded-full sm:px-12 sm:py-6 sm:text-2xl sm:font-bold sm:!shadow-lg"
+              >
+                <Phone className="h-6 w-6 sm:h-7 sm:w-7" />
+                {pickLang('Appeler', 'Call', 'Anrufen')}
+              </CTAButton>
+            </div>
           </div>
         </div>
 
@@ -441,8 +451,8 @@ export default function Home() {
                   delay={index * 80}
                   className="w-full px-1 py-1 text-white"
                 >
-                  <p className="flex items-start gap-2 text-sm font-semibold leading-relaxed sm:text-base">
-                    <span aria-hidden="true" className="mt-[1px] text-yellow">→</span>
+                  <p className="flex items-start gap-2 text-base font-semibold leading-relaxed sm:text-lg">
+                    <span aria-hidden="true" className="mt-[1px] text-lg text-yellow sm:text-xl">→</span>
                     <span>{item}</span>
                   </p>
                 </Reveal>

@@ -1,4 +1,4 @@
-import { Waves, ShieldQuestion, Info, Phone } from 'lucide-react'
+import { Waves, ShieldQuestion, Info, Phone, AlertTriangle } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
@@ -117,8 +117,11 @@ export default function Rental() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <Reveal className="rounded-2xl border-l-4 border-red bg-lightGray p-4 shadow-sm ring-1 ring-black/5 sm:p-5">
             <p className="flex items-start gap-2 text-sm font-semibold text-red sm:text-base">
-              <ShieldQuestion className="mt-0.5 h-4 w-4 shrink-0 text-red" />
-              {r.safetyRecommendation}
+              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-red" />
+              <span>
+                {r.safetyRecommendationTitle ? <span className="mb-1 block font-black uppercase tracking-[0.03em]">{r.safetyRecommendationTitle}</span> : null}
+                {r.safetyRecommendation}
+              </span>
             </p>
           </Reveal>
         </div>

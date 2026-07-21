@@ -547,8 +547,9 @@ export const fr = {
       { item: 'Combinaison (Combi)', prices: ['6€', '8€', '10€', '45€', '8€'] },
     ],
     riskNote: '',
+    safetyRecommendationTitle: 'Conseil école de surf :',
     safetyRecommendation:
-      'Il est recommande d\'avoir fait au moins 10 seances avec un professeur de surf. La securite est essentielle pour vous et pour les autres : le surf peut etre dangereux.',
+      'Il est recommandé d\'avoir fait au minimum 10 séances en école de surf afin d\'avoir les bases de sécurité, de sens marin et de technique avant d\'aller à l\'eau seul ou entre amis dans de petites conditions (50 cm maximum), au bon endroit et au bon moment de la marée, sans trop de monde. Si vous avez le moindre doute, continuez votre apprentissage en école de surf : c\'est la manière la plus sécurisée et la plus rapide pour apprendre à surfer.',
     plusNote: 'Pendant toute la location, vous pouvez changer de planche à tout moment.',
     idRequiredNote: 'Une pièce d\'identité est obligatoire pour toute location.',
     sunsetNote: 'Créneau Sunset : de 18h jusqu’au lendemain 9h30.',
