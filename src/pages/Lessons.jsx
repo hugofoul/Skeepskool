@@ -8,7 +8,6 @@ import {
   Sunset,
   ArrowRight,
 } from 'lucide-react'
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLang } from '../hooks/useLang.js'
 import { useWeeklySchedule } from '../hooks/useWeeklySchedule.js'
@@ -33,8 +32,9 @@ export default function Lessons() {
   const school = t.school
   const s = t.schedule
   const bookingPath = lang === 'fr' ? '/reserver' : '/book'
+  const giftPath = lang === 'fr' ? '/bon-cadeau' : '/gift-voucher'
   const schedulePath = lang === 'fr' ? '/horaires' : '/schedule'
-  const [isGiftVisualOpen, setIsGiftVisualOpen] = useState(false)
+  const sessionDetailsPath = lang === 'fr' ? '/seance-type' : '/session-details'
   const schedule = useWeeklySchedule({
     lang,
     fallbackDays: s.fallbackDays,
@@ -118,19 +118,6 @@ export default function Lessons() {
     },
   ]
 
-  useEffect(() => {
-    if (!isGiftVisualOpen) return undefined
-
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') {
-        setIsGiftVisualOpen(false)
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isGiftVisualOpen])
-
   return (
     <div>
       <SEO
@@ -150,7 +137,7 @@ export default function Lessons() {
             : "Group and private surf lessons from €40. Packs of 3, 5, 10 or 20 sessions. Equipment and insurance included. Le Porge Océan, Gironde.")}
         structuredData={lessonsStructuredData}
       />
-      <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.fondpages} />
+      <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.fondpages} titleClassName="font-bold" />
 
       {/* ---- Lesson presentation ---- */}
       <section className="bg-white py-16 sm:py-20">
@@ -295,21 +282,22 @@ export default function Lessons() {
             <h2 className="text-3xl font-black sm:text-4xl">{l.stepsTitle}</h2>
             <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
           </Reveal>
-          <div className="mt-12 grid grid-cols-2 gap-6 lg:grid-cols-4">
-            {l.steps.map((step, i) => (
-              <Reveal
-                key={step.title}
-                delay={i * 100}
-                className="relative rounded-2xl bg-white/5 p-6 ring-1 ring-white/10"
-              >
-                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-yellow text-lg font-black text-royalBlue">
-                  {i + 1}
-                </span>
-                <h3 className="mt-4 text-lg font-extrabold text-yellow">{step.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/85">{step.text}</p>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={120} className="mt-10 overflow-hidden rounded-3xl border border-white/15 bg-white/10 p-7 shadow-xl sm:p-9">
+            <p className="max-w-3xl text-base leading-relaxed text-white/90 sm:text-lg">
+              {lang === 'fr'
+                ? 'Vous souhaitez découvrir le déroulé complet d\'une séance type ? Consultez la page détaillée avec toutes les étapes numérotées et les visuels explicatifs.'
+                : (lang === 'de'
+                  ? 'Sie möchten den kompletten Ablauf einer typischen Session sehen? Öffnen Sie die Detailseite mit allen nummerierten Schritten und Erklär-Visuals.'
+                  : 'Want to see the full flow of a typical session? Open the detailed page with all numbered steps and explanatory visuals.')}
+            </p>
+            <Link
+              to={sessionDetailsPath}
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-yellow px-6 py-3 text-sm font-extrabold uppercase tracking-wide text-royalBlue transition-colors hover:bg-white"
+            >
+              {lang === 'fr' ? 'Voir la séance type détaillée' : (lang === 'de' ? 'Typische Session im Detail' : 'View detailed session flow')}
+              <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+            </Link>
+          </Reveal>
         </div>
       </section>
 
@@ -406,11 +394,10 @@ export default function Lessons() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Reveal className="overflow-hidden rounded-3xl bg-royalBlue shadow-xl ring-1 ring-black/10">
             <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
-              <button
-                type="button"
-                onClick={() => setIsGiftVisualOpen(true)}
+              <Link
+                to={giftPath}
                 className="relative block min-h-[320px] sm:min-h-[420px]"
-                aria-label={lang === 'fr' ? 'Ouvrir le visuel du bon cadeau' : 'Open gift voucher visual'}
+                aria-label={lang === 'fr' ? 'Voir la page bon cadeau' : 'Open gift voucher page'}
               >
                 <img
                   src="/images/bon-cadeau.jpg"
@@ -430,10 +417,10 @@ export default function Lessons() {
                     {l.giftExperienceTitle}
                   </h2>
                   <p className="mt-2 text-xs font-bold uppercase tracking-wider text-white/90">
-                    {lang === 'fr' ? 'Cliquer pour ouvrir le visuel' : (lang === 'de' ? 'Zum Oeffnen klicken' : 'Click to open visual')}
+                    {lang === 'fr' ? 'Cliquer pour voir la page bon cadeau' : (lang === 'de' ? 'Klicken, um die Gutscheinseite zu sehen' : 'Click to open gift voucher page')}
                   </p>
                 </div>
-              </button>
+              </Link>
 
               <div className="flex flex-col justify-center p-7 text-white sm:p-10">
                 <p className="text-base font-semibold leading-relaxed text-white/95 sm:text-lg">
@@ -539,41 +526,6 @@ export default function Lessons() {
           </Reveal>
         </div>
       </section>
-
-      {isGiftVisualOpen && (
-        <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-dark/90 p-4 backdrop-blur-sm"
-          role="dialog"
-          aria-modal="true"
-          aria-label={lang === 'fr' ? 'Visionneuse bon cadeau' : (lang === 'de' ? 'Geschenkgutschein-Ansicht' : 'Gift voucher viewer')}
-          onClick={() => setIsGiftVisualOpen(false)}
-        >
-          <div
-            className="relative w-fit max-w-[94vw] overflow-hidden rounded-[2rem] bg-black shadow-2xl ring-1 ring-white/10"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <button
-              type="button"
-              onClick={() => setIsGiftVisualOpen(false)}
-              className="absolute right-4 top-4 z-10 rounded-full bg-white/90 px-4 py-2 text-sm font-bold text-royalBlue shadow-lg transition-colors hover:bg-yellow"
-            >
-              ×
-            </button>
-
-            <div className="relative flex items-center justify-center bg-black">
-              <img
-                src="/images/bon-cadeau.jpg"
-                srcSet={buildSrcSet('/images/bon-cadeau.jpg')}
-                sizes="94vw"
-                alt={lang === 'fr' ? 'Visuel bon cadeau' : 'Gift voucher visual'}
-                className="block h-auto max-h-[calc(100dvh-8rem)] w-auto max-w-[94vw] object-contain sm:max-h-[85dvh]"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </div>
-        </div>
-      )}
 
     </div>
   )

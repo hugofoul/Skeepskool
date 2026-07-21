@@ -149,7 +149,7 @@ export const photoGallery = [
     alt: 'Portrait de Hugo',
   },
   {
-    src: '/images/manu.jpg',
+    src: '/images/manu-equipe.jpg',
     alt: 'Portrait de Manu',
   },
   {

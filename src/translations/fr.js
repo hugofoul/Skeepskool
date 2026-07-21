@@ -311,7 +311,7 @@ export const fr = {
   // ---- Lessons ----
   lessons: {
     heroTitle: 'Cours & Tarifs',
-    heroSubtitle: 'Cours de surf encadrés par des moniteurs diplômés.',
+    heroSubtitle: '',
     introTitle: 'Cours de surf',
     introText:
       'Chaque formule comprend : moniteur diplômé, matériel adapté, assurance, licence fédérale et attestation de niveau.',

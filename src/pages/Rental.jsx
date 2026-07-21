@@ -111,7 +111,7 @@ export default function Rental() {
             : "Surfboard, bodyboard and wetsuit rental right by the beach at Le Porge Océan. From €10. Sunset slot available.")}
         structuredData={rentalStructuredData}
       />
-      <PageHero title={r.heroTitle} subtitle={r.heroSubtitle} image={images.fondpages} />
+      <PageHero title={r.heroTitle} subtitle={r.heroSubtitle} image={images.fondpages} titleClassName="font-bold" />
 
       <section className="bg-white py-6 sm:py-8">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
