@@ -1,4 +1,3 @@
-import { MessageCircle } from 'lucide-react'
 import { useLang } from '../hooks/useLang'
 import { useState, useEffect } from 'react'
 
@@ -9,7 +8,7 @@ export default function WhatsAppWidget() {
   const translations = {
     fr: {
       title: 'Horaires des cours',
-      description: 'Reçois les horaires chaque jeudi',
+      description: 'Reçois les horaires sur WhatsApp chaque jeudi',
     },
     en: {
       title: 'Class Schedule',
@@ -53,11 +52,11 @@ export default function WhatsAppWidget() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Rejoindre WhatsApp"
-      className={`fixed top-32 right-6 z-40 flex items-center gap-3 rounded-full bg-green-500 px-4 py-3 text-white shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 ${
+      className={`fixed top-32 right-2 z-40 flex items-center gap-3 rounded-full bg-green-500 px-4 py-3 text-white shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 ${
         isScrolling ? 'md:px-4 px-3' : ''
       }`}
     >
-      <MessageCircle className="h-6 w-6 shrink-0" />
+      <img src="/images/WhatsApp.png" alt="WhatsApp" className="h-12 w-12 shrink-0 object-contain" />
       <div className={`flex flex-col gap-0.5 text-sm transition-all duration-300 ${
         isScrolling ? 'hidden md:flex' : 'flex'
       }`}>
