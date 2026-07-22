@@ -24,8 +24,18 @@ import { CONTACT, MAPS } from '../config/site.js'
 import { buildSrcSet, HERO_SIZES, GRID_CARD_SIZES } from '../utils/responsiveImage.js'
 
 const teamImages = [teamPhotos.pierre, teamPhotos.mariane, teamPhotos.manoa, teamPhotos.hugo]
-const teamImagePositions = ['object-cover object-top', 'object-cover object-top', 'object-cover', 'object-cover']
-const teamImageScales = ['group-hover:scale-105', 'scale-105 group-hover:scale-110', 'group-hover:scale-105', 'group-hover:scale-105']
+const teamImagePositionByKey = {
+  pierre: 'object-cover object-top',
+  mariane: 'object-cover object-[50%_58%]',
+  manua: 'object-cover object-center',
+  hugo: 'object-cover object-center',
+  oscar: 'object-cover object-[50%_18%]',
+  alioune: 'object-cover object-center',
+  alexandre: 'object-cover object-[50%_18%]',
+}
+const teamImageScaleByKey = {
+  mariane: 'scale-105 group-hover:scale-110',
+}
 const teamPortraits = {
   pierre: teamPhotos.pierre,
   mariane: teamPhotos.mariane,
@@ -299,6 +309,13 @@ export default function Home() {
             <h2 className="mt-3 text-center text-3xl font-black text-royalBlue sm:text-4xl">
               {h.offers.title}
             </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-center text-sm font-semibold text-dark/70 sm:text-base">
+              {pickLang(
+                'Toutes nos formules sont valables 1 an à partir de la date d\'achat.',
+                'All our packages are valid for 1 year from the date of purchase.',
+                'Alle unsere Pakete sind ab Kaufdatum 1 Jahr gültig.',
+              )}
+            </p>
           </Reveal>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -504,6 +521,12 @@ export default function Home() {
 
           <div className="mt-12 grid grid-cols-2 gap-6 lg:grid-cols-4">
             {s.team.map((member, index) => (
+              (() => {
+                const imageSrc = teamPortraits[member.image] || teamImages[index % teamImages.length]
+                const imagePosition = teamImagePositionByKey[member.image] || 'object-cover object-center'
+                const imageScale = teamImageScaleByKey[member.image] || 'group-hover:scale-105'
+
+                return (
               <Reveal
                 key={member.name}
                 delay={(index % 4) * 100}
@@ -511,11 +534,11 @@ export default function Home() {
               >
                 <div className="relative h-64 overflow-hidden">
                   <img
-                    src={teamPortraits[member.image] || teamImages[index % teamImages.length]}
-                    srcSet={buildSrcSet(teamPortraits[member.image] || teamImages[index % teamImages.length])}
+                    src={imageSrc}
+                    srcSet={buildSrcSet(imageSrc)}
                     sizes={GRID_CARD_SIZES}
                     alt={member.name}
-                    className={`h-full w-full ${teamImagePositions[index]} ${teamImageScales[index]} transition-transform duration-500`}
+                    className={`h-full w-full ${imagePosition} ${imageScale} transition-transform duration-500`}
                     loading="lazy"
                   />
                   <span className="absolute bottom-3 left-3 rounded-full bg-yellow px-3 py-1 text-xs font-bold text-royalBlue">
@@ -527,6 +550,8 @@ export default function Home() {
                   <p className="mt-2 text-sm leading-relaxed text-dark/75">{member.text}</p>
                 </div>
               </Reveal>
+                )
+              })()
             ))}
           </div>
         </div>

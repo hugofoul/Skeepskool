@@ -222,7 +222,7 @@ export default function Rental() {
             </h2>
             <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className={`mt-12 grid gap-6 ${r.guide.length === 2 ? 'md:mx-auto md:max-w-4xl md:grid-cols-2' : 'md:grid-cols-3'}`}>
             {r.guide.map((g, i) => {
               const Icon = guideIcons[i]
               return (

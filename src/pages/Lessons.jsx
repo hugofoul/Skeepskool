@@ -187,9 +187,6 @@ export default function Lessons() {
           <Reveal delay={120} className="mt-10 overflow-hidden rounded-3xl border border-black/10 bg-white shadow-xl">
             <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
               <div className="border-b border-black/10 bg-[#f3f7fd] p-7 sm:p-9 lg:border-b-0 lg:border-r">
-                <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-royalBlue/70">
-                  {school.coachingTitle}
-                </p>
                 <h3 className="mt-3 text-3xl font-black leading-tight text-royalBlue sm:text-4xl">
                   {school.coachingTitle}
                 </h3>
@@ -199,13 +196,7 @@ export default function Lessons() {
                   <span className="text-base font-black text-royalBlue sm:text-lg">{school.coachingExperience}</span>
                 </div>
 
-                <p className="mt-6 max-w-md text-sm leading-relaxed text-dark/75 sm:text-base">
-                  {lang === 'fr'
-                    ? 'Un accompagnement structuré, progressif et humain pour apprendre avec confiance.'
-                    : (lang === 'de'
-                      ? 'Eine strukturierte, progressive und menschliche Begleitung für sicheres Lernen.'
-                      : 'A structured, progressive and human approach to learn with confidence.')}
-                </p>
+                
               </div>
 
               <div className="p-7 sm:p-9">
@@ -285,7 +276,12 @@ export default function Lessons() {
           <Reveal delay={120} className="mt-10 overflow-hidden rounded-3xl border border-white/15 bg-white/10 p-7 shadow-xl sm:p-9">
             <p className="max-w-3xl text-base leading-relaxed text-white/90 sm:text-lg">
               {lang === 'fr'
-                ? 'Vous souhaitez découvrir le déroulé complet d\'une séance type ? Consultez la page détaillée avec toutes les étapes numérotées et les visuels explicatifs.'
+                ? (
+                  <>
+                    <span>Vous souhaitez découvrir le déroulé complet d'une séance type ?</span>
+                    <span className="block md:whitespace-nowrap">Consultez la page détaillée avec toutes les étapes numérotées et les visuels explicatifs.</span>
+                  </>
+                )
                 : (lang === 'de'
                   ? 'Sie möchten den kompletten Ablauf einer typischen Session sehen? Öffnen Sie die Detailseite mit allen nummerierten Schritten und Erklär-Visuals.'
                   : 'Want to see the full flow of a typical session? Open the detailed page with all numbered steps and explanatory visuals.')}

@@ -13,7 +13,7 @@ export default function Schedule() {
   const { t, lang } = useLang()
   const s = t.schedule
   const scheduleWindowNote = lang === 'fr'
-    ? 'Les horaires sont établis du jeudi au jeudi, pour s\'assurer des meilleures conditions de mer.'
+    ? 'Les horaires sont établis du jeudi au jeudi, pour assurer les cours aux meilleurs moments.'
     : (lang === 'de'
       ? 'Die Kurszeiten werden von Donnerstag bis Donnerstag festgelegt, um die besten Meeresbedingungen zu sichern.'
       : 'Lesson schedules are set from Thursday to Thursday to ensure the best sea conditions.')
@@ -26,7 +26,7 @@ export default function Schedule() {
     <>
       {schedule.isLive ? s.liveLabel : s.fallbackLabel}
       <br />
-      {scheduleWindowNote}
+      <span className="md:whitespace-nowrap">{scheduleWindowNote}</span>
     </>
   )
 

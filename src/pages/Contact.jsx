@@ -12,6 +12,7 @@ import {
   ExternalLink,
   ParkingCircle,
 } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
@@ -27,6 +28,7 @@ const MAP_SRC =
 
 export default function Contact() {
   const { t, lang } = useLang()
+  const [isMapPlanOpen, setIsMapPlanOpen] = useState(false)
   const c = t.contact
   const a = t.around
   const mapPlanAriaLabel = lang === 'fr'
@@ -39,6 +41,17 @@ export default function Contact() {
   const mapPlanHint = lang === 'fr'
     ? 'Cliquez sur l’image pour l’ouvrir en grand.'
     : (lang === 'de' ? 'Klicke auf das Bild, um es in Grossansicht zu oeffnen.' : 'Click the image to open it full size.')
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsMapPlanOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   return (
     <div>
@@ -189,7 +202,15 @@ export default function Contact() {
             {/* Map + access plan */}
             <Reveal delay={120} className="space-y-5">
               <div className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-black/10">
-                <a href={images.contactPlan} target="_blank" rel="noopener noreferrer" aria-label={mapPlanAriaLabel} onClick={() => trackEvent('click_map', { target: images.contactPlan, source: 'contact_plan' })}>
+                <button
+                  type="button"
+                  aria-label={mapPlanAriaLabel}
+                  className="block w-full"
+                  onClick={() => {
+                    setIsMapPlanOpen(true)
+                    trackEvent('click_map', { target: images.contactPlan, source: 'contact_plan_lightbox_open' })
+                  }}
+                >
                   <img
                     src={images.contactPlan}
                     srcSet={buildSrcSet(images.contactPlan)}
@@ -198,7 +219,7 @@ export default function Contact() {
                     className="h-80 w-full object-cover object-[88%_4%] sm:h-96"
                     loading="lazy"
                   />
-                </a>
+                </button>
                 <div className="p-4">
                   <p className="text-sm font-semibold text-royalBlue">{mapPlanTitle}</p>
                   <p className="mt-1 text-sm text-dark/75">{mapPlanHint}</p>
@@ -273,6 +294,37 @@ export default function Contact() {
           </Reveal>
         </div>
       </section>
+
+      {isMapPlanOpen ? (
+        <div
+          className="fixed inset-0 z-[110] flex items-center justify-center bg-black/85 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={mapPlanTitle}
+          onClick={() => setIsMapPlanOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-6xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setIsMapPlanOpen(false)}
+              className="absolute right-2 top-2 z-10 rounded-full bg-white/90 px-3 py-1.5 text-sm font-bold text-royalBlue shadow-md hover:bg-white"
+            >
+              {lang === 'fr' ? 'Fermer' : (lang === 'de' ? 'Schliessen' : 'Close')}
+            </button>
+            <img
+              src={images.contactPlan}
+              srcSet={buildSrcSet(images.contactPlan)}
+              sizes="100vw"
+              alt={mapPlanAlt}
+              className="max-h-[88vh] w-full rounded-xl object-contain"
+              loading="eager"
+            />
+          </div>
+        </div>
+      ) : null}
 
       {/* ---- Around: Camping ---- */}
       <section id="camping-la-grigne" className="bg-white py-16 sm:py-20">

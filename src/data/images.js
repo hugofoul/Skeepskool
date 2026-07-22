@@ -225,12 +225,12 @@ export const photoGallery = [
 // Team member portraits.
 export const teamPhotos = {
   pierre: '/images/pierre.jpeg', //  u('1500648767791-00dcc994a43e', 800)
-  mariane: '/images/mariane.jpeg', // u('1494790108377-be9c29b29330', 800)
+  mariane: '/images/mariane.jpg', // u('1494790108377-be9c29b29330', 800)
   manoa: '/images/manu-equipe.jpg', //    u('1506794778202-cad84cf45f1d', 800)
   hugo: '/images/hugo.jpg', //      u('1507003211169-0a1dd7228f2d', 800)
-  oscar: '/images/charlie.jpeg',
+  oscar: '/images/oscar.jpg',
   alioune: '/images/boss.jpeg',
-  alexandre: '/images/ffs-officiel-portrait.png',
+  alexandre: '/images/alexandre.jpg',
 }
 
 // Exported so the helper stays available if you switch a line back to Unsplash.

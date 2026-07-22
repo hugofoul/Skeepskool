@@ -104,6 +104,7 @@ export default function Navbar() {
             <ShoppingCart className="h-3.5 w-3.5" />
             {t.nav.cart}
           </Link>
+          <span className="hidden text-sm font-semibold text-white/90 lg:inline">9h - 19h</span>
           <LangToggle className="hidden md:inline-flex md:translate-y-0.5" />
           <button
             onClick={() => setOpen((v) => !v)}

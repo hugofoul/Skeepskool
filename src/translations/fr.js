@@ -250,8 +250,8 @@ export const fr = {
     badge: 'Labellisée École Française de Surf',
 
     teamTitle: "L'équipe Skeepskool",
-    teamSubtitle: 'Une bande de passionnés pour vous accompagner sur l’eau.',
-    coachingTitle: 'Encadrement de qualité',
+    teamSubtitle: 'Une équipe de professionnels dynamique et passionnée à votre service.',
+    coachingTitle: 'Enseignement de qualité et sécurisé',
     coachingItems: [
       'Apprendre à surfer en sécurité',
       'Tous âges, tous niveaux',
@@ -319,10 +319,10 @@ export const fr = {
     // --- Présentation détaillée d'un cours ---
     aboutTitle: 'Comment se déroule un cours ?',
     aboutLead:
-      'Un cours de surf chez Skeepskool, c’est 2 heures encadrées par un moniteur diplômé d’État, sur la plage centrale du Porge Océan. Une vraie session sportive, pensée pour progresser en s’amusant, du débutant au confirmé, dès 5 ans.',
+      'Un cours de surf dans notre école, c’est 2 heures encadrées par un moniteur diplômé d’État, sur la Plage Centrale du Porge Océan. Une vraie session sportive complete, pensée pour progresser étape par étape et adaptée au niveau de chacun.',
     quickFacts: [
       { label: 'Durée', value: '2 heures', detail: 'Présentez-vous 20 min avant le début du cours.' },
-      { label: 'Niveau', value: 'Tous niveaux', detail: 'Débutant à confirmé, dès 5 ans.' },
+      { label: 'Niveau', value: 'Groupes de niveaux', detail: 'Débutant à confirmé, dès 5 ans.' },
       { label: 'Matériel', value: 'Tout est compris', detail: 'Combinaison et planche fournies.' },
       { label: 'Encadrement', value: 'Moniteur diplômé', detail: 'Toujours présent avec vous sur l’eau.' },
     ],
@@ -407,7 +407,7 @@ export const fr = {
     sunsetCta: 'Demander un cours Sunset',
     teamLinkTitle: 'Encadré par une équipe passionnée',
     teamLinkText: 'Tous nos cours sont assurés par des moniteurs diplômés d’État. Faites connaissance avec l’équipe Skeepskool.',
-    teamLinkCta: 'Découvrir les moniteurs',
+    teamLinkCta: 'Découvrir notre équipe',
     giftExperienceBadge: 'Bon cadeau',
     giftExperienceTitle: 'Offrir un bon cadeau surf',
     giftExperienceText1: 'Vous cherchez une idée cadeau simple et originale ? Offrez un cours ou un stage de surf.',
@@ -426,7 +426,7 @@ export const fr = {
   schedule: {
     title: 'Horaires des cours de la semaine',
     liveLabel: 'Appelez-nous pour réserver : nous avons peut-être d\'autres créneaux.',
-    fallbackLabel: 'Aucun cours programmé',
+    fallbackLabel: 'En cours de chargement',
     allLevels: 'Tous niveaux',
     callWidgetTitle: 'Appelez-nous pour réserver',
     callWidgetText: 'Appelez-nous pour réserver : nous avons peut-être d\'autres créneaux.',
@@ -449,7 +449,7 @@ export const fr = {
       'Pour valider votre réservation, le paiement doit déjà être effectué par virement avant l\'envoi de ce formulaire.',
 
     contactTitle: 'Informations de contact',
-    contactTitleGift: 'Informations de contact (personne qui offre le cadeau)',
+    contactTitleGift: 'Informations du payeur',
     firstName: 'Prénom',
     lastName: 'Nom',
     phone: 'Téléphone',
@@ -543,8 +543,8 @@ export const fr = {
     tableHead: ['Matériel', '2H', '4H', 'Journée (9h–19h)', '7 jours', 'Sunset (18h–9h30)'],
     rows: [
       { item: 'Surf / Longboard', prices: ['12€', '18€', '23€', '100€', '18€'] },
-      { item: 'Bodyboard', prices: ['10€', '12€', '15€', '80€', '12€'] },
-      { item: 'Combinaison (Combi)', prices: ['6€', '8€', '10€', '45€', '8€'] },
+      { item: 'Bodyboard + Palmes', prices: ['10€', '12€', '15€', '80€', '12€'] },
+      { item: 'Combinaison', prices: ['6€', '8€', '10€', '45€', '8€'] },
     ],
     riskNote: '',
     safetyRecommendationTitle: 'Conseil école de surf :',
@@ -557,15 +557,11 @@ export const fr = {
     guide: [
       {
         title: 'Quelle planche ?',
-        text: 'Longboard pour les débutants (stabilité et vagues faciles), shortboard pour les surfeurs intermédiaires et confirmés.',
+        text: 'Nous avons tout type de planches : SURF, LONGBOARD, MINI MALIBU, BODYBOARD, SKIMBOARD.',
       },
       {
         title: 'Quelle combi ?',
-        text: '3/2 mm en été quand l’eau est douce, 4/3 mm au printemps et en automne pour rester au chaud plus longtemps.',
-      },
-      {
-        title: 'Bodyboard ou surf ?',
-        text: 'Le bodyboard est idéal pour s’amuser vite dès les premières vagues ; le surf pour progresser debout sur la planche.',
+        text: 'Nous avons des shortis et intégrale de differentes épaisseurs en fonction de la temperature de l’eau.',
       },
     ],
     callNote: 'Envie de réserver vos planches et votre combinaison ? Appelez-nous, on vous prépare tout avant votre arrivée.',
