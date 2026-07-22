@@ -7,6 +7,7 @@ import {
   ShieldCheck,
   Sunset,
   ArrowRight,
+  Phone,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useLang } from '../hooks/useLang.js'
@@ -453,7 +454,7 @@ export default function Lessons() {
       </section>
 
       {/* ---- Pricing cards ---- */}
-      <section className="bg-white pb-14 pt-8">
+      <section className="bg-white pb-8 pt-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
             {l.cards.map((card, i) => {
@@ -492,6 +493,12 @@ export default function Lessons() {
               )
             })}
           </div>
+        </div>
+        <div className="mx-auto mt-6 max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-base font-semibold text-dark/75 sm:text-lg">
+            <Phone className="mr-1.5 inline h-5 w-5 align-text-bottom text-royalBlue" />
+            {l.groupNote}
+          </p>
         </div>
       </section>
 

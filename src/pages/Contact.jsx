@@ -8,7 +8,6 @@ import {
   Facebook,
   Instagram,
   CalendarCheck,
-  MessageCircle,
   ExternalLink,
   ParkingCircle,
 } from 'lucide-react'
@@ -132,31 +131,6 @@ export default function Contact() {
       </section>
 
       {/* ---- WhatsApp community ---- */}
-      <section className="bg-white py-14">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <Reveal className="overflow-hidden rounded-3xl border-l-4 border-yellow bg-lightGray shadow-lg">
-            <div className="flex flex-col items-center gap-6 p-8 text-center sm:flex-row sm:p-10 sm:text-left">
-              <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-royalBlue">
-                <MessageCircle className="h-8 w-8 text-yellow" />
-              </span>
-              <div className="flex-1">
-                <h3 className="text-xl font-black text-royalBlue">{c.whatsappTitle}</h3>
-                <p className="mt-2 text-sm text-dark/75">{c.whatsappText}</p>
-              </div>
-              <CTAButton
-                href={t.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shrink-0"
-              >
-                <MessageCircle className="h-4 w-4" />
-                {c.whatsappCta}
-              </CTAButton>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ---- Map ---- */}
       <section className="bg-lightGray py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

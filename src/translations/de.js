@@ -61,15 +61,6 @@ export const de = {
       priceFallback: 'Preis auf Anfrage',
       cards: [
         {
-          badge: 'EINSTIEG',
-          title: 'Schnupperkurs',
-          subtitle: '1 Session · 2 h',
-          description: '',
-          pricePrefix: 'Ab',
-          cta: 'Buchen',
-          packageValue: 'single',
-        },
-        {
           featuredLabel: '★ AM BESTEN FÜR NACHHALTIGEN FORTSCHRITT',
           title: '10er-Kurs',
           subtitle: '10 Sessions · 20 h',
@@ -77,15 +68,6 @@ export const de = {
           pricePrefix: 'Ab',
           cta: 'Buchen',
           packageValue: 'pack10',
-        },
-        {
-          badge: '5 SESSIONS',
-          title: '5er-Kurs',
-          subtitle: '5 Sessions · 10 h',
-          description: '',
-          pricePrefix: 'Ab',
-          cta: 'Buchen',
-          packageValue: 'pack5',
         },
       ],
     },
@@ -400,6 +382,7 @@ export const de = {
       'Level-Bescheinigung',
     ],
     validityNote: 'Alle Pakete sind 1 Jahr ab Kaufdatum gültig.',
+    groupNote: 'Für Gruppen ab 8 Personen bitten wir dich, uns direkt anzurufen.',
     sunsetTitle: 'Sunset-Kurse',
     sunsetText:
       'Lust auf eine besondere Session? Unsere Sunset-Kurse finden im goldenen Abendlicht statt, wenn der Ozean ruhiger wird.',
@@ -550,7 +533,7 @@ export const de = {
     ...en.contact,
     heroTitle: 'Praktische Infos',
     infoTitle: 'Kontaktdaten',
-    infoLead: 'Ruf uns an für Buchungen oder Fragen.',
+    infoLead: 'Bitte bevorzuge einen Anruf (WhatsApp möglich).',
     openMaps: 'In Google Maps öffnen',
     seasonTitle: 'Öffnungszeiten',
     season: 'Geöffnet von 9 bis 19 Uhr, 7 Tage die Woche.',
@@ -605,7 +588,7 @@ export const de = {
       cta: 'Camping ansehen',
     },
     restaurantsTitle: 'Essen',
-    restaurantsIntro: 'Zwei tolle Adressen in der Nähe nach deiner Session:',
+    restaurantsIntro: 'Drei tolle Adressen in der Nähe nach deiner Session:',
     restaurants: [
       {
         ...en.around.restaurants[0],
@@ -615,6 +598,11 @@ export const de = {
       {
         ...en.around.restaurants[1],
         text: 'Gemütliches Restaurant in Le Porge Océan für eine leckere Pause nahe dem Strand.',
+        cta: 'Auf Instagram ansehen',
+      },
+      {
+        ...en.around.restaurants[2],
+        text: 'Burger und Pizzen auf dem Rückweg ins Dorf Le Porge — ein lohnenswerter Stopp.',
         cta: 'Auf Instagram ansehen',
       },
     ],

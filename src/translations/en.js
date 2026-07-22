@@ -63,15 +63,6 @@ export const en = {
       priceFallback: 'Price on request',
       cards: [
         {
-          badge: 'DISCOVERY',
-          title: 'Discovery lesson',
-          subtitle: '1 session · 2 h',
-          description: '',
-          pricePrefix: 'From',
-          cta: 'Book now',
-          packageValue: 'single',
-        },
-        {
           featuredLabel: '★ BEST FOR LONG-TERM PROGRESSION',
           title: '10-session course',
           subtitle: '10 sessions · 20 h',
@@ -79,15 +70,6 @@ export const en = {
           pricePrefix: 'From',
           cta: 'Book now',
           packageValue: 'pack10',
-        },
-        {
-          badge: '5 SESSIONS',
-          title: '5-session course',
-          subtitle: '5 sessions · 10 h',
-          description: '',
-          pricePrefix: 'From',
-          cta: 'Book now',
-          packageValue: 'pack5',
         },
       ],
     },
@@ -415,6 +397,7 @@ export const en = {
       'Level certificate',
     ],
     validityNote: 'All our packages are valid for 1 year from the purchase date.',
+    groupNote: 'For groups of 8 or more, please call us directly.',
     sunsetTitle: 'Sunset lessons',
     sunsetText:
       'Fancy a magical session? We also offer Sunset lessons: surf in the golden evening light, when the ocean calms down and the waves are all yours.',
@@ -589,7 +572,7 @@ export const en = {
     heroTitle: 'Practical Info',
     heroSubtitle: 'How to get here, where to park, our opening hours.',
     infoTitle: 'Our details',
-    infoLead: 'Call us to book or if you need any information.',
+    infoLead: 'We prefer to be contacted by phone (WhatsApp welcome).',
     address: 'Plage Centrale, Le Porge Océan, 33680 Gironde',
     addressDetail: '40m north of the main beach access.',
     openMaps: 'Open in Google Maps',
@@ -682,7 +665,7 @@ export const en = {
     },
 
     restaurantsTitle: 'Where to eat',
-    restaurantsIntro: 'Two great spots nearby to enjoy a meal after surfing:',
+    restaurantsIntro: 'Three great spots nearby to enjoy a meal after surfing:',
     restaurants: [
       {
         name: 'Pizzeria des Bois',
@@ -697,6 +680,13 @@ export const en = {
         cta: 'View on Instagram',
         url: 'https://www.instagram.com/l_ajonciere_le_porge_ocean/',
         embedUrl: 'https://www.instagram.com/l_ajonciere_le_porge_ocean/embed/',
+      },
+      {
+        name: 'Chez Matteo',
+        text: 'Burgers and pizzas on the road back to Le Porge village — a great stop on your way home.',
+        cta: 'View on Instagram',
+        url: 'https://www.instagram.com/chez_matteo_pizza/',
+        embedUrl: 'https://www.instagram.com/chez_matteo_pizza/embed/',
       },
     ],
 

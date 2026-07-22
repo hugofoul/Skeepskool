@@ -318,14 +318,14 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-10 -mx-4 flex gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 xl:grid-cols-3">
             {homeCourseCards.map((card, index) => {
               const isFeatured = Boolean(card.featuredLabel)
               return (
                 <Reveal
                   key={card.title}
                   delay={index * 90}
-                  className={`flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-black/5 ${isFeatured ? 'xl:-translate-y-1 xl:ring-2 xl:ring-red/20' : ''}`}
+                  className={`w-72 shrink-0 flex flex-col overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-black/5 sm:w-auto sm:h-full sm:shrink ${isFeatured ? 'xl:-translate-y-1 xl:ring-2 xl:ring-red/20' : ''}`}
                 >
                   {isFeatured ? (
                     <div className="bg-red px-5 py-2 text-center text-xs font-extrabold uppercase tracking-[0.14em] text-white">

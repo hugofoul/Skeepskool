@@ -62,15 +62,6 @@ export const fr = {
       priceFallback: 'Tarif à confirmer',
       cards: [
         {
-          badge: 'DÉCOUVERTE',
-          title: 'Cours découverte',
-          subtitle: '1 séance · 2 h',
-          description: '',
-          pricePrefix: 'À partir de',
-          cta: 'Réserver',
-          packageValue: 'single',
-        },
-        {
           featuredLabel: '★ LE PLUS ADAPTÉ À UNE PROGRESSION DURABLE',
           title: 'Stage 10 séances',
           subtitle: '10 séances · 20 h',
@@ -78,15 +69,6 @@ export const fr = {
           pricePrefix: 'À partir de',
           cta: 'Réserver',
           packageValue: 'pack10',
-        },
-        {
-          badge: '5 SÉANCES',
-          title: 'Stage 5 séances',
-          subtitle: '5 séances · 10 h',
-          description: '',
-          pricePrefix: 'À partir de',
-          cta: 'Réserver',
-          packageValue: 'pack5',
         },
       ],
     },
@@ -400,8 +382,7 @@ export const fr = {
       'Licence fédérale',
       'Attestation de niveau',
     ],
-    validityNote: 'Toutes nos formules sont valables 1 an à partir de la date d’achat.',
-    sunsetTitle: 'Cours au coucher du soleil',
+    validityNote: 'Toutes nos formules sont valables 1 an à partir de la date d’achat.',    groupNote: 'Pour les groupes de 8 personnes et plus, merci de nous téléphoner directement.',    sunsetTitle: 'Cours au coucher du soleil',
     sunsetText:
       'Envie d’une session magique ? Nous proposons aussi des cours en Sunset : surfez dans la lumière dorée de fin de journée, quand l’océan se calme et que les vagues n’appartiennent plus qu’à vous.',
     sunsetCta: 'Demander un cours Sunset',
@@ -573,7 +554,7 @@ export const fr = {
     heroTitle: 'Infos pratiques',
     heroSubtitle: "Très facile d’accès : Skeepskool est l’École de Surf de la Plage Centrale du Porge.",
     infoTitle: 'Nos coordonnées',
-    infoLead: '',
+    infoLead: 'Merci de privilégier un appel téléphonique (WhatsApp possible).',
     address: 'Plage Centrale, Le Porge Océan, 33680 Gironde',
     addressDetail: '40 m au nord de l’accès principal à la plage, au pied de la dune côté forêt.',
     openMaps: 'Ouvrir dans Google Maps',
@@ -596,7 +577,7 @@ export const fr = {
       address: 'Plage Centrale, Le Porge Océan, 33680, Gironde',
       byCarLabel: 'En voiture',
       byCar:
-        '~50 min depuis Bordeaux via la D6 puis la D3 en direction du Porge → au rond-point de la plage, prenez à droite puis à gauche à l’intersection suivante. Vous arrivez devant l’école, 40 m au nord de l’allée de la Plage Centrale.',
+        '~50 min depuis Bordeaux via la D6 puis la D3 en direction du Porge \u2192 au rond-point de la plage, prenez \u00e0 droite puis \u00e0 gauche \u00e0 l\u2019intersection suivante. Vous arrivez devant l\u2019\u00e9cole, qui se situe \u00e0 40\u00a0m \u00e0 droite de l\u2019all\u00e9e des restaurants juste avant de monter la dune.',
       citiesLabel: 'Villes les plus proches',
       cities: 'Bordeaux 50 min · Lacanau 20 min · Lège-Cap-Ferret 25 min',
       parkingLabel: 'Stationnement',
@@ -665,7 +646,7 @@ export const fr = {
     },
 
     restaurantsTitle: 'Où manger',
-    restaurantsIntro: 'Deux bonnes adresses à proximité pour se régaler après le surf :',
+    restaurantsIntro: 'Trois bonnes adresses à proximité pour se régaler après le surf :',
     restaurants: [
       {
         name: 'Pizzeria des Bois',
@@ -680,6 +661,13 @@ export const fr = {
         cta: 'Voir sur Instagram',
         url: 'https://www.instagram.com/l_ajonciere_le_porge_ocean/',
         embedUrl: 'https://www.instagram.com/l_ajonciere_le_porge_ocean/embed/',
+      },
+      {
+        name: 'Chez Matteo',
+        text: 'Burgers et pizzas sur la route du retour vers Le Porge ville — une bonne adresse à ne pas manquer.',
+        cta: 'Voir sur Instagram',
+        url: 'https://www.instagram.com/chez_matteo_pizza/',
+        embedUrl: 'https://www.instagram.com/chez_matteo_pizza/embed/',
       },
     ],
 

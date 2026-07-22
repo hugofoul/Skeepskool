@@ -72,12 +72,10 @@ export default function WhatsAppWidget() {
         type="button"
         onClick={() => setIsOpen(true)}
         aria-label={t.buttonLabel}
-        className={`fixed top-32 right-4 z-40 flex items-center gap-3 rounded-full bg-green-500 px-4 py-3 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-green-600 ${
-          isScrolling ? 'md:px-4 px-3' : ''
-        }`}
+        className="fixed top-32 right-4 z-40 flex items-center gap-1 rounded-full bg-green-500 pl-4 pr-8 py-3 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-green-600"
       >
         <img src="/images/WhatsApp.png" alt="WhatsApp" className="h-12 w-12 shrink-0 object-contain" />
-        <span className={`text-sm font-bold transition-all duration-300 ${isScrolling ? 'hidden md:inline' : 'inline'}`}>
+        <span className="text-sm font-bold text-left leading-tight">
           {t.buttonLabel}
         </span>
       </button>
