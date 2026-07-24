@@ -278,6 +278,9 @@ export default function GiftVoucher() {
               <div className="rounded-xl border border-red/30 bg-red/10 px-4 py-3">
                 <p className="text-sm font-bold leading-relaxed text-royalBlue">{content.note}</p>
               </div>
+              <div className="rounded-xl border border-yellow/30 bg-yellow/10 px-4 py-3">
+                <p className="text-sm font-semibold leading-relaxed text-dark">{b.giftVoucherValidityNote}</p>
+              </div>
             </div>
           </Reveal>
 

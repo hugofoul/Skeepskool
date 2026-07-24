@@ -112,7 +112,7 @@ export const fr = {
         { icon: 'map', title: 'Plage Centrale, Le Porge Océan, 33680, Gironde' },
         { icon: 'drive', title: 'En voiture', subtitle: '~50 min depuis Bordeaux via la D6 puis la D3 en direction du Porge.' },
         { icon: 'city', title: 'Villes les plus proches', subtitle: 'Bordeaux 50 min · Lacanau 20 min · Lège-Cap-Ferret 25 min' },
-        { icon: 'parking', title: 'Stationnement', subtitle: 'Parking gratuit à proximité de la plage.' },
+        { icon: 'parking', title: 'Stationnement', subtitle: 'Parking en face de l’école.' },
       ],
       faqItems: [
         {
@@ -162,7 +162,7 @@ export const fr = {
       citiesLabel: 'Villes les plus proches',
       cities: 'Bordeaux 50 min · Lacanau 20 min · Lège-Cap-Ferret 25 min',
       parkingLabel: 'Stationnement',
-      parking: 'Parking gratuit à proximité de la plage.',
+      parking: 'Parking en face de l’école.',
       gpsLabel: 'GPS',
       gps: '44.8965° N, 1.1057° O',
     },
@@ -581,7 +581,7 @@ export const fr = {
       citiesLabel: 'Villes les plus proches',
       cities: 'Bordeaux 50 min · Lacanau 20 min · Lège-Cap-Ferret 25 min',
       parkingLabel: 'Stationnement',
-      parking: 'Parking gratuit à proximité de la plage.',
+      parking: 'Parking en face de l’école.',
       busLabel: 'Bus 4210',
       bus: 'Ligne 4210 depuis Bordeaux vers Le Porge. Consultez les arrêts desservis pour Le Porge Océan, puis accès plage à pied.',
       busLearnMore: 'En savoir plus',

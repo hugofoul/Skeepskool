@@ -8,9 +8,9 @@ import { buildSrcSet, DEFAULT_SIZES, GRID_CARD_SIZES } from '../utils/responsive
 
 const sectionImages = [images.schoolSpot, '/images/img_2093.jpg', images.schoolTeamSection]
 const valueIcons = [Waves, Handshake, TrendingUp]
-const teamImages = [teamPhotos.pierre, teamPhotos.mariane, teamPhotos.manoa, teamPhotos.hugo]
-const teamImagePositions = ['object-cover object-top', 'object-cover object-top', 'object-cover', 'object-cover']
-const teamImageScales = ['group-hover:scale-105', 'scale-105 group-hover:scale-110', 'group-hover:scale-105', 'group-hover:scale-105']
+const teamImages = [teamPhotos.pierre, teamPhotos.mariane, teamPhotos.hugo, teamPhotos.manoa]
+const teamImagePositions = ['object-cover object-top', 'object-cover object-top', 'object-cover object-top', 'object-cover']
+const teamImageScales = ['group-hover:scale-105', 'scale-105 group-hover:scale-110', 'scale-110 group-hover:scale-125', 'group-hover:scale-105']
 const teamPortraits = {
   pierre: teamPhotos.pierre,
   mariane: teamPhotos.mariane,

@@ -250,14 +250,6 @@ export default function Home() {
             <span className="text-royalBlue">{h.campingNoteSuffix || ''}</span>
           </p>
           <div className="mt-14 w-full sm:mt-16 sm:translate-y-16 lg:translate-y-36">
-            <div className="mx-auto mb-3 flex max-w-3xl flex-wrap items-center justify-center gap-2.5 px-2 text-[0.8rem] font-extrabold uppercase tracking-[0.06em] text-royalBlue sm:text-[0.9rem]">
-              <span className="rounded-full bg-white/85 px-3 py-1.5 shadow-sm ring-1 ring-royalBlue/10">
-                {pickLang('9h 19h', '9am 7pm', '9:00 19:00 Uhr')}
-              </span>
-              <span className="rounded-full bg-white/85 px-3 py-1.5 shadow-sm ring-1 ring-royalBlue/10">
-                {pickLang('Cours tous les jours d\'avril à novembre', 'Lessons every day from April to November', 'Kurse jeden Tag von April bis November')}
-              </span>
-            </div>
             <div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:gap-12">
               <CTAButton
                 to={lang === 'fr' ? '/reserver' : '/book'}
@@ -318,14 +310,14 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <div className="mt-10 -mx-4 flex gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 xl:grid-cols-3">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {homeCourseCards.map((card, index) => {
               const isFeatured = Boolean(card.featuredLabel)
               return (
                 <Reveal
                   key={card.title}
                   delay={index * 90}
-                  className={`w-72 shrink-0 flex flex-col overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-black/5 sm:w-auto sm:h-full sm:shrink ${isFeatured ? 'xl:-translate-y-1 xl:ring-2 xl:ring-red/20' : ''}`}
+                  className={`flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-black/5 ${isFeatured ? 'xl:-translate-y-1 xl:ring-2 xl:ring-red/20' : ''}`}
                 >
                   {isFeatured ? (
                     <div className="bg-red px-5 py-2 text-center text-xs font-extrabold uppercase tracking-[0.14em] text-white">
@@ -468,8 +460,8 @@ export default function Home() {
                   delay={index * 80}
                   className="w-full px-1 py-1 text-white"
                 >
-                  <p className="flex items-start gap-2 text-base font-semibold leading-relaxed sm:text-lg">
-                    <span aria-hidden="true" className="mt-[1px] text-lg text-yellow sm:text-xl">→</span>
+                  <p className="flex items-start gap-2 text-lg font-semibold leading-relaxed sm:text-xl lg:text-2xl">
+                    <span aria-hidden="true" className="mt-[1px] text-xl text-yellow sm:text-2xl lg:text-3xl">→</span>
                     <span>{item}</span>
                   </p>
                 </Reveal>

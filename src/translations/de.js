@@ -109,7 +109,7 @@ export const de = {
         { icon: 'map', title: 'Plage Centrale, Le Porge Océan, 33680, Gironde' },
         { icon: 'drive', title: 'Mit dem Auto', subtitle: '~50 Min. ab Bordeaux über die D6 und dann D3 Richtung Le Porge.' },
         { icon: 'city', title: 'Nächstgelegene Städte', subtitle: 'Bordeaux 50 Min. · Lacanau 20 Min. · Lège-Cap-Ferret 25 Min.' },
-        { icon: 'parking', title: 'Parken', subtitle: 'Kostenloser Parkplatz nahe dem Strand.' },
+        { icon: 'parking', title: 'Parken', subtitle: 'Kostenlose Parkplätze direkt vor der Schule.' },
       ],
       faqItems: [
         {
@@ -158,7 +158,7 @@ export const de = {
         '~50 Min. ab Bordeaux über die D6 und dann D3 Richtung Le Porge → den Schildern „Le Porge Océan“ folgen.',
       citiesLabel: 'Nächstgelegene Städte',
       parkingLabel: 'Parken',
-      parking: 'Kostenloser Parkplatz in Strandnähe.',
+      parking: 'Kostenlose Parkplätze direkt vor der Schule.',
     },
     reviewsTitle: 'Google-Bewertung hinterlassen',
     reviewsText: 'Dein Feedback hilft uns! Wenn dir deine Erfahrung bei Skeepskool gefallen hat, freuen wir uns über eine Google-Bewertung.',
@@ -547,7 +547,7 @@ export const de = {
       byCarLabel: 'Mit dem Auto',
       citiesLabel: 'Nächstgelegene Städte',
       parkingLabel: 'Parken',
-      parking: 'Kostenlose Parkplätze nahe dem Strand.',
+      parking: 'Kostenlose Parkplätze direkt vor der Schule.',
       busLabel: 'Bus 4210',
       busLearnMore: 'Mehr erfahren',
       busBookingNote: 'Buchung ausschließlich online über die App Cars Nouvelle-Aquitaine 33.',
