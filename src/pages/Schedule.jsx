@@ -5,13 +5,29 @@ import PageHero from '../components/PageHero.jsx'
 import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import SEO from '../components/SEO.jsx'
-import { Phone } from 'lucide-react'
+import { Phone, MessageCircle } from 'lucide-react'
 import { CONTACT } from '../config/site.js'
 import { images } from '../data/images.js'
 
 export default function Schedule() {
   const { t, lang } = useLang()
   const s = t.schedule
+  const whatsappUrl = t.whatsappUrl
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(whatsappUrl)}`
+  const whatsappTitle = lang === 'fr'
+    ? 'Rejoindre la communauté WhatsApp'
+    : (lang === 'de' ? 'WhatsApp-Community beitreten' : 'Join the WhatsApp community')
+  const whatsappText = lang === 'fr'
+    ? 'Nous envoyons généralement les horaires le jeudi pour la semaine à venir.'
+    : (lang === 'de'
+      ? 'Wir versenden die Kurszeiten in der Regel donnerstags für die kommende Woche. Tritt der WhatsApp-Community bei, um alle Updates zu erhalten.'
+      : 'We usually share lesson schedules on Thursdays for the coming week. Join the WhatsApp community to receive all updates.')
+  const whatsappCta = lang === 'fr'
+    ? 'Ouvrir le lien WhatsApp'
+    : (lang === 'de' ? 'WhatsApp-Link öffnen' : 'Open WhatsApp link')
+  const weeklyTitle = lang === 'fr'
+    ? 'Horaires des cours de la semaine'
+    : (lang === 'de' ? 'Kurszeiten der Woche' : 'Lesson schedule for the week')
   const scheduleWindowNote = lang === 'fr'
     ? 'Les horaires sont établis du jeudi au jeudi, pour assurer les cours aux meilleurs moments.'
     : (lang === 'de'
@@ -53,6 +69,47 @@ export default function Schedule() {
         image={images.fondpages}
         titleClassName="font-bold"
       />
+
+      <section className="bg-white pt-8 sm:pt-10">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <Reveal className="overflow-hidden rounded-3xl border border-black/10 bg-lightGray shadow-md ring-1 ring-black/5">
+            <div className="grid gap-6 p-5 sm:grid-cols-[1.2fr_auto] sm:items-center sm:p-7">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-green-500/10 px-3 py-1 text-xs font-extrabold uppercase tracking-[0.14em] text-green-700">
+                  <MessageCircle className="h-4 w-4" /> WhatsApp
+                </div>
+                <h2 className="mt-3 text-2xl font-black text-royalBlue sm:text-3xl">{whatsappTitle}</h2>
+                <p className="mt-3 text-sm leading-relaxed text-dark/80 sm:text-base">{whatsappText}</p>
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex rounded-full bg-green-500 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-green-600"
+                >
+                  {whatsappCta}
+                </a>
+              </div>
+              <div className="mx-auto w-fit rounded-2xl bg-white p-3 ring-1 ring-black/10">
+                <img
+                  src={qrCodeUrl}
+                  alt="QR code WhatsApp Skeepskool"
+                  className="h-36 w-36 sm:h-44 sm:w-44"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-white pb-4 pt-10 sm:pt-12">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <Reveal>
+            <h2 className="text-center text-3xl font-black text-royalBlue sm:text-4xl">{weeklyTitle}</h2>
+            <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
+          </Reveal>
+        </div>
+      </section>
 
       <WeeklyScheduleBoard
         fallbackLabel={s.fallbackLabel}
