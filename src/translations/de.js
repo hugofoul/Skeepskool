@@ -61,6 +61,24 @@ export const de = {
       priceFallback: 'Preis auf Anfrage',
       cards: [
         {
+          badge: 'Entdecken',
+          title: '1 Session',
+          subtitle: '1 Session · 2 h',
+          description: '',
+          pricePrefix: 'Ab',
+          cta: 'Buchen',
+          packageValue: 'single',
+        },
+        {
+          badge: 'Fortschritt',
+          title: '5er-Kurs',
+          subtitle: '5 Sessions · 10 h',
+          description: '',
+          pricePrefix: 'Ab',
+          cta: 'Buchen',
+          packageValue: 'pack5',
+        },
+        {
           featuredLabel: '★ AM BESTEN FÜR NACHHALTIGEN FORTSCHRITT',
           title: '10er-Kurs',
           subtitle: '10 Sessions · 20 h',
@@ -456,6 +474,7 @@ export const de = {
     giftVoucherYes: 'Ja',
     giftVoucherNo: 'Nein',
     giftVisualCheckbox: 'Ich brauche eine Geschenkgutschein-Visualkarte',
+    giftVoucherValidityNote: 'Geschenkgutschein 1 Jahr ab Kaufdatum gueltig.',
     shortNoticeAlert: 'Bei Buchungen unter 3 Tagen bitte direkt die Schule anrufen.',
     paymentType: 'Zahlungsart',
     payerName: 'Person, die die Überweisung getätigt hat',

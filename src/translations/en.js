@@ -63,6 +63,24 @@ export const en = {
       priceFallback: 'Price on request',
       cards: [
         {
+          badge: 'Discovery',
+          title: '1-session lesson',
+          subtitle: '1 session · 2 h',
+          description: '',
+          pricePrefix: 'From',
+          cta: 'Book now',
+          packageValue: 'single',
+        },
+        {
+          badge: 'Progression',
+          title: '5-session course',
+          subtitle: '5 sessions · 10 h',
+          description: '',
+          pricePrefix: 'From',
+          cta: 'Book now',
+          packageValue: 'pack5',
+        },
+        {
           featuredLabel: '★ BEST FOR LONG-TERM PROGRESSION',
           title: '10-session course',
           subtitle: '10 sessions · 20 h',
@@ -488,6 +506,7 @@ export const en = {
     giftVoucherYes: 'Yes',
     giftVoucherNo: 'No',
     giftVisualCheckbox: 'I need a visual card to offer the gift voucher',
+    giftVoucherValidityNote: 'Gift voucher valid for 1 year from the purchase date.',
     shortNoticeAlert: 'For bookings within less than 3 days, please call the school directly.',
     paymentType: 'Payment type',
     payerName: 'Person who made the transfer / payment',

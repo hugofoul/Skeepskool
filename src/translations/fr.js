@@ -62,6 +62,24 @@ export const fr = {
       priceFallback: 'Tarif à confirmer',
       cards: [
         {
+          badge: 'Découverte',
+          title: '1 séance',
+          subtitle: '1 séance · 2 h',
+          description: '',
+          pricePrefix: 'À partir de',
+          cta: 'Réserver',
+          packageValue: 'single',
+        },
+        {
+          badge: 'Progression',
+          title: 'Stage 5 séances',
+          subtitle: '5 séances · 10 h',
+          description: '',
+          pricePrefix: 'À partir de',
+          cta: 'Réserver',
+          packageValue: 'pack5',
+        },
+        {
           featuredLabel: '★ LE PLUS ADAPTÉ À UNE PROGRESSION DURABLE',
           title: 'Stage 10 séances',
           subtitle: '10 séances · 20 h',
@@ -382,7 +400,9 @@ export const fr = {
       'Licence fédérale',
       'Attestation de niveau',
     ],
-    validityNote: 'Toutes nos formules sont valables 1 an à partir de la date d’achat.',    groupNote: 'Pour les groupes de 8 personnes et plus, merci de nous téléphoner directement.',    sunsetTitle: 'Cours au coucher du soleil',
+    validityNote: 'Toutes nos formules sont valables 1 an à partir de la date d’achat.',
+    groupNote: 'Pour les EVG et EVF, entreprises et groupes de 8 personnes et plus, merci de nous téléphoner directement !',
+    sunsetTitle: 'Cours au coucher du soleil',
     sunsetText:
       'Envie d’une session magique ? Nous proposons aussi des cours en Sunset : surfez dans la lumière dorée de fin de journée, quand l’océan se calme et que les vagues n’appartiennent plus qu’à vous.',
     sunsetCta: 'Demander un cours Sunset',
@@ -472,6 +492,7 @@ export const fr = {
     giftVoucherYes: 'Oui',
     giftVoucherNo: 'Non',
     giftVisualCheckbox: 'Je souhaite un visuel pour offrir le bon cadeau',
+    giftVoucherValidityNote: 'Bon cadeau valable 1 an à partir de la date d\'achat.',
     shortNoticeAlert: 'Pour les réservations à moins de 3 jours, merci d’appeler l’école directement.',
     paymentType: 'Type de paiement',
     payerName: 'Personne qui a fait le virement / paiement',
