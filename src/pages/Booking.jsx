@@ -153,11 +153,7 @@ export default function Booking() {
   const [surfers, setSurfers] = useState([{ ...initialSurfer }])
   const nextSurferId = useRef(2)
   const [startDate, setStartDate] = useState('')
-  const [paymentType, setPaymentType] = useState('transfer')
-  const [payerName, setPayerName] = useState('')
   const [sameAsContactSurfer, setSameAsContactSurfer] = useState(false)
-  const [sameAsContactPayer, setSameAsContactPayer] = useState(false)
-  const [message, setMessage] = useState('')
   const [paidConfirmed, setPaidConfirmed] = useState(false)
   const [successMessage, setSuccessMessage] = useState('')
   const [phoneError, setPhoneError] = useState('')
@@ -210,12 +206,6 @@ export default function Booking() {
       )
     })
   }, [contact.firstName, contact.lastName, sameAsContactSurfer])
-
-  useEffect(() => {
-    if (!sameAsContactPayer) return
-    const fullName = `${contact.firstName} ${contact.lastName}`.trim()
-    setPayerName(fullName)
-  }, [contact.firstName, contact.lastName, sameAsContactPayer])
 
   useEffect(() => {
     const params = new URLSearchParams(location.search)
@@ -303,11 +293,9 @@ export default function Booking() {
     setDateError('')
 
     const selectedDate = startDate || b.unknownDate
-    const safeMessage = message.trim() || b.none
     const fullName = `${contact.firstName} ${contact.lastName}`.trim()
 
     const packageByValue = new Map(b.packages.map((pkg) => [pkg.value, pkg.label]))
-    const paymentMethodByValue = new Map(b.paymentMethods.map((method) => [method.value, method.label]))
 
     const surfersLines = surfers
       .map((surfer, index) => {
@@ -324,13 +312,9 @@ export default function Booking() {
       `${b.whatsappGiftVisual} ${b.giftVoucherNo}`,
       `${b.whatsappTotal} ${total}€`,
       b.whatsappPayment,
-      `${b.whatsappPaymentType} ${paymentMethodByValue.get(paymentType)}`,
-      `${b.whatsappPayerName} ${payerName}`,
       '',
       b.whatsappSurfers,
       surfersLines,
-      '',
-      `${b.whatsappMessage} ${safeMessage}`,
       b.whatsappCallWeek,
       b.whatsappClosing,
     ].join('\n')
@@ -346,7 +330,6 @@ export default function Booking() {
     trackConversion('booking_form_submitted', {
       surfers_count: surfers.length,
       total_eur: total,
-      payment_type: paymentType,
       is_gift_voucher: false,
     })
 
@@ -383,16 +366,6 @@ export default function Booking() {
               <div className="rounded-xl border border-yellow/50 bg-yellow/25 px-4 py-3">
                 <p className="text-sm font-bold leading-relaxed text-royalBlue">{b.startDateNote}</p>
               </div>
-
-              <div className="rounded-xl border border-royalBlue/30 bg-white px-4 py-3">
-                <p className="text-sm font-extrabold text-royalBlue sm:text-base">
-                  {lang === 'fr'
-                    ? 'Panier cours : achat de cours à l\'avance.'
-                    : (lang === 'de'
-                      ? 'Kurs-Warenkorb: Surfkurse im Voraus kaufen.'
-                      : 'Lesson cart: buy lessons in advance.')}
-                </p>
-              </div>
             </div>
           </Reveal>
 
@@ -407,7 +380,7 @@ export default function Booking() {
             className="mt-8 space-y-8"
           >
             <Reveal className="rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5 sm:p-7">
-              <h2 className="text-xl font-black text-royalBlue">{b.contactTitle}</h2>
+              <h2 className="text-xl font-black text-royalBlue">{b.contactTitleGift}</h2>
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
                 <label className="block">
                   <span className="mb-2 block text-sm font-semibold text-dark">{b.firstName}</span>
@@ -594,9 +567,7 @@ export default function Booking() {
             </Reveal>
 
             <Reveal className="rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5 sm:p-7">
-              <h2 className="text-xl font-black text-royalBlue">{b.commonTitle}</h2>
-
-              <div className="mt-5 space-y-4">
+              <div className="space-y-4">
                 <label className="block">
                   <span className="mb-2 block text-sm font-semibold text-dark">{b.startDate}</span>
                   <input
@@ -614,52 +585,6 @@ export default function Booking() {
                   {(isShortNotice || dateError) && (
                     <span className="mt-2 block text-xs font-bold text-red">{b.shortNoticeAlert}</span>
                   )}
-                </label>
-
-                <label className="block sm:max-w-sm">
-                  <span className="mb-2 block text-sm font-semibold text-dark">{b.paymentType}</span>
-                  <select
-                    className={inputClass}
-                    value={paymentType}
-                    onChange={(e) => setPaymentType(e.target.value)}
-                    required
-                  >
-                    {b.paymentMethods.map((method) => (
-                      <option key={method.value} value={method.value}>
-                        {method.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-
-                <label className="flex items-start gap-3 rounded-xl bg-lightGray p-3 text-sm font-semibold text-royalBlue">
-                  <input
-                    type="checkbox"
-                    className="mt-0.5 h-4 w-4 rounded border-dark/30 text-royalBlue focus:ring-royalBlue"
-                    checked={sameAsContactPayer}
-                    onChange={(e) => setSameAsContactPayer(e.target.checked)}
-                  />
-                  <span>{b.sameAsContactPayer}</span>
-                </label>
-
-                <label className="block">
-                  <span className="mb-2 block text-sm font-semibold text-dark">{b.payerName}</span>
-                  <input
-                    type="text"
-                    className={inputClass}
-                    value={payerName}
-                    onChange={(e) => setPayerName(e.target.value)}
-                    required
-                  />
-                </label>
-
-                <label className="block">
-                  <span className="mb-2 block text-sm font-semibold text-dark">{b.optionalMessage}</span>
-                  <textarea
-                    className={`${inputClass} min-h-28 resize-y`}
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                  />
                 </label>
               </div>
             </Reveal>

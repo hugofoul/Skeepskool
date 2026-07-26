@@ -15,10 +15,10 @@ export default function Schedule() {
   const whatsappUrl = t.whatsappUrl
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(whatsappUrl)}`
   const whatsappTitle = lang === 'fr'
-    ? 'Rejoindre la communauté WhatsApp'
+    ? 'Recevez les horaires'
     : (lang === 'de' ? 'WhatsApp-Community beitreten' : 'Join the WhatsApp community')
   const whatsappText = lang === 'fr'
-    ? 'Nous envoyons généralement les horaires le jeudi pour la semaine à venir.'
+    ? 'Les horaires sont établis généralement tous les jeudi pour la semaine à venir'
     : (lang === 'de'
       ? 'Wir versenden die Kurszeiten in der Regel donnerstags für die kommende Woche. Tritt der WhatsApp-Community bei, um alle Updates zu erhalten.'
       : 'We usually share lesson schedules on Thursdays for the coming week. Join the WhatsApp community to receive all updates.')
