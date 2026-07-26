@@ -337,7 +337,9 @@ export default function Home() {
                     <p className="mt-3 flex-1 text-sm leading-relaxed text-dark/75">{card.description}</p>
 
                     <div className="mt-6">
-                      <p className="text-xs font-bold uppercase tracking-[0.14em] text-dark/55">{card.pricePrefix}</p>
+                      {card.pricePrefix ? (
+                        <p className="text-xs font-bold uppercase tracking-[0.14em] text-dark/55">{card.pricePrefix}</p>
+                      ) : null}
                       <p className="mt-1 text-4xl font-black text-red">{formatPrice(card.price)}</p>
                     </div>
 

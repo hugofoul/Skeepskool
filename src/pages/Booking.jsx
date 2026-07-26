@@ -153,6 +153,7 @@ export default function Booking() {
   const [surfers, setSurfers] = useState([{ ...initialSurfer }])
   const nextSurferId = useRef(2)
   const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
   const [sameAsContactSurfer, setSameAsContactSurfer] = useState(false)
   const [paidConfirmed, setPaidConfirmed] = useState(false)
   const [successMessage, setSuccessMessage] = useState('')
@@ -293,6 +294,7 @@ export default function Booking() {
     setDateError('')
 
     const selectedDate = startDate || b.unknownDate
+    const selectedEndDate = endDate || b.unknownDate
     const fullName = `${contact.firstName} ${contact.lastName}`.trim()
 
     const packageByValue = new Map(b.packages.map((pkg) => [pkg.value, pkg.label]))
@@ -308,6 +310,7 @@ export default function Booking() {
       b.whatsappHeader,
       `${b.whatsappContact} ${fullName} - ${fullPhone}`,
       `${b.whatsappDate} ${selectedDate}`,
+      `${b.whatsappEndDate || (lang === 'fr' ? 'Date de fin souhaitée :' : (lang === 'de' ? 'Gewünschtes Enddatum:' : 'Preferred end date:'))} ${selectedEndDate}`,
       `${b.whatsappGiftVoucher} ${b.giftVoucherNo}`,
       `${b.whatsappGiftVisual} ${b.giftVoucherNo}`,
       `${b.whatsappTotal} ${total}€`,
@@ -586,6 +589,24 @@ export default function Booking() {
                     <span className="mt-2 block text-xs font-bold text-red">{b.shortNoticeAlert}</span>
                   )}
                 </label>
+
+                <label className="block">
+                  <span className="mb-2 block text-sm font-semibold text-dark">{b.endDate || (lang === 'fr' ? 'Date de fin approximative' : (lang === 'de' ? 'Ungefähres Enddatum' : 'Approximate end date'))}</span>
+                  <input
+                    type="date"
+                    className={inputClass}
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                    min={startDate || todayDate}
+                    required
+                  />
+                </label>
+
+                {startDate && endDate ? (
+                  <p className="text-xs font-semibold text-emerald-700 sm:text-sm">
+                    {b.availabilityNote || (lang === 'fr' ? 'Nous avons de la disponibilité : il faudra appeller 3j avant pour definir le créneau.' : (lang === 'de' ? 'Wir haben Verfügbarkeit und bestätigen deinen Slot schnell.' : 'We have availability and will confirm your slot quickly.'))}
+                  </p>
+                ) : null}
               </div>
             </Reveal>
 

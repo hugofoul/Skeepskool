@@ -221,6 +221,9 @@ export default function Rental() {
               {r.guideTitle}
             </h2>
             <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
+            <p className="mx-auto mt-4 max-w-3xl text-center text-sm font-semibold text-dark/80 sm:text-base">
+              {r.guideAdvice || (lang === 'fr' ? 'Notre équipe saura vous conseiller la planche la plus adaptée aux conditions et à votre niveau' : '')}
+            </p>
           </Reveal>
           <div className={`mt-12 grid gap-6 ${r.guide.length === 2 ? 'md:mx-auto md:max-w-4xl md:grid-cols-2' : 'md:grid-cols-3'}`}>
             {r.guide.map((g, i) => {

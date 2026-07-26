@@ -29,7 +29,7 @@ export default function Schedule() {
     ? 'Horaires des cours de la semaine'
     : (lang === 'de' ? 'Kurszeiten der Woche' : 'Lesson schedule for the week')
   const scheduleWindowNote = lang === 'fr'
-    ? 'Les horaires sont établis du jeudi au jeudi, pour assurer les cours aux meilleurs moments.'
+    ? 'Pour assurer des cours de qualité aux meilleurs moments, les horaires sont établis généralement chaque jeudi pour la semaine à venir !'
     : (lang === 'de'
       ? 'Die Kurszeiten werden von Donnerstag bis Donnerstag festgelegt, um die besten Meeresbedingungen zu sichern.'
       : 'Lesson schedules are set from Thursday to Thursday to ensure the best sea conditions.')
@@ -125,7 +125,6 @@ export default function Schedule() {
                   <Phone className="h-5 w-5 text-royalBlue" />
                   <h2 className="text-2xl font-black text-royalBlue">{s.callWidgetTitle}</h2>
                 </div>
-                <p className="mt-3 text-sm leading-relaxed text-dark/80 sm:text-base">{s.callWidgetText}</p>
               </div>
 
               <CTAButton href={`tel:${CONTACT.phonePrimary}`} className="shrink-0">

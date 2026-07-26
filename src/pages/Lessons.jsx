@@ -249,9 +249,7 @@ export default function Lessons() {
               className="order-2 overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/15 lg:order-1"
             >
               <img
-                src={images.lessonsSunset}
-                srcSet={buildSrcSet(images.lessonsSunset)}
-                sizes={DEFAULT_SIZES}
+                src="/images/sunset.png"
                 alt={l.sunsetTitle}
                 className="h-72 w-full object-cover sm:h-96"
                 loading="lazy"
@@ -264,6 +262,16 @@ export default function Lessons() {
               <h2 className="mt-4 text-3xl font-black text-white sm:text-4xl">{l.sunsetTitle}</h2>
               <span className="mt-3 block h-1 w-16 rounded bg-[#8ad1df]" />
               <p className="mt-5 text-lg leading-relaxed text-white/88">{l.sunsetText}</p>
+              <div className="mt-6 rounded-2xl bg-white/10 p-4 ring-1 ring-white/20">
+                <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#d9f0f5]">Cours du matin</p>
+                <p className="mt-2 text-base font-semibold text-white">{l.morningText || 'Nous proposons aussi des cours le matin pour ceux qui aiment le calme du matin.'}</p>
+                <img
+                  src="/images/plage.jpg"
+                  alt={lang === 'fr' ? 'Cours du matin' : 'Morning lessons'}
+                  className="mt-3 h-28 w-full rounded-xl object-cover"
+                  loading="lazy"
+                />
+              </div>
             </Reveal>
           </div>
         </div>

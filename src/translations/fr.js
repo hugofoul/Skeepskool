@@ -57,7 +57,7 @@ export const fr = {
 
     offers: {
       eyebrow: 'NOS FORMULES',
-      title: 'Trouvez le cours qui vous correspond',
+      title: 'Réservez en avance pour s’assurer de la place',
       viewAllCta: 'Voir toutes les formules →',
       priceFallback: 'Tarif à confirmer',
       cards: [
@@ -66,7 +66,7 @@ export const fr = {
           title: '1 séance',
           subtitle: '1 séance · 2 h',
           description: '',
-          pricePrefix: 'À partir de',
+          pricePrefix: '',
           cta: 'Réserver',
           packageValue: 'single',
         },
@@ -75,16 +75,16 @@ export const fr = {
           title: 'Stage 5 séances',
           subtitle: '5 séances · 10 h',
           description: '',
-          pricePrefix: 'À partir de',
+          pricePrefix: '',
           cta: 'Réserver',
           packageValue: 'pack5',
         },
         {
-          featuredLabel: '★ LE PLUS ADAPTÉ À UNE PROGRESSION DURABLE',
+          featuredLabel: '★ La référence',
           title: 'Stage 10 séances',
           subtitle: '10 séances · 20 h',
           description: '',
-          pricePrefix: 'À partir de',
+          pricePrefix: '',
           cta: 'Réserver',
           packageValue: 'pack10',
         },
@@ -130,7 +130,7 @@ export const fr = {
         { icon: 'map', title: 'Plage Centrale, Le Porge Océan, 33680, Gironde' },
         { icon: 'drive', title: 'En voiture', subtitle: '~50 min depuis Bordeaux via la D6 puis la D3 en direction du Porge.' },
         { icon: 'city', title: 'Villes les plus proches', subtitle: 'Bordeaux 50 min · Lacanau 20 min · Lège-Cap-Ferret 25 min' },
-        { icon: 'parking', title: 'Stationnement', subtitle: 'Parking en face de l’école.' },
+        { icon: 'parking', title: 'Stationnement', subtitle: 'Parking gratuit en face de l’école.' },
       ],
       faqItems: [
         {
@@ -180,7 +180,7 @@ export const fr = {
       citiesLabel: 'Villes les plus proches',
       cities: 'Bordeaux 50 min · Lacanau 20 min · Lège-Cap-Ferret 25 min',
       parkingLabel: 'Stationnement',
-      parking: 'Parking en face de l’école.',
+      parking: 'Parking gratuit en face de l’école.',
       gpsLabel: 'GPS',
       gps: '44.8965° N, 1.1057° O',
     },
@@ -240,7 +240,7 @@ export const fr = {
       },
       {
         title: 'Technique',
-        text: 'Position, équilibre, timing, lecture de la vague. Nos moniteurs vous transmettent les fondamentaux pour une progression solide et durable.',
+        text: 'Prise de vague, redressement idéale, prise de direction, prendre les vagues vertes, les maneuvres…Nos moniteurs vous transmettent les techniques en fonction de votre niveau.',
       },
       {
         title: 'Sécurité avant tout',
@@ -319,12 +319,12 @@ export const fr = {
     // --- Présentation détaillée d'un cours ---
     aboutTitle: 'Comment se déroule un cours ?',
     aboutLead:
-      'Un cours de surf dans notre école, c’est 2 heures encadrées par un moniteur diplômé d’État, sur la Plage Centrale du Porge Océan. Une vraie session sportive complete, pensée pour progresser étape par étape et adaptée au niveau de chacun.',
+      'Un cours de surf dans notre école, c’est 2 heures encadrées par un moniteur diplômé d’État, sur la Plage Centrale du Porge Océan. Une vraie séance sportive complete, étape par étape en fonction de votre niveau.',
     quickFacts: [
       { label: 'Durée', value: '2 heures', detail: 'Présentez-vous 20 min avant le début du cours.' },
       { label: 'Niveau', value: 'Groupes de niveaux', detail: 'Débutant à confirmé, dès 5 ans.' },
-      { label: 'Matériel', value: 'Tout est compris', detail: 'Combinaison et planche fournies.' },
-      { label: 'Encadrement', value: 'Moniteur diplômé', detail: 'Toujours présent avec vous sur l’eau.' },
+      { label: 'Matériel', value: 'Tout est compris', detail: 'Combinaison et planche adaptée.' },
+      { label: 'Encadrement', value: 'Moniteur diplômé', detail: 'Dynamique, souriant et à votre écoute' },
     ],
     stepsTitle: 'Le déroulé, étape par étape',
     steps: [
@@ -378,10 +378,10 @@ export const fr = {
     pricesTitle: 'Nos formules & tarifs',
     pricesSubtitle: 'Les séances sont programmées selon les souhaits des élèves.',
 
-    popular: 'Populaire',
+    popular: 'La référence',
     perSession: '/ séance',
     cards: [
-      { name: 'Cours à l’unité', price: '40€', detail: '2h en collectif', note: '' },
+      { name: 'Cours à l’unité', price: '40€', detail: '2h', note: '' },
       { name: 'Mini pack 3 cours', price: '110€', detail: '3 × 2h', note: '≈ 37€ / séance' },
       { name: 'Pack 5 cours', price: '165€', detail: '5 × 2h', note: '≈ 33€ / séance' },
       { name: 'Pack 10 cours', price: '300€', detail: '10 × 2h', note: '30€ / séance' },
@@ -400,14 +400,15 @@ export const fr = {
       'Licence fédérale',
       'Attestation de niveau',
     ],
-    validityNote: 'Toutes nos formules sont valables 1 an à partir de la date d’achat.',
+    validityNote: 'Il est recommandé de faire au minimum 10 séances en école de surf afin d\'avoir les bases de sécurité, de sens marin et de technique avant d\'aller à l\'eau seul ou entre amis dans de petites conditions (50 cm maximum), au bon endroit et au bon moment de la marée, sans trop de monde.',
     groupNote: 'Pour les EVG et EVF, entreprises et groupes de 8 personnes et plus, merci de nous téléphoner directement !',
-    sunsetTitle: 'Cours au coucher du soleil',
+    sunsetTitle: 'Cours au coucher du soleil / Afterwork',
     sunsetText:
       'Envie d’une session magique ? Nous proposons aussi des cours en Sunset : surfez dans la lumière dorée de fin de journée, quand l’océan se calme et que les vagues n’appartiennent plus qu’à vous.',
+    morningText: 'Nous proposons aussi des cours le matin pour ceux qui aiment le calme du matin.',
     sunsetCta: 'Demander un cours Sunset',
     teamLinkTitle: 'Encadré par une équipe passionnée',
-    teamLinkText: 'Tous nos cours sont assurés par des moniteurs diplômés d’État. Faites connaissance avec l’équipe Skeepskool.',
+    teamLinkText: 'Tous nos cours sont assurés par des moniteurs diplômés. Faites connaissance avec l’équipe Skeepskool.',
     teamLinkCta: 'Découvrir notre équipe',
     giftExperienceBadge: 'Bon cadeau',
     giftExperienceTitle: 'Offrir un bon cadeau surf',
@@ -430,7 +431,7 @@ export const fr = {
     fallbackLabel: 'En cours de chargement',
     allLevels: 'Tous niveaux',
     callWidgetTitle: 'Appelez-nous pour réserver',
-    callWidgetText: 'Appelez-nous pour réserver : nous avons peut-être d\'autres créneaux.',
+    callWidgetText: '',
     callWidgetCta: 'Appeler maintenant',
     fallbackDays: [
       { day: 'Lundi', slots: [] },
@@ -486,6 +487,8 @@ export const fr = {
 
     commonTitle: 'Informations communes',
     startDate: 'Date de début approximative',
+    endDate: 'Date de fin approximative',
+    availabilityNote: 'Nous avons de la disponibilité : il faudra appeller 3j avant pour definir le créneau.',
     startDateNote: 'Pour une réservation à moins de 3 jours, appelez-nous directement : on vous donnera le créneau le plus adapté.',
     giftVoucherCheckbox: 'C\'est un bon cadeau',
     giftVoucherDateValue: 'Bon cadeau (date à définir)',
@@ -523,6 +526,7 @@ export const fr = {
     whatsappHeader: 'Nouvelle réservation Skeepskool',
     whatsappContact: 'Contact :',
     whatsappDate: 'Date souhaitée :',
+    whatsappEndDate: 'Date de fin souhaitée :',
     whatsappGiftVoucher: 'Bon cadeau :',
     whatsappGiftVisual: 'Visuel cadeau :',
     whatsappTotal: 'Total :',
@@ -563,9 +567,10 @@ export const fr = {
       },
       {
         title: 'Quelle combi ?',
-        text: 'Nous avons des shortis et intégrale de differentes épaisseurs en fonction de la temperature de l’eau.',
+        text: 'Nous avons des shortis et intégrales de differentes épaisseurs en fonction de la temperature de l’eau.',
       },
     ],
+    guideAdvice: 'Notre équipe saura vous conseiller la planche la plus adaptée aux conditions et à votre niveau',
     callNote: 'Envie de réserver vos planches et votre combinaison ? Appelez-nous, on vous prépare tout avant votre arrivée.',
     cta: 'Nous contacter',
   },
@@ -602,7 +607,7 @@ export const fr = {
       citiesLabel: 'Villes les plus proches',
       cities: 'Bordeaux 50 min · Lacanau 20 min · Lège-Cap-Ferret 25 min',
       parkingLabel: 'Stationnement',
-      parking: 'Parking en face de l’école.',
+      parking: 'Parking gratuit en face de l’école.',
       busLabel: 'Bus 4210',
       bus: 'Ligne 4210 depuis Bordeaux vers Le Porge. Consultez les arrêts desservis pour Le Porge Océan, puis accès plage à pied.',
       busLearnMore: 'En savoir plus',

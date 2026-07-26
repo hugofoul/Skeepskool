@@ -46,9 +46,9 @@ export default function Navbar() {
         }}
         className="h-9 cursor-pointer appearance-none rounded-full bg-royalBlue pl-3 pr-9 text-sm font-semibold leading-none text-white shadow-sm transition hover:bg-[#244fc8] focus:outline-none"
       >
-        <option value="fr" className="text-royalBlue">FR</option>
-        <option value="en" className="text-royalBlue">EN</option>
-        <option value="de" className="text-royalBlue">DE</option>
+        <option value="fr" className="text-royalBlue">🇫🇷</option>
+        <option value="en" className="text-royalBlue">🇬🇧</option>
+        <option value="de" className="text-royalBlue">🇩🇪</option>
       </select>
       <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white" />
     </label>
