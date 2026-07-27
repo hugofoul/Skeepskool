@@ -271,6 +271,16 @@ export default function Home() {
           </div>
         </div>
 
+        <div className="absolute left-3 top-24 z-20 sm:left-6 sm:top-20 lg:left-10 lg:top-16">
+          <p className="inline-flex items-center rounded-full bg-white/90 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.14em] text-royalBlue ring-1 ring-royalBlue/20 backdrop-blur-sm sm:text-xs">
+            {pickLang(
+              'Ouvert d\'avril à novembre',
+              'Open from April to November',
+              'Geöffnet von April bis November',
+            )}
+          </p>
+        </div>
+
         <div className="absolute bottom-8 right-4 z-10 sm:bottom-2 sm:right-6 lg:-bottom-2 lg:right-10">
           <span className="flex h-44 w-44 items-center justify-center sm:h-56 sm:w-56 lg:h-72 lg:w-72">
             <img

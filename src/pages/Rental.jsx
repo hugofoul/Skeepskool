@@ -225,6 +225,14 @@ export default function Rental() {
               {r.guideAdvice || (lang === 'fr' ? 'Notre équipe saura vous conseiller la planche la plus adaptée aux conditions et à votre niveau' : '')}
             </p>
           </Reveal>
+          <Reveal className="mx-auto mt-8 max-w-5xl overflow-hidden rounded-2xl shadow-md ring-1 ring-black/10">
+            <img
+              src="/images/planches_loc.JPG"
+              alt={lang === 'fr' ? 'Planches de location' : (lang === 'de' ? 'Leih-Surfboards' : 'Rental surfboards')}
+              className="h-64 w-full object-cover sm:h-80"
+              loading="lazy"
+            />
+          </Reveal>
           <div className={`mt-12 grid gap-6 ${r.guide.length === 2 ? 'md:mx-auto md:max-w-4xl md:grid-cols-2' : 'md:grid-cols-3'}`}>
             {r.guide.map((g, i) => {
               const Icon = guideIcons[i]

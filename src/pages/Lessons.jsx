@@ -447,12 +447,11 @@ export default function Lessons() {
       </section>
 
       {/* ---- Prices heading ---- */}
-      <section id="formules-tarifs" className="scroll-mt-28 bg-white pt-16">
+      <section id="formules-tarifs" className="scroll-mt-24 bg-white pt-16">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <Reveal>
             <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{l.pricesTitle}</h2>
             <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
-            <p className="mt-5 text-lg text-dark/75">{l.pricesSubtitle}</p>
             <p className="mx-auto mt-5 inline-flex items-center gap-2 rounded-full bg-yellow/20 px-5 py-2.5 text-base font-bold text-royalBlue ring-1 ring-yellow sm:text-lg">
               <ShieldCheck className="h-5 w-5" />
               {l.validityNote}
@@ -505,7 +504,7 @@ export default function Lessons() {
         <div className="mx-auto mt-6 max-w-7xl px-4 sm:px-6 lg:px-8">
           <p className="text-center text-base font-semibold text-dark/75 sm:text-lg">
             <Phone className="mr-1.5 inline h-5 w-5 align-text-bottom text-royalBlue" />
-            {l.groupNote}
+            {l.pricesSubtitle}
           </p>
         </div>
       </section>
@@ -534,6 +533,17 @@ export default function Lessons() {
                 </div>
               </div>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-lightGray pb-12 sm:pb-14">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <p className="text-center text-base font-semibold text-dark/75 sm:text-lg">
+              <Phone className="mr-1.5 inline h-5 w-5 align-text-bottom text-royalBlue" />
+              {l.groupNote}
+            </p>
           </Reveal>
         </div>
       </section>

@@ -131,6 +131,7 @@ export const fr = {
         { icon: 'drive', title: 'En voiture', subtitle: '~50 min depuis Bordeaux via la D6 puis la D3 en direction du Porge.' },
         { icon: 'city', title: 'Villes les plus proches', subtitle: 'Bordeaux 50 min · Lacanau 20 min · Lège-Cap-Ferret 25 min' },
         { icon: 'parking', title: 'Stationnement', subtitle: 'Parking gratuit en face de l’école.' },
+        { icon: 'camping', title: 'Camping La Grigne', subtitle: 'Situé juste en face de l’école, à deux pas de la plage.' },
       ],
       faqItems: [
         {
@@ -391,7 +392,7 @@ export const fr = {
     comboTitle: 'Formule Combo',
     comboPrice: '255€',
     comboDetail: '5 jours : 2h/jour de cours collectif + location planche & combinaison pendant 5 jours.',
-    comboText: 'Pour ceux qui veulent surfer avant et après les cours !',
+    comboText: 'Pour ceux qui veulent garder le materiel avant et après les cours',
     includesTitle: 'Compris dans chaque formule',
     includes: [
       'Moniteur diplômé',
@@ -400,8 +401,8 @@ export const fr = {
       'Licence fédérale',
       'Attestation de niveau',
     ],
-    validityNote: 'Il est recommandé de faire au minimum 10 séances en école de surf afin d\'avoir les bases de sécurité, de sens marin et de technique avant d\'aller à l\'eau seul ou entre amis dans de petites conditions (50 cm maximum), au bon endroit et au bon moment de la marée, sans trop de monde.',
-    groupNote: 'Pour les EVG et EVF, entreprises et groupes de 8 personnes et plus, merci de nous téléphoner directement !',
+    validityNote: 'Il est recommandé de faire au minimum 10 séances en école de surf afin d\'avoir les bases de sécurité, de sens marin et de technique avant d\'aller à l\'eau seul ou entre amis dans des conditions de mer simple, au bon endroit et au bon moment de la marée, sans trop de monde.',
+    groupNote: 'Pour les groupes, entreprises, EVG et EVF, merci de nous téléphoner directement !',
     sunsetTitle: 'Cours au coucher du soleil / Afterwork',
     sunsetText:
       'Envie d’une session magique ? Nous proposons aussi des cours en Sunset : surfez dans la lumière dorée de fin de journée, quand l’océan se calme et que les vagues n’appartiennent plus qu’à vous.',
@@ -555,7 +556,7 @@ export const fr = {
     riskNote: '',
     safetyRecommendationTitle: 'Conseil école de surf :',
     safetyRecommendation:
-      'Il est recommandé d\'avoir fait au minimum 10 séances en école de surf afin d\'avoir les bases de sécurité, de sens marin et de technique avant d\'aller à l\'eau seul ou entre amis dans de petites conditions (50 cm maximum), au bon endroit et au bon moment de la marée, sans trop de monde. Si vous avez le moindre doute, continuez votre apprentissage en école de surf : c\'est la manière la plus sécurisée et la plus rapide pour apprendre à surfer.',
+      'Il est recommandé d\'avoir fait au minimum 10 séances en école de surf afin d\'avoir les bases de sécurité, de sens marin et de technique avant d\'aller à l\'eau seul ou entre amis dans des conditions de mer simple, au bon endroit et au bon moment de la marée, sans trop de monde. Si vous avez le moindre doute, continuez votre apprentissage en école de surf : c\'est la manière la plus sécurisée et la plus rapide pour apprendre à surfer.',
     plusNote: 'Pendant toute la location, vous pouvez changer de planche à tout moment.',
     idRequiredNote: 'Une pièce d\'identité est obligatoire pour toute location.',
     sunsetNote: 'Créneau Sunset : de 18h jusqu’au lendemain 9h30.',
