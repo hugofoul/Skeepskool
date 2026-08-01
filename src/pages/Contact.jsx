@@ -132,7 +132,7 @@ export default function Contact() {
 
       {/* ---- WhatsApp community ---- */}
       {/* ---- Map ---- */}
-      <section className="bg-lightGray py-16 sm:py-20">
+      <section id="ou-manger" className="scroll-mt-36 bg-lightGray py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 id="comment-nous-trouver" className="scroll-mt-28 text-3xl font-black text-red sm:text-4xl">{c.findUsTitle}</h2>

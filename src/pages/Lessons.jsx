@@ -365,7 +365,7 @@ export default function Lessons() {
       </section>
 
       {/* ---- Next 2 days schedule preview ---- */}
-      <section className="bg-lightGray py-16 sm:py-20">
+      <section id="planning-cours-semaine" className="scroll-mt-36 bg-lightGray py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-royalBlue/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-royalBlue">

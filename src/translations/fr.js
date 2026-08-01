@@ -139,8 +139,12 @@ export const fr = {
           answer: 'Non, il n\'est pas obligatoire de savoir nager, les bases du surf s\'apprennent avec de l\'eau jusqu\'à la taille, par contre merci de le signaler au moniteur au début du cours. Le surf est un bon moyen de développer son aisance aquatique.',
         },
         {
-          question: 'Les courants et les grandes marées sont-ils un danger pour l’apprentissage ?',
-          answer: 'Nos moniteurs analysent l’océan avant chaque session pour choisir la zone la plus adaptée au niveau du groupe. Le sens marin fait partie de notre pédagogie : comprendre les marées, lire les courants et reconnaître les zones à éviter permet d’apprendre dans de bonnes conditions.',
+          question: 'Peut on annuler la séance ?',
+          answer: 'Oui, si l’annulation est faite 24h à l’avance, le cours vous sera entièrement remboursé, sinon la séance devra être réglée.',
+        },
+        {
+          question: 'Faites-vous des cours pour les niveaux avancés ?',
+          answer: 'Oui, nous proposons des cours spécifiques pour le perfectionnement ainsi que des cours doubles niveaux avec 2 moniteurs (intermédiaires/avancés), ce qui permet de passer d’un groupe à un autre si besoin.',
         },
         {
           question: 'Faut-il réserver à l\'avance ?',
@@ -488,7 +492,7 @@ export const fr = {
     startDate: 'Date de début approximative',
     endDate: 'Date de fin approximative',
     availabilityNote: 'Nous avons de la disponibilité : il faudra appeller 3j avant pour definir le créneau.',
-    startDateNote: 'Pour une réservation à moins de 3 jours, appelez-nous directement : on vous donnera le créneau le plus adapté.',
+    startDateNote: 'Pour une réservation à moins de 3 jours, appelez-nous directement.',
     giftVoucherCheckbox: 'C\'est un bon cadeau',
     giftVoucherDateValue: 'Bon cadeau (date à définir)',
     giftVoucherYes: 'Oui',

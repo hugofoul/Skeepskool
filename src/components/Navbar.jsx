@@ -32,6 +32,10 @@ export default function Navbar() {
       label: lang === 'fr' ? 'Déroulé de la séance' : (lang === 'de' ? 'Ablauf der Session' : 'Session flow'),
     },
     {
+      href: `${lessonsPath}#planning-cours-semaine`,
+      label: lang === 'fr' ? 'Horaires' : (lang === 'de' ? 'Zeitplan' : 'Schedule'),
+    },
+    {
       href: `${lessonsPath}#formules-tarifs`,
       label: lang === 'fr' ? 'Tarifs' : (lang === 'de' ? 'Preise' : 'Pricing'),
     },
@@ -66,6 +70,14 @@ export default function Navbar() {
       href: `${contactPath}#bus-details`,
       label: lang === 'fr' ? 'Bus' : (lang === 'de' ? 'Bus' : 'Bus'),
     },
+    {
+      href: `${contactPath}#camping-la-grigne`,
+      label: lang === 'fr' ? 'Où dormir' : (lang === 'de' ? 'Wo schlafen' : 'Where to sleep'),
+    },
+    {
+      href: `${contactPath}#ou-manger`,
+      label: lang === 'fr' ? 'Où manger' : (lang === 'de' ? 'Wo essen' : 'Where to eat'),
+    },
   ]
 
   const links = [
@@ -78,7 +90,7 @@ export default function Navbar() {
 
   const linkClass = (isActive) =>
     [
-      'relative font-semibold text-white py-1 transition-colors',
+      'relative inline-flex h-9 items-center text-sm font-bold text-white transition-colors',
       'after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:bg-yellow after:transition-all after:duration-300',
       isActive ? 'after:w-full' : 'after:w-0 hover:after:w-full',
     ].join(' ')
@@ -94,7 +106,7 @@ export default function Navbar() {
           }
           setLang(nextLang)
         }}
-        className="h-9 cursor-pointer appearance-none rounded-full bg-royalBlue pl-3 pr-9 text-sm font-semibold leading-none text-white shadow-sm transition hover:bg-[#244fc8] focus:outline-none"
+        className="h-9 cursor-pointer appearance-none rounded-full bg-royalBlue pl-3 pr-9 text-sm font-bold leading-none text-white shadow-sm transition hover:bg-[#244fc8] focus:outline-none"
       >
         <option value="fr" className="text-royalBlue">🇫🇷</option>
         <option value="en" className="text-royalBlue">🇬🇧</option>
@@ -181,7 +193,7 @@ export default function Navbar() {
           <a
             href={`tel:${CONTACT.phonePrimary}`}
             onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phonePrimary}`, source: 'navbar_desktop' })}
-            className="hidden shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-yellow hover:text-royalBlue lg:inline-flex"
+            className="hidden h-9 shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-white/10 px-3 text-sm font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue lg:inline-flex"
           >
             <Phone className="h-4 w-4 text-yellow" />
             {CONTACT.phonePrimaryDisplay}
@@ -189,9 +201,9 @@ export default function Navbar() {
           <Link
             to={bookingPath}
             onClick={() => trackEvent('click_booking_cta', { target: bookingPath, source: 'navbar_desktop_cart' })}
-            className="hidden shrink-0 items-center gap-1.5 rounded-full bg-red px-2.5 py-1 text-xs font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue lg:inline-flex"
+            className="hidden h-9 shrink-0 items-center gap-1.5 rounded-full bg-red px-3 text-sm font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue lg:inline-flex"
           >
-            <ShoppingCart className="h-3.5 w-3.5" />
+            <ShoppingCart className="h-4 w-4" />
             {t.nav.cart}
           </Link>
           <LangToggle className="hidden md:inline-flex md:translate-y-0.5" />

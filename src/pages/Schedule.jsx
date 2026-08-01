@@ -97,7 +97,7 @@ export default function Schedule() {
         </div>
       </section>
 
-      <section className="bg-white pb-4 pt-10 sm:pt-12">
+      <section id="planning-semaine" className="scroll-mt-36 bg-white pb-4 pt-10 sm:pt-12">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <Reveal>
             <h2 className="text-center text-3xl font-black text-royalBlue sm:text-4xl">{weeklyTitle}</h2>
