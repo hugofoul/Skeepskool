@@ -139,7 +139,7 @@ export default function Lessons() {
             : "Group and private surf lessons from €40. Packs of 3, 5, 10 or 20 sessions. Equipment and insurance included. Le Porge Océan, Gironde.")}
         structuredData={lessonsStructuredData}
       />
-      <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.fondpages} titleClassName="font-bold" />
+      <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
 
       {/* ---- Lesson presentation ---- */}
       <section className="bg-white py-16 sm:py-20">
@@ -194,14 +194,14 @@ export default function Lessons() {
                 </h3>
                 <span className="mt-4 block h-1 w-16 rounded bg-red" />
 
-                <div className="mt-7 flex items-center gap-3">
+                <div className="mt-7 flex w-full items-center justify-between gap-3">
                   <div className="inline-flex items-center rounded-2xl border-2 border-royalBlue bg-white px-5 py-3 shadow-sm">
                     <span className="text-base font-black text-royalBlue sm:text-lg">{school.coachingExperience}</span>
                   </div>
                   <img
                     src={SCHOOL_LABEL_SVG}
                     alt={lang === 'fr' ? 'Label École Française de Surf' : 'French Surf School label'}
-                    className="h-28 w-auto"
+                    className="h-36 w-auto"
                     loading="lazy"
                     decoding="async"
                   />
@@ -346,7 +346,7 @@ export default function Lessons() {
                     <img
                       src={SCHOOL_LABEL_SVG}
                       alt={lang === 'fr' ? 'École Française de Surf' : 'French Surf School'}
-                      className="mx-auto h-24 w-24 object-contain"
+                      className="mx-auto h-32 w-32 object-contain"
                       loading="lazy"
                       decoding="async"
                     />
@@ -478,8 +478,7 @@ export default function Lessons() {
           <Reveal>
             <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{l.pricesTitle}</h2>
             <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
-            <p className="mx-auto mt-5 inline-flex items-center gap-2 rounded-full bg-yellow/20 px-5 py-2.5 text-base font-bold text-royalBlue ring-1 ring-yellow sm:text-lg">
-              <ShieldCheck className="h-5 w-5" />
+            <p className="mx-auto mt-5 inline-flex items-center rounded-full bg-yellow/20 px-5 py-2.5 text-base font-bold text-royalBlue ring-1 ring-yellow sm:text-lg">
               {l.validityNote}
             </p>
           </Reveal>
@@ -487,7 +486,7 @@ export default function Lessons() {
       </section>
 
       {/* ---- Pricing cards ---- */}
-      <section id="cours-a-lunite" className="scroll-mt-16 bg-white pb-8 pt-8">
+      <section id="cours-a-lunite" className="scroll-mt-96 bg-white pb-8 pt-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
             {l.cards.map((card, i) => {
@@ -527,11 +526,13 @@ export default function Lessons() {
             })}
           </div>
         </div>
-        <div className="mx-auto mt-6 max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-base font-semibold text-dark/75 sm:text-lg">
-            {l.pricesSubtitle}
-          </p>
-        </div>
+        {l.pricesSubtitle ? (
+          <div className="mx-auto mt-6 max-w-7xl px-4 sm:px-6 lg:px-8">
+            <p className="text-center text-base font-semibold text-dark/75 sm:text-lg">
+              {l.pricesSubtitle}
+            </p>
+          </div>
+        ) : null}
       </section>
 
       {/* ---- Combo package ---- */}

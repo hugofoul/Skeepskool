@@ -271,7 +271,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute left-3 top-14 z-20 sm:left-6 sm:top-12 lg:left-10 lg:top-10">
+        <div className="absolute left-3 top-14 z-20 hidden sm:block sm:left-6 sm:top-12 lg:left-10 lg:top-10">
           <p className="inline-flex items-center rounded-full bg-white/90 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.14em] text-royalBlue ring-1 ring-royalBlue/20 backdrop-blur-sm sm:text-xs">
             {pickLang(
               "D'avril à novembre · 9h à 19h",
@@ -692,6 +692,14 @@ export default function Home() {
                           className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
                         >
                           <p className="pb-2 pr-6 text-sm leading-relaxed text-dark/75">{item.answer}</p>
+                          {item.ctaLabel && item.ctaPath ? (
+                            <Link
+                              to={item.ctaPath}
+                              className="mb-2 inline-flex rounded-full bg-red px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue"
+                            >
+                              {item.ctaLabel}
+                            </Link>
+                          ) : null}
                         </div>
                       </div>
                     )

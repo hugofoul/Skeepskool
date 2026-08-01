@@ -135,20 +135,18 @@ export const fr = {
       ],
       faqItems: [
         {
-          question: 'Je n’ai jamais fait de surf, puis-je quand même prendre un cours chez vous ?',
-          answer: 'Oui, bien sûr. Nos cours sont ouverts à tous, même si vous débutez complètement. On privilégie une progression simple, ludique et personnalisée, avec des conseils adaptés à votre niveau et du matériel qui facilite l’apprentissage dès la première séance.',
-        },
-        {
           question: 'Est-ce que je dois savoir nager ?',
-          answer: 'Si vous n\'avez pas peur de mettre la tête sous l’eau, vous pouvez venir jouer dans les vagues et découvrir l’Océan dans notre école de surf. L’apprentissage ludique permet à vos enfants dès 5 ans de s’initier en s’amusant dans des eaux peu profondes en toute sérénité.',
+          answer: 'Non, il n\'est pas obligatoire de savoir nager, les bases du surf s\'apprennent avec de l\'eau jusqu\'à la taille, par contre merci de le signaler au moniteur au début du cours. Le surf est un bon moyen de développer son aisance aquatique.',
         },
         {
           question: 'Les courants et les grandes marées sont-ils un danger pour l’apprentissage ?',
           answer: 'Nos moniteurs analysent l’océan avant chaque session pour choisir la zone la plus adaptée au niveau du groupe. Le sens marin fait partie de notre pédagogie : comprendre les marées, lire les courants et reconnaître les zones à éviter permet d’apprendre dans de bonnes conditions.',
         },
         {
-          question: 'Peut-on payer sur place ?',
-          answer: 'Oui. Vous pouvez régler sur place en espèces, virement bancaire, chèque ou avec des chèques vacances. Pour garantir votre place à l’avance, le paiement par virement est recommandé.',
+          question: 'Faut-il réserver à l\'avance ?',
+          answer: 'Oui, pour garantir votre place à l\'avance, il est fortement conseillé de réserver vos sessions dès maintenant.',
+          ctaLabel: 'Aller au panier',
+          ctaPath: '/reserver',
         },
         {
           question: 'Peut-on louer du matériel sans prendre de cours ?',
@@ -320,7 +318,7 @@ export const fr = {
     // --- Présentation détaillée d'un cours ---
     aboutTitle: 'Comment se déroule un cours ?',
     aboutLead:
-      'Un cours de surf dans notre école, c’est 2 heures encadrées par un moniteur diplômé d’État, sur la Plage Centrale du Porge Océan. Une vraie séance sportive complete, étape par étape en fonction de votre niveau.',
+      'Un cours de surf dans notre école, c’est 2 heures encadrées par un moniteur diplômé, sur la Plage Centrale du Porge Océan. Une vraie séance sportive complete, étape par étape en fonction de votre niveau.',
     quickFacts: [
       { label: 'Durée', value: '2 heures', detail: 'Présentez-vous 20 min avant le début du cours.' },
       { label: 'Niveau', value: 'Groupes de niveaux', detail: 'Débutant à confirmé, dès 5 ans.' },
@@ -377,7 +375,7 @@ export const fr = {
     faqTitle: 'Questions fréquentes',
     faq: [],
     pricesTitle: 'Nos formules & tarifs',
-    pricesSubtitle: 'Les séances sont programmées selon les souhaits des élèves.',
+    pricesSubtitle: '',
 
     popular: 'La référence',
     perSession: '/ séance',
@@ -387,7 +385,7 @@ export const fr = {
       { name: 'Pack 5 cours', price: '165€', detail: '5 × 2h', note: '≈ 33€ / séance' },
       { name: 'Pack 10 cours', price: '300€', detail: '10 × 2h', note: '30€ / séance' },
       { name: 'Pack 20 cours', price: '540€', detail: '20 × 2h', note: '27€ / séance' },
-      { name: 'Cours particulier', price: '110€', detail: '2h en privé (1 ou 2 pers.)', note: '' },
+      { name: 'Cours particulier', price: '110€', detail: '2h en privé', note: '' },
     ],
     comboTitle: 'Formule Combo',
     comboPrice: '255€',
@@ -401,7 +399,7 @@ export const fr = {
       'Licence fédérale',
       'Attestation de niveau',
     ],
-    validityNote: 'Il est recommandé de faire au minimum 10 séances en école de surf afin d\'avoir les bases de sécurité, de sens marin et de technique avant d\'aller à l\'eau seul ou entre amis dans des conditions de mer simple, au bon endroit et au bon moment de la marée, sans trop de monde.',
+    validityNote: 'Afin d\'avoir les bases de sécurité, de sens marin et de technique pour aller à l\'eau dans des conditions de surf faciles, il est recommandé de faire au minimum 10 séances en école de surf.',
     groupNote: 'Pour les groupes, entreprises, EVG et EVF, merci de nous téléphoner directement !',
     sunsetTitle: 'Cours au coucher du soleil / Afterwork',
     sunsetText:
@@ -545,7 +543,7 @@ export const fr = {
   // ---- Rental ----
   rental: {
     heroTitle: 'Location de matériel',
-    heroSubtitle: 'Surf, bodyboard et combinaisons à la location.',
+    heroSubtitle: '',
     conditionsTitle: 'Informations pour la location',
     tableHead: ['Matériel', '2H', '4H', 'Journée (9h–19h)', '7 jours', 'Sunset (18h–9h30)'],
     rows: [
@@ -556,7 +554,7 @@ export const fr = {
     riskNote: '',
     safetyRecommendationTitle: 'Conseil école de surf :',
     safetyRecommendation:
-      'Il est recommandé d\'avoir fait au minimum 10 séances en école de surf afin d\'avoir les bases de sécurité, de sens marin et de technique avant d\'aller à l\'eau seul ou entre amis dans des conditions de mer simple, au bon endroit et au bon moment de la marée, sans trop de monde. Si vous avez le moindre doute, continuez votre apprentissage en école de surf : c\'est la manière la plus sécurisée et la plus rapide pour apprendre à surfer.',
+      'Afin d\'avoir les bases de sécurité, de sens marin et de technique pour aller à l\'eau dans des conditions de surf faciles, il est recommandé de faire au minimum 10 séances en école de surf. Si vous avez le moindre doute, continuez votre apprentissage en école de surf : c\'est la manière la plus sécurisée et la plus rapide pour apprendre à surfer.',
     plusNote: 'Pendant toute la location, vous pouvez changer de planche à tout moment.',
     idRequiredNote: 'Une pièce d\'identité est obligatoire pour toute location.',
     sunsetNote: 'Créneau Sunset : de 18h jusqu’au lendemain 9h30.',
@@ -579,7 +577,7 @@ export const fr = {
   // ---- Infos pratiques (anciennement Contact) ----
   contact: {
     heroTitle: 'Infos pratiques',
-    heroSubtitle: "Très facile d’accès : Skeepskool est l’École de Surf de la Plage Centrale du Porge.",
+    heroSubtitle: '',
     infoTitle: 'Nos coordonnées',
     infoLead: 'Merci de privilégier un appel téléphonique (WhatsApp possible).',
     address: 'Plage Centrale, Le Porge Océan, 33680 Gironde',

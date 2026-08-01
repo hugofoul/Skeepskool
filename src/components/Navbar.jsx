@@ -116,6 +116,12 @@ export default function Navbar() {
         </div>
       </nav>
 
+      <div className="-mt-5 px-4 pb-0.5 text-center text-[10px] font-extrabold uppercase tracking-[0.14em] text-yellow md:hidden">
+        {lang === 'fr'
+          ? "D'avril à novembre · 9h à 19h"
+          : (lang === 'de' ? 'April bis November · 9 bis 19 Uhr' : 'April to November · 9am to 7pm')}
+      </div>
+
       {/* Mobile dropdown */}
       <div
         className={`overflow-hidden bg-royalBlue transition-all duration-300 ease-out md:hidden ${

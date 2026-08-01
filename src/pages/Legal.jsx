@@ -27,7 +27,7 @@ export default function Legal() {
               : 'Legal notice, privacy policy and regulatory information for Skeepskool.')
         }
       />
-      <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.fondpages} titleClassName="font-bold" />
+      <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
 
       <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">

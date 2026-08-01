@@ -82,7 +82,7 @@ export default function SessionDetails() {
         description={c.intro}
       />
 
-      <PageHero title={c.title} subtitle={c.subtitle} image={images.fondpages} titleClassName="font-bold" />
+      <PageHero title={c.title} subtitle={c.subtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
 
       <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -51,7 +51,7 @@ export default function GiftVoucher() {
   const content = lang === 'fr'
     ? {
       title: 'Bon cadeau surf',
-      subtitle: 'Offrez un cours de surf ou une formule à la personne de votre choix.',
+      subtitle: '',
       intro: 'Remplissez les informations, choisissez la formule et finalisez via WhatsApp.',
       note: 'Bon cadeau : date a definir plus tard avec la personne qui recevra le cadeau.',
       submit: 'Envoyer la demande Bon cadeau',
@@ -268,7 +268,7 @@ export default function GiftVoucher() {
         ]}
         structuredData={structuredData}
       />
-      <PageHero title={content.title} subtitle={content.subtitle} image={images.fondpages} titleClassName="font-bold" />
+      <PageHero title={content.title} subtitle={content.subtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
 
       <section className="bg-lightGray py-14 sm:py-16">
         <div className="mx-auto w-full max-w-[680px] px-4 sm:px-6">

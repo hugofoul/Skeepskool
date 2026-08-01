@@ -15,7 +15,7 @@ export default function Schedule() {
   const whatsappUrl = t.whatsappUrl
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(whatsappUrl)}`
   const whatsappTitle = lang === 'fr'
-    ? 'Recevez les horaires'
+    ? 'Recevez les horaires des cours'
     : (lang === 'de' ? 'WhatsApp-Community beitreten' : 'Join the WhatsApp community')
   const whatsappText = lang === 'fr'
     ? 'Les horaires sont établis généralement tous les jeudi pour la semaine à venir'
@@ -42,7 +42,7 @@ export default function Schedule() {
     <>
       {schedule.isLive ? s.liveLabel : s.fallbackLabel}
       <br />
-      <span className="md:whitespace-nowrap">{scheduleWindowNote}</span>
+      <span className="block text-center">{scheduleWindowNote}</span>
     </>
   )
 
@@ -67,7 +67,8 @@ export default function Schedule() {
         title={s.title}
         subtitle={heroSubtitle}
         image={images.fondpages}
-        titleClassName="font-bold"
+        titleClassName="font-bold -translate-y-2"
+        compact
       />
 
       <section className="bg-white pt-8 sm:pt-10">
