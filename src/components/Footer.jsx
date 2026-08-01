@@ -42,16 +42,13 @@ export default function Footer() {
                 <img
                   src="/images/Web - Logo label EFSurf neutre_blanc-paysage.png"
                   alt={lang === 'fr' ? 'Logo federation EFSurf' : 'EFSurf federation logo'}
-                  className="h-auto w-56 object-contain hover:opacity-80 transition-opacity"
+                  className="h-auto w-72 object-contain transition-opacity hover:opacity-80"
                   loading="lazy"
                   decoding="async"
                 />
               </a>
             </div>
           </Link>
-          <p className="mx-auto mt-20 max-w-sm text-sm text-white/80">
-            {lang === 'fr' ? 'École de surf labellisée FFS au Porge Océan, Gironde.' : t.footer.tagline}
-          </p>
         </div>
 
         {/* Col 2 — Quick links */}
@@ -71,13 +68,6 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-          <p className="mt-5 text-sm font-bold text-yellow">
-            {lang === 'fr'
-              ? "D'avril à novembre de 9h à 19h"
-              : (lang === 'de'
-                ? 'Von April bis November von 9 bis 19 Uhr'
-                : 'From April to November, 9am to 7pm')}
-          </p>
         </div>
 
         {/* Col 3 — Contact */}

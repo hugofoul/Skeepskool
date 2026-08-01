@@ -139,8 +139,8 @@ export const fr = {
           answer: 'Non, il n\'est pas obligatoire de savoir nager, les bases du surf s\'apprennent avec de l\'eau jusqu\'à la taille, par contre merci de le signaler au moniteur au début du cours. Le surf est un bon moyen de développer son aisance aquatique.',
         },
         {
-          question: 'Peut on annuler la séance ?',
-          answer: 'Oui, si l’annulation est faite 24h à l’avance, le cours vous sera entièrement remboursé, sinon la séance devra être réglée.',
+          question: 'Puis-je annuler ma réservation ?',
+          answer: 'Oui, si l’annulation est faite plus de 24h avant le cours, elle vous sera entièrement remboursée. Passé ce délai, la séance sera due.',
         },
         {
           question: 'Faites-vous des cours pour les niveaux avancés ?',
@@ -153,7 +153,7 @@ export const fr = {
           ctaPath: '/reserver',
         },
         {
-          question: 'Peut-on louer du matériel sans prendre de cours ?',
+          question: 'Puis-je louer du matériel sans prendre de cours ?',
           answer: 'Oui, la location est ouverte à tous. Cependant, nous déconseillons fortement la location sans encadrement si vous avez moins de 10 séances avec un moniteur diplômé.',
         },
       ],
