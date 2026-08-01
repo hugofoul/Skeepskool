@@ -18,7 +18,7 @@ export default function Schedule() {
     ? 'Recevez les horaires des cours'
     : (lang === 'de' ? 'WhatsApp-Community beitreten' : 'Join the WhatsApp community')
   const whatsappText = lang === 'fr'
-    ? 'Les horaires sont établis généralement tous les jeudi pour la semaine à venir'
+    ? 'Pour assurer des cours de qualité aux meilleurs moments, les horaires sont établis généralement chaque jeudi pour la semaine à venir !'
     : (lang === 'de'
       ? 'Wir versenden die Kurszeiten in der Regel donnerstags für die kommende Woche. Tritt der WhatsApp-Community bei, um alle Updates zu erhalten.'
       : 'We usually share lesson schedules on Thursdays for the coming week. Join the WhatsApp community to receive all updates.')
@@ -38,13 +38,7 @@ export default function Schedule() {
     fallbackDays: s.fallbackDays,
     allLevelsLabel: s.allLevels,
   })
-  const heroSubtitle = (
-    <>
-      {schedule.isLive ? s.liveLabel : s.fallbackLabel}
-      <br />
-      <span className="block text-center">{scheduleWindowNote}</span>
-    </>
-  )
+  const heroSubtitle = ''
 
   return (
     <div>

@@ -142,7 +142,7 @@ export default function Lessons() {
       <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
 
       {/* ---- Lesson presentation ---- */}
-      <section className="bg-white py-16 sm:py-20">
+      <section id="explication" className="scroll-mt-36 bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <Reveal
@@ -291,7 +291,7 @@ export default function Lessons() {
           </div>
         </div>
       </section>
-      <section className="bg-royalBlue py-16 text-white sm:py-20">
+      <section id="deroule-seance" className="scroll-mt-36 bg-royalBlue py-16 text-white sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-3xl font-black sm:text-4xl">{l.stepsTitle}</h2>

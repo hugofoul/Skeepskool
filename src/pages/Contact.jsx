@@ -72,7 +72,7 @@ export default function Contact() {
       <PageHero title={c.heroTitle} subtitle={c.heroSubtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
 
       {/* ---- Info cards ---- */}
-      <section className="bg-white py-16 sm:py-20">
+      <section id="infos-contact" className="scroll-mt-36 bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{c.infoTitle}</h2>
@@ -114,7 +114,7 @@ export default function Contact() {
       </section>
 
       {/* ---- Season & hours ---- */}
-      <section className="bg-royalBlue py-14 text-white">
+      <section id="saison-horaires" className="scroll-mt-36 bg-royalBlue py-14 text-white">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
           <Reveal>
             <h2 className="text-2xl font-black sm:text-3xl">{c.seasonTitle}</h2>

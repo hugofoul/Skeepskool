@@ -9,22 +9,72 @@ import { trackEvent } from '../lib/analytics.js'
 export default function Navbar() {
   const { lang, setLang, t } = useLang()
   const [open, setOpen] = useState(false)
+  const [activeTopDropdown, setActiveTopDropdown] = useState(null)
   const location = useLocation()
 
   // Close mobile menu on route change
   useEffect(() => {
     setOpen(false)
+    setActiveTopDropdown(null)
   }, [location.pathname])
 
-  const links = [
-    { to: '/cours', label: t.nav.lessons },
-    { to: '/location', label: t.nav.rental },
-    { to: lang === 'fr' ? '/bon-cadeau' : '/gift-voucher', label: t.nav.gift, match: ['/bon-cadeau', '/gift-voucher'] },
-    { to: '/album-photo', label: t.nav.photos, match: ['/album-photo', '/photos'] },
-    { to: '/contact', label: t.nav.contact },
+  const bookingPath = lang === 'fr' ? '/reserver' : '/book'
+  const lessonsPath = lang === 'fr' ? '/cours' : '/lessons'
+  const rentalPath = lang === 'fr' ? '/location' : '/rental'
+
+  const lessonsSubLinks = [
+    {
+      href: `${lessonsPath}#explication`,
+      label: lang === 'fr' ? 'Explication' : (lang === 'de' ? 'Erklärung' : 'Overview'),
+    },
+    {
+      href: `${lessonsPath}#deroule-seance`,
+      label: lang === 'fr' ? 'Déroulé de la séance' : (lang === 'de' ? 'Ablauf der Session' : 'Session flow'),
+    },
+    {
+      href: `${lessonsPath}#formules-tarifs`,
+      label: lang === 'fr' ? 'Tarifs' : (lang === 'de' ? 'Preise' : 'Pricing'),
+    },
   ]
 
-  const bookingPath = lang === 'fr' ? '/reserver' : '/book'
+  const rentalSubLinks = [
+    {
+      href: `${rentalPath}#infos-location`,
+      label: lang === 'fr' ? 'Infos' : (lang === 'de' ? 'Infos' : 'Info'),
+    },
+    {
+      href: `${rentalPath}#tarifs-location`,
+      label: lang === 'fr' ? 'Tarifs' : (lang === 'de' ? 'Preise' : 'Pricing'),
+    },
+    {
+      href: `${rentalPath}#guide-location`,
+      label: lang === 'fr' ? 'Guide' : (lang === 'de' ? 'Guide' : 'Guide'),
+    },
+  ]
+
+  const contactPath = '/contact'
+  const contactSubLinks = [
+    {
+      href: `${contactPath}#infos-contact`,
+      label: lang === 'fr' ? 'Contact' : (lang === 'de' ? 'Kontakt' : 'Contact'),
+    },
+    {
+      href: `${contactPath}#comment-nous-trouver`,
+      label: lang === 'fr' ? 'Accès' : (lang === 'de' ? 'Anfahrt' : 'Access'),
+    },
+    {
+      href: `${contactPath}#bus-details`,
+      label: lang === 'fr' ? 'Bus' : (lang === 'de' ? 'Bus' : 'Bus'),
+    },
+  ]
+
+  const links = [
+    { key: 'lessons', to: lessonsPath, label: t.nav.lessons, match: ['/cours', '/lessons'], subLinks: lessonsSubLinks },
+    { key: 'rental', to: rentalPath, label: t.nav.rental, match: ['/location', '/rental'], subLinks: rentalSubLinks },
+    { key: 'gift', to: lang === 'fr' ? '/bon-cadeau' : '/gift-voucher', label: t.nav.gift, match: ['/bon-cadeau', '/gift-voucher'] },
+    { key: 'photos', to: '/album-photo', label: t.nav.photos, match: ['/album-photo', '/photos'] },
+    { key: 'contact', to: contactPath, label: t.nav.contact, subLinks: contactSubLinks },
+  ]
 
   const linkClass = (isActive) =>
     [
@@ -76,13 +126,53 @@ export default function Navbar() {
         {/* Center links (desktop) */}
         <div className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              className={({ isActive }) => linkClass(isActive || (l.match?.includes(location.pathname) ?? false))}
-            >
-              {l.label}
-            </NavLink>
+            <div key={l.key} className="relative flex items-center gap-1">
+              <NavLink
+                to={l.to}
+                onClick={() => setActiveTopDropdown(null)}
+                className={({ isActive }) => linkClass(isActive || (l.match?.includes(location.pathname) ?? false))}
+              >
+                {l.label}
+              </NavLink>
+
+              {l.subLinks ? (
+                <button
+                  type="button"
+                  onClick={() => setActiveTopDropdown((current) => (current === l.key ? null : l.key))}
+                  className="rounded p-0.5 text-white transition-colors hover:text-yellow"
+                  aria-label={lang === 'fr' ? `Ouvrir le sous-menu ${l.label}` : `Open ${l.label} submenu`}
+                  aria-expanded={activeTopDropdown === l.key}
+                >
+                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${activeTopDropdown === l.key ? 'rotate-180' : ''}`} />
+                </button>
+              ) : null}
+
+              {l.subLinks && activeTopDropdown === l.key ? (
+                <div className="absolute left-1/2 top-full z-50 mt-3 w-max min-w-[220px] -translate-x-1/2 rounded-2xl border border-white/20 bg-royalBlue/95 p-2 shadow-2xl backdrop-blur">
+                  <div className="flex flex-col gap-1">
+                    {l.subLinks.map((item) => {
+                      const hash = item.href.split('#')[1]
+                      const isActive = location.pathname === item.href.split('#')[0] && location.hash === `#${hash}`
+
+                      return (
+                        <a
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setActiveTopDropdown(null)}
+                          className={`rounded-lg px-3 py-2 text-xs font-bold uppercase tracking-[0.08em] transition-colors ${
+                            isActive
+                              ? 'bg-yellow text-royalBlue'
+                              : 'text-white hover:bg-white/15 hover:text-yellow'
+                          }`}
+                        >
+                          {item.label}
+                        </a>
+                      )
+                    })}
+                  </div>
+                </div>
+              ) : null}
+            </div>
           ))}
         </div>
 
@@ -124,11 +214,11 @@ export default function Navbar() {
 
       {/* Mobile dropdown */}
       <div
-        className={`overflow-hidden bg-royalBlue transition-all duration-300 ease-out md:hidden ${
+        className={`origin-top overflow-hidden bg-royalBlue transition-all duration-300 ease-out md:hidden ${
           open ? 'max-h-[80vh] border-t border-white/10 opacity-100' : 'max-h-0 border-t border-transparent opacity-0'
         }`}
       >
-        <div className={`px-3 pb-5 pt-2 transition-transform duration-300 ${open ? 'translate-y-0' : '-translate-y-2'}`}>
+        <div className={`px-3 pb-5 pt-2 transition-transform duration-300 ${open ? 'translate-y-0' : '-translate-y-4'}`}>
           <div className="flex flex-col gap-1">
             {links.map((l) => (
               <NavLink
