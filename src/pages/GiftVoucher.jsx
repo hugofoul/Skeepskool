@@ -1,5 +1,4 @@
 import { useMemo, useRef, useState } from 'react'
-import { CheckCircle2 } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
@@ -560,19 +559,6 @@ export default function GiftVoucher() {
               </Reveal>
             )}
           </form>
-        </div>
-      </section>
-
-      <section className="bg-white py-12 sm:py-14">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <Reveal className="rounded-3xl border-l-4 border-red bg-lightGray p-6 shadow-md ring-1 ring-black/5 sm:p-8">
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3 text-sm font-semibold text-royalBlue sm:text-base">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-red" />
-                  <span>{lang === 'fr' ? 'Formulaire dedie Bon cadeau.' : (lang === 'de' ? 'Eigenes Geschenkgutschein-Formular.' : 'Dedicated gift voucher form.')}</span>
-              </li>
-            </ul>
-          </Reveal>
         </div>
       </section>
     </div>

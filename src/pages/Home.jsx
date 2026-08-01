@@ -59,7 +59,7 @@ export default function Home() {
   const pickLang = (frText, enText, deText) => (isFr ? frText : (isDe ? deText : enText))
   const bookingPath = lang === 'fr' ? '/reserver' : '/book'
   const lessonsPath = lang === 'fr' ? '/cours' : '/lessons'
-  const lessonsPricingPath = `${lessonsPath}#formules-tarifs`
+  const lessonsPricingPath = `${lessonsPath}#cours-a-lunite`
   const schedulePath = lang === 'fr' ? '/horaires' : '/schedule'
   const contactFindUsPath = '/contact#comment-nous-trouver'
   const rentalPath = lang === 'fr' ? '/location' : '/rental'
@@ -271,12 +271,12 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute left-3 top-24 z-20 sm:left-6 sm:top-20 lg:left-10 lg:top-16">
+        <div className="absolute left-3 top-14 z-20 sm:left-6 sm:top-12 lg:left-10 lg:top-10">
           <p className="inline-flex items-center rounded-full bg-white/90 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.14em] text-royalBlue ring-1 ring-royalBlue/20 backdrop-blur-sm sm:text-xs">
             {pickLang(
-              'Ouvert d\'avril à novembre',
-              'Open from April to November',
-              'Geöffnet von April bis November',
+              "D'avril à novembre · 9h à 19h",
+              'April to November · 9am to 7pm',
+              'April bis November · 9 bis 19 Uhr',
             )}
           </p>
         </div>

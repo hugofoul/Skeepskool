@@ -183,7 +183,7 @@ export const fr = {
       parkingLabel: 'Stationnement',
       parking: 'Parking gratuit en face de l’école.',
       gpsLabel: 'GPS',
-      gps: '44.8965° N, 1.1057° O',
+      gps: '44°53’39.432”N    1°12’50.048”O',
     },
 
     reviewsTitle: 'Laissez un avis Google',
@@ -624,7 +624,7 @@ export const fr = {
       busPrice: '2,50 € aller simple · 4,50 € aller-retour',
       busPriceNote: '',
       gpsLabel: 'GPS',
-      gps: '44.8965° N, 1.1057° O',
+      gps: '44°53’39.432”N    1°12’50.048”O',
     },
 
     formTitle: 'Écrivez-nous',

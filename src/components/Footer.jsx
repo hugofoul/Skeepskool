@@ -71,6 +71,13 @@ export default function Footer() {
               </li>
             ))}
           </ul>
+          <p className="mt-5 text-sm font-bold text-yellow">
+            {lang === 'fr'
+              ? "D'avril à novembre de 9h à 19h"
+              : (lang === 'de'
+                ? 'Von April bis November von 9 bis 19 Uhr'
+                : 'From April to November, 9am to 7pm')}
+          </p>
         </div>
 
         {/* Col 3 — Contact */}

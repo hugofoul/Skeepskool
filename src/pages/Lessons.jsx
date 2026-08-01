@@ -26,6 +26,7 @@ const POPULAR_INDEX = 3
 const factIcons = [Clock, Users, Backpack, ShieldCheck]
 const valueIcons = [Waves, Star, ShieldCheck]
 const packageByCardIndex = ['single', 'pack3', 'pack5', 'pack10', 'pack20', 'private']
+const SCHOOL_LABEL_SVG = '/images/passeport.svg'
 
 export default function Lessons() {
   const { t, lang } = useLang()
@@ -193,8 +194,17 @@ export default function Lessons() {
                 </h3>
                 <span className="mt-4 block h-1 w-16 rounded bg-red" />
 
-                <div className="mt-7 inline-flex items-center rounded-2xl border-2 border-royalBlue bg-white px-5 py-3 shadow-sm">
-                  <span className="text-base font-black text-royalBlue sm:text-lg">{school.coachingExperience}</span>
+                <div className="mt-7 flex items-center gap-3">
+                  <div className="inline-flex items-center rounded-2xl border-2 border-royalBlue bg-white px-5 py-3 shadow-sm">
+                    <span className="text-base font-black text-royalBlue sm:text-lg">{school.coachingExperience}</span>
+                  </div>
+                  <img
+                    src={SCHOOL_LABEL_SVG}
+                    alt={lang === 'fr' ? 'Label École Française de Surf' : 'French Surf School label'}
+                    className="h-28 w-auto"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
 
                 
@@ -249,10 +259,13 @@ export default function Lessons() {
               className="order-2 overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/15 lg:order-1"
             >
               <img
-                src="/images/sunset.png"
+                src="/images/bonsunset.png"
                 alt={l.sunsetTitle}
                 className="h-72 w-full object-cover sm:h-96"
                 loading="lazy"
+                onError={(event) => {
+                  event.currentTarget.src = images.lessonsSunset
+                }}
               />
             </Reveal>
             <Reveal delay={120} className="order-1 lg:order-2">
@@ -266,7 +279,9 @@ export default function Lessons() {
                 <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#d9f0f5]">Cours du matin</p>
                 <p className="mt-2 text-base font-semibold text-white">{l.morningText || 'Nous proposons aussi des cours le matin pour ceux qui aiment le calme du matin.'}</p>
                 <img
-                  src="/images/plage.jpg"
+                  src={images.schoolSpot}
+                  srcSet={buildSrcSet(images.schoolSpot)}
+                  sizes={DEFAULT_SIZES}
                   alt={lang === 'fr' ? 'Cours du matin' : 'Morning lessons'}
                   className="mt-3 h-28 w-full rounded-xl object-cover"
                   loading="lazy"
@@ -320,15 +335,26 @@ export default function Lessons() {
           <div className={`mt-12 grid gap-6 ${school.values.length === 1 ? 'md:grid-cols-1' : 'md:grid-cols-3'}`}>
             {school.values.map((value, index) => {
               const Icon = valueIcons[index] || ShieldCheck
+              const isQualitySafety = value.title?.toLowerCase().includes('qualit') && value.title?.toLowerCase().includes('sécur')
               return (
                 <Reveal
                   key={value.title}
                   delay={index * 100}
                   className="rounded-2xl border-b-4 border-red bg-lightGray p-6 text-center shadow-sm"
                 >
-                  <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-royalBlue/10">
-                    <Icon className="h-7 w-7 text-royalBlue" />
-                  </span>
+                  {isQualitySafety ? (
+                    <img
+                      src={SCHOOL_LABEL_SVG}
+                      alt={lang === 'fr' ? 'École Française de Surf' : 'French Surf School'}
+                      className="mx-auto h-24 w-24 object-contain"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-royalBlue/10">
+                      <Icon className="h-7 w-7 text-royalBlue" />
+                    </span>
+                  )}
                   <h3 className="mt-4 text-xl font-extrabold text-royalBlue">{value.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-dark/75">{value.text}</p>
                 </Reveal>
@@ -461,7 +487,7 @@ export default function Lessons() {
       </section>
 
       {/* ---- Pricing cards ---- */}
-      <section className="bg-white pb-8 pt-8">
+      <section id="cours-a-lunite" className="scroll-mt-16 bg-white pb-8 pt-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
             {l.cards.map((card, i) => {
@@ -503,7 +529,6 @@ export default function Lessons() {
         </div>
         <div className="mx-auto mt-6 max-w-7xl px-4 sm:px-6 lg:px-8">
           <p className="text-center text-base font-semibold text-dark/75 sm:text-lg">
-            <Phone className="mr-1.5 inline h-5 w-5 align-text-bottom text-royalBlue" />
             {l.pricesSubtitle}
           </p>
         </div>
