@@ -478,7 +478,7 @@ export default function Lessons() {
           <Reveal>
             <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{l.pricesTitle}</h2>
             <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
-            <p className="mx-auto mt-5 inline-flex items-center rounded-full bg-yellow/20 px-5 py-2.5 text-base font-bold text-royalBlue ring-1 ring-yellow sm:text-lg">
+            <p className="mx-auto mt-5 flex w-full max-w-3xl items-center justify-center rounded-full bg-yellow/20 px-6 py-2.5 text-center text-base font-bold text-royalBlue ring-1 ring-yellow sm:max-w-5xl sm:px-8 sm:text-lg lg:max-w-6xl xl:max-w-7xl">
               {l.validityNote}
             </p>
           </Reveal>

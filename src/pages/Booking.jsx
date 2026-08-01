@@ -603,7 +603,7 @@ export default function Booking() {
                 </label>
 
                 {startDate && endDate ? (
-                  <p className="text-xs font-semibold text-emerald-700 sm:text-sm">
+                  <p className="mx-auto whitespace-pre-line text-center text-xs font-semibold text-emerald-700 sm:text-sm">
                     {b.availabilityNote || (lang === 'fr' ? 'Nous avons de la disponibilité : il faudra appeller 3j avant pour definir le créneau.' : (lang === 'de' ? 'Wir haben Verfügbarkeit und bestätigen deinen Slot schnell.' : 'We have availability and will confirm your slot quickly.'))}
                   </p>
                 ) : null}

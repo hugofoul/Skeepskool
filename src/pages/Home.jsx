@@ -313,7 +313,7 @@ export default function Home() {
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-center text-sm font-semibold text-dark/70 sm:text-base">
               {pickLang(
-                'Toutes nos formules sont valables 1 an à partir de la date d\'achat.',
+                'Toutes nos formules sont valables 1 an à partir de la date d\'achat',
                 'All our packages are valid for 1 year from the date of purchase.',
                 'Alle unsere Pakete sind ab Kaufdatum 1 Jahr gültig.',
               )}

@@ -57,7 +57,7 @@ export const fr = {
 
     offers: {
       eyebrow: 'NOS FORMULES',
-      title: 'Réservez en avance pour s’assurer de la place',
+      title: 'Réservez en avance pour assurer votre place !',
       viewAllCta: 'Voir toutes les formules →',
       priceFallback: 'Tarif à confirmer',
       cards: [
@@ -144,7 +144,7 @@ export const fr = {
         },
         {
           question: 'Faites-vous des cours pour les niveaux avancés ?',
-          answer: 'Oui, nous proposons des cours spécifiques pour le perfectionnement ainsi que des cours doubles niveaux avec 2 moniteurs (intermédiaires/avancés), ce qui permet de passer d’un groupe à un autre si besoin.',
+          answer: 'Oui, nous proposons des cours spécifiques pour le perfectionnement ainsi que des cours doubles niveaux avec 2 moniteurs (intermédiaires/avancés), ce qui permet de passer d’un groupe à un autre si besoin. Nous adaptons les exercices au niveau de chacun.',
         },
         {
           question: 'Faut-il réserver à l\'avance ?',
@@ -326,7 +326,7 @@ export const fr = {
     quickFacts: [
       { label: 'Durée', value: '2 heures', detail: 'Présentez-vous 20 min avant le début du cours.' },
       { label: 'Niveau', value: 'Groupes de niveaux', detail: 'Débutant à confirmé, dès 5 ans.' },
-      { label: 'Matériel', value: 'Tout est compris', detail: 'Combinaison et planche adaptée.' },
+      { label: 'Matériel', value: 'Tout est inclus !', detail: 'Combinaison et planche adaptée.' },
       { label: 'Encadrement', value: 'Moniteur diplômé', detail: 'Dynamique, souriant et à votre écoute' },
     ],
     stepsTitle: 'Le déroulé, étape par étape',
@@ -364,7 +364,7 @@ export const fr = {
         text: 'Retour à l’école : ranger sa planche et rincer sa combinaison ; checkout à l’accueil sur le bon déroulement de la séance ; vérifier l’horaire pour son prochain cours.',
       },
     ],
-    includedTitle: 'Tout est compris dans le prix',
+    includedTitle: 'Tout est inclus !',
     goodToKnowTitle: 'Bon à savoir',
     goodToKnow: [
       {
@@ -403,7 +403,7 @@ export const fr = {
       'Licence fédérale',
       'Attestation de niveau',
     ],
-    validityNote: 'Afin d\'avoir les bases de sécurité, de sens marin et de technique pour aller à l\'eau dans des conditions de surf faciles, il est recommandé de faire au minimum 10 séances en école de surf.',
+    validityNote: 'Afin d\'acquérir les bases essentielles en matière de sécurité, de sens marin et de technique pour aller surfer dans petites vagues au bon moment de la marée et au bon endroit, il est recommandé de faire au minimum 10 séances en école de surf',
     groupNote: 'Pour les groupes, entreprises, EVG et EVF, merci de nous téléphoner directement !',
     sunsetTitle: 'Cours au coucher du soleil / Afterwork',
     sunsetText:
@@ -411,7 +411,7 @@ export const fr = {
     morningText: 'Nous proposons aussi des cours le matin pour ceux qui aiment le calme du matin.',
     sunsetCta: 'Demander un cours Sunset',
     teamLinkTitle: 'Encadré par une équipe passionnée',
-    teamLinkText: 'Tous nos cours sont assurés par des moniteurs diplômés. Faites connaissance avec l’équipe Skeepskool.',
+    teamLinkText: 'Tous nos cours sont assurés par des moniteurs diplômés. Faites connaissance avec l’équipe Skeepskool !',
     teamLinkCta: 'Découvrir notre équipe',
     giftExperienceBadge: 'Bon cadeau',
     giftExperienceTitle: 'Offrir un bon cadeau surf',
@@ -433,7 +433,7 @@ export const fr = {
     liveLabel: 'Appelez-nous pour réserver : nous avons peut-être d\'autres créneaux.',
     fallbackLabel: 'En cours de chargement',
     allLevels: 'Tous niveaux',
-    callWidgetTitle: 'Appelez-nous pour réserver',
+    callWidgetTitle: 'Appelez-nous pour réserver !',
     callWidgetText: '',
     callWidgetCta: 'Appeler maintenant',
     fallbackDays: [
@@ -449,7 +449,7 @@ export const fr = {
 
   booking: {
     title: 'Panier',
-    subtitle: 'Le paiement se fera par virement Bancaire (IBAN)',
+    subtitle: '',
     intro:
       'Pour valider votre réservation, le paiement doit déjà être effectué par virement avant l\'envoi de ce formulaire.',
 
@@ -491,7 +491,7 @@ export const fr = {
     commonTitle: 'Informations communes',
     startDate: 'Date de début approximative',
     endDate: 'Date de fin approximative',
-    availabilityNote: 'Nous avons de la disponibilité : il faudra appeller 3j avant pour definir le créneau.',
+    availabilityNote: 'Nous avons de la disponibilité à ces dates !',
     startDateNote: 'Pour une réservation à moins de 3 jours, appelez-nous directement.',
     giftVoucherCheckbox: 'C\'est un bon cadeau',
     giftVoucherDateValue: 'Bon cadeau (date à définir)',
