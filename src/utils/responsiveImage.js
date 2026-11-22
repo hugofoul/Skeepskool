@@ -15,12 +15,22 @@ const getBaseName = (src) => {
 }
 
 export const buildSrcSet = (src) => {
-	if (!isLocalImagePath(src)) return `${src} 640w, ${src} 1024w, ${src} 1600w`
+	if (!isLocalImagePath(src)) return `${src} 400w, ${src} 800w, ${src} 1200w, ${src} 1600w`
 
 	const baseName = getBaseName(src)
-	if (!baseName) return `${src} 640w, ${src} 1024w, ${src} 1600w`
+	if (!baseName) return `${src} 400w, ${src} 800w, ${src} 1200w, ${src} 1600w`
 
-	return [640, 1024, 1600]
+	return [400, 800, 1200, 1600]
+		.filter((width) => width === 400 || width === 800 || width === 1200 || width === 1600)
 		.map((width) => `/images/optimized/${baseName}-${width}.webp ${width}w`)
+		.join(', ')
+}
+
+export const buildAvifSrcSet = (src) => {
+	if (!isLocalImagePath(src)) return ''
+	const baseName = getBaseName(src)
+	if (!baseName) return ''
+	return [400, 800, 1200, 1600]
+		.map((width) => `/images/optimized/${baseName}-${width}.avif ${width}w`)
 		.join(', ')
 }

@@ -4,102 +4,78 @@ import sharp from 'sharp'
 
 const ROOT = process.cwd()
 const INPUT_DIR = path.join(ROOT, 'public', 'images')
+const SOURCE_DIR = path.join(ROOT, 'images-source')
 const OUTPUT_DIR = path.join(INPUT_DIR, 'optimized')
-const WIDTHS = [640, 1024, 1600]
-const RASTER_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp'])
-
-const formatMB = (bytes) => `${(bytes / 1024 / 1024).toFixed(2)} MB`
+const WIDTHS = [400, 800, 1200, 1600]
+const RASTER_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png'])
 
 const walk = async (dir) => {
   const entries = await fs.readdir(dir, { withFileTypes: true })
   const files = []
-
   for (const entry of entries) {
     const abs = path.join(dir, entry.name)
-
     if (entry.isDirectory()) {
-      if (entry.name === 'optimized') continue
-      files.push(...(await walk(abs)))
-      continue
-    }
-
-    files.push(abs)
+      if (entry.name !== 'optimized' && entry.name !== 'séance_type') files.push(...await walk(abs))
+      else if (entry.name === 'séance_type') files.push(...await walk(abs))
+    } else files.push(abs)
   }
-
   return files
 }
 
-const toPublicPath = (abs) => `/${path.relative(path.join(ROOT, 'public'), abs).split(path.sep).join('/')}`
-
-const optimizeOne = async (inputPath) => {
-  const ext = path.extname(inputPath).toLowerCase()
-  if (!RASTER_EXTENSIONS.has(ext)) return null
-
-  const baseName = path.basename(inputPath, path.extname(inputPath))
-  const image = sharp(inputPath)
-  const metadata = await image.metadata()
-
-  if (!metadata.width) return null
-
-  let totalOut = 0
-
-  for (const width of WIDTHS) {
-    const outputPath = path.join(OUTPUT_DIR, `${baseName}-${width}.webp`)
-
-    await image
-      .clone()
-      .rotate()
-      .resize({ width, withoutEnlargement: true })
-      .webp({ quality: 72, effort: 6 })
-      .toFile(outputPath)
-
-    const stat = await fs.stat(outputPath)
-    totalOut += stat.size
-  }
-
-  const inputStat = await fs.stat(inputPath)
-
-  return {
-    inputPath,
-    inputBytes: inputStat.size,
-    outputBytes: totalOut,
-  }
-}
+const kebabCase = (value) => value
+  .normalize('NFD')
+  .replace(/[^a-zA-Z0-9]+/g, '-')
+  .replace(/^-|-$/g, '')
+  .toLowerCase()
 
 const main = async () => {
+  await fs.mkdir(SOURCE_DIR, { recursive: true })
   await fs.mkdir(OUTPUT_DIR, { recursive: true })
 
-  const allFiles = await walk(INPUT_DIR)
-  const rasterFiles = allFiles.filter((file) => RASTER_EXTENSIONS.has(path.extname(file).toLowerCase()))
+  const files = await walk(INPUT_DIR)
+  const sources = files.filter((file) => RASTER_EXTENSIONS.has(path.extname(file).toLowerCase()))
+  let totalInput = 0
+  let totalOutput = 0
 
-  const results = []
+  for (const inputPath of sources) {
+    const metadata = await sharp(inputPath).metadata()
+    if (!metadata.width) continue
 
-  for (const file of rasterFiles) {
-    const res = await optimizeOne(file)
-    if (res) results.push(res)
+    const rel = path.relative(INPUT_DIR, inputPath)
+    const sourceRelativeDir = path.dirname(rel)
+    const sourceDir = path.join(SOURCE_DIR, sourceRelativeDir)
+    await fs.mkdir(sourceDir, { recursive: true })
+    await fs.copyFile(inputPath, path.join(sourceDir, path.basename(inputPath)))
+
+    const baseName = kebabCase(path.basename(inputPath, path.extname(inputPath)))
+    const inputStat = await fs.stat(inputPath)
+    totalInput += inputStat.size
+
+    for (const width of WIDTHS) {
+      if (width > metadata.width) continue
+      const webpPath = path.join(OUTPUT_DIR, `${baseName}-${width}.webp`)
+      const avifPath = path.join(OUTPUT_DIR, `${baseName}-${width}.avif`)
+
+      await sharp(inputPath)
+        .rotate()
+        .resize({ width, withoutEnlargement: true })
+        .webp({ quality: 78, effort: 6 })
+        .toFile(webpPath)
+
+      await sharp(inputPath)
+        .rotate()
+        .resize({ width, withoutEnlargement: true })
+        .avif({ quality: 52, effort: 7 })
+        .toFile(avifPath)
+
+      totalOutput += (await fs.stat(webpPath)).size
+      totalOutput += (await fs.stat(avifPath)).size
+    }
   }
 
-  const inputTotal = results.reduce((sum, item) => sum + item.inputBytes, 0)
-  const outputTotal = results.reduce((sum, item) => sum + item.outputBytes, 0)
-
-  console.log(`Optimized ${results.length} images into ${toPublicPath(OUTPUT_DIR)}.`)
-  console.log(`Input total:  ${formatMB(inputTotal)}`)
-  console.log(`Output total: ${formatMB(outputTotal)} (3 responsive .webp variants per image)`)
-
-  const biggestWins = [...results]
-    .map((item) => ({
-      ...item,
-      savedBytes: item.inputBytes - item.outputBytes,
-    }))
-    .sort((a, b) => b.savedBytes - a.savedBytes)
-    .slice(0, 8)
-
-  console.log('\nTop savings:')
-  for (const item of biggestWins) {
-    const rel = toPublicPath(item.inputPath)
-    const delta = item.inputBytes - item.outputBytes
-    console.log(`- ${rel}: ${formatMB(item.inputBytes)} -> ${formatMB(item.outputBytes)} (saved ${formatMB(delta)})`)
-  }
+  console.log(`Optimized ${sources.length} raster sources.`)
+  console.log(`Source total: ${(totalInput / 1024 / 1024).toFixed(2)} MB`)
+  console.log(`Generated WebP/AVIF total: ${(totalOutput / 1024 / 1024).toFixed(2)} MB`)
 }
 
 main().catch((error) => {

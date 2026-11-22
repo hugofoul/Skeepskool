@@ -28,11 +28,6 @@ export default function Schedule() {
   const weeklyTitle = lang === 'fr'
     ? 'Horaires des cours de la semaine'
     : (lang === 'de' ? 'Kurszeiten der Woche' : 'Lesson schedule for the week')
-  const scheduleWindowNote = lang === 'fr'
-    ? 'Pour assurer des cours de qualité aux meilleurs moments, les horaires sont établis généralement chaque jeudi pour la semaine à venir !'
-    : (lang === 'de'
-      ? 'Die Kurszeiten werden von Donnerstag bis Donnerstag festgelegt, um die besten Meeresbedingungen zu sichern.'
-      : 'Lesson schedules are set from Thursday to Thursday to ensure the best sea conditions.')
   const schedule = useWeeklySchedule({
     lang,
     fallbackDays: s.fallbackDays,
