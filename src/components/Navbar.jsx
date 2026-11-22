@@ -138,7 +138,12 @@ export default function Navbar() {
         {/* Center links (desktop) */}
         <div className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <div key={l.key} className="relative flex items-center gap-1">
+            <div
+              key={l.key}
+              className="relative flex items-center gap-1"
+              onMouseEnter={() => l.subLinks && setActiveTopDropdown(l.key)}
+              onMouseLeave={() => l.subLinks && setActiveTopDropdown(null)}
+            >
               <NavLink
                 to={l.to}
                 onClick={() => setActiveTopDropdown(null)}
@@ -150,6 +155,8 @@ export default function Navbar() {
               {l.subLinks ? (
                 <button
                   type="button"
+                  onMouseEnter={() => setActiveTopDropdown(l.key)}
+                  onFocus={() => setActiveTopDropdown(l.key)}
                   onClick={() => setActiveTopDropdown((current) => (current === l.key ? null : l.key))}
                   className="rounded p-0.5 text-white transition-colors hover:text-yellow"
                   aria-label={lang === 'fr' ? `Ouvrir le sous-menu ${l.label}` : `Open ${l.label} submenu`}
@@ -160,7 +167,11 @@ export default function Navbar() {
               ) : null}
 
               {l.subLinks && activeTopDropdown === l.key ? (
-                <div className="absolute left-1/2 top-full z-50 mt-3 w-max min-w-[220px] -translate-x-1/2 rounded-2xl border border-white/20 bg-royalBlue/95 p-2 shadow-2xl backdrop-blur">
+                <div
+                  className="absolute left-1/2 top-full z-50 mt-3 w-max min-w-[220px] -translate-x-1/2 rounded-2xl border border-white/20 bg-royalBlue/95 p-2 shadow-2xl backdrop-blur"
+                  onMouseEnter={() => setActiveTopDropdown(l.key)}
+                  onMouseLeave={() => setActiveTopDropdown(null)}
+                >
                   <div className="flex flex-col gap-1">
                     {l.subLinks.map((item) => {
                       const hash = item.href.split('#')[1]

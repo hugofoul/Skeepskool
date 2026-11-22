@@ -327,14 +327,14 @@ export default function Home() {
                 <Reveal
                   key={card.title}
                   delay={index * 90}
-                  className={`flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-black/5 ${isFeatured ? 'xl:-translate-y-1 xl:ring-2 xl:ring-red/20' : ''}`}
+                  className={`group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-black/5 transition-all duration-300 hover:shadow-2xl hover:ring-red/20 ${isFeatured ? 'ring-2 ring-red/20' : ''}`}
                 >
                   {isFeatured ? (
-                    <div className="bg-red px-5 py-2 text-center text-xs font-extrabold uppercase tracking-[0.14em] text-white">
+                    <div className="flex min-h-[44px] items-center justify-center bg-red px-5 py-2 text-center text-xs font-extrabold uppercase tracking-[0.14em] text-white">
                       {card.featuredLabel}
                     </div>
                   ) : (
-                    <div className="px-5 pt-5">
+                    <div className="flex min-h-[44px] items-center justify-center px-5 py-2">
                       <span className="inline-flex rounded-full bg-royalBlue/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-royalBlue">
                         {card.badge}
                       </span>
