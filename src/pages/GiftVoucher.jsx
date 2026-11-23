@@ -7,7 +7,7 @@ import Reveal from '../components/Reveal.jsx'
 import { Waves } from 'lucide-react'
 import { buildSrcSet } from '../utils/responsiveImage.js'
 import { images } from '../data/images.js'
-import { CONTACT, SITE_URL } from '../config/site.js'
+import { SITE_URL } from '../config/site.js'
 import { trackConversion, trackEvent } from '../lib/analytics.js'
 import { sendRequestEmail } from '../lib/sendRequest.js'
 
@@ -110,9 +110,6 @@ export default function GiftVoucher() {
   const [honeypot, setHoneypot] = useState('')
   const [phoneError, setPhoneError] = useState('')
   const [hasStartedForm, setHasStartedForm] = useState(false)
-  const [whatsappDeepLink, setWhatsappDeepLink] = useState('')
-  const [whatsappPayload, setWhatsappPayload] = useState('')
-  const [copyFeedback, setCopyFeedback] = useState('')
   const phoneInputRef = useRef(null)
 
   const inputClass =
@@ -186,37 +183,8 @@ export default function GiftVoucher() {
     }
     setPhoneError('')
 
-    const fullName = `${contact.firstName} ${contact.lastName}`.trim()
-
     const packageByValue = new Map(b.packages.map((pkg) => [pkg.value, pkg.label]))
 
-    const giftLines = giftSurfers
-      .map((surfer, index) => {
-        const surferName = `${surfer.firstName} ${surfer.lastName}`.trim()
-        return `- ${b.whatsappSurferLine} ${index + 1}: ${surferName}, ${packageByValue.get(surfer.packageValue)}`
-      })
-      .join('\n')
-
-    const whatsappMessage = [
-      content.whatsappHeader,
-      `${b.whatsappContact} ${fullName} - ${fullPhone}`,
-      `${b.whatsappDate} ${b.giftVoucherDateValue}`,
-      `${b.whatsappGiftVoucher} ${b.giftVoucherYes}`,
-      `${b.whatsappGiftVisual} ${needsGiftVisual ? b.giftVoucherYes : b.giftVoucherNo}`,
-      `${b.whatsappTotal} ${total}€`,
-      b.whatsappPayment,
-      '',
-      b.whatsappSurfers,
-      giftLines,
-      '',
-      b.whatsappClosing,
-    ].join('\n')
-
-    const encoded = encodeURIComponent(whatsappMessage)
-    const whatsappUrl = `https://wa.me/${CONTACT.whatsappNumber}?text=${encoded}`
-    setWhatsappPayload(whatsappMessage)
-    setWhatsappDeepLink(whatsappUrl)
-    setCopyFeedback('')
 
     setSending(true)
     setSuccessMessage('')
@@ -235,7 +203,6 @@ export default function GiftVoucher() {
       })),
       total,
       giftVisual: needsGiftVisual,
-      summary: whatsappMessage,
       website: honeypot,
     })
     setSending(false)
@@ -587,33 +554,6 @@ export default function GiftVoucher() {
                   {successMessage}
                 </p>
                 <div className="mt-4 flex flex-wrap gap-3">
-                  {whatsappDeepLink && (
-                    <a
-                      href={whatsappDeepLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => trackEvent('click_whatsapp', { source: 'gift_voucher_success_box', target: whatsappDeepLink })}
-                      className="inline-flex items-center justify-center rounded-full bg-green-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-green-700"
-                    >
-                      {sendFailed ? t.ui.giftVoucher.sendOnWhatsapp : t.ui.giftVoucher.openWhatsapp}
-                    </a>
-                  )}
-                  {whatsappPayload && (
-                    <button
-                      type="button"
-                      onClick={async () => {
-                        try {
-                          await navigator.clipboard.writeText(whatsappPayload)
-                          setCopyFeedback(t.ui.giftVoucher.messageCopied)
-                        } catch {
-                          setCopyFeedback(t.ui.giftVoucher.unableToCopyAutomatically)
-                        }
-                      }}
-                      className="inline-flex items-center justify-center rounded-full border border-royalBlue px-4 py-2 text-sm font-bold text-royalBlue transition hover:bg-royalBlue hover:text-white"
-                    >
-                      {t.ui.giftVoucher.copyMessage}
-                    </button>
-                  )}
                   <a
                     href={`tel:${primaryPhone.tel}`}
                     onClick={() => trackEvent('click_phone', { target: `tel:${primaryPhone.tel}`, source: 'gift_voucher_success_box' })}
@@ -622,9 +562,6 @@ export default function GiftVoucher() {
                     {content.callCta}
                   </a>
                 </div>
-                {copyFeedback && (
-                  <p className="mt-3 text-xs font-semibold text-royalBlue/80">{copyFeedback}</p>
-                )}
               </Reveal>
             )}
           </form>

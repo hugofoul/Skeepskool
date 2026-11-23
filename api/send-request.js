@@ -52,12 +52,10 @@ export default async function handler(req, res) {
     ['Total', `${total} €`],
     ['Langue du site', text(data.lang, 5).toUpperCase()],
   ]
-  const summary = text(data.summary, 6000)
   const html = `<div style="font-family:Arial,sans-serif;color:#1a1a1a;max-width:600px">
 <h2 style="color:#002654">${type === 'gift' ? 'Nouvelle demande de bon cadeau' : 'Nouvelle demande de réservation'}</h2>
 <table cellpadding="6" style="border-collapse:collapse;width:100%">${rows.map(([label, value]) => `<tr><td style="border-bottom:1px solid #eee;color:#555;width:42%">${escapeHtml(label)}</td><td style="border-bottom:1px solid #eee;font-weight:bold">${escapeHtml(value)}</td></tr>`).join('')}</table>
 <h3 style="color:#002654">Surfeurs</h3><ol>${surfers.map(([name, pkg]) => `<li>${escapeHtml(name || '(sans nom)')} — ${escapeHtml(pkg)}</li>`).join('')}</ol>
-${summary ? `<h3 style="color:#002654">Message tel que préparé pour WhatsApp</h3><pre style="white-space:pre-wrap;background:#f4f4f4;padding:12px;border-radius:8px;font-family:inherit">${escapeHtml(summary)}</pre>` : ''}
 </div>`
 
   const response = await fetch('https://api.resend.com/emails', {

@@ -108,7 +108,6 @@ $startDate = text($data['startDate'] ?? '', 40);
 $endDate = text($data['endDate'] ?? '', 40);
 $giftVisual = !empty($data['giftVisual']);
 $lang = text($data['lang'] ?? 'fr', 5);
-$summary = text($data['summary'] ?? '', 6000);
 
 $fullName = trim("$firstName $lastName");
 $kind = $type === 'gift' ? 'Bon cadeau' : 'Réservation';
@@ -155,12 +154,8 @@ foreach ($surfers as [$name, $package]) {
     $html .= '<li>' . h($name !== '' ? $name : '(sans nom)') . ' — ' . h($package) . '</li>';
 }
 $html .= '</ol>';
-if ($summary !== '') {
-    $html .= '<h3 style="color:#002654;margin:20px 0 8px">Message tel que préparé pour WhatsApp</h3>';
-    $html .= '<pre style="white-space:pre-wrap;background:#f4f4f4;padding:12px;border-radius:8px;font-family:inherit">' . h($summary) . '</pre>';
-}
 $html .= '<p style="color:#888;font-size:12px;margin-top:20px">Envoyé depuis le formulaire du site leporge-ecoledesurf.com. '
-    . ($email !== '' ? 'Répondez directement à cet e-mail pour écrire au client.' : 'Le client n’a pas indiqué d’e-mail : contactez-le par téléphone ou WhatsApp.')
+    . ($email !== '' ? 'Répondez directement à cet e-mail pour écrire au client.' : 'Le client n’a pas indiqué d’e-mail : contactez-le par téléphone.')
     . '</p></div>';
 
 $textLines = [];

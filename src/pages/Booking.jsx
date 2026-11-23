@@ -6,7 +6,7 @@ import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
-import { CONTACT, SITE_URL } from '../config/site.js'
+import { SITE_URL } from '../config/site.js'
 import { trackConversion, trackEvent } from '../lib/analytics.js'
 import { sendRequestEmail } from '../lib/sendRequest.js'
 
@@ -143,9 +143,6 @@ export default function Booking() {
   const [phoneError, setPhoneError] = useState('')
   const [dateError, setDateError] = useState('')
   const [hasStartedForm, setHasStartedForm] = useState(false)
-  const [whatsappDeepLink, setWhatsappDeepLink] = useState('')
-  const [whatsappPayload, setWhatsappPayload] = useState('')
-  const [copyFeedback, setCopyFeedback] = useState('')
   const formRef = useRef(null)
   const phoneInputRef = useRef(null)
   const startDateInputRef = useRef(null)
@@ -276,40 +273,8 @@ export default function Booking() {
     }
     setDateError('')
 
-    const selectedDate = startDate || b.unknownDate
-    const selectedEndDate = endDate || b.unknownDate
-    const fullName = `${contact.firstName} ${contact.lastName}`.trim()
-
     const packageByValue = new Map(b.packages.map((pkg) => [pkg.value, pkg.label]))
 
-    const surfersLines = surfers
-      .map((surfer, index) => {
-        const surferName = `${surfer.firstName} ${surfer.lastName}`.trim()
-        return `- ${b.whatsappSurferLine} ${index + 1}: ${surferName}, ${packageByValue.get(surfer.packageValue)}`
-      })
-      .join('\n')
-
-    const whatsappMessage = [
-      b.whatsappHeader,
-      `${b.whatsappContact} ${fullName} - ${fullPhone}`,
-      `${b.whatsappDate} ${selectedDate}`,
-      `${b.whatsappEndDate || (t.ui.booking.preferredEndDate)} ${selectedEndDate}`,
-      `${b.whatsappGiftVoucher} ${b.giftVoucherNo}`,
-      `${b.whatsappGiftVisual} ${b.giftVoucherNo}`,
-      `${b.whatsappTotal} ${total}€`,
-      b.whatsappPayment,
-      '',
-      b.whatsappSurfers,
-      surfersLines,
-      b.whatsappCallWeek,
-      b.whatsappClosing,
-    ].join('\n')
-
-    const encoded = encodeURIComponent(whatsappMessage)
-    const whatsappUrl = `https://wa.me/${CONTACT.whatsappNumber}?text=${encoded}`
-    setWhatsappPayload(whatsappMessage)
-    setWhatsappDeepLink(whatsappUrl)
-    setCopyFeedback('')
 
     setSending(true)
     setSuccessMessage('')
@@ -329,7 +294,6 @@ export default function Booking() {
       total,
       startDate,
       endDate,
-      summary: whatsappMessage,
       website: honeypot,
     })
     setSending(false)
@@ -676,33 +640,6 @@ export default function Booking() {
                   {successMessage}
                 </p>
                 <div className="mt-4 flex flex-wrap gap-3">
-                  {whatsappDeepLink && (
-                    <a
-                      href={whatsappDeepLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => trackEvent('click_whatsapp', { source: 'booking_success_box', target: whatsappDeepLink })}
-                      className="inline-flex items-center justify-center rounded-full bg-green-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-green-700"
-                    >
-                      {sendFailed ? t.ui.booking.sendOnWhatsapp : t.ui.booking.openWhatsapp}
-                    </a>
-                  )}
-                  {whatsappPayload && (
-                    <button
-                      type="button"
-                      onClick={async () => {
-                        try {
-                          await navigator.clipboard.writeText(whatsappPayload)
-                          setCopyFeedback(t.ui.booking.messageCopied)
-                        } catch {
-                          setCopyFeedback(t.ui.booking.unableToCopyAutomatically)
-                        }
-                      }}
-                      className="inline-flex items-center justify-center rounded-full border border-royalBlue px-4 py-2 text-sm font-bold text-royalBlue transition hover:bg-royalBlue hover:text-white"
-                    >
-                      {t.ui.booking.copyMessage}
-                    </button>
-                  )}
                   <a
                     href={`tel:${primaryPhone.tel}`}
                     onClick={() => trackEvent('click_phone', { target: `tel:${primaryPhone.tel}`, source: 'booking_success_box' })}
@@ -711,9 +648,6 @@ export default function Booking() {
                     {t.ui.booking.callTheSchool}
                   </a>
                 </div>
-                {copyFeedback && (
-                  <p className="mt-3 text-xs font-semibold text-royalBlue/80">{copyFeedback}</p>
-                )}
               </Reveal>
             )}
           </form>
