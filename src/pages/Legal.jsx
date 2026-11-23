@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
 import Reveal from '../components/Reveal.jsx'
@@ -5,26 +6,16 @@ import SEO from '../components/SEO.jsx'
 import { images } from '../data/images.js'
 
 export default function Legal() {
-  const { t, lang } = useLang()
+  const { t, path } = useLang()
   const l = t.legal
 
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? 'Mentions légales' : (lang === 'de' ? 'Impressum' : 'Legal Notice')}
-        path={lang === 'fr' ? '/mentions-legales' : '/legal'}
-        alternates={[
-          { hrefLang: 'fr-FR', path: '/mentions-legales' },
-          { hrefLang: 'en', path: '/legal' },
-          { hrefLang: 'de', path: '/legal' },
-          { hrefLang: 'x-default', path: '/mentions-legales' },
-        ]}
+        title={t.ui.legal.legalNotice}
+        routeKey="legal"
         description={
-          lang === 'fr'
-            ? 'Mentions légales, politique de confidentialité et informations réglementaires de Skeepskool.'
-            : (lang === 'de'
-              ? 'Impressum, Datenschutzhinweise und rechtliche Informationen von Skeepskool.'
-              : 'Legal notice, privacy policy and regulatory information for Skeepskool.')
+          t.ui.legal.legalNoticePrivacyPolicy
         }
       />
       <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
@@ -48,6 +39,11 @@ export default function Legal() {
                 </div>
               </Reveal>
             ))}
+            <Reveal className="border-l-4 border-royalBlue pl-6">
+              <Link to={path('privacy')} className="text-sm font-bold text-royalBlue underline hover:text-red">
+                {l.privacyLink}
+              </Link>
+            </Reveal>
           </div>
         </div>
       </section>

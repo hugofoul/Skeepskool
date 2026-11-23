@@ -11,18 +11,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/images/widget.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content="#002654" />
-    <link rel="preload" as="image" href="/images/vague_avec_planche_hero.jpg" fetchpriority="high" />
-    <link rel="preload" as="image" href="/images/optimized/fondpages-1600.webp" fetchpriority="high" />
+    <link rel="preload" as="image" fetchpriority="high" imagesrcset="/images/optimized/fondpages-400.webp 400w, /images/optimized/fondpages-800.webp 800w, /images/optimized/fondpages-1200.webp 1200w, /images/optimized/fondpages-1600.webp 1600w, /images/optimized/fondpages-2000.webp 2000w" imagesizes="100vw" />
 
-    <!-- SEO base -->
-    <title>Skeepskool — École de surf à Le Porge Océan | 50 min de Bordeaux</title>
-    <meta name="description" content="École de surf labellisée FFS à Le Porge Océan, Gironde. Cours collectifs et particuliers dès 5 ans, location de matériel. Moniteurs diplômés d'État. 50 min de Bordeaux." />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://www.leporge-ecoledesurf.com/" />
-    <link rel="alternate" hreflang="fr-FR" href="https://www.leporge-ecoledesurf.com/" />
-    <link rel="alternate" hreflang="en" href="https://www.leporge-ecoledesurf.com/" />
-    <link rel="alternate" hreflang="de" href="https://www.leporge-ecoledesurf.com/" />
-    <link rel="alternate" hreflang="x-default" href="https://www.leporge-ecoledesurf.com/" />
+    <!-- Titre, description, canonical, hreflang et Open Graph : gérés page par page par src/components/SEO.jsx -->
 
     <!-- Géolocalisation locale -->
     <meta name="geo.region" content="FR-33" />
@@ -30,38 +21,6 @@
     <meta name="geo.position" content="44.8965;-1.1057" />
     <meta name="ICBM" content="44.8965, -1.1057" />
 
-    <script>
-      (function () {
-        var gaId = '%VITE_GA4_MEASUREMENT_ID%'
-        if (!gaId || gaId.indexOf('VITE_') !== -1) return
-        window.dataLayer = window.dataLayer || []
-        window.gtag = function () {
-          window.dataLayer.push(arguments)
-        }
-        window.gtag('js', new Date())
-        window.gtag('config', gaId, { send_page_view: false, anonymize_ip: true })
-
-        var script = document.createElement('script')
-        script.async = true
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId
-        document.head.appendChild(script)
-      })()
-    </script>
-
-    <!-- Open Graph par défaut -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.leporge-ecoledesurf.com/" />
-    <meta property="og:title" content="Skeepskool — École de surf à Le Porge Océan" />
-    <meta property="og:description" content="Cours de surf dès 5 ans, encadrés par des moniteurs diplômés. Location de matériel. Plage du Porge Océan, 50 min de Bordeaux." />
-    <meta property="og:image" content="https://www.leporge-ecoledesurf.com/og-skeepskool.jpg" />
-    <meta property="og:locale" content="fr_FR" />
-    <meta property="og:locale:alternate" content="en_GB" />
-    <meta property="og:locale:alternate" content="de_DE" />
-    <meta property="og:site_name" content="Skeepskool" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Skeepskool — École de surf à Le Porge Océan" />
-    <meta name="twitter:description" content="Cours de surf dès 5 ans, encadrés par des moniteurs diplômés. Location de matériel. Plage du Porge Océan, 50 min de Bordeaux." />
-    <meta name="twitter:image" content="https://www.leporge-ecoledesurf.com/og-skeepskool.jpg" />
 
     <!-- JSON-LD : LocalBusiness -->
     <script type="application/ld+json">

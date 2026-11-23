@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { trackConversion, trackEvent } from '../lib/analytics.js'
+import { routeFromPath } from '../config/routes.js'
 
 /**
  * Primary red CTA → turns yellow with royalBlue text on hover.
@@ -36,13 +37,14 @@ export default function CTAButton({
       trackEvent('click_whatsapp', { target })
     }
 
-    if (target === '/reserver' || target === '/book') {
+    const isBooking = routeFromPath(target)?.key === 'booking'
+
+    if (isBooking) {
       trackEvent('click_booking_cta', { target })
     }
 
     if (
-      target === '/reserver' ||
-      target === '/book' ||
+      isBooking ||
       target.startsWith('tel:') ||
       target.includes('wa.me')
     ) {

@@ -1,312 +1,74 @@
 # Skeepskool — École de Surf Le Porge Océan
 
-Site web officiel de **Skeepskool**, école de surf labellisée FFS à Le Porge Océan, Gironde.
-
-> 🏄 Cours collectifs et particuliers dès 5 ans | Location de matériel | À 50 min de Bordeaux
-
----
-
-## 🎯 À propos du projet
-
-Site vitrine moderne et bilingue (FR/EN) avec :
-- Présentation de l'école et l'équipe
-- Formules et tarifs des cours
-- Planning en temps réel
-- Système de réservation
-- Localisation et accès
-- Horaires et infos pratiques
-
-**Stack tech** : React 18 + React Router + Tailwind CSS + Vite
+Site de **Skeepskool**, école de surf labellisée FFS à Le Porge Océan (Gironde).
+Trilingue (français, anglais, allemand) · React 18 + React Router + Tailwind CSS + Vite.
 
 ---
 
-## ⚙️ Installation & Démarrage
+## Démarrer en local
 
-### Prérequis
-- Node.js 18+ 
-- npm ou yarn
-
-### Setup local
+Prérequis : Node.js 20+ et Google Chrome (pour le pré-rendu).
 
 ```bash
-# Clone le repo
-git clone <repo-url>
-cd Skeepksool
-
-# Installe les dépendances
 npm install
-
-# Lance le serveur de dev (http://localhost:5173)
-npm run dev
-
-# Build pour production
-npm run build
-
-# Préview du build
-npm run preview
-
-# Lint le code
+npm run dev       # http://localhost:5173 (optimise les images au premier lancement)
+npm run build     # images + build Vite + pré-rendu des pages dans dist/
+npm run preview   # aperçu du build
 npm run lint
-npm run lint:fix
 ```
 
----
+## Comment le site est organisé
 
-## 📁 Structure du projet
+| Dossier / fichier | Rôle |
+| --- | --- |
+| `src/pages/` | Une page par fichier |
+| `src/components/` | Menu, pied de page, bandeau cookies, blocs réutilisables |
+| `src/translations/fr.js`, `en.js`, `de.js` | **Tous les textes**, dans les 3 langues |
+| `src/config/routes.js` | Adresse de chaque page dans chaque langue (`/cours`, `/en/lessons`, `/de/kurse`…) |
+| `src/config/site.js` | Téléphones, réseaux sociaux, adresse du site |
+| `src/data/images.js` | Images utilisées par les pages |
+| `public/images/galerie/` | **Photos de la galerie** (voir le README de ce dossier) |
+| `public/.htaccess` | Configuration OVH : redirections des anciennes adresses, cache, compression |
+| `public/api/send-request.php` | Envoi du récapitulatif des réservations par e-mail (Resend) sur OVH |
+| `api/send-request.js` | Même chose sur Vercel (phase de test) |
+| `scripts/optimize-images.mjs` | Fabrique les versions WebP des images + la liste de la galerie |
+| `scripts/prerender.mjs` | Pré-rendu HTML de chaque page + `sitemap.xml` |
 
-```
-Skeepksool/
-├── public/
-│   ├── images/              # Toutes les photos du site
-│   │   ├── LISEZ-MOI.md     # Convention de nommage
-│   │   └── Plan-ecole-de-surf-Skeepskool-Le-Porge.png
-│   ├── robots.txt
-│   └── sitemap.xml
-├── src/
-│   ├── App.jsx              # Routeur principal
-│   ├── main.jsx             # Entry point React
-│   ├── index.css            # Styles globaux
-│   ├── components/          # Composants réutilisables
-│   │   ├── Navbar.jsx
-│   │   ├── Footer.jsx
-│   │   ├── CTAButton.jsx
-│   │   ├── PageHero.jsx
-│   │   ├── SEO.jsx
-│   │   └── ...
-│   ├── pages/               # Pages du site (route-mapped)
-│   │   ├── Home.jsx
-│   │   ├── School.jsx
-│   │   ├── Lessons.jsx
-│   │   ├── Schedule.jsx
-│   │   ├── Rental.jsx
-│   │   ├── Around.jsx
-│   │   ├── Contact.jsx
-│   │   ├── Booking.jsx
-│   │   └── Legal.jsx
-│   ├── hooks/               # Hooks personnalisés
-│   │   ├── useLang.js       # Gestion langue FR/EN
-│   │   ├── useSurfConditions.js
-│   │   └── useWeeklySchedule.js
-│   ├── context/
-│   │   └── LanguageContext.jsx
-│   ├── data/
-│   │   └── images.js        # Catalogue d'images du site
-│   ├── config/
-│   │   └── site.js          # Config globale (phones, URLs, etc.)
-│   └── translations/
-│       ├── fr.js            # Contenu français
-│       └── en.js            # Contenu anglais
-├── vite.config.js
-├── tailwind.config.js
-├── postcss.config.js
-├── eslint.config.js
-└── package.json
-```
+### Langues
+Le français est à la racine, l'anglais sous `/en`, l'allemand sous `/de`.
+Pour modifier un texte : le chercher dans `src/translations/`.
+Pour un lien vers une page dans le code : `path('booking')` (fourni par `useLang()`), jamais une adresse écrite à la main.
 
----
+### Images
+- **Galerie** : déposer les photos dans `public/images/galerie/` (ordre = nom de fichier). Rien d'autre à faire.
+- Les versions légères (WebP 400 → 2000 px) sont créées automatiquement par `npm run dev` / `npm run build`
+  dans `public/images/optimized/` ; ce dossier n'est pas dans Git.
 
-## 🌐 Routes disponibles
+### SEO
+Chaque page a son titre, sa description, son adresse canonique et ses balises hreflang (FR/EN/DE),
+générés par `src/components/SEO.jsx`. Au build, chaque page est pré-rendue en HTML et `sitemap.xml` est généré.
 
-| Route | Page | FR | EN |
-|-------|------|----|----|
-| `/` | Accueil | ✓ | ✓ |
-| `/ecole` | L'école | ✓ | `/school` |
-| `/cours` | Formules & Tarifs | ✓ | `/lessons` |
-| `/reserver` | Réservation | ✓ | `/book` |
-| `/horaires` | Planning | ✓ | `/schedule` |
-| `/location` | Location matériel | ✓ | `/rental` |
-| `/autour` | Autour de nous | ✓ | `/around` |
-| `/contact` | Infos pratiques | ✓ | - |
-| `/mentions-legales` | Mentions légales | ✓ | `/legal` |
+## E-mails de réservation (Resend)
 
----
+Les formulaires « Réserver » et « Bon cadeau » envoient un récapitulatif à skeepskool@hotmail.com
+(offre gratuite de Resend : 3 000 e-mails/mois, 100/jour), puis proposent WhatsApp en complément.
+Si l'envoi échoue, le formulaire propose WhatsApp avec le message déjà prêt.
 
-## 🖼️ Gestion des images
+1. Créer un compte sur https://resend.com **avec l'adresse skeepskool@hotmail.com**, puis une clé API.
+2. Vercel : variable d'environnement `RESEND_API_KEY`. OVH : secret GitHub `RESEND_API_KEY` (voir ci-dessous).
+3. Plus tard (recommandé) : vérifier le domaine leporge-ecoledesurf.com dans Resend (enregistrements DNS chez OVH)
+   et utiliser un expéditeur `reservations@leporge-ecoledesurf.com` (`MAIL_FROM`).
 
-Toutes les images du site se trouvent dans `/public/images/`.
+## Déploiement
 
-**Ajouter une image** :
-1. Placer le fichier dans `/public/images/`
-2. Respecter la convention : nom ASCII, sans accents ni espaces
-3. Ajouter la référence dans `src/data/images.js`
-4. Utiliser l'image via `images.nomDeLImage`
+- **Phase de test : Vercel** (`vercel.json`). Sans Chrome sur Vercel, les pages ne sont pas pré-rendues :
+  le site fonctionne normalement, seul le bénéfice SEO du pré-rendu manque.
+- **Mise en ligne : OVH** via GitHub Actions (`.github/workflows/deploy-ovh.yml`) : construit le site
+  (avec pré-rendu) et l'envoie en FTP. Lancement manuel depuis l'onglet *Actions* tant que le site
+  n'est pas en production ; secrets à créer : `OVH_FTP_SERVER`, `OVH_FTP_USERNAME`, `OVH_FTP_PASSWORD`, `RESEND_API_KEY`.
+- Le jour J : soumettre `https://www.leporge-ecoledesurf.com/sitemap.xml` dans Google Search Console
+  et surveiller les erreurs 404 pendant quelques semaines.
 
-**Exemple** :
-```js
-// src/data/images.js
-export const images = {
-  homeHero: '/images/vague_avec_planche_hero.jpg',
-  schoolSpot: '/images/dune-foret.jpg',
-  // ...
-}
-```
+## Contact
 
-Voir `public/images/LISEZ-MOI.md` pour les détails et formats recommandés.
-
----
-
-## 🌍 Multilingue (FR/EN)
-
-Le site bascule automatiquement selon la route :
-- `/route` → Français
-- `/route-en` ou `/route` en anglais → Anglais
-
-**Modifier le contenu** :
-- Français : `src/translations/fr.js`
-- Anglais : `src/translations/en.js`
-
-Utilisation dans les composants :
-```jsx
-import { useLang } from '../hooks/useLang.js'
-
-export default function MyComponent() {
-  const { t, lang } = useLang()
-  return <h1>{t.home.heroTitle}</h1>
-}
-```
-
----
-
-## ⚙️ Configuration globale
-
-**Site config** (`src/config/site.js`) :
-- Numéros de téléphone
-- Email
-- URLs externes (WhatsApp, socials, Google Maps)
-- Informations de contact
-
-Exemple d'utilisation :
-```jsx
-import { CONTACT, SOCIAL } from '../config/site.js'
-<a href={`tel:${CONTACT.phonePrimary}`}>{CONTACT.phonePrimaryDisplay}</a>
-```
-
----
-
-## 🔍 SEO
-
-Le site utilise `react-helmet-async` pour gérer :
-- Titres de page
-- Meta descriptions
-- Alternates hrefLang (bilingue)
-- Sitemap et robots.txt
-
-Exemple :
-```jsx
-<SEO
-  title="Accueil"
-  path="/"
-  description="École de surf labellisée FFS à Le Porge Océan..."
-  alternates={[
-    { hrefLang: 'fr-FR', path: '/' },
-    { hrefLang: 'en', path: '/' },
-  ]}
-/>
-```
-
----
-
-## 📱 Design Responsive
-
-Le site est construit avec **Tailwind CSS** et est entièrement responsive :
-- Mobile (< 640px)
-- Tablette (640px – 1024px)
-- Desktop (> 1024px)
-
-Breakpoints Tailwind : `sm`, `md`, `lg`, `xl`, `2xl`
-
----
-
-## 🎨 Thème & Couleurs
-
-Couleurs personnalisées dans `tailwind.config.js` :
-- `royalBlue` : Bleu principal
-- `red` : Rouge accent (CTA)
-- `yellow` : Jaune accent
-- `dark` : Textes sombres
-- `lightGray` : Fond clair
-
----
-
-## 🚀 Déploiement
-
-**Build pour production** :
-```bash
-npm run build
-```
-
-Les fichiers générés se trouvent dans le dossier `dist/`.
-
-Le site est hébergé sur **Vercel** (configuration dans `vercel.json`).
-
-Pour redéployer :
-```bash
-git push origin main
-```
-
-Vercel redéploiera automatiquement.
-
----
-
-## 📋 Commandes utiles
-
-```bash
-# Dev mode avec hot reload
-npm run dev
-
-# Build une fois
-npm run build
-
-# Vérifier et corriger le lint
-npm run lint:fix
-
-# Voir le build en local
-npm run preview
-```
-
----
-
-## 🔗 Liens importants
-
-- **Site en ligne** : https://www.leporge-ecoledesurf.com
-- **Vercel Dashboard** : https://vercel.com
-- **Google Maps** : Intégré dans Contact
-- **WhatsApp Community** : Lien dans le site
-- **Réseaux sociaux** : Instagram, Facebook (links dans config)
-
----
-
-## 📝 Notes importantes
-
-- **Horaires** : Ouvert d'avril à novembre (9h–19h)
-- **Label** : École Française de Surf (FFS)
-- **Planning** : Consulter WhatsApp pour horaires en temps réel
-- **Localisation** : 40m au nord de l'accès principal, Plage Centrale, Le Porge Océan
-
----
-
-## 👥 Équipe
-
-- **Pierre** : Le boss
-- **Mariane** : La maman de l'équipe
-- **Manua** : Le prof cool (Tahiti)
-- **Hugo** : Le gardien de la cabane
-
----
-
-## 📧 Support & Contact
-
-- **Email** : skeepskool@hotmail.com
-- **Téléphone** : +33 6 70 60 84 26 · +33 6 50 52 34 75
-- **Instagram** : @skeepskool
-- **Facebook** : @skeepskool
-
----
-
-## 📄 Licence
-
-Projet privé © Skeepskool 2024+
-
----
-
-**Dernière mise à jour** : 23 juin 2026
+skeepskool@hotmail.com · +33 6 70 60 84 26 · +33 6 50 52 34 75 · Instagram/Facebook @skeepskool

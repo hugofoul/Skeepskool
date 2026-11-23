@@ -6,45 +6,16 @@ import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
+import { buildSrcSet } from '../utils/responsiveImage.js'
 
 const STEP_NUMBERS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 export default function SessionDetails() {
-  const { lang } = useLang()
-  const lessonsPath = lang === 'fr' ? '/cours' : '/lessons'
+  const { t, path } = useLang()
+  const lessonsPath = path('lessons')
   const [activeIndex, setActiveIndex] = useState(null)
 
-  const copy = {
-    fr: {
-      title: 'Séance type',
-      subtitle: 'Le déroulé complet d\'une séance, étape par étape.',
-      intro: 'Voici les visuels détaillés de chaque étape pour comprendre précisément comment se déroule une séance chez Skeepskool.',
-      back: 'Retour aux cours',
-      cta: 'Réserver une séance',
-      ctaPath: '/reserver',
-      stepLabel: 'Étape',
-    },
-    en: {
-      title: 'Typical Session',
-      subtitle: 'Full lesson flow, step by step.',
-      intro: 'Here are the detailed visuals for each step so you can clearly understand how a session works at Skeepskool.',
-      back: 'Back to lessons',
-      cta: 'Book a session',
-      ctaPath: '/book',
-      stepLabel: 'Step',
-    },
-    de: {
-      title: 'Typische Session',
-      subtitle: 'Der komplette Ablauf, Schritt für Schritt.',
-      intro: 'Hier sind die detaillierten Visuals für jeden Schritt, damit Sie den Ablauf einer Session bei Skeepskool genau verstehen.',
-      back: 'Zurück zu den Kursen',
-      cta: 'Session buchen',
-      ctaPath: '/book',
-      stepLabel: 'Schritt',
-    },
-  }
-
-  const c = copy[lang] || copy.fr
+  const c = t.sessionDetails
 
   useEffect(() => {
     if (activeIndex === null) return undefined
@@ -70,15 +41,8 @@ export default function SessionDetails() {
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? 'Séance type' : (lang === 'de' ? 'Typische Session' : 'Typical Session')}
-        path={lang === 'fr' ? '/seance-type' : '/session-details'}
-        lang={lang}
-        alternates={[
-          { hrefLang: 'fr-FR', path: '/seance-type' },
-          { hrefLang: 'en', path: '/session-details' },
-          { hrefLang: 'de', path: '/session-details' },
-          { hrefLang: 'x-default', path: '/seance-type' },
-        ]}
+        title={t.ui.sessionDetails.typicalSession}
+        routeKey="session"
         description={c.intro}
       />
 
@@ -88,7 +52,7 @@ export default function SessionDetails() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <p className="max-w-3xl text-base leading-relaxed text-dark/75 sm:text-lg">
-              {lang === 'fr' ? <span className="md:whitespace-nowrap">{c.intro}</span> : c.intro}
+              {c.intro}
             </p>
           </Reveal>
 
@@ -112,7 +76,9 @@ export default function SessionDetails() {
                   aria-label={`${c.stepLabel} ${step} — zoom`}
                 >
                   <img
-                    src={`/images/séance_type/${step}.png`}
+                    src={`/images/seance-type/${step}.png`}
+                    srcSet={buildSrcSet(`/images/seance-type/${step}.png`)}
+                    sizes="(max-width: 640px) 100vw, 33vw"
                     alt={`${c.stepLabel} ${step}`}
                     loading="lazy"
                     className="h-auto w-full object-contain"
@@ -146,7 +112,7 @@ export default function SessionDetails() {
           className="fixed inset-0 z-[70] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
-          aria-label={lang === 'fr' ? 'Visionneuse étape' : (lang === 'de' ? 'Schrittanzeige' : 'Step viewer')}
+          aria-label={t.ui.sessionDetails.stepViewer}
           onClick={() => setActiveIndex(null)}
         >
           <div
@@ -163,7 +129,9 @@ export default function SessionDetails() {
 
             <div className="relative flex items-center justify-center bg-black p-3 sm:p-5">
               <img
-                src={`/images/séance_type/${STEP_NUMBERS[activeIndex]}.png`}
+                src={`/images/seance-type/${STEP_NUMBERS[activeIndex]}.png`}
+                srcSet={buildSrcSet(`/images/seance-type/${STEP_NUMBERS[activeIndex]}.png`)}
+                sizes="100vw"
                 alt={`${c.stepLabel} ${STEP_NUMBERS[activeIndex]}`}
                 className="block max-h-[85vh] w-auto max-w-full object-contain"
               />

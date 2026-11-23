@@ -6,11 +6,12 @@ import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
 import { SITE_URL } from '../config/site.js'
+import { buildSrcSet } from '../utils/responsiveImage.js'
 
 const guideIcons = [Waves, ShieldQuestion, Info]
 
 export default function Rental() {
-  const { t, lang } = useLang()
+  const { t, path } = useLang()
   const r = t.rental
 
   const parseEuroPrice = (value) => {
@@ -29,13 +30,11 @@ export default function Rental() {
         priceCurrency: 'EUR',
         price: minPrice,
         availability: 'https://schema.org/InStock',
-        url: `${SITE_URL}${lang === 'fr' ? '/location' : '/rental'}`,
+        url: `${SITE_URL}${path('rental')}`,
         itemOffered: {
           '@type': 'Service',
           name: row.item,
-          description: lang === 'fr'
-            ? `Location à partir de ${minPrice}€.`
-            : (lang === 'de' ? `Verleih ab ${minPrice}€.` : `Rental from €${minPrice}.`),
+          description: t.ui.rental.rentalFrom.replace('{price}', minPrice),
         },
       }
     })
@@ -52,27 +51,9 @@ export default function Rental() {
       },
     }))
 
-  const rentalPath = lang === 'fr' ? '/location' : '/rental'
-  const rentalName = lang === 'fr' ? 'Location de matériel' : (lang === 'de' ? 'Materialverleih' : 'Equipment Rental')
+  const rentalPath = path('rental')
+  const rentalName = t.ui.rental.equipmentRental
   const rentalStructuredData = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: lang === 'fr' ? 'Accueil' : (lang === 'de' ? 'Startseite' : 'Home'),
-          item: `${SITE_URL}/`,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: rentalName,
-          item: `${SITE_URL}${rentalPath}`,
-        },
-      ],
-    },
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
@@ -95,20 +76,9 @@ export default function Rental() {
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? 'Location de matériel' : (lang === 'de' ? 'Materialverleih' : 'Equipment Rental')}
-        path={lang === 'fr' ? '/location' : '/rental'}
-        lang={lang}
-        alternates={[
-          { hrefLang: 'fr-FR', path: '/location' },
-          { hrefLang: 'en', path: '/rental' },
-          { hrefLang: 'de', path: '/rental' },
-          { hrefLang: 'x-default', path: '/location' },
-        ]}
-        description={lang === 'fr'
-          ? "Location de planches de surf, bodyboards et combinaisons à la sortie de la plage du Porge Océan. À partir de 10€. Créneau sunset disponible."
-          : (lang === 'de'
-            ? 'Verleih von Surfboards, Bodyboards und Neoprenanzügen direkt am Strand von Le Porge Océan. Ab 10€. Sunset-Slot verfügbar.'
-            : "Surfboard, bodyboard and wetsuit rental right by the beach at Le Porge Océan. From €10. Sunset slot available.")}
+        title={t.ui.rental.equipmentRental}
+        routeKey="rental"
+        description={t.ui.rental.surfboardBodyboardAndWetsuit}
         structuredData={rentalStructuredData}
       />
       <PageHero title={r.heroTitle} subtitle={r.heroSubtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
@@ -136,13 +106,15 @@ export default function Rental() {
             </h2>
             <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
             <p className="mx-auto mt-4 max-w-3xl text-center text-sm font-semibold text-dark/80 sm:text-base">
-              {r.guideAdvice || (lang === 'fr' ? 'Notre équipe saura vous conseiller la planche la plus adaptée aux conditions et à votre niveau' : '')}
+              {r.guideAdvice || (t.ui.rental.guideAdvice)}
             </p>
           </Reveal>
           <Reveal className="mx-auto mt-8 max-w-5xl overflow-hidden rounded-2xl shadow-md ring-1 ring-black/10">
             <img
-              src="/images/planches_loc.JPG"
-              alt={lang === 'fr' ? 'Planches de location' : (lang === 'de' ? 'Leih-Surfboards' : 'Rental surfboards')}
+              src={images.rentalBoards}
+              srcSet={buildSrcSet(images.rentalBoards)}
+              sizes="(max-width: 1024px) 100vw, 1024px"
+              alt={t.ui.rental.rentalSurfboards}
               className="h-64 w-full object-cover sm:h-80"
               loading="lazy"
             />
@@ -175,8 +147,8 @@ export default function Rental() {
                 </p>
               </div>
             ) : null}
-            <CTAButton to="/contact" className="text-lg">
-              {r.cta || (lang === 'fr' ? 'Nous contacter' : (lang === 'de' ? 'Kontakt' : 'Contact us'))}
+            <CTAButton to={path('contact')} className="text-lg">
+              {r.cta || (t.ui.rental.contactUs)}
             </CTAButton>
           </div>
         </div>
@@ -187,7 +159,7 @@ export default function Rental() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <Reveal className="mb-8">
             <h2 className="text-center text-3xl font-black text-royalBlue sm:text-4xl">
-              {lang === 'fr' ? 'Tarifs' : (lang === 'de' ? 'Preise' : 'Pricing')}
+              {t.ui.rental.pricing}
             </h2>
             <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
           </Reveal>

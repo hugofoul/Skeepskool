@@ -30,23 +30,17 @@ const MAP_SRC =
   'https://www.google.com/maps?q=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge&z=14&output=embed'
 
 export default function Contact() {
-  const { t, lang } = useLang()
+  const { t, path } = useLang()
   const [isMapPlanOpen, setIsMapPlanOpen] = useState(false)
   const [openFaqIndex, setOpenFaqIndex] = useState(0)
   const c = t.contact
   const a = t.around
   const faqItems = t.home?.practical?.faqItems || []
-  const faqTitle = lang === 'fr' ? 'Questions fréquentes' : (lang === 'de' ? 'Häufige Fragen' : 'Frequently asked questions')
-  const mapPlanAriaLabel = lang === 'fr'
-    ? 'Ouvrir le plan d’accès en grand'
-    : (lang === 'de' ? 'Zugangsplan in Grossansicht oeffnen' : 'Open the access map in full size')
-  const mapPlanAlt = lang === 'fr'
-    ? 'Plan explicatif pour localiser l’école de surf Skeepskool'
-    : (lang === 'de' ? 'Uebersichtsplan zur Lage der Surfschule Skeepskool' : 'Location map to find Skeepskool surf school')
-  const mapPlanTitle = lang === 'fr' ? 'Plan d’accès' : (lang === 'de' ? 'Anfahrtsplan' : 'Access map')
-  const mapPlanHint = lang === 'fr'
-    ? 'Cliquez sur l’image pour l’ouvrir en grand.'
-    : (lang === 'de' ? 'Klicke auf das Bild, um es in Grossansicht zu oeffnen.' : 'Click the image to open it full size.')
+  const faqTitle = t.ui.contact.frequentlyAskedQuestions
+  const mapPlanAriaLabel = t.ui.contact.openTheAccessMap
+  const mapPlanAlt = t.ui.contact.locationMapToFind
+  const mapPlanTitle = t.ui.contact.accessMap
+  const mapPlanHint = t.ui.contact.clickTheImageTo
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -62,19 +56,9 @@ export default function Contact() {
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? 'Infos pratiques' : (lang === 'de' ? 'Praktische Infos' : 'Practical Info')}
-        path="/contact"
-        alternates={[
-          { hrefLang: 'fr-FR', path: '/contact' },
-          { hrefLang: 'en', path: '/contact' },
-          { hrefLang: 'de', path: '/contact' },
-          { hrefLang: 'x-default', path: '/contact' },
-        ]}
-        description={lang === 'fr'
-          ? "Comment venir au Porge Océan, horaires d'ouverture, numéros de téléphone, accès bus depuis Bordeaux. École de surf Skeepskool."
-          : (lang === 'de'
-            ? 'Anreise nach Le Porge Océan, Öffnungszeiten, Telefonnummern und Busverbindung ab Bordeaux. Surfschule Skeepskool.'
-            : "How to reach Le Porge Océan, opening hours, phone numbers, bus access from Bordeaux. Skeepskool surf school.")}
+        title={t.ui.contact.practicalInfo}
+        routeKey="contact"
+        description={t.ui.contact.howToReachLe}
       />
       <PageHero title={c.heroTitle} subtitle={c.heroSubtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
 
@@ -263,9 +247,9 @@ export default function Contact() {
                     className="pb-5"
                   >
                     <p className="pr-6 text-sm leading-relaxed text-dark/75 sm:text-base">{item.answer}</p>
-                    {item.ctaLabel && item.ctaPath ? (
+                    {item.ctaLabel && item.ctaRoute ? (
                       <Link
-                        to={item.ctaPath}
+                        to={path(item.ctaRoute)}
                         className="mt-3 inline-flex rounded-full bg-red px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue"
                       >
                         {item.ctaLabel}
@@ -356,7 +340,7 @@ export default function Contact() {
               onClick={() => setIsMapPlanOpen(false)}
               className="absolute right-2 top-2 z-10 rounded-full bg-white/90 px-3 py-1.5 text-sm font-bold text-royalBlue shadow-md hover:bg-white"
             >
-              {lang === 'fr' ? 'Fermer' : (lang === 'de' ? 'Schliessen' : 'Close')}
+              {t.ui.contact.close}
             </button>
             <img
               src={images.contactPlan}

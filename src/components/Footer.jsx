@@ -2,20 +2,21 @@ import { Link } from 'react-router-dom'
 import { Phone, Facebook, Instagram, MapPin } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import { CONTACT, MAPS, SOCIAL } from '../config/site.js'
-import { buildSrcSet } from '../utils/responsiveImage.js'
-import { trackEvent } from '../lib/analytics.js'
+import { images } from '../data/images.js'
+import { trackEvent, openCookieSettings } from '../lib/analytics.js'
 
 export default function Footer() {
-  const { t, lang } = useLang()
+  const { t, path } = useLang()
   const year = new Date().getFullYear()
 
   const links = [
-    { to: '/', label: t.nav.home },
-    { to: '/cours', label: t.nav.lessons },
-    { to: '/location', label: t.nav.rental },
-    { to: lang === 'fr' ? '/bon-cadeau' : '/gift-voucher', label: t.nav.gift },
-    { to: '/album-photo', label: t.nav.photos },
-    { to: '/contact', label: t.nav.contact },
+    { to: path('home'), label: t.nav.home },
+    { to: path('school'), label: t.nav.school },
+    { to: path('lessons'), label: t.nav.lessons },
+    { to: path('rental'), label: t.nav.rental },
+    { to: path('gift'), label: t.nav.gift },
+    { to: path('photos'), label: t.nav.photos },
+    { to: path('contact'), label: t.nav.contact },
   ]
 
   return (
@@ -23,32 +24,30 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-8 pt-12 sm:px-6 md:grid-cols-3 lg:px-8">
         {/* Col 1 — Brand */}
         <div className="flex flex-col items-center text-center">
-          <Link to="/" aria-label="Retour a l'accueil" className="inline-block">
-            <div className="relative h-24 w-80 overflow-visible">
+          <div className="relative h-24 w-80 overflow-visible">
+            <Link to={path('home')} aria-label={t.nav.home} className="block h-full w-full">
               <img
                 src="/logo-skeepskool-2026.svg"
-                srcSet={buildSrcSet('/logo-skeepskool-2026.svg')}
-                sizes="224px"
                 alt="Skeepskool Surfing Le Porge"
                 className="h-full w-full object-contain object-top"
               />
-              <a 
-                href="https://www.surfingfrance.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Fédération Française de Surf"
-                className="absolute left-1/2 top-[106%] -translate-x-1/2 -translate-y-1/2 inline-block"
-              >
-                <img
-                  src="/images/Web - Logo label EFSurf neutre_blanc-paysage.png"
-                  alt={lang === 'fr' ? 'Logo federation EFSurf' : 'EFSurf federation logo'}
-                  className="h-auto w-72 object-contain transition-opacity hover:opacity-80"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </a>
-            </div>
-          </Link>
+            </Link>
+            <a
+              href="https://www.surfingfrance.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Fédération Française de Surf"
+              className="absolute left-1/2 top-[106%] inline-block -translate-x-1/2 -translate-y-1/2"
+            >
+              <img
+                src={images.efsLabel}
+                alt={t.ui.footer.efsurfFederationLogo}
+                className="h-auto w-72 object-contain transition-opacity hover:opacity-80"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+          </div>
         </div>
 
         {/* Col 2 — Quick links */}
@@ -131,9 +130,17 @@ export default function Footer() {
           <p>
             {t.footer.rights} · {year}
           </p>
-          <Link to="/mentions-legales" className="transition-colors hover:text-yellow">
-            {t.footer.legal}
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link to={path('legal')} className="transition-colors hover:text-yellow">
+              {t.footer.legal}
+            </Link>
+            <Link to={path('privacy')} className="transition-colors hover:text-yellow">
+              {t.footer.privacy}
+            </Link>
+            <button type="button" onClick={openCookieSettings} className="transition-colors hover:text-yellow">
+              {t.footer.cookies}
+            </button>
+          </div>
         </div>
       </div>
     </footer>

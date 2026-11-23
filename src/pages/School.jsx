@@ -6,7 +6,7 @@ import SEO from '../components/SEO.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { buildSrcSet, DEFAULT_SIZES, GRID_CARD_SIZES } from '../utils/responsiveImage.js'
 
-const sectionImages = [images.schoolSpot, '/images/img_2093.jpg', images.schoolTeamSection]
+const sectionImages = [images.schoolSpot, images.schoolSession, images.schoolTeamSection]
 const valueIcons = [Waves, Handshake, TrendingUp]
 const teamImages = [teamPhotos.pierre, teamPhotos.mariane, teamPhotos.hugo, teamPhotos.manoa]
 const teamImagePositions = ['object-cover object-top', 'object-cover object-top', 'object-cover object-top', 'object-cover']
@@ -22,7 +22,7 @@ const teamPortraits = {
 }
 
 export default function School() {
-  const { t, lang } = useLang()
+  const { t } = useLang()
   const s = t.school
   const introSections = s.sections.filter((_, index) => index !== 1)
   const introSectionImages = [sectionImages[0], sectionImages[2]]
@@ -30,19 +30,9 @@ export default function School() {
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? "L'École" : (lang === 'de' ? 'Die Schule' : 'The School')}
-        path={lang === 'fr' ? '/ecole' : '/school'}
-        alternates={[
-          { hrefLang: 'fr-FR', path: '/ecole' },
-          { hrefLang: 'en', path: '/school' },
-          { hrefLang: 'de', path: '/school' },
-          { hrefLang: 'x-default', path: '/ecole' },
-        ]}
-        description={lang === 'fr'
-          ? "Découvrez l'école Skeepskool : spot préservé entre dunes et forêt de pins au Porge Océan, moniteurs diplômés, label École Française de Surf."
-          : (lang === 'de'
-            ? 'Entdecke die Surfschule Skeepskool: geschützter Spot zwischen Dünen und Pinienwald in Le Porge Océan, qualifizierte Lehrer, FFS-Label.'
-            : "Discover Skeepskool surf school: a preserved spot between dunes and pine forest at Le Porge Océan, certified instructors, FFS label.")}
+        title={t.ui.school.theSchool}
+        routeKey="school"
+        description={t.ui.school.discoverSkeepskoolSurfSchool}
       />
       <PageHero title={s.heroTitle} subtitle={s.heroSubtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
 
@@ -159,10 +149,10 @@ export default function School() {
           <Reveal className="inline-flex flex-col items-center gap-4 rounded-3xl border-2 border-yellow bg-white px-10 py-10 shadow-md">
             <span className="flex h-24 w-24 items-center justify-center rounded-2xl bg-white p-2 ring-1 ring-black/10">
               <img
-                src="/images/ffs-officiel-portrait.png"
-                srcSet={buildSrcSet('/images/ffs-officiel-portrait.png')}
+                src={images.ffsPortrait}
+                srcSet={buildSrcSet(images.ffsPortrait)}
                 sizes="96px"
-                alt={lang === 'fr' ? 'Logo École Française de Surf' : 'French Surf School logo'}
+                alt={t.ui.school.frenchSurfSchoolLogo}
                 className="h-full w-full object-contain"
                 loading="lazy"
                 decoding="async"

@@ -4,8 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/optimize-images.mjs",
     "dev": "vite",
-    "build": "vite build",
+    "prebuild": "node scripts/optimize-images.mjs",
+    "build": "vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
     "optimize:images": "node scripts/optimize-images.mjs",
     "lint": "eslint .",

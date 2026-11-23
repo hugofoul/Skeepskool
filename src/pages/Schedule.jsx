@@ -1,4 +1,5 @@
 import { useLang } from '../hooks/useLang.js'
+import { usePrimaryPhone } from '../hooks/usePrimaryPhone.js'
 import { useWeeklySchedule } from '../hooks/useWeeklySchedule.js'
 import WeeklyScheduleBoard from '../components/WeeklyScheduleBoard.jsx'
 import PageHero from '../components/PageHero.jsx'
@@ -6,28 +7,18 @@ import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import SEO from '../components/SEO.jsx'
 import { Phone, MessageCircle } from 'lucide-react'
-import { CONTACT } from '../config/site.js'
 import { images } from '../data/images.js'
 
 export default function Schedule() {
   const { t, lang } = useLang()
+  const primaryPhone = usePrimaryPhone()
   const s = t.schedule
   const whatsappUrl = t.whatsappUrl
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(whatsappUrl)}`
-  const whatsappTitle = lang === 'fr'
-    ? 'Recevez les horaires des cours'
-    : (lang === 'de' ? 'WhatsApp-Community beitreten' : 'Join the WhatsApp community')
-  const whatsappText = lang === 'fr'
-    ? 'Pour assurer des cours de qualité aux meilleurs moments, les horaires sont établis généralement chaque jeudi pour la semaine à venir !'
-    : (lang === 'de'
-      ? 'Wir versenden die Kurszeiten in der Regel donnerstags für die kommende Woche. Tritt der WhatsApp-Community bei, um alle Updates zu erhalten.'
-      : 'We usually share lesson schedules on Thursdays for the coming week. Join the WhatsApp community to receive all updates.')
-  const whatsappCta = lang === 'fr'
-    ? 'Ouvrir le lien WhatsApp'
-    : (lang === 'de' ? 'WhatsApp-Link öffnen' : 'Open WhatsApp link')
-  const weeklyTitle = lang === 'fr'
-    ? 'Horaires des cours de la semaine'
-    : (lang === 'de' ? 'Kurszeiten der Woche' : 'Lesson schedule for the week')
+  const whatsappTitle = t.ui.schedule.joinTheWhatsappCommunity
+  const whatsappText = t.ui.schedule.weUsuallyShareLesson
+  const whatsappCta = t.ui.schedule.openWhatsappLink
+  const weeklyTitle = t.ui.schedule.lessonScheduleForThe
   const schedule = useWeeklySchedule({
     lang,
     fallbackDays: s.fallbackDays,
@@ -38,19 +29,9 @@ export default function Schedule() {
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? 'Horaires des cours' : (lang === 'de' ? 'Kurszeiten' : 'Lesson Schedule')}
-        path={lang === 'fr' ? '/horaires' : '/schedule'}
-        alternates={[
-          { hrefLang: 'fr-FR', path: '/horaires' },
-          { hrefLang: 'en', path: '/schedule' },
-          { hrefLang: 'de', path: '/schedule' },
-          { hrefLang: 'x-default', path: '/horaires' },
-        ]}
-        description={lang === 'fr'
-          ? "Planning des cours de surf en direct à Skeepskool. Créneaux collectifs, sessions enfants et cours Sunset au Porge Océan."
-          : (lang === 'de'
-            ? 'Live-Surfstundenplan bei Skeepskool. Gruppen-Slots, Kinder-Sessions und Sunset-Kurse in Le Porge Océan.'
-            : "Live surf lesson schedule at Skeepskool. Group slots, kids sessions and Sunset lessons at Le Porge Océan.")}
+        title={t.ui.schedule.lessonSchedule}
+        routeKey="schedule"
+        description={t.ui.schedule.liveSurfLessonSchedule}
       />
       <PageHero
         title={s.title}
@@ -117,7 +98,7 @@ export default function Schedule() {
                 </div>
               </div>
 
-              <CTAButton href={`tel:${CONTACT.phonePrimary}`} className="shrink-0">
+              <CTAButton href={`tel:${primaryPhone.tel}`} className="shrink-0">
                 {s.callWidgetCta}
               </CTAButton>
             </div>

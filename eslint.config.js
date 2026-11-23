@@ -32,4 +32,11 @@ export default [
       'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
     },
   },
+  {
+    // Build scripts and the Vercel function run in Node.js
+    files: ['scripts/**/*.mjs', 'api/**/*.js', '*.config.js'],
+    languageOptions: {
+      globals: { ...globals.node },
+    },
+  },
 ]

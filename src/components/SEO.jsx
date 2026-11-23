@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import { useLocation } from 'react-router-dom'
 import { SITE_URL, SEO_IMAGES } from '../config/site.js'
 import { useLanguageContext } from '../context/LanguageContext.jsx'
+import { DEFAULT_LANG, HREFLANG, LANGS, pathFor } from '../config/routes.js'
 
 const DEFAULT_IMAGE = SEO_IMAGES.defaultOg
 const OG_LOCALE_BY_LANG = {
@@ -22,59 +23,49 @@ const DEFAULT_TITLE_BY_LANG = {
   de: 'Skeepskool — Surfschule in Le Porge Océan | 50 Min. von Bordeaux',
 }
 
-function hrefLangToOgLocale(hrefLang) {
-  if (!hrefLang || hrefLang.toLowerCase() === 'x-default') return null
-
-  const normalized = hrefLang.toLowerCase()
-  if (normalized.startsWith('fr')) return 'fr_FR'
-  if (normalized.startsWith('de')) return 'de_DE'
-  if (normalized.startsWith('en-us')) return 'en_US'
-  if (normalized.startsWith('en')) return 'en_GB'
-  return null
-}
-
 /**
- * Per-page SEO: title, description, canonical, Open Graph.
- * Usage: <SEO title="..." description="..." path="/ecole" />
+ * Per-page SEO: title, description, canonical, hreflang alternates, Open Graph.
+ * Usage: <SEO routeKey="lessons" title="..." description="..." />
+ * The addresses in every language come from src/config/routes.js.
  */
 export default function SEO({
   title,
   description,
-  path,
+  routeKey,
   image = DEFAULT_IMAGE,
-  alternates = [],
   robots = 'index, follow',
-  lang,
   structuredData = [],
 }) {
-  const { lang: contextLang } = useLanguageContext()
+  const { lang: activeLang, t } = useLanguageContext()
   const { pathname } = useLocation()
-  const canonicalPath = path || pathname || '/'
+  const canonicalPath = routeKey ? pathFor(routeKey, activeLang) : pathname
   const canonical = `${SITE_URL}${canonicalPath}`
-  const activeLang = lang || contextLang || (typeof document !== 'undefined' ? document.documentElement.lang : 'fr') || 'fr'
+  const alternates = routeKey
+    ? [
+      ...LANGS.map((lang) => ({ hrefLang: HREFLANG[lang], path: pathFor(routeKey, lang) })),
+      { hrefLang: 'x-default', path: pathFor(routeKey, DEFAULT_LANG) },
+    ]
+    : []
   const ogLocale = OG_LOCALE_BY_LANG[activeLang] || OG_LOCALE_BY_LANG.fr
-  const ogLocaleAlternates = Array.from(
-    new Set(
-      alternates
-        .map((alternate) => hrefLangToOgLocale(alternate.hrefLang))
-        .filter((locale) => locale && locale !== ogLocale),
-    ),
-  )
+  const ogLocaleAlternates = routeKey
+    ? LANGS.filter((lang) => lang !== activeLang).map((lang) => OG_LOCALE_BY_LANG[lang])
+    : []
+  const homeUrl = `${SITE_URL}${pathFor('home', activeLang)}`
   const normalizedStructuredData = Array.isArray(structuredData)
     ? structuredData.filter(Boolean)
     : (structuredData ? [structuredData] : [])
-  const homeLabel = activeLang === 'fr' ? 'Accueil' : (activeLang === 'de' ? 'Startseite' : 'Home')
+  const homeLabel = t.nav.home
   const pageLabel = title || homeLabel
   const autoBreadcrumb = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: canonicalPath === '/'
+    itemListElement: routeKey === 'home'
       ? [
         {
           '@type': 'ListItem',
           position: 1,
           name: homeLabel,
-          item: `${SITE_URL}/`,
+          item: homeUrl,
         },
       ]
       : [
@@ -82,7 +73,7 @@ export default function SEO({
           '@type': 'ListItem',
           position: 1,
           name: homeLabel,
-          item: `${SITE_URL}/`,
+          item: homeUrl,
         },
         {
           '@type': 'ListItem',
@@ -102,7 +93,7 @@ export default function SEO({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <meta name="robots" content={robots} />
-      <link rel="canonical" href={canonical} />
+      {routeKey ? <link rel="canonical" href={canonical} /> : null}
       {alternates.map((alternate) => (
         <link
           key={alternate.hrefLang}

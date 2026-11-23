@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
 import { useLang } from '../hooks/useLang.js'
+import { usePrimaryPhone } from '../hooks/usePrimaryPhone.js'
 import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
 import Reveal from '../components/Reveal.jsx'
@@ -8,6 +9,7 @@ import { buildSrcSet } from '../utils/responsiveImage.js'
 import { images } from '../data/images.js'
 import { CONTACT, SITE_URL } from '../config/site.js'
 import { trackConversion, trackEvent } from '../lib/analytics.js'
+import { sendRequestEmail } from '../lib/sendRequest.js'
 
 const initialGiftSurfer = {
   id: 1,
@@ -47,44 +49,14 @@ const countryCallingCodes = [
 ]
 
 export default function GiftVoucher() {
-  const { t, lang } = useLang()
+  const { t, lang, path } = useLang()
+  const primaryPhone = usePrimaryPhone()
   const giftBlock = t.lessons
   const b = t.booking
 
-  const content = lang === 'fr'
-    ? {
-      title: 'Bon cadeau surf',
-      subtitle: '',
-      intro: 'Remplissez les informations, choisissez la formule et finalisez via WhatsApp.',
-      note: 'Bon cadeau : date a definir plus tard avec la personne qui recevra le cadeau.',
-      submit: 'Envoyer la demande Bon cadeau',
-      successHeader: 'Demande Bon cadeau envoyee.',
-      whatsappHeader: 'Nouveau bon cadeau Skeepskool',
-      callCta: 'Appeler l ecole',
-    }
-    : (lang === 'de'
-      ? {
-        title: 'Surf-Geschenkgutschein',
-        subtitle: 'Verschenke einen Surfkurs oder ein Paket deiner Wahl.',
-        intro: 'Geschenkgutschein-Formular: Daten ausfullen, Paket wahlen und per WhatsApp abschliessen.',
-        note: 'Geschenkgutschein: Datum wird spater mit der beschenkten Person festgelegt.',
-        submit: 'Geschenkgutschein-Anfrage senden',
-        successHeader: 'Geschenkgutschein-Anfrage gesendet.',
-        whatsappHeader: 'Neuer Skeepskool-Geschenkgutschein',
-        callCta: 'Schule anrufen',
-      }
-      : {
-        title: 'Surf gift voucher',
-        subtitle: 'Offer a surf lesson or package to someone you care about.',
-        intro: 'Gift voucher form: fill in details, choose the package and complete via WhatsApp.',
-        note: 'Gift voucher: date will be set later with the recipient.',
-        submit: 'Send gift voucher request',
-        successHeader: 'Gift voucher request sent.',
-        whatsappHeader: 'New Skeepskool gift voucher',
-        callCta: 'Call the school',
-      })
+  const content = t.giftVoucher
 
-  const pagePath = lang === 'fr' ? '/bon-cadeau' : '/gift-voucher'
+  const pagePath = path('gift')
 
   const structuredData = [
     {
@@ -93,9 +65,7 @@ export default function GiftVoucher() {
       mainEntity: [
         {
           '@type': 'Question',
-          name: lang === 'fr'
-            ? 'Comment acheter un bon cadeau ?'
-            : (lang === 'de' ? 'Wie kaufe ich einen Geschenkgutschein?' : 'How do I buy a gift voucher?'),
+          name: t.ui.giftVoucher.howDoIBuy,
           acceptedAnswer: {
             '@type': 'Answer',
             text: content.intro,
@@ -128,12 +98,16 @@ export default function GiftVoucher() {
     phoneCountryCode: '+33',
     customPhoneCountryCode: '',
     phone: '',
+    email: '',
   })
   const [giftSurfers, setGiftSurfers] = useState([{ ...initialGiftSurfer }])
   const nextGiftSurferId = useRef(2)
   const [needsGiftVisual, setNeedsGiftVisual] = useState(false)
   const [paidConfirmed, setPaidConfirmed] = useState(false)
   const [successMessage, setSuccessMessage] = useState('')
+  const [sending, setSending] = useState(false)
+  const [sendFailed, setSendFailed] = useState(false)
+  const [honeypot, setHoneypot] = useState('')
   const [phoneError, setPhoneError] = useState('')
   const [hasStartedForm, setHasStartedForm] = useState(false)
   const [whatsappDeepLink, setWhatsappDeepLink] = useState('')
@@ -187,7 +161,7 @@ export default function GiftVoucher() {
     setGiftSurfers((prev) => prev.filter((_, i) => i !== index))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
     if (!event.currentTarget.checkValidity()) {
@@ -199,7 +173,7 @@ export default function GiftVoucher() {
     const fullPhone = buildFullPhone(contact)
 
     if (contact.phoneCountryCode === 'custom' && !/^\+[0-9]{1,4}$/.test(contact.customPhoneCountryCode.trim())) {
-      setPhoneError(lang === 'fr' ? 'Indicatif invalide (ex: +33).' : 'Invalid calling code (e.g. +33).')
+      setPhoneError(t.ui.giftVoucher.invalidCallingCodeE)
       trackEvent('gift_voucher_form_error', { reason: 'invalid_country_code' })
       return
     }
@@ -243,8 +217,34 @@ export default function GiftVoucher() {
     setWhatsappPayload(whatsappMessage)
     setWhatsappDeepLink(whatsappUrl)
     setCopyFeedback('')
-    trackEvent('click_whatsapp', { source: 'gift_voucher_form', target: whatsappUrl })
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+
+    setSending(true)
+    setSuccessMessage('')
+    const sent = await sendRequestEmail({
+      type: 'gift',
+      lang,
+      contact: {
+        firstName: contact.firstName,
+        lastName: contact.lastName,
+        phone: fullPhone,
+        email: contact.email.trim(),
+      },
+      surfers: giftSurfers.map((surfer) => ({
+        name: `${surfer.firstName} ${surfer.lastName}`.trim(),
+        package: packageByValue.get(surfer.packageValue),
+      })),
+      total,
+      giftVisual: needsGiftVisual,
+      summary: whatsappMessage,
+      website: honeypot,
+    })
+    setSending(false)
+    setSendFailed(!sent)
+    if (!sent) {
+      trackEvent('gift_voucher_form_email_failed')
+      setSuccessMessage(b.sendFailed)
+      return
+    }
 
     trackConversion('gift_voucher_form_submitted', {
       surfers_count: giftSurfers.length,
@@ -261,14 +261,7 @@ export default function GiftVoucher() {
       <SEO
         title={content.title}
         description={content.intro}
-        path={pagePath}
-        lang={lang}
-        alternates={[
-          { hrefLang: 'fr-FR', path: '/bon-cadeau' },
-          { hrefLang: 'en', path: '/gift-voucher' },
-          { hrefLang: 'de', path: '/gift-voucher' },
-          { hrefLang: 'x-default', path: '/bon-cadeau' },
-        ]}
+        routeKey="gift"
         structuredData={structuredData}
       />
       <PageHero title={content.title} subtitle={content.subtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
@@ -280,10 +273,10 @@ export default function GiftVoucher() {
             <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
               <div className="relative min-h-[320px] sm:min-h-[420px]">
                 <img
-                  src="/images/bon-cadeau.jpg"
-                  srcSet={buildSrcSet('/images/bon-cadeau.jpg')}
+                  src={images.giftVoucher}
+                  srcSet={buildSrcSet(images.giftVoucher)}
                   sizes="(max-width: 1024px) 100vw, 55vw"
-                  alt={lang === 'fr' ? 'Visuel bon cadeau' : (lang === 'de' ? 'Gutschein-Visual' : 'Gift voucher visual')}
+                  alt={t.ui.giftVoucher.giftVoucherVisual}
                   className="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
                   decoding="async"
@@ -394,7 +387,7 @@ export default function GiftVoucher() {
                         </option>
                       ))}
                       <option value="custom">
-                        {lang === 'fr' ? 'Autre indicatif...' : 'Other calling code...'}
+                        {t.ui.giftVoucher.otherCallingCode}
                       </option>
                     </select>
                     {contact.phoneCountryCode === 'custom' && (
@@ -406,10 +399,10 @@ export default function GiftVoucher() {
                           setContact((prev) => ({ ...prev, customPhoneCountryCode: e.target.value }))
                           if (phoneError) setPhoneError('')
                         }}
-                        placeholder={lang === 'fr' ? 'Indicatif ex: +33' : 'Code e.g. +33'}
+                        placeholder={t.ui.giftVoucher.codeEG33}
                         inputMode="tel"
                         pattern="^\\+[0-9]{1,4}$"
-                        title={lang === 'fr' ? 'Format requis: + suivi de 1 a 4 chiffres.' : 'Required format: + followed by 1 to 4 digits.'}
+                        title={t.ui.giftVoucher.requiredFormatFollowedBy}
                         required
                       />
                     )}
@@ -431,6 +424,30 @@ export default function GiftVoucher() {
                   </div>
                   {phoneError && <span className="mt-1 block text-xs font-bold text-red">{phoneError}</span>}
                 </label>
+
+                <label className="block sm:col-span-2">
+                  <span className="mb-2 block text-sm font-semibold text-dark">{b.emailOptional}</span>
+                  <input
+                    type="email"
+                    className={inputClass}
+                    value={contact.email}
+                    onChange={(e) => setContact((prev) => ({ ...prev, email: e.target.value }))}
+                    autoComplete="email"
+                    inputMode="email"
+                  />
+                </label>
+
+                {/* Champ piège anti-spam : invisible pour les visiteurs */}
+                <input
+                  type="text"
+                  name="website"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="hidden"
+                />
               </div>
             </Reveal>
 
@@ -557,14 +574,15 @@ export default function GiftVoucher() {
             <Reveal>
               <button
                 type="submit"
-                className="w-full rounded-xl bg-red px-6 py-3 text-base font-black text-white shadow-md transition hover:bg-yellow hover:text-royalBlue"
+                disabled={sending}
+                className="w-full rounded-xl bg-red px-6 py-3 text-base font-black text-white shadow-md transition hover:bg-yellow hover:text-royalBlue disabled:cursor-wait disabled:opacity-70"
               >
-                {content.submit}
+                {sending ? b.sending : content.submit}
               </button>
             </Reveal>
 
             {successMessage && (
-              <Reveal className="rounded-2xl border-l-4 border-red bg-white p-6 shadow-md ring-1 ring-black/5">
+              <Reveal className={`rounded-2xl border-l-4 bg-white p-6 shadow-md ring-1 ring-black/5 ${sendFailed ? 'border-yellow' : 'border-red'}`}>
                 <p className="whitespace-pre-line text-sm font-semibold leading-relaxed text-royalBlue sm:text-base">
                   {successMessage}
                 </p>
@@ -577,7 +595,7 @@ export default function GiftVoucher() {
                       onClick={() => trackEvent('click_whatsapp', { source: 'gift_voucher_success_box', target: whatsappDeepLink })}
                       className="inline-flex items-center justify-center rounded-full bg-green-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-green-700"
                     >
-                      {lang === 'fr' ? 'Ouvrir WhatsApp' : (lang === 'de' ? 'WhatsApp offnen' : 'Open WhatsApp')}
+                      {sendFailed ? t.ui.giftVoucher.sendOnWhatsapp : t.ui.giftVoucher.openWhatsapp}
                     </a>
                   )}
                   {whatsappPayload && (
@@ -586,19 +604,19 @@ export default function GiftVoucher() {
                       onClick={async () => {
                         try {
                           await navigator.clipboard.writeText(whatsappPayload)
-                          setCopyFeedback(lang === 'fr' ? 'Message copie.' : (lang === 'de' ? 'Nachricht kopiert.' : 'Message copied.'))
+                          setCopyFeedback(t.ui.giftVoucher.messageCopied)
                         } catch {
-                          setCopyFeedback(lang === 'fr' ? 'Impossible de copier automatiquement.' : (lang === 'de' ? 'Automatisches Kopieren fehlgeschlagen.' : 'Unable to copy automatically.'))
+                          setCopyFeedback(t.ui.giftVoucher.unableToCopyAutomatically)
                         }
                       }}
                       className="inline-flex items-center justify-center rounded-full border border-royalBlue px-4 py-2 text-sm font-bold text-royalBlue transition hover:bg-royalBlue hover:text-white"
                     >
-                      {lang === 'fr' ? 'Copier le message' : (lang === 'de' ? 'Nachricht kopieren' : 'Copy message')}
+                      {t.ui.giftVoucher.copyMessage}
                     </button>
                   )}
                   <a
-                    href={`tel:${CONTACT.phonePrimary}`}
-                    onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phonePrimary}`, source: 'gift_voucher_success_box' })}
+                    href={`tel:${primaryPhone.tel}`}
+                    onClick={() => trackEvent('click_phone', { target: `tel:${primaryPhone.tel}`, source: 'gift_voucher_success_box' })}
                     className="inline-flex items-center justify-center rounded-full border border-red px-4 py-2 text-sm font-bold text-red transition hover:bg-red hover:text-white"
                   >
                     {content.callCta}
