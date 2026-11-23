@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X, Phone, ChevronDown, ShoppingCart } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
@@ -11,6 +11,19 @@ export default function Navbar() {
   const primaryPhone = usePrimaryPhone()
   const [open, setOpen] = useState(false)
   const [activeTopDropdown, setActiveTopDropdown] = useState(null)
+  const closeTimer = useRef(null)
+
+  // Open a submenu at once; close it after a short delay so that the mouse can
+  // travel from the menu item to the submenu without it disappearing.
+  const openDropdown = (key) => {
+    clearTimeout(closeTimer.current)
+    setActiveTopDropdown(key)
+  }
+  const closeDropdownSoon = () => {
+    clearTimeout(closeTimer.current)
+    closeTimer.current = setTimeout(() => setActiveTopDropdown(null), 300)
+  }
+  useEffect(() => () => clearTimeout(closeTimer.current), [])
   const location = useLocation()
 
   // Close mobile menu on route change
@@ -132,8 +145,8 @@ export default function Navbar() {
             <div
               key={l.key}
               className="relative flex items-center gap-1"
-              onMouseEnter={() => l.subLinks && setActiveTopDropdown(l.key)}
-              onMouseLeave={() => l.subLinks && setActiveTopDropdown(null)}
+              onMouseEnter={() => l.subLinks && openDropdown(l.key)}
+              onMouseLeave={() => l.subLinks && closeDropdownSoon()}
             >
               <NavLink
                 to={l.to}
@@ -146,8 +159,8 @@ export default function Navbar() {
               {l.subLinks ? (
                 <button
                   type="button"
-                  onMouseEnter={() => setActiveTopDropdown(l.key)}
-                  onFocus={() => setActiveTopDropdown(l.key)}
+                  onMouseEnter={() => openDropdown(l.key)}
+                  onFocus={() => openDropdown(l.key)}
                   onClick={() => setActiveTopDropdown((current) => (current === l.key ? null : l.key))}
                   className="rounded p-0.5 text-white transition-colors hover:text-yellow"
                   aria-label={`${t.ui.navbar.openSubmenu} ${l.label}`}
@@ -158,12 +171,13 @@ export default function Navbar() {
               ) : null}
 
               {l.subLinks && activeTopDropdown === l.key ? (
+                // pt-3 (instead of a margin) keeps the gap under the menu item hoverable.
                 <div
-                  className="absolute left-1/2 top-full z-50 mt-3 w-max min-w-[220px] -translate-x-1/2 rounded-2xl border border-white/20 bg-royalBlue/95 p-2 shadow-2xl backdrop-blur"
-                  onMouseEnter={() => setActiveTopDropdown(l.key)}
-                  onMouseLeave={() => setActiveTopDropdown(null)}
+                  className="absolute left-1/2 top-full z-50 w-max min-w-[220px] -translate-x-1/2 pt-3"
+                  onMouseEnter={() => openDropdown(l.key)}
+                  onMouseLeave={closeDropdownSoon}
                 >
-                  <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1 rounded-2xl border border-white/20 bg-royalBlue/95 p-2 shadow-2xl backdrop-blur">
                     {l.subLinks.map((item) => {
                       const hash = item.href.split('#')[1]
                       const isActive = location.pathname === item.href.split('#')[0] && location.hash === `#${hash}`
