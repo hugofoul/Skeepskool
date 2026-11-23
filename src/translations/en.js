@@ -252,12 +252,13 @@ export const en = {
     teamTitle: 'The Skeepskool team',
     teamSubtitle: 'A crew of passionate people to guide you in the water.',
     coachingTitle: 'Quality coaching',
+    coachingDiplomaText:
+      'At the end of your course, ask us for your French Surf Federation level certificate, so you know your level and the next steps to progress!',
+    coachingSafetyTitle: 'Learn to surf safely',
     coachingItems: [
-      'Learn to surf safely',
       'All ages, all levels',
       'Suitable equipment for everyone',
       'Individualized coaching',
-      'FFS level certificate on request',
     ],
     coachingExperience: 'More than 25 years of experience',
     beachAdvantagesTitle: 'The advantages of Plage Centrale',
