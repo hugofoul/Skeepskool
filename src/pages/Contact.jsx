@@ -10,7 +10,11 @@ import {
   CalendarCheck,
   ExternalLink,
   ParkingCircle,
+  HelpCircle,
+  Plus,
+  Minus,
 } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
@@ -28,8 +32,11 @@ const MAP_SRC =
 export default function Contact() {
   const { t, lang } = useLang()
   const [isMapPlanOpen, setIsMapPlanOpen] = useState(false)
+  const [openFaqIndex, setOpenFaqIndex] = useState(0)
   const c = t.contact
   const a = t.around
+  const faqItems = t.home?.practical?.faqItems || []
+  const faqTitle = lang === 'fr' ? 'Questions fréquentes' : (lang === 'de' ? 'Häufige Fragen' : 'Frequently asked questions')
   const mapPlanAriaLabel = lang === 'fr'
     ? 'Ouvrir le plan d’accès en grand'
     : (lang === 'de' ? 'Zugangsplan in Grossansicht oeffnen' : 'Open the access map in full size')
@@ -132,7 +139,7 @@ export default function Contact() {
 
       {/* ---- WhatsApp community ---- */}
       {/* ---- Map ---- */}
-      <section id="ou-manger" className="scroll-mt-36 bg-lightGray py-16 sm:py-20">
+      <section className="scroll-mt-36 bg-lightGray py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 id="comment-nous-trouver" className="scroll-mt-28 text-3xl font-black text-red sm:text-4xl">{c.findUsTitle}</h2>
@@ -211,8 +218,71 @@ export default function Contact() {
               </div>
             </Reveal>
           </div>
+        </div>
+      </section>
 
-          <Reveal delay={180} className="mt-8 rounded-2xl bg-royalBlue p-6 text-white shadow-lg sm:p-8">
+      {/* ---- FAQ ---- */}
+      <section id="faq" className="scroll-mt-36 bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="flex items-center gap-3">
+              <HelpCircle className="h-8 w-8 text-royalBlue" />
+              <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{faqTitle}</h2>
+            </div>
+            <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+          </Reveal>
+
+          <Reveal delay={120} className="mt-8 divide-y divide-black/10 overflow-hidden rounded-2xl bg-lightGray shadow-sm ring-1 ring-black/5">
+            {faqItems.map((item, index) => {
+              const isOpen = openFaqIndex === index
+              const panelId = `contact-faq-panel-${index}`
+              const buttonId = `contact-faq-button-${index}`
+
+              return (
+                <div key={item.question} className="px-5 sm:px-6">
+                  <button
+                    id={buttonId}
+                    type="button"
+                    onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                    className="flex w-full items-center justify-between gap-3 py-4 text-left"
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                  >
+                    <span className="text-base font-bold text-dark sm:text-lg">{item.question}</span>
+                    {isOpen ? (
+                      <Minus className="h-5 w-5 shrink-0 text-red" aria-hidden="true" />
+                    ) : (
+                      <Plus className="h-5 w-5 shrink-0 text-royalBlue" aria-hidden="true" />
+                    )}
+                  </button>
+                  <div
+                    id={panelId}
+                    role="region"
+                    aria-labelledby={buttonId}
+                    hidden={!isOpen}
+                    className="pb-5"
+                  >
+                    <p className="pr-6 text-sm leading-relaxed text-dark/75 sm:text-base">{item.answer}</p>
+                    {item.ctaLabel && item.ctaPath ? (
+                      <Link
+                        to={item.ctaPath}
+                        className="mt-3 inline-flex rounded-full bg-red px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue"
+                      >
+                        {item.ctaLabel}
+                      </Link>
+                    ) : null}
+                  </div>
+                </div>
+              )
+            })}
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---- Bus ---- */}
+      <section className="bg-lightGray py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal className="rounded-2xl bg-royalBlue p-6 text-white shadow-lg sm:p-8">
             <div className="grid items-center gap-6 lg:grid-cols-[1.4fr_1fr]">
               <div>
                 <div className="flex items-center gap-3">
@@ -301,7 +371,7 @@ export default function Contact() {
       ) : null}
 
       {/* ---- Around: Camping ---- */}
-      <section id="camping-la-grigne" className="bg-white py-16 sm:py-20">
+      <section id="camping-la-grigne" className="scroll-mt-36 bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="flex items-center gap-3">
@@ -353,7 +423,7 @@ export default function Contact() {
       </section>
 
       {/* ---- Around: Restaurants ---- */}
-      <section className="bg-lightGray py-16 sm:py-20">
+      <section id="ou-manger" className="scroll-mt-36 bg-lightGray py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="flex items-center gap-3">

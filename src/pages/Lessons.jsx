@@ -26,7 +26,7 @@ const POPULAR_INDEX = 3
 const factIcons = [Clock, Users, Backpack, ShieldCheck]
 const valueIcons = [Waves, Star, ShieldCheck]
 const packageByCardIndex = ['single', 'pack3', 'pack5', 'pack10', 'pack20', 'private']
-const SCHOOL_LABEL_SVG = '/images/passeport.svg'
+const SCHOOL_LABEL_SVG = '/images/passeport-diplomes.webp'
 
 export default function Lessons() {
   const { t, lang } = useLang()
@@ -186,41 +186,49 @@ export default function Lessons() {
             })}
           </div>
 
+          {/* Quality teaching: diplomas | quality + experience | safety */}
           <Reveal delay={120} className="mt-10 overflow-hidden rounded-3xl border border-black/10 bg-white shadow-xl">
-            <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
-              <div className="border-b border-black/10 bg-[#f3f7fd] p-7 sm:p-9 lg:border-b-0 lg:border-r">
-                <h3 className="mt-3 text-3xl font-black leading-tight text-royalBlue sm:text-4xl">
-                  {school.coachingTitle}
-                </h3>
-                <span className="mt-4 block h-1 w-16 rounded bg-red" />
-
-                <div className="mt-7 flex w-full items-center justify-between gap-3">
-                  <div className="inline-flex items-center rounded-2xl border-2 border-royalBlue bg-white px-5 py-3 shadow-sm">
-                    <span className="text-base font-black text-royalBlue sm:text-lg">{school.coachingExperience}</span>
-                  </div>
-                  <img
-                    src={SCHOOL_LABEL_SVG}
-                    alt={lang === 'fr' ? 'Label École Française de Surf' : 'French Surf School label'}
-                    className="h-36 w-auto"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-
-                
+            <div className="grid divide-y divide-black/10 lg:grid-cols-[0.9fr_1.1fr_1fr] lg:divide-x lg:divide-y-0">
+              <div className="flex items-center justify-center bg-[#f3f7fd] p-6 sm:p-8">
+                <img
+                  src={SCHOOL_LABEL_SVG}
+                  alt={lang === 'fr'
+                    ? 'Diplômes de niveau de la Fédération Française de Surf'
+                    : (lang === 'de' ? 'Niveau-Diplome des französischen Surfverbands' : 'French Surf Federation level certificates')}
+                  className="h-auto w-full max-w-[18rem] object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
 
               <div className="p-7 sm:p-9">
-                <div className="grid gap-3">
+                <h3 className="text-2xl font-black leading-tight text-royalBlue sm:text-3xl">
+                  {school.coachingTitle}
+                </h3>
+                <span className="mt-4 block h-1 w-16 rounded bg-red" />
+                <p className="mt-5 text-base font-semibold leading-relaxed text-dark/85">
+                  {school.coachingDiplomaText}
+                </p>
+                <div className="mt-6 inline-flex items-center rounded-2xl border-2 border-royalBlue bg-white px-5 py-3 shadow-sm">
+                  <span className="text-base font-black text-royalBlue sm:text-lg">{school.coachingExperience}</span>
+                </div>
+              </div>
+
+              <div className="p-7 sm:p-9">
+                <h3 className="text-2xl font-black leading-tight text-royalBlue sm:text-3xl">
+                  {school.coachingSafetyTitle}
+                </h3>
+                <span className="mt-4 block h-1 w-16 rounded bg-red" />
+                <ul className="mt-5 grid gap-3">
                   {school.coachingItems.map((item) => (
-                    <article
+                    <li
                       key={item}
                       className="rounded-xl border-l-4 border-red bg-lightGray px-4 py-3 shadow-sm ring-1 ring-black/5"
                     >
                       <p className="text-sm font-semibold leading-relaxed text-dark/85 sm:text-base">{item}</p>
-                    </article>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             </div>
           </Reveal>

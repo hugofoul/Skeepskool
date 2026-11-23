@@ -127,9 +127,70 @@ export default function Rental() {
         </div>
       </section>
 
+      {/* ---- Equipment guide ---- */}
+      <section id="guide-location" className="scroll-mt-36 bg-lightGray py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <h2 className="text-center text-3xl font-black text-red sm:text-4xl">
+              {r.guideTitle}
+            </h2>
+            <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
+            <p className="mx-auto mt-4 max-w-3xl text-center text-sm font-semibold text-dark/80 sm:text-base">
+              {r.guideAdvice || (lang === 'fr' ? 'Notre équipe saura vous conseiller la planche la plus adaptée aux conditions et à votre niveau' : '')}
+            </p>
+          </Reveal>
+          <Reveal className="mx-auto mt-8 max-w-5xl overflow-hidden rounded-2xl shadow-md ring-1 ring-black/10">
+            <img
+              src="/images/planches_loc.JPG"
+              alt={lang === 'fr' ? 'Planches de location' : (lang === 'de' ? 'Leih-Surfboards' : 'Rental surfboards')}
+              className="h-64 w-full object-cover sm:h-80"
+              loading="lazy"
+            />
+          </Reveal>
+          <div className={`mt-12 grid gap-6 ${r.guide.length === 2 ? 'md:mx-auto md:max-w-4xl md:grid-cols-2' : 'md:grid-cols-3'}`}>
+            {r.guide.map((g, i) => {
+              const Icon = guideIcons[i]
+              return (
+                <Reveal
+                  key={g.title}
+                  delay={i * 120}
+                  className="rounded-2xl border-b-4 border-red bg-white p-7 shadow-md"
+                >
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-royalBlue/10">
+                    <Icon className="h-7 w-7 text-royalBlue" />
+                  </span>
+                  <h3 className="mt-5 text-xl font-extrabold text-royalBlue">{g.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-dark/75">{g.text}</p>
+                </Reveal>
+              )
+            })}
+          </div>
+
+          <div className="mt-14 text-center">
+            {r.callNote ? (
+              <div className="mx-auto mb-6 max-w-3xl rounded-3xl border border-royalBlue/20 bg-white px-5 py-5 shadow-lg ring-1 ring-black/5 sm:px-7 sm:py-6">
+                <p className="inline-flex items-start gap-2 text-base font-extrabold leading-relaxed text-royalBlue sm:text-xl">
+                  <Phone className="mt-1 h-5 w-5 shrink-0 text-red" />
+                  {r.callNote}
+                </p>
+              </div>
+            ) : null}
+            <CTAButton to="/contact" className="text-lg">
+              {r.cta || (lang === 'fr' ? 'Nous contacter' : (lang === 'de' ? 'Kontakt' : 'Contact us'))}
+            </CTAButton>
+          </div>
+        </div>
+      </section>
+
       {/* ---- Pricing table (desktop) ---- */}
-      <section id="tarifs-location" className="scroll-mt-36 bg-white py-8 sm:py-10">
+      <section id="tarifs-location" className="scroll-mt-36 bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <Reveal className="mb-8">
+            <h2 className="text-center text-3xl font-black text-royalBlue sm:text-4xl">
+              {lang === 'fr' ? 'Tarifs' : (lang === 'de' ? 'Preise' : 'Pricing')}
+            </h2>
+            <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
+          </Reveal>
           {/* Desktop / tablet table */}
           <Reveal className="hidden overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/10 md:block">
             <table className="w-full border-collapse text-left">
@@ -210,61 +271,6 @@ export default function Rental() {
               </li>
             </ul>
           </Reveal>
-        </div>
-      </section>
-
-      {/* ---- Equipment guide ---- */}
-      <section id="guide-location" className="scroll-mt-36 bg-lightGray py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <h2 className="text-center text-3xl font-black text-red sm:text-4xl">
-              {r.guideTitle}
-            </h2>
-            <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
-            <p className="mx-auto mt-4 max-w-3xl text-center text-sm font-semibold text-dark/80 sm:text-base">
-              {r.guideAdvice || (lang === 'fr' ? 'Notre équipe saura vous conseiller la planche la plus adaptée aux conditions et à votre niveau' : '')}
-            </p>
-          </Reveal>
-          <Reveal className="mx-auto mt-8 max-w-5xl overflow-hidden rounded-2xl shadow-md ring-1 ring-black/10">
-            <img
-              src="/images/planches_loc.JPG"
-              alt={lang === 'fr' ? 'Planches de location' : (lang === 'de' ? 'Leih-Surfboards' : 'Rental surfboards')}
-              className="h-64 w-full object-cover sm:h-80"
-              loading="lazy"
-            />
-          </Reveal>
-          <div className={`mt-12 grid gap-6 ${r.guide.length === 2 ? 'md:mx-auto md:max-w-4xl md:grid-cols-2' : 'md:grid-cols-3'}`}>
-            {r.guide.map((g, i) => {
-              const Icon = guideIcons[i]
-              return (
-                <Reveal
-                  key={g.title}
-                  delay={i * 120}
-                  className="rounded-2xl border-b-4 border-red bg-white p-7 shadow-md"
-                >
-                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-royalBlue/10">
-                    <Icon className="h-7 w-7 text-royalBlue" />
-                  </span>
-                  <h3 className="mt-5 text-xl font-extrabold text-royalBlue">{g.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-dark/75">{g.text}</p>
-                </Reveal>
-              )
-            })}
-          </div>
-
-          <div className="mt-14 text-center">
-            {r.callNote ? (
-              <div className="mx-auto mb-6 max-w-3xl rounded-3xl border border-royalBlue/20 bg-white px-5 py-5 shadow-lg ring-1 ring-black/5 sm:px-7 sm:py-6">
-                <p className="inline-flex items-start gap-2 text-base font-extrabold leading-relaxed text-royalBlue sm:text-xl">
-                  <Phone className="mt-1 h-5 w-5 shrink-0 text-red" />
-                  {r.callNote}
-                </p>
-              </div>
-            ) : null}
-            <CTAButton to="/contact" className="text-lg">
-              {r.cta || (lang === 'fr' ? 'Nous contacter' : (lang === 'de' ? 'Kontakt' : 'Contact us'))}
-            </CTAButton>
-          </div>
         </div>
       </section>
     </div>

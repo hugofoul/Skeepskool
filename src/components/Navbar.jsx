@@ -25,11 +25,7 @@ export default function Navbar() {
   const lessonsSubLinks = [
     {
       href: `${lessonsPath}#explication`,
-      label: lang === 'fr' ? 'Explication' : (lang === 'de' ? 'Erklärung' : 'Overview'),
-    },
-    {
-      href: `${lessonsPath}#deroule-seance`,
-      label: lang === 'fr' ? 'Déroulé de la séance' : (lang === 'de' ? 'Ablauf der Session' : 'Session flow'),
+      label: lang === 'fr' ? 'Infos' : (lang === 'de' ? 'Infos' : 'Info'),
     },
     {
       href: `${lessonsPath}#planning-cours-semaine`,
@@ -50,10 +46,6 @@ export default function Navbar() {
       href: `${rentalPath}#tarifs-location`,
       label: lang === 'fr' ? 'Tarifs' : (lang === 'de' ? 'Preise' : 'Pricing'),
     },
-    {
-      href: `${rentalPath}#guide-location`,
-      label: lang === 'fr' ? 'Guide' : (lang === 'de' ? 'Guide' : 'Guide'),
-    },
   ]
 
   const contactPath = '/contact'
@@ -67,8 +59,8 @@ export default function Navbar() {
       label: lang === 'fr' ? 'Accès' : (lang === 'de' ? 'Anfahrt' : 'Access'),
     },
     {
-      href: `${contactPath}#bus-details`,
-      label: lang === 'fr' ? 'Bus' : (lang === 'de' ? 'Bus' : 'Bus'),
+      href: `${contactPath}#faq`,
+      label: lang === 'fr' ? 'FAQ' : (lang === 'de' ? 'FAQ' : 'FAQ'),
     },
     {
       href: `${contactPath}#camping-la-grigne`,

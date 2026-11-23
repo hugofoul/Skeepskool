@@ -3,6 +3,8 @@ import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
 import Reveal from '../components/Reveal.jsx'
+import { Waves } from 'lucide-react'
+import { buildSrcSet } from '../utils/responsiveImage.js'
 import { images } from '../data/images.js'
 import { CONTACT, SITE_URL } from '../config/site.js'
 import { trackConversion, trackEvent } from '../lib/analytics.js'
@@ -46,6 +48,7 @@ const countryCallingCodes = [
 
 export default function GiftVoucher() {
   const { t, lang } = useLang()
+  const giftBlock = t.lessons
   const b = t.booking
 
   const content = lang === 'fr'
@@ -270,7 +273,55 @@ export default function GiftVoucher() {
       />
       <PageHero title={content.title} subtitle={content.subtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
 
-      <section className="bg-lightGray py-14 sm:py-16">
+      {/* ---- Gift experience block (same as on the lessons page) ---- */}
+      <section className="bg-white py-12 sm:py-14">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <Reveal className="overflow-hidden rounded-3xl bg-royalBlue shadow-xl ring-1 ring-black/10">
+            <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
+              <div className="relative min-h-[320px] sm:min-h-[420px]">
+                <img
+                  src="/images/bon-cadeau.jpg"
+                  srcSet={buildSrcSet('/images/bon-cadeau.jpg')}
+                  sizes="(max-width: 1024px) 100vw, 55vw"
+                  alt={lang === 'fr' ? 'Visuel bon cadeau' : (lang === 'de' ? 'Gutschein-Visual' : 'Gift voucher visual')}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                <div className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full bg-yellow px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-royalBlue sm:left-6 sm:top-6">
+                  <Waves className="h-4 w-4" /> {giftBlock.giftExperienceBadge}
+                </div>
+                <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-6 sm:right-6">
+                  <h2 className="text-2xl font-black leading-tight text-white drop-shadow sm:text-3xl">
+                    {giftBlock.giftExperienceTitle}
+                  </h2>
+                </div>
+              </div>
+
+              <div className="flex flex-col justify-center p-7 text-white sm:p-10">
+                <p className="text-base font-semibold leading-relaxed text-white/95 sm:text-lg">
+                  {giftBlock.giftExperienceText1}
+                </p>
+                <p className="mt-4 text-sm font-semibold leading-relaxed text-white/85 sm:text-base">
+                  {giftBlock.giftExperienceText2}
+                </p>
+                <div className="mt-6 h-1.5 w-20 rounded-full bg-yellow" />
+                <div className="mt-6">
+                  <a
+                    href="#formulaire-bon-cadeau"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-red px-6 py-3 text-sm font-bold text-white shadow-md transition-colors hover:bg-yellow hover:text-royalBlue"
+                  >
+                    {giftBlock.giftExperienceCta}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section id="formulaire-bon-cadeau" className="scroll-mt-28 bg-lightGray py-14 sm:py-16">
         <div className="mx-auto w-full max-w-[680px] px-4 sm:px-6">
           <Reveal className="overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-black/5">
             <div className="grid gap-4 px-5 py-5 sm:px-6">
