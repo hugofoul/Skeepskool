@@ -126,8 +126,64 @@ export default function Contact() {
       <section className="scroll-mt-36 bg-lightGray py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <h2 id="comment-nous-trouver" className="scroll-mt-28 text-3xl font-black text-red sm:text-4xl">{c.findUsTitle}</h2>
+            <h2 id="comment-nous-trouver" className="scroll-mt-36 text-3xl font-black text-red sm:text-4xl">{c.findUsTitle}</h2>
             <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+          </Reveal>
+
+          {/* ---- Bus ---- */}
+          <Reveal className="mt-8 rounded-2xl bg-royalBlue p-6 text-white shadow-lg sm:p-8">
+            <div className="grid items-center gap-6 lg:grid-cols-[1.4fr_1fr]">
+              <div>
+                <div className="flex items-center gap-3">
+                  <Bus className="h-8 w-8 text-yellow" />
+                  <h3 id="bus-details" className="scroll-mt-36 sm:scroll-mt-40 text-2xl font-black sm:text-3xl">{c.findUs.busLabel}</h3>
+                </div>
+                <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
+                <p className="mt-5 text-base leading-relaxed text-white/90 sm:text-lg">{c.findUs.bus}</p>
+                <p className="mt-3 text-sm font-semibold text-yellow sm:text-base">
+                  {c.findUs.busBookingNote}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <CTAButton
+                    href={c.findUs.busUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-yellow text-royalBlue hover:bg-white"
+                  >
+                    {c.findUs.busCta}
+                    <ExternalLink className="h-4 w-4" />
+                  </CTAButton>
+                  <CTAButton
+                    href={c.findUs.busAppStoreUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-red hover:bg-yellow"
+                  >
+                    {c.findUs.busAppStoreCta}
+                    <ExternalLink className="h-4 w-4" />
+                  </CTAButton>
+                  <CTAButton
+                    href={c.findUs.busGooglePlayUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border border-white/30 bg-white/10 hover:bg-white/20"
+                  >
+                    {c.findUs.busGooglePlayCta}
+                    <ExternalLink className="h-4 w-4" />
+                  </CTAButton>
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-white/10 p-6 text-center ring-1 ring-white/15 sm:p-8">
+                <p className="text-xs font-bold uppercase tracking-widest text-yellow">
+                  {c.findUs.busPriceLabel}
+                </p>
+                <p className="mt-2 text-4xl font-black text-yellow">{c.findUs.busPrice}</p>
+                {c.findUs.busPriceNote && (
+                  <p className="mt-3 text-xs text-white/75">{c.findUs.busPriceNote}</p>
+                )}
+              </div>
+            </div>
           </Reveal>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-2">
@@ -263,65 +319,6 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* ---- Bus ---- */}
-      <section className="bg-lightGray py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal className="rounded-2xl bg-royalBlue p-6 text-white shadow-lg sm:p-8">
-            <div className="grid items-center gap-6 lg:grid-cols-[1.4fr_1fr]">
-              <div>
-                <div className="flex items-center gap-3">
-                  <Bus className="h-8 w-8 text-yellow" />
-                  <h3 id="bus-details" className="scroll-mt-36 sm:scroll-mt-40 text-2xl font-black sm:text-3xl">{c.findUs.busLabel}</h3>
-                </div>
-                <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
-                <p className="mt-5 text-base leading-relaxed text-white/90 sm:text-lg">{c.findUs.bus}</p>
-                <p className="mt-3 text-sm font-semibold text-yellow sm:text-base">
-                  {c.findUs.busBookingNote}
-                </p>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <CTAButton
-                    href={c.findUs.busUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-yellow text-royalBlue hover:bg-white"
-                  >
-                    {c.findUs.busCta}
-                    <ExternalLink className="h-4 w-4" />
-                  </CTAButton>
-                  <CTAButton
-                    href={c.findUs.busAppStoreUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-red hover:bg-yellow"
-                  >
-                    {c.findUs.busAppStoreCta}
-                    <ExternalLink className="h-4 w-4" />
-                  </CTAButton>
-                  <CTAButton
-                    href={c.findUs.busGooglePlayUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="border border-white/30 bg-white/10 hover:bg-white/20"
-                  >
-                    {c.findUs.busGooglePlayCta}
-                    <ExternalLink className="h-4 w-4" />
-                  </CTAButton>
-                </div>
-              </div>
-
-              <div className="rounded-2xl bg-white/10 p-6 text-center ring-1 ring-white/15 sm:p-8">
-                <p className="text-xs font-bold uppercase tracking-widest text-yellow">
-                  {c.findUs.busPriceLabel}
-                </p>
-                <p className="mt-2 text-4xl font-black text-yellow">{c.findUs.busPrice}</p>
-                {c.findUs.busPriceNote && (
-                  <p className="mt-3 text-xs text-white/75">{c.findUs.busPriceNote}</p>
-                )}
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
 
       {isMapPlanOpen ? (
         <div

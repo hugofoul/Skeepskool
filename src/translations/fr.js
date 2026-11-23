@@ -4,9 +4,9 @@ export const fr = {
   bookNow: 'Réserver',
   whatsappUrl: 'https://chat.whatsapp.com/J2vEDM7mQr23DoI61RSJFo',
   quickActions: {
-    response: 'Reponse rapide',
+    response: 'Réponse rapide',
     call: 'Appeler',
-    book: 'Reserver',
+    book: 'Réserver',
   },
 
   nav: {
@@ -153,8 +153,8 @@ export const fr = {
     aboutTitle: 'Le surf aux portes de Bordeaux',
     surfConditions: {
       badge: 'Conditions',
-      title: 'Conditions de surf prevues pour ce week-end',
-      fallbackParagraphs: ['Mise a jour des conditions en cours.'],
+      title: 'Conditions de surf prévues pour ce week-end',
+      fallbackParagraphs: ['Mise à jour des conditions en cours.'],
     },
 
     findUsTitle: 'Comment nous trouver',
@@ -221,7 +221,7 @@ export const fr = {
       },
       {
         title: 'Technique',
-        text: 'Prise de vague, redressement idéale, prise de direction, prendre les vagues vertes, les maneuvres…Nos moniteurs vous transmettent les techniques en fonction de votre niveau.',
+        text: 'Prise de vague, redressement idéal, prise de direction, prendre les vagues vertes, les manœuvres…Nos moniteurs vous transmettent les techniques en fonction de votre niveau.',
       },
       {
         title: 'Sécurité avant tout',
@@ -297,7 +297,7 @@ export const fr = {
     // --- Présentation détaillée d'un cours ---
     aboutTitle: 'Comment se déroule un cours ?',
     aboutLead:
-      'Un cours de surf dans notre école, c’est 2 heures encadrées par un moniteur diplômé, sur la Plage Centrale du Porge Océan. Une vraie séance sportive complete, étape par étape en fonction de votre niveau.',
+      'Un cours de surf dans notre école, c’est 2 heures encadrées par un moniteur diplômé, sur la Plage Centrale du Porge Océan. Une vraie séance sportive complète, étape par étape en fonction de votre niveau.',
     quickFacts: [
       { label: 'Durée', value: '2 heures', detail: 'Présentez-vous 20 min avant le début du cours.' },
       { label: 'Niveau', value: 'Groupes de niveaux', detail: 'Débutant à confirmé, dès 5 ans.' },
@@ -332,7 +332,7 @@ export const fr = {
     comboTitle: 'Formule Combo',
     comboPrice: '255€',
     comboDetail: '5 jours : 2h/jour de cours collectif + location planche & combinaison pendant 5 jours.',
-    comboText: 'Pour ceux qui veulent garder le materiel avant et après les cours',
+    comboText: 'Pour ceux qui veulent garder le matériel avant et après les cours',
     includes: [
       'Moniteur diplômé',
       'Matériel adapté fourni',
@@ -359,7 +359,7 @@ export const fr = {
       title: 'Le planning des cours de la semaine',
       subtitle: '',
       openPlanning: 'Voir les horaires',
-      contactCta: 'Reserver',
+      contactCta: 'Réserver',
     },
     cta: 'Réserver maintenant',
   },
@@ -475,7 +475,7 @@ export const fr = {
       },
       {
         title: 'Quelle combi ?',
-        text: 'Nous avons des shortis et intégrales de differentes épaisseurs en fonction de la temperature de l’eau.',
+        text: 'Nous avons des shortys et intégrales de différentes épaisseurs en fonction de la température de l’eau.',
       },
     ],
     guideAdvice: 'Notre équipe saura vous conseiller la planche la plus adaptée aux conditions et à votre niveau',
@@ -753,7 +753,7 @@ export const fr = {
   // ---- Petits textes d'interface (boutons, libellés, textes alternatifs) ----
   ui: {
     footer: {
-      efsurfFederationLogo: "Logo federation EFSurf",
+      efsurfFederationLogo: "Logo fédération EFSurf",
     },
     navbar: {
       openSubmenu: "Ouvrir le sous-menu",
@@ -774,12 +774,12 @@ export const fr = {
       mustPaymentBeCompleted: "Le paiement doit-il déjà être effectué avant le formulaire ?",
       skeepskoolCartBuySurf: "Panier Skeepskool : achetez vos cours de surf à l'avance et réservez votre créneau en ligne.",
       approximateEndDate: "Date de fin approximative",
-      weHaveAvailabilityAnd: "Nous avons de la disponibilité : il faudra appeller 3j avant pour definir le créneau.",
+      weHaveAvailabilityAnd: "Nous avons de la disponibilité : il faudra appeler 3 jours avant pour définir le créneau.",
       callTheSchool: "Appeler l’école",
       invalidCallingCodeE: "Indicatif invalide (ex: +33).",
       otherCallingCode: "Autre indicatif...",
       codeEG33: "Indicatif ex: +33",
-      requiredFormatFollowedBy: "Format requis: + suivi de 1 a 4 chiffres.",
+      requiredFormatFollowedBy: "Format requis: + suivi de 1 à 4 chiffres.",
     },
     contact: {
       frequentlyAskedQuestions: "Questions fréquentes",
@@ -797,7 +797,7 @@ export const fr = {
       invalidCallingCodeE: "Indicatif invalide (ex: +33).",
       otherCallingCode: "Autre indicatif...",
       codeEG33: "Indicatif ex: +33",
-      requiredFormatFollowedBy: "Format requis: + suivi de 1 a 4 chiffres.",
+      requiredFormatFollowedBy: "Format requis: + suivi de 1 à 4 chiffres.",
     },
     home: {
       seoDescription: "École de surf labellisée FFS à Le Porge Océan, Gironde. Cours collectifs et particuliers dès 5 ans, location de matériel. Moniteurs diplômés d'État. 50 min de Bordeaux.",
@@ -809,13 +809,13 @@ export const fr = {
       enGb: "fr-FR",
       skeepskoolLessonsAndRental: "Cours et location Skeepskool",
       surfLessonsAndEquipment: "Cours de surf et location de matériel",
-      bookALessonSlot: "Reserver un creneau de cours",
+      bookALessonSlot: "Réserver un créneau de cours",
       callSkeepskool: "Appeler Skeepskool",
       call: "Appeler",
-      scroll: "Faites defiler",
+      scroll: "Faites défiler",
       seeThisWeekS: "Voir les horaires de cours de la semaine",
       skeepskoolSurfSchool: "École de surf Skeepskool",
-      lePorgeSpot: "Le spot du porge",
+      lePorgeSpot: "Le spot du Porge",
       viewPhotoAlbum: "Voir l’album photo",
       goToHowTo: "Aller à Comment nous trouver",
       efsurfLogo: "Logo EFSurf",
@@ -840,10 +840,10 @@ export const fr = {
     },
     notFound: {
       pageNotFound: "Page introuvable",
-      theRequestedPageCould: "La page demandee est introuvable.",
+      theRequestedPageCould: "La page demandée est introuvable.",
       thisPageDoesNot: "Cette page n'existe pas.",
-      theLinkMayBe: "Le lien est peut-etre obsolete ou incorrect.",
-      backToHome: "Retour a l'accueil",
+      theLinkMayBe: "Le lien est peut-être obsolète ou incorrect.",
+      backToHome: "Retour à l'accueil",
     },
     photoAlbum: {
       photoGallery: "Galerie Photo",

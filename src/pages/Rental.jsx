@@ -83,9 +83,9 @@ export default function Rental() {
       />
       <PageHero title={r.heroTitle} subtitle={r.heroSubtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
 
-      <section id="infos-location" className="scroll-mt-36 bg-white py-6 sm:py-8">
+      <section id="infos-location" className="scroll-mt-36 bg-lightGray pb-2 pt-6 sm:pt-8">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <Reveal className="rounded-2xl border-l-4 border-red bg-lightGray p-4 shadow-sm ring-1 ring-black/5 sm:p-5">
+          <Reveal className="rounded-2xl border-l-4 border-red bg-white p-4 shadow-sm ring-1 ring-black/5 sm:p-5">
             <p className="flex items-start gap-2 text-sm font-semibold text-red sm:text-base">
               <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-red" />
               <span>
@@ -98,7 +98,7 @@ export default function Rental() {
       </section>
 
       {/* ---- Equipment guide ---- */}
-      <section id="guide-location" className="scroll-mt-36 bg-lightGray py-16 sm:py-24">
+      <section id="guide-location" className="scroll-mt-36 bg-lightGray pb-16 pt-6 sm:pb-20 sm:pt-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-center text-3xl font-black text-red sm:text-4xl">

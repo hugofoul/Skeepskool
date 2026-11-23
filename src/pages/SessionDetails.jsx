@@ -97,7 +97,7 @@ export default function SessionDetails() {
               {c.back}
             </Link>
             <Link
-              to={c.ctaPath}
+              to={path(c.ctaRoute)}
               className="inline-flex items-center gap-2 rounded-full bg-royalBlue px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-red"
             >
               {c.cta}
