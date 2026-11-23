@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X, Phone, ChevronDown, ShoppingCart } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
-import { CONTACT } from '../config/site.js'
+import { usePrimaryPhone } from '../hooks/usePrimaryPhone.js'
 import { buildSrcSet } from '../utils/responsiveImage.js'
 import { trackEvent } from '../lib/analytics.js'
 
 export default function Navbar() {
-  const { lang, setLang, t } = useLang()
+  const { lang, setLang, t, path } = useLang()
+  const primaryPhone = usePrimaryPhone()
   const [open, setOpen] = useState(false)
   const [activeTopDropdown, setActiveTopDropdown] = useState(null)
   const location = useLocation()
@@ -18,71 +19,69 @@ export default function Navbar() {
     setActiveTopDropdown(null)
   }, [location.pathname])
 
-  const bookingPath = lang === 'fr' ? '/reserver' : '/book'
-  const lessonsPath = lang === 'fr' ? '/cours' : '/lessons'
-  const rentalPath = lang === 'fr' ? '/location' : '/rental'
+  const bookingPath = path('booking')
 
   const lessonsSubLinks = [
     {
-      href: `${lessonsPath}#explication`,
-      label: lang === 'fr' ? 'Infos' : (lang === 'de' ? 'Infos' : 'Info'),
+      href: path('lessons', 'explication'),
+      label: t.ui.navbar.info,
     },
     {
-      href: `${lessonsPath}#planning-cours-semaine`,
-      label: lang === 'fr' ? 'Horaires' : (lang === 'de' ? 'Zeitplan' : 'Schedule'),
+      href: path('lessons', 'planning-cours-semaine'),
+      label: t.ui.navbar.schedule,
     },
     {
-      href: `${lessonsPath}#formules-tarifs`,
-      label: lang === 'fr' ? 'Tarifs' : (lang === 'de' ? 'Preise' : 'Pricing'),
+      href: path('lessons', 'formules-tarifs'),
+      label: t.ui.navbar.pricing,
     },
   ]
 
   const rentalSubLinks = [
     {
-      href: `${rentalPath}#infos-location`,
-      label: lang === 'fr' ? 'Infos' : (lang === 'de' ? 'Infos' : 'Info'),
+      href: path('rental', 'infos-location'),
+      label: t.ui.navbar.info,
     },
     {
-      href: `${rentalPath}#tarifs-location`,
-      label: lang === 'fr' ? 'Tarifs' : (lang === 'de' ? 'Preise' : 'Pricing'),
+      href: path('rental', 'tarifs-location'),
+      label: t.ui.navbar.pricing,
     },
   ]
 
-  const contactPath = '/contact'
   const contactSubLinks = [
     {
-      href: `${contactPath}#infos-contact`,
-      label: lang === 'fr' ? 'Contact' : (lang === 'de' ? 'Kontakt' : 'Contact'),
+      href: path('contact', 'infos-contact'),
+      label: t.ui.navbar.contact,
     },
     {
-      href: `${contactPath}#comment-nous-trouver`,
-      label: lang === 'fr' ? 'Accès' : (lang === 'de' ? 'Anfahrt' : 'Access'),
+      href: path('contact', 'comment-nous-trouver'),
+      label: t.ui.navbar.access,
     },
     {
-      href: `${contactPath}#faq`,
-      label: lang === 'fr' ? 'FAQ' : (lang === 'de' ? 'FAQ' : 'FAQ'),
+      href: path('contact', 'faq'),
+      label: t.ui.navbar.faq,
     },
     {
-      href: `${contactPath}#camping-la-grigne`,
-      label: lang === 'fr' ? 'Où dormir' : (lang === 'de' ? 'Wo schlafen' : 'Where to sleep'),
+      href: path('contact', 'camping-la-grigne'),
+      label: t.ui.navbar.whereToSleep,
     },
     {
-      href: `${contactPath}#ou-manger`,
-      label: lang === 'fr' ? 'Où manger' : (lang === 'de' ? 'Wo essen' : 'Where to eat'),
+      href: path('contact', 'ou-manger'),
+      label: t.ui.navbar.whereToEat,
     },
   ]
 
   const links = [
-    { key: 'lessons', to: lessonsPath, label: t.nav.lessons, match: ['/cours', '/lessons'], subLinks: lessonsSubLinks },
-    { key: 'rental', to: rentalPath, label: t.nav.rental, match: ['/location', '/rental'], subLinks: rentalSubLinks },
-    { key: 'gift', to: lang === 'fr' ? '/bon-cadeau' : '/gift-voucher', label: t.nav.gift, match: ['/bon-cadeau', '/gift-voucher'] },
-    { key: 'photos', to: '/album-photo', label: t.nav.photos, match: ['/album-photo', '/photos'] },
-    { key: 'contact', to: contactPath, label: t.nav.contact, subLinks: contactSubLinks },
+    { key: 'school', to: path('school'), label: t.nav.school },
+    { key: 'lessons', to: path('lessons'), label: t.nav.lessons, subLinks: lessonsSubLinks },
+    { key: 'rental', to: path('rental'), label: t.nav.rental, subLinks: rentalSubLinks },
+    { key: 'gift', to: path('gift'), label: t.nav.gift },
+    { key: 'photos', to: path('photos'), label: t.nav.photos },
+    { key: 'contact', to: path('contact'), label: t.nav.contact, subLinks: contactSubLinks },
   ]
 
   const linkClass = (isActive) =>
     [
-      'relative inline-flex h-9 items-center text-sm font-bold text-white transition-colors',
+      'relative inline-flex h-9 items-center whitespace-nowrap text-sm font-bold text-white transition-colors',
       'after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:bg-yellow after:transition-all after:duration-300',
       isActive ? 'after:w-full' : 'after:w-0 hover:after:w-full',
     ].join(' ')
@@ -115,7 +114,7 @@ export default function Navbar() {
         <div className="h-7 w-7 md:hidden" aria-hidden="true" />
 
         {/* Brand */}
-        <a href="/" className="group flex items-center justify-self-center md:-ml-4 md:justify-self-auto lg:-ml-6" aria-label="Retour à l'accueil">
+        <Link to={path('home')} className="group flex items-center justify-self-center md:-ml-4 md:justify-self-auto lg:-ml-6" aria-label="Retour à l'accueil">
           <div className="h-[4.5rem] w-[15rem] overflow-hidden sm:h-[4.5rem] sm:w-[15rem] md:h-[3.75rem] md:w-[12.5rem] lg:h-[4rem] lg:w-[13.5rem]">
             <img
               src="/logo-skeepskool-2026.svg"
@@ -125,10 +124,10 @@ export default function Navbar() {
               className="h-full w-full object-contain object-center transition-transform duration-300 group-hover:scale-[1.03]"
             />
           </div>
-        </a>
+        </Link>
 
         {/* Center links (desktop) */}
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-4 md:flex lg:gap-6 xl:gap-8">
           {links.map((l) => (
             <div
               key={l.key}
@@ -139,7 +138,7 @@ export default function Navbar() {
               <NavLink
                 to={l.to}
                 onClick={() => setActiveTopDropdown(null)}
-                className={({ isActive }) => linkClass(isActive || (l.match?.includes(location.pathname) ?? false))}
+                className={({ isActive }) => linkClass(isActive)}
               >
                 {l.label}
               </NavLink>
@@ -151,7 +150,7 @@ export default function Navbar() {
                   onFocus={() => setActiveTopDropdown(l.key)}
                   onClick={() => setActiveTopDropdown((current) => (current === l.key ? null : l.key))}
                   className="rounded p-0.5 text-white transition-colors hover:text-yellow"
-                  aria-label={lang === 'fr' ? `Ouvrir le sous-menu ${l.label}` : `Open ${l.label} submenu`}
+                  aria-label={`${t.ui.navbar.openSubmenu} ${l.label}`}
                   aria-expanded={activeTopDropdown === l.key}
                 >
                   <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${activeTopDropdown === l.key ? 'rotate-180' : ''}`} />
@@ -170,9 +169,9 @@ export default function Navbar() {
                       const isActive = location.pathname === item.href.split('#')[0] && location.hash === `#${hash}`
 
                       return (
-                        <a
+                        <Link
                           key={item.href}
-                          href={item.href}
+                          to={item.href}
                           onClick={() => setActiveTopDropdown(null)}
                           className={`rounded-lg px-3 py-2 text-xs font-bold uppercase tracking-[0.08em] transition-colors ${
                             isActive
@@ -181,7 +180,7 @@ export default function Navbar() {
                           }`}
                         >
                           {item.label}
-                        </a>
+                        </Link>
                       )
                     })}
                   </div>
@@ -194,12 +193,12 @@ export default function Navbar() {
         {/* Right: lang toggle (desktop) + hamburger (mobile) */}
         <div className="flex items-center justify-self-end gap-3">
           <a
-            href={`tel:${CONTACT.phonePrimary}`}
-            onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phonePrimary}`, source: 'navbar_desktop' })}
-            className="hidden h-9 shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-white/10 px-3 text-sm font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue lg:inline-flex"
+            href={`tel:${primaryPhone.tel}`}
+            onClick={() => trackEvent('click_phone', { target: `tel:${primaryPhone.tel}`, source: 'navbar_desktop' })}
+            className="hidden h-9 shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-white/10 px-3 text-sm font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue xl:inline-flex"
           >
             <Phone className="h-4 w-4 text-yellow" />
-            {CONTACT.phonePrimaryDisplay}
+            {primaryPhone.display}
           </a>
           <Link
             to={bookingPath}
@@ -222,9 +221,7 @@ export default function Navbar() {
       </nav>
 
       <div className="-mt-5 px-4 pb-0.5 text-center text-[10px] font-extrabold uppercase tracking-[0.14em] text-yellow md:hidden">
-        {lang === 'fr'
-          ? "D'avril à novembre · 9h à 19h"
-          : (lang === 'de' ? 'April bis November · 9 bis 19 Uhr' : 'April to November · 9am to 7pm')}
+        {t.ui.navbar.aprilToNovember9am}
       </div>
 
       {/* Mobile dropdown */}
@@ -249,12 +246,12 @@ export default function Navbar() {
               </NavLink>
             ))}
             <a
-              href={`tel:${CONTACT.phonePrimary}`}
-              onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phonePrimary}`, source: 'navbar_mobile' })}
+              href={`tel:${primaryPhone.tel}`}
+              onClick={() => trackEvent('click_phone', { target: `tel:${primaryPhone.tel}`, source: 'navbar_mobile' })}
               className="mt-1 flex items-center gap-2 rounded-lg px-2 py-2.5 text-[0.95rem] font-semibold whitespace-nowrap text-white transition-colors hover:bg-white/10 sm:px-3 sm:text-base"
             >
               <Phone className="h-5 w-5 text-yellow" />
-              {CONTACT.phonePrimaryDisplay}
+              {primaryPhone.display}
             </a>
             <NavLink
               to={bookingPath}

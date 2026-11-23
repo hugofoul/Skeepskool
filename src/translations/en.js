@@ -1,13 +1,8 @@
 export const en = {
   // ---- Shared / brand ----
-  brand: 'SKEEPSKOOL',
-  tagline: 'Live the Ocean',
   ffsLabel: 'French Surf School — FFS Certified',
   bookNow: 'Book now',
-  bookNowLong: 'Book now',
-  learnMore: 'Learn more',
   whatsappUrl: 'https://chat.whatsapp.com/J2vEDM7mQr23DoI61RSJFo',
-  seasonBadge: 'Open from April to November',
   quickActions: {
     response: 'Fast response',
     call: 'Call',
@@ -32,15 +27,11 @@ export const en = {
   // ---- Home ----
   home: {
     heroTitle: 'SKEEPSKOOL',
-    heroTagline: 'Live the Ocean',
     heroSubtitle: '',
     campingNotePrefix: 'Just by ',
     campingNoteLink: 'Camping La Grigne',
     campingNoteSuffix: ' and close to Bordeaux',
     heroCta: 'Book now',
-    heroSecondaryCta: 'Call now',
-    heroTrustItems: ['State-certified instructors', 'From age 5', 'Equipment included'],
-
     highlights: [
       {
         title: 'Lessons',
@@ -158,14 +149,6 @@ export const en = {
     },
 
     aboutTitle: 'Surfing at the gates of Bordeaux',
-    aboutText:
-      'The closest ocean beach from Bordeaux. Surf lessons from age 5, supervised by certified state-qualified instructors.',
-    schedulePreview: {
-      badge: 'Weekly schedule',
-      title: 'See the next lesson slots at a glance',
-      text: 'Check group lesson times, kids sessions and sunset slots, then open the full weekly planning for the complete schedule.',
-      cta: 'View full schedule',
-    },
     surfConditions: {
       badge: 'Conditions',
       title: 'Forecast surf conditions for this weekend',
@@ -185,11 +168,6 @@ export const en = {
       gpsLabel: 'GPS',
       gps: '44.8965° N, 1.1057° W',
     },
-
-    reviewsTitle: 'Leave a Google review',
-    reviewsText: 'Your feedback helps us improve! If you enjoyed your experience at Skeepskool, please share a Google review with us.',
-    reviewsCta: 'Leave a Google review',
-    reviewsUrl: 'https://g.page/r/Cevy5D3GcYpTEAE/review',
 
     testimonialsTitle: 'They surfed with us',
     testimonials: [
@@ -313,10 +291,6 @@ export const en = {
   lessons: {
     heroTitle: 'Lessons & Prices',
     heroSubtitle: 'Surf lessons supervised by certified instructors.',
-    introTitle: 'Surf lessons',
-    introText:
-      'Every package includes: qualified instructor, suitable equipment, insurance, federation license and level certificate.',
-
     // --- Detailed lesson presentation ---
     aboutTitle: 'How does a lesson work?',
     aboutLead:
@@ -328,42 +302,6 @@ export const en = {
       { label: 'Supervision', value: 'Certified instructor', detail: 'Always with you in the water.' },
     ],
     stepsTitle: 'Step by step',
-    steps: [
-      {
-        title: 'Arrive 20 min early',
-        text: 'Meet at the Skeepskool cabin 20 minutes before the lesson to collect your wetsuit and the board chosen by your instructor.',
-      },
-      {
-        title: 'Checkpoint',
-        text: 'Stop at the top of the dune to analyse sea conditions (wave size, tide, wind, beach shape and rip currents) to choose the best area. Because surfing starts with observation.',
-      },
-      {
-        title: 'Warm-up',
-        text: 'A full-body warm-up to enter the water in good conditions.',
-      },
-      {
-        title: 'Safety instructions',
-        text: 'Learning and reminder of safety instructions before each lesson, based on the conditions and everyone’s level.',
-      },
-      {
-        title: 'In the water',
-        text: 'Time to practise! Beginners surf in the whitewater, the more confident head out for the waves. The instructor stays with you in the water.',
-      },
-      {
-        title: 'Stretching',
-        text: 'A few minutes of stretching to improve flexibility and support recovery.',
-      },
-      {
-        title: 'Session review',
-        text: 'End-of-session analysis of: what changed in sea conditions and on the surf spot; safety (risky behaviours during the session); technique (review of what was learned, success tips and progression goals for next sessions).',
-      },
-      {
-        title: 'Back to school',
-        text: 'Back to the school: store your board and rinse your wetsuit; quick checkout at reception about how the session went; confirm the time of your next lesson.',
-      },
-    ],
-    includedTitle: 'Everything is included in the price',
-    goodToKnowTitle: 'Good to know',
     goodToKnow: [
       {
         question: 'When should I arrive before the lesson?',
@@ -394,7 +332,6 @@ export const en = {
     pricesSubtitle: '',
 
     popular: 'Popular',
-    perSession: '/ session',
     cards: [
       { name: 'Single lesson', price: '40€', detail: '2h group lesson', note: '' },
       { name: 'Mini pack 3 lessons', price: '110€', detail: '3 × 2h', note: '≈ 37€ / session' },
@@ -407,7 +344,6 @@ export const en = {
     comboPrice: '255€',
     comboDetail: '5 days: 2h/day group lesson + board & wetsuit rental for the full 5 days.',
     comboText: 'For those who want to keep surfing before and after class!',
-    includesTitle: 'Included in every package',
     includes: [
       'Qualified instructor',
       'Equipment provided',
@@ -420,7 +356,6 @@ export const en = {
     sunsetTitle: 'Sunset lessons',
     sunsetText:
       'Fancy a magical session? We also offer Sunset lessons: surf in the golden evening light, when the ocean calms down and the waves are all yours.',
-    sunsetCta: 'Ask for a Sunset lesson',
     teamLinkTitle: 'Led by a passionate team',
     teamLinkText: 'All our lessons are run by state-certified instructors. Meet the Skeepskool team.',
     teamLinkCta: 'Meet the instructors',
@@ -441,11 +376,9 @@ export const en = {
 
   schedule: {
     title: 'Lesson schedule',
-    liveLabel: 'Live schedule',
     fallbackLabel: 'No lesson scheduled',
     allLevels: 'All levels',
     callWidgetTitle: 'Call us to book',
-    callWidgetText: 'Need help choosing a slot or want to secure your booking quickly? Call the school.',
     callWidgetCta: 'Call now',
     fallbackDays: [
       { day: 'Monday', slots: [] },
@@ -464,7 +397,6 @@ export const en = {
     intro:
       'To confirm your booking, payment must already be completed by bank transfer before submitting this form.',
 
-    contactTitle: 'Contact information',
     contactTitleGift: 'Contact information (person offering the gift)',
     firstName: 'First name',
     lastName: 'Last name',
@@ -476,8 +408,6 @@ export const en = {
     surferLabel: 'Surfer',
     surferFirstName: 'First name',
     surferLastName: 'Last name',
-    surferAge: 'Age',
-    surferLevel: 'Level',
     surferPackage: 'Package',
     surferPackageGift: 'Gifted package',
     addSurfer: '+ Add a surfer',
@@ -499,26 +429,15 @@ export const en = {
       { value: 'combo', label: '5-day combo + board + wetsuit — 255€', price: 255 },
     ],
 
-    commonTitle: 'Shared information',
     startDate: 'Approximate start date',
     startDateNote: 'For bookings within less than 3 days, please call us directly so we can give you the most suitable slot.',
-    giftVoucherCheckbox: 'This is a gift voucher (date to be defined later)',
     giftVoucherDateValue: 'Gift voucher (date to be defined)',
     giftVoucherYes: 'Yes',
     giftVoucherNo: 'No',
     giftVisualCheckbox: 'I need a visual card to offer the gift voucher',
     giftVoucherValidityNote: 'Gift voucher valid for 1 year from the purchase date.',
     shortNoticeAlert: 'For bookings within less than 3 days, please call the school directly.',
-    paymentType: 'Payment type',
-    payerName: 'Person who made the transfer / payment',
     sameAsContactSurfer: 'Auto-fill Surfer 1 with contact information',
-    sameAsContactPayer: 'The payer is the same person as the contact',
-    optionalMessage: 'Optional message',
-
-    paymentMethods: [
-      { value: 'transfer', label: 'Bank transfer' },
-    ],
-
     totalLabel: 'Total:',
     warning:
       'Important — Your booking is only confirmed once payment has been made BEFORE submitting this form.',
@@ -532,7 +451,10 @@ export const en = {
     none: 'None',
     unknownDate: 'Not specified',
 
-    successLead: 'Thank you {name}! Your request has been sent on WhatsApp.',
+    successLead: 'Thank you {name}! Your request has been sent.',
+    emailOptional: 'Email (optional, to receive our reply by email)',
+    sending: 'Sending…',
+    sendFailed: 'Automatic sending did not work. Please send us your request on WhatsApp (message ready) or call us.',
     successEnd: 'We will contact you shortly to confirm your slot. See you in the water! 🏄',
 
     whatsappHeader: 'New Skeepskool Booking',
@@ -544,8 +466,6 @@ export const en = {
     whatsappSurfers: 'Surfers:',
     whatsappMessage: 'Message:',
     whatsappPayment: 'Payment: Already completed',
-    whatsappPaymentType: 'Payment type:',
-    whatsappPayerName: 'Payer:',
     whatsappCallWeek: 'I will call the school 1 week before arrival.',
     whatsappClosing: 'Please confirm availability!',
     whatsappSurferLine: 'Surfer',
@@ -562,12 +482,10 @@ export const en = {
       { item: 'Bodyboard', prices: ['10€', '12€', '15€', '80€', '12€'] },
       { item: 'Wetsuit (Combi)', prices: ['6€', '8€', '10€', '45€', '8€'] },
     ],
-    riskNote: 'Rental at your own risk — unsupervised.',
     safetyRecommendation:
       'It is recommended to have completed at least 10 lessons with a surf instructor. Safety is essential for you and for others: surfing can be dangerous.',
     plusNote: 'Bonus: you can switch boards during your rental period.',
     idRequiredNote: 'A valid ID is required for any rental.',
-    sunsetNote: 'Sunset slot: from 6pm to the next day at 9:30am.',
     guideTitle: 'Choose your equipment',
     guide: [
       {
@@ -594,13 +512,8 @@ export const en = {
     infoTitle: 'Our details',
     infoLead: 'We prefer to be contacted by phone (WhatsApp welcome).',
     address: 'Plage Centrale, Le Porge Océan, 33680 Gironde',
-    addressDetail: '40m north of the main beach access.',
-    openMaps: 'Open in Google Maps',
-    phones: '+33 6 70 60 84 26 · +33 6 50 52 34 75',
     facebook: '@skeepskool (Facebook)',
     instagram: '@skeepskool (Instagram)',
-    email: 'skeepskool@hotmail.com',
-
     seasonTitle: 'Opening Hours',
     season:
       'Open from 9am to 7pm, 7 days a week.',
@@ -639,7 +552,6 @@ export const en = {
       gps: '44.8965° N, 1.1057° W',
     },
 
-    formTitle: 'Write to us',
     form: {
       firstName: 'First name',
       email: 'Email',
@@ -658,13 +570,6 @@ export const en = {
     },
 
     gift: 'Give a gift voucher',
-    giftUrl: 'https://www.leporge-ecoledesurf.com/en/gift-coupons/',
-    
-    reviewsTitle: 'Leave a Google review',
-    reviewsText: 'Your feedback helps us improve! If you enjoyed your experience at Skeepskool, please share a Google review with us.',
-    reviewsCta: 'Leave a Google review',
-    reviewsUrl: 'https://g.page/r/Cevy5D3GcYpTEAE/review',
-    
     mapTitle: 'Location',
   },
 
@@ -710,9 +615,6 @@ export const en = {
       },
     ],
 
-    busTitle: 'Coming by bus',
-    busText:
-      'The Cars Région Nouvelle-Aquitaine regional coach line connects Bordeaux to Le Porge. A simple and affordable way to reach the ocean without a car.',
     busPriceLabel: 'Fare',
     busPrice: '€2.50 one way · €4.50 return',
     busPriceNote: 'Indicative regional fares — please confirm before travelling.',
@@ -733,12 +635,15 @@ export const en = {
     contact: 'Contact',
     rights: '© Skeepskool — Le Porge Océan Surf School',
     legal: 'Legal notice',
+    privacy: 'Privacy',
+    cookies: 'Cookies',
   },
 
   // ---- Legal ----
   legal: {
     heroTitle: 'Legal notice',
     heroSubtitle: 'Legal information about the Skeepskool website.',
+    privacyLink: 'Personal data and cookies: see our privacy policy.',
     sections: [
       {
         title: 'Company information',
@@ -770,22 +675,240 @@ export const en = {
           'Any unauthorised representation, reproduction, adaptation, modification or exploitation is prohibited and may constitute infringement under articles L. 335-2 et seq. of the French Intellectual Property Code.',
         ],
       },
+    ],
+  },
+
+  // ---- Cookie banner ----
+  cookies: {
+    title: 'Cookies and audience measurement',
+    text: 'With your consent, we use Google Analytics to measure and improve how the site is used. You can change your mind at any time with the “Cookies” link at the bottom of the page.',
+    more: 'Learn more',
+    accept: 'Accept',
+    refuse: 'Decline',
+  },
+
+  // ---- Privacy policy ----
+  privacy: {
+    seoTitle: 'Privacy policy',
+    seoDescription: 'How Skeepskool collects and uses your personal data (bookings, gift vouchers, cookies) and how to exercise your rights.',
+    heroTitle: 'Privacy policy',
+    heroSubtitle: 'Your personal data and your rights.',
+    updated: 'Last updated: November 2026',
+    sections: [
       {
-        title: 'Personal data',
+        id: 'responsable',
+        title: 'Data controller',
         body: [
-          'Skeepskool is committed to processing your personal data in a way that respects your privacy and complies with applicable French and European law.',
-          'Data collected via the contact form (first name, email, message) is used solely to respond to your request and is never shared or sold to third parties.',
-          'In accordance with the GDPR, you have the right to access, rectify, erase, restrict and object to the processing of your data. To exercise these rights, contact us at skeepskool@hotmail.com.',
-          'You may also lodge a complaint with the CNIL (www.cnil.fr).',
+          'Data collected on this site is processed by Skeepskool, surf school at Le Porge Océan, represented by Mr Pierre Vienne (Plage Centrale, 33680 Le Porge, France).',
+          'Contact: skeepskool@hotmail.com — +33 6 70 60 84 26.',
         ],
       },
       {
-        title: 'Cookies',
+        id: 'donnees',
+        title: 'Data collected and purposes',
         body: [
-          'Skeepskool only uses cookies and trackers whose purpose is to enable or facilitate electronic communication, or which are strictly necessary for the proper functioning of the website.',
-          'You can change your browser settings to block or delete cookies. Blocking cookies may affect how the website works.',
+          'Booking and gift voucher forms: first name, last name, phone number, email address (optional), participants’ names, chosen packages and preferred date.',
+          'This information is only used to handle your request: organising your lessons, getting back to you, issuing a gift voucher. It is sent to us by email and, if you choose so, via WhatsApp.',
+          'Legal basis: steps taken at your request prior to entering into a contract (Article 6(1)(b) GDPR).',
+        ],
+      },
+      {
+        id: 'destinataires',
+        title: 'Recipients and processors',
+        body: [
+          'Your data is only intended for the Skeepskool team. It is never sold or shared.',
+          'It goes through our technical providers: OVH (website hosting, France), Resend (sending the summary email of your request, United States, covered by the European Commission’s standard contractual clauses) and, if you use it, WhatsApp (Meta).',
+        ],
+      },
+      {
+        id: 'conservation',
+        title: 'Retention period',
+        body: [
+          'Booking and gift voucher requests are kept for 3 years after our last exchange, then deleted. Accounting records are kept for 10 years as required by law.',
+        ],
+      },
+      {
+        id: 'cookies',
+        title: 'Cookies and audience measurement',
+        body: [
+          'The site uses no advertising cookies.',
+          'If you accept it in the banner, we use Google Analytics (Google Ireland Ltd) to measure traffic statistically. These cookies (_ga) are kept for up to 13 months. Without your consent, no measurement cookie is set.',
+          'Your choice is remembered for 6 months in your browser. You can change it at any time with the “Cookies” link at the bottom of every page.',
+          'The Google Maps map and Instagram posts embedded in some pages are provided by Google and Meta, who may set their own cookies when you display them.',
+        ],
+      },
+      {
+        id: 'droits',
+        title: 'Your rights',
+        body: [
+          'Under the GDPR, you have the right to access, rectify, erase, restrict, object to and port your data.',
+          'To exercise these rights, email us at skeepskool@hotmail.com. We will reply within one month.',
+          'If you believe your rights are not respected, you can lodge a complaint with the French data protection authority, the CNIL (www.cnil.fr).',
         ],
       },
     ],
+  },
+
+
+  // ---- Séance type ----
+  sessionDetails: {
+    title: "Typical Session",
+    subtitle: "Full lesson flow, step by step.",
+    intro: "Here are the detailed visuals for each step so you can clearly understand how a session works at Skeepskool.",
+    back: "Back to lessons",
+    cta: "Book a session",
+    ctaRoute: "booking",
+    stepLabel: "Step",
+  },
+
+  // ---- Bon cadeau ----
+  giftVoucher: {
+    title: "Surf gift voucher",
+    subtitle: "Offer a surf lesson or package to someone you care about.",
+    intro: "Fill in your details and choose the package: your request is sent straight to us and we will get back to you.",
+    note: "Gift voucher: date will be set later with the recipient.",
+    submit: "Send gift voucher request",
+    successHeader: "Gift voucher request sent.",
+    whatsappHeader: "New Skeepskool gift voucher",
+    callCta: "Call the school",
+  },
+  // ---- Petits textes d'interface (boutons, libellés, textes alternatifs) ----
+  ui: {
+    footer: {
+      efsurfFederationLogo: "EFSurf federation logo",
+    },
+    navbar: {
+      openSubmenu: "Open submenu",
+      info: "Info",
+      schedule: "Schedule",
+      pricing: "Pricing",
+      contact: "Contact",
+      access: "Access",
+      faq: "FAQ",
+      whereToSleep: "Where to sleep",
+      whereToEat: "Where to eat",
+      aprilToNovember9am: "April to November · 9am to 7pm",
+    },
+    booking: {
+      sendOnWhatsapp: "Send on WhatsApp",
+      cart: "Cart",
+      whenShouldIPay: "When should I pay to confirm my booking?",
+      whatIfIBook: "What if I book less than 3 days in advance?",
+      mustPaymentBeCompleted: "Must payment be completed before submitting the form?",
+      preferredEndDate: "Preferred end date:",
+      skeepskoolCartBuySurf: "Skeepskool cart: buy surf lessons in advance and secure your slot online.",
+      approximateEndDate: "Approximate end date",
+      weHaveAvailabilityAnd: "We have availability and will confirm your slot quickly.",
+      openWhatsapp: "Also send on WhatsApp",
+      messageCopied: "Message copied.",
+      unableToCopyAutomatically: "Unable to copy automatically.",
+      copyMessage: "Copy message",
+      callTheSchool: "Call the school",
+      invalidCallingCodeE: "Invalid calling code (e.g. +33).",
+      otherCallingCode: "Other calling code...",
+      codeEG33: "Code e.g. +33",
+      requiredFormatFollowedBy: "Required format: + followed by 1 to 4 digits.",
+    },
+    contact: {
+      frequentlyAskedQuestions: "Frequently asked questions",
+      openTheAccessMap: "Open the access map in full size",
+      locationMapToFind: "Location map to find Skeepskool surf school",
+      accessMap: "Access map",
+      clickTheImageTo: "Click the image to open it full size.",
+      practicalInfo: "Practical Info",
+      howToReachLe: "How to reach Le Porge Océan, opening hours, phone numbers, bus access from Bordeaux. Skeepskool surf school.",
+      close: "Close",
+    },
+    giftVoucher: {
+      sendOnWhatsapp: "Send on WhatsApp",
+      howDoIBuy: "How do I buy a gift voucher?",
+      giftVoucherVisual: "Gift voucher visual",
+      openWhatsapp: "Also send on WhatsApp",
+      messageCopied: "Message copied.",
+      unableToCopyAutomatically: "Unable to copy automatically.",
+      copyMessage: "Copy message",
+      invalidCallingCodeE: "Invalid calling code (e.g. +33).",
+      otherCallingCode: "Other calling code...",
+      codeEG33: "Code e.g. +33",
+      requiredFormatFollowedBy: "Required format: + followed by 1 to 4 digits.",
+    },
+    home: {
+      seoDescription: "FFS-certified surf school at Le Porge Océan, Gironde. Group and private lessons from age 5, equipment rental. State-certified instructors. 50 min from Bordeaux.",
+      seasonHours: "April to November · 9am to 7pm",
+      offersValidity: "All our packages are valid for 1 year from the date of purchase.",
+      naturalSetting: "A unique natural setting between dune, forest and ocean.",
+      moreLessonPhotos: "Want to see more? Open the photo album to discover the spot, sessions and life in the water.",
+      heroTitleLines: {"top": "Surf school", "middle": "at", "bottom": "Le Porge Central Beach"},
+      enGb: "en-GB",
+      skeepskoolLessonsAndRental: "Skeepskool lessons and rental",
+      surfLessonsAndEquipment: "Surf lessons and equipment rental",
+      bookALessonSlot: "Book a lesson slot",
+      callSkeepskool: "Call Skeepskool",
+      call: "Call",
+      scroll: "Scroll",
+      seeThisWeekS: "See this week's lesson schedule",
+      skeepskoolSurfSchool: "Skeepskool surf school",
+      lePorgeSpot: "Le Porge spot",
+      viewPhotoAlbum: "View photo album",
+      goToHowTo: "Go to How to find us",
+      efsurfLogo: "EFSurf logo",
+    },
+    legal: {
+      legalNotice: "Legal Notice",
+      legalNoticePrivacyPolicy: "Legal notice, privacy policy and regulatory information for Skeepskool.",
+    },
+    lessons: {
+      sessionFlowQuestion: "Want to see the full flow of a typical session?",
+      sessionFlowText: "Open the detailed page with all numbered steps and explanatory visuals.",
+      lessonsPrices: "Lessons & Prices",
+      packagesPrices: "Packages & Prices",
+      groupAndPrivateSurf: "Group and private surf lessons from €40. Packs of 3, 5, 10 or 20 sessions. Equipment and insurance included. Le Porge Océan, Gironde.",
+      frenchSurfFederationLevel: "French Surf Federation level certificates",
+      viewDetailedSessionFlow: "View detailed session flow",
+      clickToOpenGift: "Click to open gift voucher page",
+      morningLessons: "Morning lessons",
+      frenchSurfSchool: "French Surf School",
+      openGiftVoucherPage: "Open gift voucher page",
+      giftVoucherVisual: "Gift voucher visual",
+    },
+    notFound: {
+      pageNotFound: "Page not found",
+      theRequestedPageCould: "The requested page could not be found.",
+      thisPageDoesNot: "This page does not exist.",
+      theLinkMayBe: "The link may be outdated or incorrect.",
+      backToHome: "Back to home",
+    },
+    photoAlbum: {
+      photoGallery: "Photo Gallery",
+      skeepskoolPhotoAlbumWaves: "Skeepskool photo album: waves, students in the water, golden light and surf atmosphere.",
+      collection: "Collection",
+      photoViewer: "Photo viewer",
+    },
+    rental: {
+      rentalFrom: "Rental from €{price}.",
+      equipmentRental: "Equipment Rental",
+      surfboardBodyboardAndWetsuit: "Surfboard, bodyboard and wetsuit rental right by the beach at Le Porge Océan. From €10. Sunset slot available.",
+      rentalSurfboards: "Rental surfboards",
+      contactUs: "Contact us",
+      pricing: "Pricing",
+      guideAdvice: "Our team will help you choose the best board for the conditions and your level",
+    },
+    schedule: {
+      joinTheWhatsappCommunity: "Join the WhatsApp community",
+      weUsuallyShareLesson: "We usually share lesson schedules on Thursdays for the coming week. Join the WhatsApp community to receive all updates.",
+      openWhatsappLink: "Open WhatsApp link",
+      lessonScheduleForThe: "Lesson schedule for the week",
+      lessonSchedule: "Lesson Schedule",
+      liveSurfLessonSchedule: "Live surf lesson schedule at Skeepskool. Group slots, kids sessions and Sunset lessons at Le Porge Océan.",
+    },
+    school: {
+      theSchool: "The School",
+      discoverSkeepskoolSurfSchool: "Discover Skeepskool surf school: a preserved spot between dunes and pine forest at Le Porge Océan, certified instructors, FFS label.",
+      frenchSurfSchoolLogo: "French Surf School logo",
+    },
+    sessionDetails: {
+      typicalSession: "Typical Session",
+      stepViewer: "Step viewer",
+    },
   },
 }

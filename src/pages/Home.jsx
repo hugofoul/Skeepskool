@@ -14,13 +14,14 @@ import {
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLang } from '../hooks/useLang.js'
+import { usePrimaryPhone } from '../hooks/usePrimaryPhone.js'
 import { useSurfConditions } from '../hooks/useSurfConditions.js'
 import { images, carousel, teamPhotos } from '../data/images.js'
 import CTAButton from '../components/CTAButton.jsx'
 import Reveal from '../components/Reveal.jsx'
 import Carousel from '../components/Carousel.jsx'
 import SEO from '../components/SEO.jsx'
-import { CONTACT, MAPS } from '../config/site.js'
+import { MAPS } from '../config/site.js'
 import { buildSrcSet, HERO_SIZES, GRID_CARD_SIZES } from '../utils/responsiveImage.js'
 
 const teamImages = [teamPhotos.pierre, teamPhotos.mariane, teamPhotos.manoa, teamPhotos.hugo]
@@ -49,20 +50,18 @@ const HOME_MAP_SRC =
   'https://www.google.com/maps?q=Skeepskool+Ecole+de+Surf+Plage+Centrale+du+Porge&z=14&output=embed'
 
 export default function Home() {
-  const { t, lang } = useLang()
+  const { t, lang, path } = useLang()
+  const primaryPhone = usePrimaryPhone()
   const h = t.home
   const s = t.school
   const booking = t.booking
   const rental = t.rental
-  const isFr = lang === 'fr'
-  const isDe = lang === 'de'
-  const pickLang = (frText, enText, deText) => (isFr ? frText : (isDe ? deText : enText))
-  const bookingPath = lang === 'fr' ? '/reserver' : '/book'
-  const lessonsPath = lang === 'fr' ? '/cours' : '/lessons'
+  const bookingPath = path('booking')
+  const lessonsPath = path('lessons')
   const lessonsPricingPath = `${lessonsPath}#cours-a-lunite`
-  const schedulePath = lang === 'fr' ? '/horaires' : '/schedule'
-  const contactFindUsPath = '/contact#comment-nous-trouver'
-  const rentalPath = lang === 'fr' ? '/location' : '/rental'
+  const schedulePath = path('schedule')
+  const contactFindUsPath = path('contact', 'comment-nous-trouver')
+  const rentalPath = path('rental')
   const [openFaqIndex, setOpenFaqIndex] = useState(0)
   const [showAllPracticalFaq, setShowAllPracticalFaq] = useState(false)
 
@@ -73,7 +72,7 @@ export default function Home() {
 
   const formatPrice = (value) => {
     if (!Number.isFinite(value)) return h?.offers?.priceFallback || ''
-    const locale = lang === 'fr' ? 'fr-FR' : (lang === 'de' ? 'de-DE' : 'en-GB')
+    const locale = t.ui.home.enGb
     return new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(value)
   }
 
@@ -152,30 +151,13 @@ export default function Home() {
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      name: lang === 'fr' ? 'Cours et location Skeepskool' : (lang === 'de' ? 'Kurse und Verleih Skeepskool' : 'Skeepskool lessons and rental'),
-      serviceType: lang === 'fr' ? 'Cours de surf et location de matériel' : (lang === 'de' ? 'Surfkurse und Materialverleih' : 'Surf lessons and equipment rental'),
+      name: t.ui.home.skeepskoolLessonsAndRental,
+      serviceType: t.ui.home.surfLessonsAndEquipment,
       areaServed: 'Le Porge Océan',
       offers: homeOffers,
     },
   ]
-  const heroTitleLines = isFr
-    ? {
-      top: "L'école de surf",
-      middle: 'de la',
-      bottom: 'Plage Centrale du Porge',
-      bottomMobile: ['Plage Centrale', 'du Porge'],
-    }
-    : (isDe
-      ? {
-        top: 'Surfschule',
-        middle: 'am',
-        bottom: 'Zentralstrand Le Porge',
-      }
-      : {
-        top: 'Surf school',
-        middle: 'at',
-        bottom: 'Le Porge Central Beach',
-      })
+  const heroTitleLines = t.ui.home.heroTitleLines
   const surfConditions = useSurfConditions({
     lang,
     fallbackParagraphs: h.surfConditions.fallbackParagraphs,
@@ -184,18 +166,8 @@ export default function Home() {
   return (
     <div className="overflow-x-hidden">
       <SEO
-        path="/"
-        alternates={[
-          { hrefLang: 'fr-FR', path: '/' },
-          { hrefLang: 'en', path: '/' },
-          { hrefLang: 'de', path: '/' },
-          { hrefLang: 'x-default', path: '/' },
-        ]}
-        description={pickLang(
-          "École de surf labellisée FFS à Le Porge Océan, Gironde. Cours collectifs et particuliers dès 5 ans, location de matériel. Moniteurs diplômés d'État. 50 min de Bordeaux.",
-          'FFS-certified surf school at Le Porge Océan, Gironde. Group and private lessons from age 5, equipment rental. State-certified instructors. 50 min from Bordeaux.',
-          'FFS-zertifizierte Surfschule in Le Porge Océan, Gironde. Gruppen- und Privatkurse ab 5 Jahren, Materialverleih, staatlich geprüfte Lehrer. 50 Minuten von Bordeaux.',
-        )}
+        routeKey="home"
+        description={t.ui.home.seoDescription}
         structuredData={homeStructuredData}
       />
       {/* ---------------- HERO ---------------- */}
@@ -252,20 +224,20 @@ export default function Home() {
           <div className="mt-14 w-full sm:mt-16 sm:translate-y-16 lg:translate-y-36">
             <div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:gap-12">
               <CTAButton
-                to={lang === 'fr' ? '/reserver' : '/book'}
-                aria-label={pickLang('Reserver un creneau de cours', 'Book a lesson slot', 'Einen Kurs-Slot buchen')}
+                to={path('booking')}
+                aria-label={t.ui.home.bookALessonSlot}
                 className="w-auto justify-center gap-2 px-4 py-3 text-base font-semibold !bg-red !text-white !shadow-none hover:!bg-red/90 sm:gap-3 sm:!rounded-full sm:px-12 sm:py-6 sm:text-2xl sm:font-bold sm:!shadow-lg"
               >
                 <CalendarCheck2 className="h-6 w-6 sm:h-7 sm:w-7" />
                 {h.heroCta}
               </CTAButton>
               <CTAButton
-                href={`tel:${CONTACT.phonePrimary}`}
-                aria-label={pickLang('Appeler Skeepskool', 'Call Skeepskool', 'Skeepskool anrufen')}
+                href={`tel:${primaryPhone.tel}`}
+                aria-label={t.ui.home.callSkeepskool}
                 className="w-auto justify-center gap-2 px-4 py-3 text-base font-semibold !bg-white !text-royalBlue !shadow-none hover:!bg-yellow sm:gap-3 sm:!rounded-full sm:px-12 sm:py-6 sm:text-2xl sm:font-bold sm:!shadow-lg"
               >
                 <Phone className="h-6 w-6 sm:h-7 sm:w-7" />
-                {pickLang('Appeler', 'Call', 'Anrufen')}
+                {t.ui.home.call}
               </CTAButton>
             </div>
           </div>
@@ -273,19 +245,15 @@ export default function Home() {
 
         <div className="absolute left-3 top-14 z-20 hidden sm:block sm:left-6 sm:top-12 lg:left-10 lg:top-10">
           <p className="inline-flex items-center rounded-full bg-white/90 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.14em] text-royalBlue ring-1 ring-royalBlue/20 backdrop-blur-sm sm:text-xs">
-            {pickLang(
-              "D'avril à novembre · 9h à 19h",
-              'April to November · 9am to 7pm',
-              'April bis November · 9 bis 19 Uhr',
-            )}
+            {t.ui.home.seasonHours}
           </p>
         </div>
 
         <div className="absolute bottom-8 right-4 z-10 sm:bottom-2 sm:right-6 lg:-bottom-2 lg:right-10">
           <span className="flex h-44 w-44 items-center justify-center sm:h-56 sm:w-56 lg:h-72 lg:w-72">
             <img
-              src="/images/Web - Logo label EFSurf neutre_blanc-paysage.png"
-              alt={lang === 'fr' ? 'Logo EFSurf' : 'EFSurf logo'}
+              src={images.efsLabel}
+              alt={t.ui.home.efsurfLogo}
               className="h-full w-full object-contain"
               loading="lazy"
               decoding="async"
@@ -295,7 +263,7 @@ export default function Home() {
 
         <div className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-center text-white/90">
           <p className="text-[10px] font-semibold uppercase tracking-[0.2em]">
-            {pickLang('Faites defiler', 'Scroll', 'Scrollen')}
+            {t.ui.home.scroll}
           </p>
           <span className="mt-1 block text-sm leading-none animate-bounce">↓</span>
         </div>
@@ -312,11 +280,7 @@ export default function Home() {
               {h.offers.title}
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-center text-sm font-semibold text-dark/70 sm:text-base">
-              {pickLang(
-                'Toutes nos formules sont valables 1 an à partir de la date d\'achat',
-                'All our packages are valid for 1 year from the date of purchase.',
-                'Alle unsere Pakete sind ab Kaufdatum 1 Jahr gültig.',
-              )}
+              {t.ui.home.offersValidity}
             </p>
           </Reveal>
 
@@ -377,7 +341,7 @@ export default function Home() {
               to={schedulePath}
               className="text-sm font-bold uppercase tracking-[0.12em] text-red transition-colors hover:text-royalBlue"
             >
-              {pickLang('Voir les horaires de cours de la semaine', 'See this week\'s lesson schedule', 'Wochenplan der Surfkurse ansehen')}
+              {t.ui.home.seeThisWeekS}
             </Link>
           </Reveal>
 
@@ -394,7 +358,7 @@ export default function Home() {
                   src={images.contactHero}
                   srcSet={buildSrcSet(images.contactHero)}
                   sizes="(max-width: 768px) 100vw, 40vw"
-                  alt={pickLang('École de surf Skeepskool', 'Skeepskool surf school', 'Skeepskool Surfschule')}
+                  alt={t.ui.home.skeepskoolSurfSchool}
                   className="h-full w-full object-cover"
                   loading="lazy"
                 />
@@ -429,7 +393,7 @@ export default function Home() {
             <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">
-                  {pickLang('Le spot du porge', 'Le Porge spot', 'Der Spot in Le Porge')}
+                  {t.ui.home.lePorgeSpot}
                 </p>
                 <h3 className="mt-2 text-3xl font-black text-white sm:text-4xl">{s.beachAdvantagesTitle}</h3>
               </div>
@@ -454,11 +418,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5 rounded-2xl bg-white/90 p-4 backdrop-blur-sm">
                   <p className="text-sm font-bold text-royalBlue sm:text-base">
-                    {pickLang(
-                      'Un cadre naturel unique entre dune, forêt et océan.',
-                      'A unique natural setting between dune, forest and ocean.',
-                      'Ein einzigartiges Naturumfeld zwischen Düne, Wald und Ozean.',
-                    )}
+                    {t.ui.home.naturalSetting}
                   </p>
                 </div>
               </div>
@@ -492,19 +452,15 @@ export default function Home() {
           </Reveal>
           <div className="mt-8 flex flex-col items-center gap-4 text-center">
             <p className="max-w-2xl text-sm font-medium text-dark/70 sm:text-base">
-              {pickLang(
-                'Envie d’en voir plus ? Ouvrez l’album photo pour découvrir le spot, les sessions et l’ambiance à l’eau.',
-                'Want to see more? Open the photo album to discover the spot, sessions and life in the water.',
-                'Lust auf mehr? Öffne das Fotoalbum und entdecke den Spot, die Sessions und das Leben im Wasser.',
-              )}
+              {t.ui.home.moreLessonPhotos}
             </p>
             <CTAButton
-              href="/album-photo"
+              to={path('photos')}
               target="_blank"
               rel="noopener noreferrer"
               className="border border-black/10 !bg-white px-5 py-2.5 text-sm font-medium !text-royalBlue shadow-sm shadow-black/5 hover:-translate-y-0.5 hover:border-yellow hover:!bg-yellow hover:shadow-md"
             >
-              {pickLang('Voir l’album photo', 'View photo album', 'Fotoalbum ansehen')}
+              {t.ui.home.viewPhotoAlbum}
             </CTAButton>
           </div>
         </div>
@@ -629,7 +585,7 @@ export default function Home() {
                   to={contactFindUsPath}
                   className="mt-4 inline-flex items-center font-bold text-red transition-colors hover:text-royalBlue"
                 >
-                  {pickLang('Aller à Comment nous trouver', 'Go to How to find us', 'Zu So findest du uns')}
+                  {t.ui.home.goToHowTo}
                 </Link>
                 <ul className="mt-6 space-y-4">
                   {h.practical.infoItems.map((item) => {
@@ -692,9 +648,9 @@ export default function Home() {
                           className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
                         >
                           <p className="pb-2 pr-6 text-sm leading-relaxed text-dark/75">{item.answer}</p>
-                          {item.ctaLabel && item.ctaPath ? (
+                          {item.ctaLabel && item.ctaRoute ? (
                             <Link
-                              to={item.ctaPath}
+                              to={path(item.ctaRoute)}
                               className="mb-2 inline-flex rounded-full bg-red px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue"
                             >
                               {item.ctaLabel}

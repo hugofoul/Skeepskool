@@ -1,12 +1,12 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
+import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import App from './App.jsx'
 import { LanguageProvider } from './context/LanguageContext.jsx'
 import './index.css'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const app = (
   <React.StrictMode>
     <HelmetProvider>
       <BrowserRouter>
@@ -15,5 +15,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </LanguageProvider>
       </BrowserRouter>
     </HelmetProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 )
+
+// The HTML of each page is pre-rendered at build time (scripts/prerender.mjs) for
+// search engines and a fast first paint; React then takes over by rendering the
+// same page again (a snapshot taken by Chrome cannot be hydrated reliably).
+createRoot(document.getElementById('root')).render(app)

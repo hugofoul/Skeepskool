@@ -1,0 +1,75 @@
+# Construit le site et l'envoie sur l'hébergement OVH par FTP.
+#
+# Pour l'instant (phase de test sur Vercel) : lancement MANUEL uniquement,
+# depuis GitHub → onglet "Actions" → "Déploiement OVH" → "Run workflow".
+# Le jour de la mise en ligne, décommentez les lignes "push" ci-dessous pour
+# que chaque modification de la branche main soit publiée automatiquement.
+#
+# Secrets à créer dans GitHub (Settings → Secrets and variables → Actions) :
+#   OVH_FTP_SERVER     ex. ftp.cluster0XX.hosting.ovh.net
+#   OVH_FTP_USERNAME   identifiant FTP OVH
+#   OVH_FTP_PASSWORD   mot de passe FTP OVH
+#   RESEND_API_KEY     clé API Resend (re_...)
+# Facultatifs :
+#   OVH_FTP_DIR        dossier du site sur OVH (par défaut ./www/)
+#   MAIL_FROM          expéditeur des e-mails (par défaut Skeepskool <onboarding@resend.dev>)
+#   VITE_GA4_MEASUREMENT_ID  identifiant Google Analytics (G-XXXX), si vous l'utilisez
+
+name: Déploiement OVH
+
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: [main]
+
+concurrency:
+  group: deploy-ovh
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # Les versions optimisées des images sont gardées d'une fois sur l'autre :
+      # seules les nouvelles photos sont traitées.
+      - uses: actions/cache@v4
+        with:
+          path: public/images/optimized
+          key: images-${{ hashFiles('public/images/**/*.jpg', 'public/images/**/*.jpeg', 'public/images/**/*.png', 'public/images/**/*.webp', 'public/images/**/*.JPG', 'public/images/**/*.JPEG', 'public/images/**/*.PNG') }}
+          restore-keys: images-
+
+      - run: npm ci
+
+      - name: Construction du site (images + pages pré-rendues)
+        run: npm run build
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+          VITE_GA4_MEASUREMENT_ID: ${{ secrets.VITE_GA4_MEASUREMENT_ID }}
+
+      - name: Configuration de l'envoi d'e-mails
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+        run: |
+          node -e '
+            const fs = require("fs");
+            const q = (v) => JSON.stringify(v || "");
+            fs.writeFileSync("dist/api/config.php", `<?php\nreturn [\n  "resend_api_key" => ${q(process.env.RESEND_API_KEY)},\n  "to" => "skeepskool@hotmail.com",\n  "from" => ${q(process.env.MAIL_FROM || "Skeepskool <onboarding@resend.dev>")},\n];\n`);
+          '
+
+      - name: Envoi sur OVH (FTP)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.OVH_FTP_SERVER }}
+          username: ${{ secrets.OVH_FTP_USERNAME }}
+          password: ${{ secrets.OVH_FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./dist/
+          server-dir: ${{ secrets.OVH_FTP_DIR || './www/' }}

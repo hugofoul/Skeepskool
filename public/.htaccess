@@ -1,42 +1,162 @@
+# =====================================================================
+#  Skeepskool — configuration Apache pour l'hébergement OVH
+#  Ce fichier est copié à la racine du site par `npm run build`.
+# =====================================================================
+
+Options -Indexes
+<IfModule mod_dir.c>
+  DirectoryIndex index.html
+  # Pas de redirection automatique /de -> /de/ (les pages sont des fichiers .html)
+  DirectorySlash Off
+</IfModule>
+ErrorDocument 404 /404.html
+
 RewriteEngine On
 
-# ------------------------------------------------------------
-# 1) Force canonical host + HTTPS (single hop)
-# ------------------------------------------------------------
+# ---------------------------------------------------------------------
+# 1) HTTPS + www (une seule redirection)
+# ---------------------------------------------------------------------
 RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} !^www\.leporge-ecoledesurf\.com$ [NC]
-RewriteRule ^ https://www.leporge-ecoledesurf.com%{REQUEST_URI} [R=301,L]
+RewriteCond %{HTTP_HOST} leporge-ecoledesurf\.com$ [NC]
+RewriteRule ^ https://www.leporge-ecoledesurf.com%{REQUEST_URI} [R=301,L,NE]
 
-# ------------------------------------------------------------
-# 2) Legacy WordPress URL redirects (301)
-# Supports both with and without trailing slash.
-# ------------------------------------------------------------
+# ---------------------------------------------------------------------
+# 2) Anciennes adresses du site WordPress (301 = déplacement permanent)
+# ---------------------------------------------------------------------
+RewriteRule ^lecole/?$ /ecole [R=301,L,NC]
 RewriteRule ^tarifs/?$ /cours [R=301,L,NC]
 RewriteRule ^locations/?$ /location [R=301,L,NC]
 RewriteRule ^plan-dacces/?$ /contact [R=301,L,NC]
-RewriteRule ^autour/?$ /contact [R=301,L,NC]
-RewriteRule ^around/?$ /contact [R=301,L,NC]
+RewriteRule ^contactez-nous/?$ /contact [R=301,L,NC]
 RewriteRule ^reserver-en-ligne/?$ /reserver [R=301,L,NC]
+RewriteRule ^reservation-reussie/?$ /reserver [R=301,L,NC]
 RewriteRule ^recevoir-un-bon-cadeau-cours-de-surf/?$ /bon-cadeau [R=301,L,NC]
-RewriteRule ^contact/?$ /contact [R=301,L,NC]
-RewriteRule ^mentions-legales/?$ /mentions-legales [R=301,L,NC]
+RewriteRule ^politique-de-respect-de-la-vie-privee/?$ /confidentialite [R=301,L,NC]
+RewriteRule ^conditions-generales-dutilisation/?$ /mentions-legales [R=301,L,NC]
+RewriteRule ^slide-[0-9]+/?$ /galerie [R=301,L,NC]
+RewriteRule ^(category|tag|author)/ / [R=301,L,NC]
+RewriteRule ^(index\.php|wp-login\.php|wp-admin/?|feed/?|comments/feed/?)$ / [R=301,L,NC]
 
-# Optional common aliases
-RewriteRule ^index\.php$ / [R=301,L,NC]
-RewriteRule ^wp-admin/?$ / [R=301,L,NC]
-RewriteRule ^wp-login\.php$ / [R=301,L,NC]
+# Anciennes pages anglaises (WPML)
+RewriteRule ^en/prices/?$ /en/lessons [R=301,L,NC]
+RewriteRule ^en/location/?$ /en/rental [R=301,L,NC]
+RewriteRule ^en/plan-dacces/?$ /en/contact [R=301,L,NC]
+RewriteRule ^en/book-online/?$ /en/book [R=301,L,NC]
+RewriteRule ^en/gift-coupons/?$ /en/gift-voucher [R=301,L,NC]
+RewriteRule ^en/privacy-policy/?$ /en/privacy [R=301,L,NC]
 
-# ------------------------------------------------------------
-# 3) Keep real files/folders accessible (assets, images, etc.)
-# ------------------------------------------------------------
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
+# Anciens fichiers WordPress (images, PDF…) : définitivement supprimés
+RewriteRule ^wp-(content|includes|json)/ - [G,L,NC]
 
-# Explicit public files
-RewriteRule ^(robots\.txt|sitemap\.xml|favicon\.ico)$ - [L,NC]
+# Adresses de la première version du nouveau site
+RewriteRule ^(home|accueil|index\.html)$ / [R=301,L,NC]
+RewriteRule ^(album-photo|photos)/?$ /galerie [R=301,L,NC]
+RewriteRule ^(autour|around|autour-de-nous)/?$ /contact [R=301,L,NC]
+RewriteRule ^(ecole-de-surf)/?$ /ecole [R=301,L,NC]
+RewriteRule ^(cours-de-surf)/?$ /cours [R=301,L,NC]
+RewriteRule ^(booking|reservation)/?$ /reserver [R=301,L,NC]
+RewriteRule ^(planning)/?$ /horaires [R=301,L,NC]
+RewriteRule ^(location-de-surf)/?$ /location [R=301,L,NC]
+RewriteRule ^school/?$ /en/school [R=301,L,NC]
+RewriteRule ^lessons/?$ /en/lessons [R=301,L,NC]
+RewriteRule ^session-details/?$ /en/session-details [R=301,L,NC]
+RewriteRule ^book/?$ /en/book [R=301,L,NC]
+RewriteRule ^gift-voucher/?$ /en/gift-voucher [R=301,L,NC]
+RewriteRule ^schedule/?$ /en/schedule [R=301,L,NC]
+RewriteRule ^rental/?$ /en/rental [R=301,L,NC]
+RewriteRule ^legal/?$ /en/legal-notice [R=301,L,NC]
 
-# ------------------------------------------------------------
-# 4) SPA fallback for React Router direct access
-# ------------------------------------------------------------
-RewriteRule ^ index.html [L]
+# ---------------------------------------------------------------------
+# 3) Adresse sans « / » final (/contact/ -> /contact)
+# ---------------------------------------------------------------------
+RewriteCond %{REQUEST_FILENAME} !-d [OR]
+RewriteCond %{REQUEST_URI} ^/(en|de)/$
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# ---------------------------------------------------------------------
+# 4) Fichiers compressés à l'avance (Brotli puis Gzip) quand le navigateur les accepte
+# ---------------------------------------------------------------------
+<IfModule mod_headers.c>
+  RewriteCond %{HTTP:Accept-Encoding} br
+  RewriteCond %{REQUEST_FILENAME}.br -f
+  RewriteRule ^(.+\.(js|css|html|json))$ $1.br [L]
+
+  RewriteCond %{HTTP:Accept-Encoding} gzip
+  RewriteCond %{REQUEST_FILENAME}.gz -f
+  RewriteRule ^(.+\.(js|css|html|json))$ $1.gz [L]
+
+  <FilesMatch "\.js\.(br|gz)$">
+    ForceType application/javascript
+  </FilesMatch>
+  <FilesMatch "\.css\.(br|gz)$">
+    ForceType text/css
+  </FilesMatch>
+  <FilesMatch "\.html\.(br|gz)$">
+    ForceType "text/html; charset=utf-8"
+  </FilesMatch>
+  <FilesMatch "\.json\.(br|gz)$">
+    ForceType application/json
+  </FilesMatch>
+  <FilesMatch "\.br$">
+    Header set Content-Encoding br
+    Header append Vary Accept-Encoding
+  </FilesMatch>
+  <FilesMatch "\.gz$">
+    Header set Content-Encoding gzip
+    Header append Vary Accept-Encoding
+  </FilesMatch>
+</IfModule>
+<IfModule mod_mime.c>
+  RemoveType .gz .br
+  RemoveEncoding .gz .br
+</IfModule>
+
+# ---------------------------------------------------------------------
+# 5) Pages : chaque adresse correspond à un fichier HTML pré-rendu
+#    /cours -> cours.html, /de/kurse -> de/kurse.html, /en -> en.html
+# ---------------------------------------------------------------------
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)$ /$1.html [L]
+
+# Les fichiers existants (images, scripts, api…) sont servis tels quels.
+# Le reste tombe sur la page 404 (ErrorDocument ci-dessus).
+
+# ---------------------------------------------------------------------
+# 6) Sécurité
+# ---------------------------------------------------------------------
+<FilesMatch "^(config\.php|\.env.*|.*\.md)$">
+  Require all denied
+</FilesMatch>
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# ---------------------------------------------------------------------
+# 7) Cache navigateur
+# ---------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 hour"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/json "access plus 0 seconds"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+<IfModule mod_headers.c>
+  # Scripts et styles : leur nom change à chaque version (assets/index-a1b2c3.js),
+  # ils peuvent donc être gardés 1 an.
+  <FilesMatch "\.(js|css)(\.br|\.gz)?$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html(\.br|\.gz)?$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>

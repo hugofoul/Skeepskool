@@ -26,17 +26,17 @@ const POPULAR_INDEX = 3
 const factIcons = [Clock, Users, Backpack, ShieldCheck]
 const valueIcons = [Waves, Star, ShieldCheck]
 const packageByCardIndex = ['single', 'pack3', 'pack5', 'pack10', 'pack20', 'private']
-const SCHOOL_LABEL_SVG = '/images/passeport-diplomes.webp'
+const SCHOOL_LABEL_SVG = images.ffsDiplomas
 
 export default function Lessons() {
-  const { t, lang } = useLang()
+  const { t, lang, path } = useLang()
   const l = t.lessons
   const school = t.school
   const s = t.schedule
-  const bookingPath = lang === 'fr' ? '/reserver' : '/book'
-  const giftPath = lang === 'fr' ? '/bon-cadeau' : '/gift-voucher'
-  const schedulePath = lang === 'fr' ? '/horaires' : '/schedule'
-  const sessionDetailsPath = lang === 'fr' ? '/seance-type' : '/session-details'
+  const bookingPath = path('booking')
+  const giftPath = path('gift')
+  const schedulePath = path('schedule')
+  const sessionDetailsPath = path('session')
   const schedule = useWeeklySchedule({
     lang,
     fallbackDays: s.fallbackDays,
@@ -80,27 +80,9 @@ export default function Lessons() {
       },
     }))
 
-  const lessonsPath = lang === 'fr' ? '/cours' : '/lessons'
-  const breadcrumbName = lang === 'fr' ? 'Cours & Tarifs' : (lang === 'de' ? 'Kurse & Preise' : 'Lessons & Prices')
+  const lessonsPath = path('lessons')
+  const breadcrumbName = t.ui.lessons.lessonsPrices
   const lessonsStructuredData = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: lang === 'fr' ? 'Accueil' : (lang === 'de' ? 'Startseite' : 'Home'),
-          item: `${SITE_URL}/`,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: breadcrumbName,
-          item: `${SITE_URL}${lessonsPath}`,
-        },
-      ],
-    },
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
@@ -123,20 +105,9 @@ export default function Lessons() {
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? 'Formules & Tarifs' : (lang === 'de' ? 'Kurse & Preise' : 'Packages & Prices')}
-        path={lang === 'fr' ? '/cours' : '/lessons'}
-        lang={lang}
-        alternates={[
-          { hrefLang: 'fr-FR', path: '/cours' },
-          { hrefLang: 'en', path: '/lessons' },
-          { hrefLang: 'de', path: '/lessons' },
-          { hrefLang: 'x-default', path: '/cours' },
-        ]}
-        description={lang === 'fr'
-          ? "Cours de surf collectifs et particuliers à partir de 40€. Packs 3, 5, 10 ou 20 séances. Matériel et assurance inclus. Le Porge Océan, Gironde."
-          : (lang === 'de'
-            ? 'Gruppen- und Privat-Surfkurse ab 40€. Pakete mit 3, 5, 10 oder 20 Einheiten. Material und Versicherung inklusive. Le Porge Océan, Gironde.'
-            : "Group and private surf lessons from €40. Packs of 3, 5, 10 or 20 sessions. Equipment and insurance included. Le Porge Océan, Gironde.")}
+        title={t.ui.lessons.packagesPrices}
+        routeKey="lessons"
+        description={t.ui.lessons.groupAndPrivateSurf}
         structuredData={lessonsStructuredData}
       />
       <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
@@ -192,9 +163,7 @@ export default function Lessons() {
               <div className="flex items-center justify-center bg-[#f3f7fd] p-6 sm:p-8">
                 <img
                   src={SCHOOL_LABEL_SVG}
-                  alt={lang === 'fr'
-                    ? 'Diplômes de niveau de la Fédération Française de Surf'
-                    : (lang === 'de' ? 'Niveau-Diplome des französischen Surfverbands' : 'French Surf Federation level certificates')}
+                  alt={t.ui.lessons.frenchSurfFederationLevel}
                   className="h-auto w-full max-w-[18rem] object-contain"
                   loading="lazy"
                   decoding="async"
@@ -236,7 +205,7 @@ export default function Lessons() {
           {/* Team link */}
           <Reveal delay={150} className="mt-10">
             <Link
-              to="/#equipe"
+              to={path('home', 'equipe')}
               className="group flex flex-col items-start gap-4 rounded-2xl bg-royalBlue p-7 text-white shadow-md ring-1 ring-black/5 transition-colors hover:bg-royalBlue/90 sm:flex-row sm:items-center sm:justify-between"
             >
               <div className="flex items-start gap-4">
@@ -267,7 +236,9 @@ export default function Lessons() {
               className="order-2 overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/15 lg:order-1"
             >
               <img
-                src="/images/bonsunset.png"
+                src={images.lessonsSunset}
+                srcSet={buildSrcSet(images.lessonsSunset)}
+                sizes={DEFAULT_SIZES}
                 alt={l.sunsetTitle}
                 className="h-72 w-full object-cover sm:h-96"
                 loading="lazy"
@@ -290,7 +261,7 @@ export default function Lessons() {
                   src={images.schoolSpot}
                   srcSet={buildSrcSet(images.schoolSpot)}
                   sizes={DEFAULT_SIZES}
-                  alt={lang === 'fr' ? 'Cours du matin' : 'Morning lessons'}
+                  alt={t.ui.lessons.morningLessons}
                   className="mt-3 h-28 w-full rounded-xl object-cover"
                   loading="lazy"
                 />
@@ -307,22 +278,14 @@ export default function Lessons() {
           </Reveal>
           <Reveal delay={120} className="mt-10 overflow-hidden rounded-3xl border border-white/15 bg-white/10 p-7 shadow-xl sm:p-9">
             <p className="max-w-3xl text-base leading-relaxed text-white/90 sm:text-lg">
-              {lang === 'fr'
-                ? (
-                  <>
-                    <span>Vous souhaitez découvrir le déroulé complet d'une séance type ?</span>
-                    <span className="block md:whitespace-nowrap">Consultez la page détaillée avec toutes les étapes numérotées et les visuels explicatifs.</span>
-                  </>
-                )
-                : (lang === 'de'
-                  ? 'Sie möchten den kompletten Ablauf einer typischen Session sehen? Öffnen Sie die Detailseite mit allen nummerierten Schritten und Erklär-Visuals.'
-                  : 'Want to see the full flow of a typical session? Open the detailed page with all numbered steps and explanatory visuals.')}
+              <span>{t.ui.lessons.sessionFlowQuestion}</span>{' '}
+              <span className="md:block">{t.ui.lessons.sessionFlowText}</span>
             </p>
             <Link
               to={sessionDetailsPath}
               className="mt-6 inline-flex items-center gap-2 rounded-full bg-yellow px-6 py-3 text-sm font-extrabold uppercase tracking-wide text-royalBlue transition-colors hover:bg-white"
             >
-              {lang === 'fr' ? 'Voir la séance type détaillée' : (lang === 'de' ? 'Typische Session im Detail' : 'View detailed session flow')}
+              {t.ui.lessons.viewDetailedSessionFlow}
               <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
             </Link>
           </Reveal>
@@ -353,7 +316,7 @@ export default function Lessons() {
                   {isQualitySafety ? (
                     <img
                       src={SCHOOL_LABEL_SVG}
-                      alt={lang === 'fr' ? 'École Française de Surf' : 'French Surf School'}
+                      alt={t.ui.lessons.frenchSurfSchool}
                       className="mx-auto h-32 w-32 object-contain"
                       loading="lazy"
                       decoding="async"
@@ -436,13 +399,13 @@ export default function Lessons() {
               <Link
                 to={giftPath}
                 className="relative block min-h-[320px] sm:min-h-[420px]"
-                aria-label={lang === 'fr' ? 'Voir la page bon cadeau' : 'Open gift voucher page'}
+                aria-label={t.ui.lessons.openGiftVoucherPage}
               >
                 <img
-                  src="/images/bon-cadeau.jpg"
-                  srcSet={buildSrcSet('/images/bon-cadeau.jpg')}
+                  src={images.giftVoucher}
+                  srcSet={buildSrcSet(images.giftVoucher)}
                   sizes="(max-width: 1024px) 100vw, 55vw"
-                  alt={lang === 'fr' ? 'Visuel bon cadeau' : 'Gift voucher visual'}
+                  alt={t.ui.lessons.giftVoucherVisual}
                   className="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
                   decoding="async"
@@ -456,7 +419,7 @@ export default function Lessons() {
                     {l.giftExperienceTitle}
                   </h2>
                   <p className="mt-2 text-xs font-bold uppercase tracking-wider text-white/90">
-                    {lang === 'fr' ? 'Cliquer pour voir la page bon cadeau' : (lang === 'de' ? 'Klicken, um die Gutscheinseite zu sehen' : 'Click to open gift voucher page')}
+                    {t.ui.lessons.clickToOpenGift}
                   </p>
                 </div>
               </Link>

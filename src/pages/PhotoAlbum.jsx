@@ -2,11 +2,15 @@ import { useEffect, useState } from 'react'
 import { useLang } from '../hooks/useLang.js'
 import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
-import { photoGallery, images } from '../data/images.js'
-import { buildSrcSet, ALBUM_SIZES } from '../utils/responsiveImage.js'
+import { images } from '../data/images.js'
+import { buildSrcSet, ALBUM_SIZES, galleryPhotos } from '../utils/responsiveImage.js'
 
 export default function PhotoAlbum() {
-  const { lang } = useLang()
+  const { t } = useLang()
+  const photoGallery = galleryPhotos.map((photo, index) => ({
+    ...photo,
+    alt: photo.alt || `Skeepskool, école de surf du Porge – photo ${index + 1}`,
+  }))
   const [activeIndex, setActiveIndex] = useState(null)
 
   useEffect(() => {
@@ -28,7 +32,7 @@ export default function PhotoAlbum() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [activeIndex])
+  }, [activeIndex, photoGallery.length])
 
   const openPhoto = (index) => setActiveIndex(index)
   const closePhoto = () => setActiveIndex(null)
@@ -37,25 +41,15 @@ export default function PhotoAlbum() {
   return (
     <div className="bg-lightGray">
       <SEO
-        title={lang === 'fr' ? 'Galerie Photo' : (lang === 'de' ? 'Foto Galerie' : 'Photo Gallery')}
-        path="/album-photo"
-        alternates={[
-          { hrefLang: 'fr-FR', path: '/album-photo' },
-          { hrefLang: 'en', path: '/album-photo' },
-          { hrefLang: 'de', path: '/album-photo' },
-          { hrefLang: 'x-default', path: '/album-photo' },
-        ]}
+        title={t.ui.photoAlbum.photoGallery}
+        routeKey="photos"
         description={
-          lang === 'fr'
-            ? 'Album photo Skeepskool : vagues, élèves sur l’eau, lumières de fin de journée et ambiance surf.'
-            : (lang === 'de'
-              ? 'Skeepskool Fotoalbum: Wellen, Schüler im Wasser, Abendlicht und Surf-Atmosphäre.'
-              : 'Skeepskool photo album: waves, students in the water, golden light and surf atmosphere.')
+          t.ui.photoAlbum.skeepskoolPhotoAlbumWaves
         }
       />
 
       <PageHero
-        title={lang === 'fr' ? 'Galerie Photo' : (lang === 'de' ? 'Foto Galerie' : 'Photo Gallery')}
+        title={t.ui.photoAlbum.photoGallery}
         image={images.fondpages}
         titleClassName="font-bold -translate-y-2"
         compact
@@ -65,9 +59,7 @@ export default function PhotoAlbum() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full bg-lightGray px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-royalBlue">
-              {lang === 'fr'
-                ? "Des images du spot, des sessions et de l'ambiance à l'eau"
-                : (lang === 'de' ? 'Sammlung' : 'Collection')}
+              {t.ui.photoAlbum.collection}
             </span>
           </div>
 
@@ -79,31 +71,18 @@ export default function PhotoAlbum() {
                 onClick={() => openPhoto(index)}
                 className={`group mb-2 block w-full overflow-hidden rounded-xl text-left shadow-md ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-yellow focus:ring-offset-2 sm:mb-4 sm:rounded-[2rem] sm:shadow-xl ${photo.className ?? ''}`}
               >
-                {photo.type === 'video' ? (
-                  <div className="relative">
-                    <video
-                      src={photo.src}
-                      className="pointer-events-none h-auto w-full object-cover"
-                      muted
-                      playsInline
-                      preload="metadata"
-                    />
-                    <span className="absolute left-3 top-3 rounded-full bg-black/65 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
-                      Video
-                    </span>
-                  </div>
-                ) : (
-                  <img
+                <img
                     src={photo.src}
                     srcSet={buildSrcSet(photo.src)}
                     sizes={ALBUM_SIZES}
                     alt={photo.alt}
+                    width={photo.width}
+                    height={photo.height}
                     className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     loading={index < 2 ? 'eager' : 'lazy'}
                     fetchPriority={index === 0 ? 'high' : 'auto'}
                     decoding="async"
                   />
-                )}
               </button>
             ))}
           </div>
@@ -115,7 +94,7 @@ export default function PhotoAlbum() {
           className="fixed inset-0 z-[60] flex items-center justify-center bg-dark/90 p-4 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
-          aria-label={lang === 'fr' ? 'Visionneuse photo' : (lang === 'de' ? 'Fotoanzeige' : 'Photo viewer')}
+          aria-label={t.ui.photoAlbum.photoViewer}
           onClick={closePhoto}
         >
           <div
@@ -131,23 +110,13 @@ export default function PhotoAlbum() {
             </button>
 
             <div className="relative flex items-center justify-center bg-black">
-              {currentPhoto.type === 'video' ? (
-                <video
-                  src={currentPhoto.src}
-                  controls
-                  autoPlay
-                  playsInline
-                  className="block h-auto max-h-[calc(100dvh-8rem)] w-auto max-w-[94vw] object-contain sm:max-h-[85dvh]"
-                />
-              ) : (
-                <img
+              <img
                   src={currentPhoto.src}
                   srcSet={buildSrcSet(currentPhoto.src)}
                   sizes="94vw"
                   alt={currentPhoto.alt}
                   className="block h-auto max-h-[calc(100dvh-8rem)] w-auto max-w-[94vw] object-contain sm:max-h-[85dvh]"
                 />
-              )}
               <button
                 type="button"
                 onClick={() => setActiveIndex((current) => (current - 1 + photoGallery.length) % photoGallery.length)}

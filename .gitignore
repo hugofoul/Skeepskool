@@ -8,6 +8,10 @@ dist-ssr
 npm-debug.log*
 yarn-error.log*
 yarn.lock
-images-source/
 /tmp/
 *.tmp
+
+# Généré automatiquement par scripts/optimize-images.mjs
+public/images/optimized/
+src/data/image-manifest.json
+public/api/config.php

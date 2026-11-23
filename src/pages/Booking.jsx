@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useLang } from '../hooks/useLang.js'
+import { usePrimaryPhone } from '../hooks/usePrimaryPhone.js'
 import PageHero from '../components/PageHero.jsx'
 import SEO from '../components/SEO.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { images } from '../data/images.js'
 import { CONTACT, SITE_URL } from '../config/site.js'
 import { trackConversion, trackEvent } from '../lib/analytics.js'
+import { sendRequestEmail } from '../lib/sendRequest.js'
 
 const initialSurfer = {
   id: 1,
@@ -48,12 +50,13 @@ const countryCallingCodes = [
 ]
 
 export default function Booking() {
-  const { t, lang } = useLang()
+  const { t, lang, path } = useLang()
+  const primaryPhone = usePrimaryPhone()
   const b = t.booking
   const location = useLocation()
 
-  const bookingPath = lang === 'fr' ? '/reserver' : '/book'
-  const bookingName = lang === 'fr' ? 'Panier' : (lang === 'de' ? 'Warenkorb' : 'Cart')
+  const bookingPath = path('booking')
+  const bookingName = t.ui.booking.cart
 
   const bookingOffers = (b.packages || [])
     .filter((pkg) => Number.isFinite(pkg?.price))
@@ -71,21 +74,15 @@ export default function Booking() {
 
   const bookingFaqEntries = [
     {
-      question: lang === 'fr'
-        ? 'Quand dois-je payer pour valider ma réservation ?'
-        : (lang === 'de' ? 'Wann muss ich zahlen, um die Buchung zu bestätigen?' : 'When should I pay to confirm my booking?'),
+      question: t.ui.booking.whenShouldIPay,
       answer: b.warning,
     },
     {
-      question: lang === 'fr'
-        ? 'Que faire si je réserve à moins de 3 jours ?'
-        : (lang === 'de' ? 'Was tun bei einer Buchung in weniger als 3 Tagen?' : 'What if I book less than 3 days in advance?'),
+      question: t.ui.booking.whatIfIBook,
       answer: b.startDateNote,
     },
     {
-      question: lang === 'fr'
-        ? 'Le paiement doit-il déjà être effectué avant le formulaire ?'
-        : (lang === 'de' ? 'Muss die Zahlung vor dem Formular bereits erfolgt sein?' : 'Must payment be completed before submitting the form?'),
+      question: t.ui.booking.mustPaymentBeCompleted,
       answer: b.intro,
     },
   ]
@@ -100,24 +97,6 @@ export default function Booking() {
     }))
 
   const bookingStructuredData = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: lang === 'fr' ? 'Accueil' : (lang === 'de' ? 'Startseite' : 'Home'),
-          item: `${SITE_URL}/`,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: bookingName,
-          item: `${SITE_URL}${bookingPath}`,
-        },
-      ],
-    },
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
@@ -149,6 +128,7 @@ export default function Booking() {
     phoneCountryCode: '+33',
     customPhoneCountryCode: '',
     phone: '',
+    email: '',
   })
   const [surfers, setSurfers] = useState([{ ...initialSurfer }])
   const nextSurferId = useRef(2)
@@ -157,6 +137,9 @@ export default function Booking() {
   const [sameAsContactSurfer, setSameAsContactSurfer] = useState(false)
   const [paidConfirmed, setPaidConfirmed] = useState(false)
   const [successMessage, setSuccessMessage] = useState('')
+  const [sending, setSending] = useState(false)
+  const [sendFailed, setSendFailed] = useState(false)
+  const [honeypot, setHoneypot] = useState('')
   const [phoneError, setPhoneError] = useState('')
   const [dateError, setDateError] = useState('')
   const [hasStartedForm, setHasStartedForm] = useState(false)
@@ -258,7 +241,7 @@ export default function Booking() {
     setSurfers((prev) => prev.filter((_, i) => i !== index))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
     if (!event.currentTarget.checkValidity()) {
@@ -272,7 +255,7 @@ export default function Booking() {
     const fullPhone = buildFullPhone(contact)
 
     if (contact.phoneCountryCode === 'custom' && !/^\+[0-9]{1,4}$/.test(contact.customPhoneCountryCode.trim())) {
-      setPhoneError(lang === 'fr' ? 'Indicatif invalide (ex: +33).' : 'Invalid calling code (e.g. +33).')
+      setPhoneError(t.ui.booking.invalidCallingCodeE)
       trackEvent('booking_form_error', { reason: 'invalid_country_code' })
       return
     }
@@ -310,7 +293,7 @@ export default function Booking() {
       b.whatsappHeader,
       `${b.whatsappContact} ${fullName} - ${fullPhone}`,
       `${b.whatsappDate} ${selectedDate}`,
-      `${b.whatsappEndDate || (lang === 'fr' ? 'Date de fin souhaitée :' : (lang === 'de' ? 'Gewünschtes Enddatum:' : 'Preferred end date:'))} ${selectedEndDate}`,
+      `${b.whatsappEndDate || (t.ui.booking.preferredEndDate)} ${selectedEndDate}`,
       `${b.whatsappGiftVoucher} ${b.giftVoucherNo}`,
       `${b.whatsappGiftVisual} ${b.giftVoucherNo}`,
       `${b.whatsappTotal} ${total}€`,
@@ -327,8 +310,35 @@ export default function Booking() {
     setWhatsappPayload(whatsappMessage)
     setWhatsappDeepLink(whatsappUrl)
     setCopyFeedback('')
-    trackEvent('click_whatsapp', { source: 'booking_form', target: whatsappUrl })
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+
+    setSending(true)
+    setSuccessMessage('')
+    const sent = await sendRequestEmail({
+      type: 'booking',
+      lang,
+      contact: {
+        firstName: contact.firstName,
+        lastName: contact.lastName,
+        phone: fullPhone,
+        email: contact.email.trim(),
+      },
+      surfers: surfers.map((surfer) => ({
+        name: `${surfer.firstName} ${surfer.lastName}`.trim(),
+        package: packageByValue.get(surfer.packageValue),
+      })),
+      total,
+      startDate,
+      endDate,
+      summary: whatsappMessage,
+      website: honeypot,
+    })
+    setSending(false)
+    setSendFailed(!sent)
+    if (!sent) {
+      trackEvent('booking_form_email_failed')
+      setSuccessMessage(b.sendFailed)
+      return
+    }
 
     trackConversion('booking_form_submitted', {
       surfers_count: surfers.length,
@@ -344,20 +354,9 @@ export default function Booking() {
   return (
     <div>
       <SEO
-        title={lang === 'fr' ? 'Panier' : (lang === 'de' ? 'Warenkorb' : 'Cart')}
-        path={bookingPath}
-        lang={lang}
-        alternates={[
-          { hrefLang: 'fr-FR', path: '/reserver' },
-          { hrefLang: 'en', path: '/book' },
-          { hrefLang: 'de', path: '/book' },
-          { hrefLang: 'x-default', path: '/reserver' },
-        ]}
-        description={lang === 'fr'
-          ? "Panier Skeepskool : achetez vos cours de surf à l'avance et réservez votre créneau en ligne."
-          : (lang === 'de'
-            ? 'Skeepskool Warenkorb: Kaufe Surfkurse im Voraus und sichere dir deinen Slot online.'
-            : "Skeepskool cart: buy surf lessons in advance and secure your slot online." )}
+        title={t.ui.booking.cart}
+        routeKey="booking"
+        description={t.ui.booking.skeepskoolCartBuySurf}
         structuredData={bookingStructuredData}
       />
       <PageHero title={b.title} subtitle={b.subtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
@@ -437,7 +436,7 @@ export default function Booking() {
                         </option>
                       ))}
                       <option value="custom">
-                        {lang === 'fr' ? 'Autre indicatif...' : 'Other calling code...'}
+                        {t.ui.booking.otherCallingCode}
                       </option>
                     </select>
                     {contact.phoneCountryCode === 'custom' && (
@@ -449,10 +448,10 @@ export default function Booking() {
                           setContact((prev) => ({ ...prev, customPhoneCountryCode: e.target.value }))
                           if (phoneError) setPhoneError('')
                         }}
-                        placeholder={lang === 'fr' ? 'Indicatif ex: +33' : 'Code e.g. +33'}
+                        placeholder={t.ui.booking.codeEG33}
                         inputMode="tel"
                         pattern="^\\+[0-9]{1,4}$"
-                        title={lang === 'fr' ? 'Format requis: + suivi de 1 a 4 chiffres.' : 'Required format: + followed by 1 to 4 digits.'}
+                        title={t.ui.booking.requiredFormatFollowedBy}
                         required
                       />
                     )}
@@ -474,6 +473,30 @@ export default function Booking() {
                   </div>
                   {phoneError && <span className="mt-1 block text-xs font-bold text-red">{phoneError}</span>}
                 </label>
+
+                <label className="block sm:col-span-2">
+                  <span className="mb-2 block text-sm font-semibold text-dark">{b.emailOptional}</span>
+                  <input
+                    type="email"
+                    className={inputClass}
+                    value={contact.email}
+                    onChange={(e) => setContact((prev) => ({ ...prev, email: e.target.value }))}
+                    autoComplete="email"
+                    inputMode="email"
+                  />
+                </label>
+
+                {/* Champ piège anti-spam : invisible pour les visiteurs */}
+                <input
+                  type="text"
+                  name="website"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="hidden"
+                />
               </div>
             </Reveal>
 
@@ -591,7 +614,7 @@ export default function Booking() {
                 </label>
 
                 <label className="block">
-                  <span className="mb-2 block text-sm font-semibold text-dark">{b.endDate || (lang === 'fr' ? 'Date de fin approximative' : (lang === 'de' ? 'Ungefähres Enddatum' : 'Approximate end date'))}</span>
+                  <span className="mb-2 block text-sm font-semibold text-dark">{b.endDate || (t.ui.booking.approximateEndDate)}</span>
                   <input
                     type="date"
                     className={inputClass}
@@ -604,7 +627,7 @@ export default function Booking() {
 
                 {startDate && endDate ? (
                   <p className="mx-auto whitespace-pre-line text-center text-xs font-semibold text-emerald-700 sm:text-sm">
-                    {b.availabilityNote || (lang === 'fr' ? 'Nous avons de la disponibilité : il faudra appeller 3j avant pour definir le créneau.' : (lang === 'de' ? 'Wir haben Verfügbarkeit und bestätigen deinen Slot schnell.' : 'We have availability and will confirm your slot quickly.'))}
+                    {b.availabilityNote || (t.ui.booking.weHaveAvailabilityAnd)}
                   </p>
                 ) : null}
               </div>
@@ -640,14 +663,15 @@ export default function Booking() {
             <Reveal>
               <button
                 type="submit"
-                className="w-full rounded-xl bg-red px-6 py-3 text-base font-black text-white shadow-md transition hover:bg-yellow hover:text-royalBlue"
+                disabled={sending}
+                className="w-full rounded-xl bg-red px-6 py-3 text-base font-black text-white shadow-md transition hover:bg-yellow hover:text-royalBlue disabled:cursor-wait disabled:opacity-70"
               >
-                {b.submit}
+                {sending ? b.sending : b.submit}
               </button>
             </Reveal>
 
             {successMessage && (
-              <Reveal className="rounded-2xl border-l-4 border-red bg-white p-6 shadow-md ring-1 ring-black/5">
+              <Reveal className={`rounded-2xl border-l-4 bg-white p-6 shadow-md ring-1 ring-black/5 ${sendFailed ? 'border-yellow' : 'border-red'}`}>
                 <p className="whitespace-pre-line text-sm font-semibold leading-relaxed text-royalBlue sm:text-base">
                   {successMessage}
                 </p>
@@ -660,7 +684,7 @@ export default function Booking() {
                       onClick={() => trackEvent('click_whatsapp', { source: 'booking_success_box', target: whatsappDeepLink })}
                       className="inline-flex items-center justify-center rounded-full bg-green-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-green-700"
                     >
-                      {lang === 'fr' ? 'Ouvrir WhatsApp' : (lang === 'de' ? 'WhatsApp öffnen' : 'Open WhatsApp')}
+                      {sendFailed ? t.ui.booking.sendOnWhatsapp : t.ui.booking.openWhatsapp}
                     </a>
                   )}
                   {whatsappPayload && (
@@ -669,22 +693,22 @@ export default function Booking() {
                       onClick={async () => {
                         try {
                           await navigator.clipboard.writeText(whatsappPayload)
-                          setCopyFeedback(lang === 'fr' ? 'Message copié.' : (lang === 'de' ? 'Nachricht kopiert.' : 'Message copied.'))
+                          setCopyFeedback(t.ui.booking.messageCopied)
                         } catch {
-                          setCopyFeedback(lang === 'fr' ? 'Impossible de copier automatiquement.' : (lang === 'de' ? 'Automatisches Kopieren fehlgeschlagen.' : 'Unable to copy automatically.'))
+                          setCopyFeedback(t.ui.booking.unableToCopyAutomatically)
                         }
                       }}
                       className="inline-flex items-center justify-center rounded-full border border-royalBlue px-4 py-2 text-sm font-bold text-royalBlue transition hover:bg-royalBlue hover:text-white"
                     >
-                      {lang === 'fr' ? 'Copier le message' : (lang === 'de' ? 'Nachricht kopieren' : 'Copy message')}
+                      {t.ui.booking.copyMessage}
                     </button>
                   )}
                   <a
-                    href={`tel:${CONTACT.phonePrimary}`}
-                    onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phonePrimary}`, source: 'booking_success_box' })}
+                    href={`tel:${primaryPhone.tel}`}
+                    onClick={() => trackEvent('click_phone', { target: `tel:${primaryPhone.tel}`, source: 'booking_success_box' })}
                     className="inline-flex items-center justify-center rounded-full border border-red px-4 py-2 text-sm font-bold text-red transition hover:bg-red hover:text-white"
                   >
-                    {lang === 'fr' ? 'Appeler l’école' : (lang === 'de' ? 'Schule anrufen' : 'Call the school')}
+                    {t.ui.booking.callTheSchool}
                   </a>
                 </div>
                 {copyFeedback && (

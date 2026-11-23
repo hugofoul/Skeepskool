@@ -1,0 +1,39 @@
+# Légendes des photos de la galerie (facultatif).
+# Une ligne par photo :  nom-du-fichier.jpg = Légende
+# Les photos sont affichées dans l'ordre de leur nom de fichier : commencez
+# le nom par un numéro (01-, 02-...) pour choisir l'ordre.
+# Sans légende ici, le nom du fichier sert de texte descriptif.
+
+01-planche-de-surf-portee-par-une-vague.jpg = Planche de surf portée par une vague au large
+02-eleve-au-coucher-du-soleil.jpg = Élève de Skeepskool au coucher du soleil
+03-cours-de-surf-sur-l-eau.jpg = Cours de surf à Skeepskool sur l’eau
+04-seance-de-coaching-sur-le-spot-du-porge.jpg = Séance de coaching sur le spot du Porge
+05-vague-de-l-atlantique.jpg = Vague de l’Atlantique qui déferle
+06-groupe-de-surfeurs-dans-la-lumiere-du-soir.jpg = Groupe de surfeurs dans la lumière du soir
+07-plage-sauvage-et-horizon-oceanique.jpg = Plage sauvage et horizon océanique
+08-session-surf-en-bord-d-ocean.jpg = Session surf en bord d’océan
+09-eleve-skeepskool-sur-la-vague.jpg = Élève Skeepskool sur la vague
+10-moment-surf-sur-le-spot-du-porge.jpg = Moment surf sur le spot du Porge
+11-groupe-de-surfeurs-sur-l-eau.jpg = Groupe de surfeurs sur l’eau
+12-surfeur-lance-sur-une-vague.jpg = Surfeur lancé sur une vague
+13-eleve-en-equilibre-sur-sa-planche.jpg = Élève en équilibre sur sa planche
+14-ambiance-de-session-dans-les-vagues.jpg = Ambiance de session dans les vagues
+15-alioune-equipe-skeepskool.jpg = Alioune, de l’équipe Skeepskool
+16-camping-a-proximite-de-la-plage.jpg = Camping à proximité de la plage
+17-coaching-confirme-sur-le-sable.jpg = Coaching confirmé sur le sable
+18-vague-au-coucher-du-soleil.jpg = Vague au coucher du soleil
+19-ocean-et-planches-au-coucher-du-soleil.webp = Océan et planches au coucher du soleil
+20-dunes-et-foret-de-pins.jpg = Dunes et forêt de pins
+21-l-ecole-de-surf-skeepskool.jpg = L’école de surf Skeepskool
+22-hugo-moniteur.jpg = Hugo, moniteur Skeepskool
+23-manu-moniteur.jpg = Manu, moniteur Skeepskool
+24-seance-de-surf-personnalisee.jpg = Séance de surf personnalisée
+25-planches-de-surf-pretes-sur-la-plage.webp = Planches de surf prêtes sur la plage
+26-lumiere-de-sunset-sur-la-plage.jpg = Lumière de sunset sur la plage
+27-fin-de-journee-sur-l-ocean.jpg = Fin de journée sur l’océan
+28-camping-la-grigne.jpg = Vue du camping La Grigne
+29-session-encadree-par-charlie.jpg = Session de surf encadrée par Charlie
+30-session-de-surf.jpg = Session de surf au Porge Océan
+31-surfeur-sur-la-vague.jpg = Surfeur sur la vague au Porge
+32-archive-skeepskool.jpg = Archive Skeepskool
+33-archive-skeepskool.jpg = Archive Skeepskool

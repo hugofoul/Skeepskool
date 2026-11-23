@@ -1,45 +1,55 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/api/send-request.php", "destination": "/api/send-request" }
+  ],
   "redirects": [
-    { "source": "/home", "destination": "/", "permanent": true },
-    { "source": "/accueil", "destination": "/", "permanent": true },
-    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/lecole", "destination": "/ecole", "permanent": true },
+    { "source": "/tarifs", "destination": "/cours", "permanent": true },
+    { "source": "/locations", "destination": "/location", "permanent": true },
+    { "source": "/plan-dacces", "destination": "/contact", "permanent": true },
+    { "source": "/contactez-nous", "destination": "/contact", "permanent": true },
+    { "source": "/reserver-en-ligne", "destination": "/reserver", "permanent": true },
+    { "source": "/reservation-reussie", "destination": "/reserver", "permanent": true },
+    { "source": "/recevoir-un-bon-cadeau-cours-de-surf", "destination": "/bon-cadeau", "permanent": true },
+    { "source": "/politique-de-respect-de-la-vie-privee", "destination": "/confidentialite", "permanent": true },
+    { "source": "/conditions-generales-dutilisation", "destination": "/mentions-legales", "permanent": true },
+    { "source": "/slide-:n", "destination": "/galerie", "permanent": true },
+    { "source": "/en/prices", "destination": "/en/lessons", "permanent": true },
+    { "source": "/en/location", "destination": "/en/rental", "permanent": true },
+    { "source": "/en/plan-dacces", "destination": "/en/contact", "permanent": true },
+    { "source": "/en/book-online", "destination": "/en/book", "permanent": true },
+    { "source": "/en/gift-coupons", "destination": "/en/gift-voucher", "permanent": true },
+    { "source": "/en/privacy-policy", "destination": "/en/privacy", "permanent": true },
+    { "source": "/(home|accueil)", "destination": "/", "permanent": true },
+    { "source": "/(album-photo|photos)", "destination": "/galerie", "permanent": true },
+    { "source": "/(autour|around|autour-de-nous)", "destination": "/contact", "permanent": true },
     { "source": "/ecole-de-surf", "destination": "/ecole", "permanent": true },
     { "source": "/cours-de-surf", "destination": "/cours", "permanent": true },
-    { "source": "/tarifs", "destination": "/cours", "permanent": true },
-    { "source": "/tarifs/", "destination": "/cours", "permanent": true },
-    { "source": "/locations", "destination": "/location", "permanent": true },
-    { "source": "/locations/", "destination": "/location", "permanent": true },
-    { "source": "/plan-dacces", "destination": "/contact", "permanent": true },
-    { "source": "/plan-dacces/", "destination": "/contact", "permanent": true },
-    { "source": "/booking", "destination": "/reserver", "permanent": true },
-    { "source": "/reservation", "destination": "/reserver", "permanent": true },
-    { "source": "/reserver-en-ligne", "destination": "/reserver", "permanent": true },
-    { "source": "/reserver-en-ligne/", "destination": "/reserver", "permanent": true },
-    { "source": "/recevoir-un-bon-cadeau-cours-de-surf", "destination": "/bon-cadeau", "permanent": true },
-    { "source": "/recevoir-un-bon-cadeau-cours-de-surf/", "destination": "/bon-cadeau", "permanent": true },
+    { "source": "/(booking|reservation)", "destination": "/reserver", "permanent": true },
     { "source": "/planning", "destination": "/horaires", "permanent": true },
     { "source": "/location-de-surf", "destination": "/location", "permanent": true },
-    { "source": "/autour-de-nous", "destination": "/contact", "permanent": true },
-    { "source": "/autour", "destination": "/contact", "permanent": true },
-    { "source": "/around", "destination": "/contact", "permanent": true },
-    { "source": "/mentions-legales.html", "destination": "/mentions-legales", "permanent": true },
-    { "source": "/mentions-legales/", "destination": "/mentions-legales", "permanent": true }
-  ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/school", "destination": "/en/school", "permanent": true },
+    { "source": "/lessons", "destination": "/en/lessons", "permanent": true },
+    { "source": "/session-details", "destination": "/en/session-details", "permanent": true },
+    { "source": "/book", "destination": "/en/book", "permanent": true },
+    { "source": "/gift-voucher", "destination": "/en/gift-voucher", "permanent": true },
+    { "source": "/schedule", "destination": "/en/schedule", "permanent": true },
+    { "source": "/rental", "destination": "/en/rental", "permanent": true },
+    { "source": "/legal", "destination": "/en/legal-notice", "permanent": true }
   ],
   "headers": [
     {
-      "source": "/images/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     },
     {
-      "source": "/og-skeepskool.jpg",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
+      "source": "/images/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }]
     }
   ]
 }
