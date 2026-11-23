@@ -48,7 +48,7 @@ export default function SessionDetails() {
 
       <PageHero title={c.title} subtitle={c.subtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
 
-      <section className="bg-white py-16 sm:py-20">
+      <section className="bg-white py-12 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <p className="max-w-3xl text-base leading-relaxed text-dark/75 sm:text-lg">

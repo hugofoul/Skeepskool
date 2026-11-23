@@ -113,7 +113,7 @@ export default function Lessons() {
       <PageHero title={l.heroTitle} subtitle={l.heroSubtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
 
       {/* ---- Lesson presentation ---- */}
-      <section id="explication" className="scroll-mt-36 bg-white py-16 sm:py-20">
+      <section id="explication" className="scroll-mt-36 bg-white py-12 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <Reveal
@@ -125,7 +125,7 @@ export default function Lessons() {
                 srcSet={buildSrcSet(images.lessonsIntro)}
                 sizes={DEFAULT_SIZES}
                 alt={l.aboutTitle}
-                className="h-72 w-full object-cover sm:h-96"
+                className="h-52 w-full object-cover sm:h-96"
                 loading="lazy"
               />
             </Reveal>
@@ -160,11 +160,11 @@ export default function Lessons() {
           {/* Quality teaching: diplomas | quality + experience | safety */}
           <Reveal delay={120} className="mt-10 overflow-hidden rounded-3xl border border-black/10 bg-white shadow-xl">
             <div className="grid divide-y divide-black/10 lg:grid-cols-[0.9fr_1.1fr_1fr] lg:divide-x lg:divide-y-0">
-              <div className="flex items-center justify-center bg-[#f3f7fd] p-6 sm:p-8">
+              <div className="flex items-center justify-center bg-[#f3f7fd] p-6 sm:p-8 max-md:p-4">
                 <img
                   src={SCHOOL_LABEL_SVG}
                   alt={t.ui.lessons.frenchSurfFederationLevel}
-                  className="h-auto w-full max-w-[18rem] object-contain"
+                  className="h-auto w-full max-w-[18rem] object-contain max-md:max-w-[11rem]"
                   loading="lazy"
                   decoding="async"
                 />
@@ -240,7 +240,7 @@ export default function Lessons() {
                 srcSet={buildSrcSet(images.lessonsSunset)}
                 sizes={DEFAULT_SIZES}
                 alt={l.sunsetTitle}
-                className="h-72 w-full object-cover sm:h-96"
+                className="h-52 w-full object-cover sm:h-96"
                 loading="lazy"
                 onError={(event) => {
                   event.currentTarget.src = images.lessonsSunset
@@ -293,7 +293,7 @@ export default function Lessons() {
       </section>
 
       {/* ---- School values ---- */}
-      <section id="valeurs" className="scroll-mt-24 bg-white py-16 sm:py-20">
+      <section id="valeurs" className="scroll-mt-24 bg-white py-12 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-center text-3xl font-black text-royalBlue sm:text-4xl">{school.valuesTitle}</h2>
@@ -311,23 +311,23 @@ export default function Lessons() {
                 <Reveal
                   key={value.title}
                   delay={index * 100}
-                  className="rounded-2xl border-b-4 border-red bg-lightGray p-6 text-center shadow-sm"
+                  className="rounded-2xl border-b-4 border-red bg-lightGray p-6 text-center shadow-sm max-md:grid max-md:grid-cols-[3.5rem_1fr] max-md:items-start max-md:gap-x-4 max-md:p-4 max-md:text-left"
                 >
                   {isQualitySafety ? (
                     <img
                       src={SCHOOL_LABEL_SVG}
                       alt={t.ui.lessons.frenchSurfSchool}
-                      className="mx-auto h-32 w-32 object-contain"
+                      className="mx-auto h-32 w-32 object-contain max-md:row-span-2 max-md:mx-0 max-md:h-14 max-md:w-14"
                       loading="lazy"
                       decoding="async"
                     />
                   ) : (
-                    <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-royalBlue/10">
+                    <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-royalBlue/10 max-md:row-span-2 max-md:mx-0">
                       <Icon className="h-7 w-7 text-royalBlue" />
                     </span>
                   )}
-                  <h3 className="mt-4 text-xl font-extrabold text-royalBlue">{value.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-dark/75">{value.text}</p>
+                  <h3 className="mt-4 text-xl font-extrabold text-royalBlue max-md:mt-0 max-md:text-lg">{value.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-dark/75 max-md:mt-1">{value.text}</p>
                 </Reveal>
               )
             })}
@@ -336,7 +336,7 @@ export default function Lessons() {
       </section>
 
       {/* ---- Next 2 days schedule preview ---- */}
-      <section id="planning-cours-semaine" className="scroll-mt-36 bg-lightGray py-16 sm:py-20">
+      <section id="planning-cours-semaine" className="scroll-mt-36 bg-lightGray py-12 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-royalBlue/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-royalBlue">
@@ -347,21 +347,21 @@ export default function Lessons() {
             <p className="mt-4 max-w-3xl text-base text-dark/75 sm:text-lg">{l.weeklySchedule.subtitle}</p>
           </Reveal>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 max-md:mt-6 max-md:grid-cols-2 max-md:gap-3">
             {nextTwoDays.map((day, index) => (
               <Reveal
                 key={day.day}
                 delay={index * 100}
                 className="overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-black/5"
               >
-                <div className="bg-royalBlue px-5 py-4 text-white">
-                  <h3 className="text-2xl font-black">{day.day}</h3>
+                <div className="bg-royalBlue px-5 py-4 text-white max-md:px-3 max-md:py-2.5">
+                  <h3 className="text-2xl font-black max-md:text-lg">{day.day}</h3>
                 </div>
-                <div className="space-y-2 p-5">
+                <div className="space-y-2 p-5 max-md:p-2">
                   {day.slots.length ? day.slots.map((slot) => (
                     <div
                       key={`${day.day}-${slot.time}-${slot.type}-${slot.level}`}
-                      className="rounded-xl bg-lightGray px-4 py-3"
+                      className="rounded-xl bg-lightGray px-4 py-3 max-md:px-2.5 max-md:py-2"
                     >
                       <div className="flex items-center justify-between gap-2">
                         <p className="text-base font-black text-dark">{slot.time}</p>
@@ -398,7 +398,7 @@ export default function Lessons() {
             <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
               <Link
                 to={giftPath}
-                className="relative block min-h-[320px] sm:min-h-[420px]"
+                className="relative block min-h-[320px] sm:min-h-[420px] max-md:min-h-[200px]"
                 aria-label={t.ui.lessons.openGiftVoucherPage}
               >
                 <img
@@ -507,7 +507,7 @@ export default function Lessons() {
       </section>
 
       {/* ---- Combo package ---- */}
-      <section className="bg-lightGray py-16 sm:py-20">
+      <section className="bg-lightGray py-12 sm:py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Reveal className="overflow-hidden rounded-3xl bg-royalBlue shadow-xl">
             <div className="grid gap-8 p-8 sm:p-12 lg:grid-cols-[1.4fr_1fr] lg:items-center">

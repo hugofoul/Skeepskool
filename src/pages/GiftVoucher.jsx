@@ -238,7 +238,7 @@ export default function GiftVoucher() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Reveal className="overflow-hidden rounded-3xl bg-royalBlue shadow-xl ring-1 ring-black/10">
             <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
-              <div className="relative min-h-[320px] sm:min-h-[420px]">
+              <div className="relative min-h-[320px] sm:min-h-[420px] max-md:min-h-[200px]">
                 <img
                   src={images.giftVoucher}
                   srcSet={buildSrcSet(images.giftVoucher)}
@@ -301,7 +301,7 @@ export default function GiftVoucher() {
           >
             <Reveal className="rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5 sm:p-7">
               <h2 className="text-xl font-black text-royalBlue">{b.contactTitleGift}</h2>
-              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              <div className="mt-5 grid gap-4 sm:grid-cols-2 max-md:grid-cols-2 max-md:gap-3">
                 <label className="block">
                   <span className="mb-2 block text-sm font-semibold text-dark">{b.firstName}</span>
                   <input
@@ -324,7 +324,7 @@ export default function GiftVoucher() {
                   />
                 </label>
 
-                <label className="block sm:col-span-2">
+                <label className="block sm:col-span-2 max-md:col-span-2">
                   <span className="mb-2 block text-sm font-semibold text-dark">{b.phone}</span>
                   <div className="grid gap-3 sm:grid-cols-[170px_1fr]">
                     <select
@@ -392,7 +392,7 @@ export default function GiftVoucher() {
                   {phoneError && <span className="mt-1 block text-xs font-bold text-red">{phoneError}</span>}
                 </label>
 
-                <label className="block sm:col-span-2">
+                <label className="block sm:col-span-2 max-md:col-span-2">
                   <span className="mb-2 block text-sm font-semibold text-dark">{b.emailOptional}</span>
                   <input
                     type="email"
@@ -442,7 +442,7 @@ export default function GiftVoucher() {
                       )}
                     </div>
 
-                    <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="grid gap-4 sm:grid-cols-2 max-md:grid-cols-2 max-md:gap-3">
                       <label className="block">
                         <span className="mb-2 block text-sm font-semibold text-dark">{b.surferFirstName}</span>
                         <input
@@ -465,7 +465,7 @@ export default function GiftVoucher() {
                         />
                       </label>
 
-                      <label className="block sm:col-span-2">
+                      <label className="block sm:col-span-2 max-md:col-span-2">
                         <span className="mb-2 block text-sm font-semibold text-dark">{b.surferPackageGift}</span>
                         <select
                           className={inputClass}

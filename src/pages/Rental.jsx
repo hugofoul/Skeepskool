@@ -119,20 +119,20 @@ export default function Rental() {
               loading="lazy"
             />
           </Reveal>
-          <div className={`mt-12 grid gap-6 ${r.guide.length === 2 ? 'md:mx-auto md:max-w-4xl md:grid-cols-2' : 'md:grid-cols-3'}`}>
+          <div className={`mt-12 grid gap-6 max-md:mt-6 max-md:gap-3 ${r.guide.length === 2 ? 'md:mx-auto md:max-w-4xl md:grid-cols-2' : 'md:grid-cols-3'}`}>
             {r.guide.map((g, i) => {
               const Icon = guideIcons[i]
               return (
                 <Reveal
                   key={g.title}
                   delay={i * 120}
-                  className="rounded-2xl border-b-4 border-red bg-white p-7 shadow-md"
+                  className="rounded-2xl border-b-4 border-red bg-white p-7 shadow-md max-md:grid max-md:grid-cols-[3rem_1fr] max-md:items-start max-md:gap-x-4 max-md:p-4"
                 >
-                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-royalBlue/10">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-royalBlue/10 max-md:row-span-2 max-md:h-12 max-md:w-12">
                     <Icon className="h-7 w-7 text-royalBlue" />
                   </span>
-                  <h3 className="mt-5 text-xl font-extrabold text-royalBlue">{g.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-dark/75">{g.text}</p>
+                  <h3 className="mt-5 text-xl font-extrabold text-royalBlue max-md:mt-0 max-md:text-lg">{g.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-dark/75 max-md:mt-1">{g.text}</p>
                 </Reveal>
               )
             })}
@@ -155,7 +155,7 @@ export default function Rental() {
       </section>
 
       {/* ---- Pricing table (desktop) ---- */}
-      <section id="tarifs-location" className="scroll-mt-36 bg-white py-16 sm:py-20">
+      <section id="tarifs-location" className="scroll-mt-36 bg-white py-12 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <Reveal className="mb-8">
             <h2 className="text-center text-3xl font-black text-royalBlue sm:text-4xl">
@@ -199,35 +199,33 @@ export default function Rental() {
             </table>
           </Reveal>
 
-          {/* Mobile cards */}
-          <div className="space-y-5 md:hidden">
-            {r.rows.map((row, ri) => (
-              <Reveal
-                key={row.item}
-                delay={ri * 100}
-                className="overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-black/10"
-              >
-                <div className="bg-royalBlue px-5 py-3">
-                  <h3 className="font-extrabold text-white">{row.item}</h3>
-                </div>
-                <dl className="divide-y divide-black/5">
-                  {row.prices.map((price, pi) => (
-                    <div
-                      key={pi}
-                      className={`flex items-center justify-between px-5 py-3 ${
-                        pi % 2 === 0 ? 'bg-white' : 'bg-lightGray'
-                      }`}
-                    >
-                      <dt className="text-sm font-medium text-dark/75">
-                        {r.tableHead[pi + 1]}
-                      </dt>
-                      <dd className="font-bold text-red">{price}</dd>
-                    </div>
+          {/* Mobile: one comparison table (equipment in columns, durations in rows) */}
+          <Reveal className="overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-black/10 md:hidden">
+            <table className="w-full table-fixed border-collapse text-left">
+              <thead>
+                <tr className="bg-royalBlue text-white">
+                  <th className="w-[28%] px-2.5 py-3 text-xs font-bold">{r.tableHead[0]}</th>
+                  {r.rows.map((row) => (
+                    <th key={row.item} className="hyphens-auto break-words px-1 py-3 text-center text-xs font-bold leading-tight">
+                      {row.item}
+                    </th>
                   ))}
-                </dl>
-              </Reveal>
-            ))}
-          </div>
+                </tr>
+              </thead>
+              <tbody>
+                {r.tableHead.slice(1).map((head, pi) => (
+                  <tr key={head} className={pi % 2 === 0 ? 'bg-white' : 'bg-lightGray'}>
+                    <th scope="row" className="px-2.5 py-3 text-xs font-semibold leading-tight text-dark/80">{head}</th>
+                    {r.rows.map((row) => (
+                      <td key={row.item} className="px-1 py-3 text-center text-sm font-bold text-red">
+                        {row.prices[pi]}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </Reveal>
 
           {/* Rental conditions */}
           <Reveal className="mt-8 rounded-2xl border-2 border-royalBlue/20 bg-royalBlue/5 p-5 shadow-sm sm:p-6">

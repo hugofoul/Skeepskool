@@ -63,7 +63,7 @@ export default function Contact() {
       <PageHero title={c.heroTitle} subtitle={c.heroSubtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
 
       {/* ---- Info cards ---- */}
-      <section id="infos-contact" className="scroll-mt-36 bg-white py-16 sm:py-20">
+      <section id="infos-contact" className="scroll-mt-36 bg-white py-12 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{c.infoTitle}</h2>
@@ -71,8 +71,8 @@ export default function Contact() {
             {c.infoLead && <p className="mt-4 max-w-2xl text-base text-dark/75 sm:text-lg">{c.infoLead}</p>}
           </Reveal>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
-            <InfoCard icon={Phone}>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 max-md:mt-6 max-md:grid-cols-2 max-md:gap-3">
+            <InfoCard icon={Phone} className="max-md:col-span-2">
               <a href="tel:+33670608426" onClick={() => trackEvent('click_phone', { target: 'tel:+33670608426', source: 'contact_page' })} className="block font-semibold text-dark hover:text-red max-md:py-2.5">
                 +33 6 70 60 84 26
               </a>
@@ -87,7 +87,7 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="font-semibold text-dark hover:text-red max-md:inline-block max-md:py-2"
               >
-                {c.instagram}
+                <span className="max-md:hidden">{c.instagram}</span><span className="md:hidden">Instagram</span>
               </a>
             </InfoCard>
             <InfoCard icon={Facebook}>
@@ -97,7 +97,7 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="font-semibold text-dark hover:text-red max-md:inline-block max-md:py-2"
               >
-                {c.facebook}
+                <span className="max-md:hidden">{c.facebook}</span><span className="md:hidden">Facebook</span>
               </a>
             </InfoCard>
           </div>
@@ -123,7 +123,7 @@ export default function Contact() {
 
       {/* ---- WhatsApp community ---- */}
       {/* ---- Map ---- */}
-      <section className="scroll-mt-36 bg-lightGray py-16 sm:py-20">
+      <section className="scroll-mt-36 bg-lightGray py-12 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 id="comment-nous-trouver" className="scroll-mt-36 text-3xl font-black text-red sm:text-4xl">{c.findUsTitle}</h2>
@@ -143,12 +143,12 @@ export default function Contact() {
                 <p className="mt-3 text-sm font-semibold text-yellow sm:text-base">
                   {c.findUs.busBookingNote}
                 </p>
-                <div className="mt-6 flex flex-wrap gap-3">
+                <div className="mt-6 flex flex-wrap gap-3 max-md:grid max-md:grid-cols-2 max-md:gap-2">
                   <CTAButton
                     href={c.findUs.busUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-yellow text-royalBlue hover:bg-white"
+                    className="bg-yellow text-royalBlue hover:bg-white max-md:col-span-2"
                   >
                     {c.findUs.busCta}
                     <ExternalLink className="h-4 w-4" />
@@ -157,18 +157,18 @@ export default function Contact() {
                     href={c.findUs.busAppStoreUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-red hover:bg-yellow"
+                    className="bg-red hover:bg-yellow max-md:justify-center max-md:whitespace-nowrap max-md:px-3"
                   >
-                    {c.findUs.busAppStoreCta}
+                    <span className="max-md:hidden">{c.findUs.busAppStoreCta}</span><span className="md:hidden">App Store</span>
                     <ExternalLink className="h-4 w-4" />
                   </CTAButton>
                   <CTAButton
                     href={c.findUs.busGooglePlayUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="border border-white/30 bg-white/10 hover:bg-white/20"
+                    className="border border-white/30 bg-white/10 hover:bg-white/20 max-md:justify-center max-md:whitespace-nowrap max-md:px-3"
                   >
-                    {c.findUs.busGooglePlayCta}
+                    <span className="max-md:hidden">{c.findUs.busGooglePlayCta}</span><span className="md:hidden">Google Play</span>
                     <ExternalLink className="h-4 w-4" />
                   </CTAButton>
                 </div>
@@ -205,7 +205,7 @@ export default function Contact() {
                 title={c.findUs.parkingLabel}
                 label={c.findUs.parking}
               />
-              <div className="flex items-start gap-4 rounded-xl bg-white p-4 shadow-sm ring-1 ring-black/5">
+              <div className="flex items-start gap-4 rounded-xl bg-white p-4 shadow-sm ring-1 ring-black/5 max-md:hidden">
                 <span className="rounded-lg bg-royalBlue/10 p-2">
                   <Bus className="h-5 w-5 text-royalBlue" />
                 </span>
@@ -237,7 +237,7 @@ export default function Contact() {
                     srcSet={buildSrcSet(images.contactPlan)}
                     sizes={DEFAULT_SIZES}
                     alt={mapPlanAlt}
-                    className="h-80 w-full object-cover object-[88%_4%] sm:h-96"
+                    className="h-80 w-full object-cover object-[88%_4%] sm:h-96 max-md:h-52"
                     loading="lazy"
                   />
                 </button>
@@ -250,7 +250,7 @@ export default function Contact() {
                 <iframe
                   title={c.mapTitle}
                   src={MAP_SRC}
-                  className="h-80 w-full border-0"
+                  className="h-80 w-full border-0 max-md:h-56"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   allowFullScreen
@@ -262,7 +262,7 @@ export default function Contact() {
       </section>
 
       {/* ---- FAQ ---- */}
-      <section id="faq" className="scroll-mt-36 bg-white py-16 sm:py-20">
+      <section id="faq" className="scroll-mt-36 bg-white py-12 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="flex items-center gap-3">
@@ -352,7 +352,7 @@ export default function Contact() {
       ) : null}
 
       {/* ---- Around: Camping ---- */}
-      <section id="camping-la-grigne" className="scroll-mt-36 bg-white py-16 sm:py-20">
+      <section id="camping-la-grigne" className="scroll-mt-36 bg-white py-12 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="flex items-center gap-3">
@@ -369,7 +369,7 @@ export default function Contact() {
                 srcSet={buildSrcSet(images.aroundCamping)}
                 sizes={DEFAULT_SIZES}
                 alt={a.camping.name}
-                className="h-72 w-full object-cover sm:h-96"
+                className="h-52 w-full object-cover sm:h-96"
                 loading="lazy"
               />
             </Reveal>
@@ -404,7 +404,7 @@ export default function Contact() {
       </section>
 
       {/* ---- Around: Restaurants ---- */}
-      <section id="ou-manger" className="scroll-mt-36 bg-lightGray py-16 sm:py-20">
+      <section id="ou-manger" className="scroll-mt-36 bg-lightGray py-12 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="flex items-center gap-3">
@@ -415,17 +415,17 @@ export default function Contact() {
             <p className="mt-5 max-w-2xl text-lg text-dark/75">{a.restaurantsIntro}</p>
           </Reveal>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 max-md:mt-6 max-md:-mx-4 max-md:flex max-md:snap-x max-md:snap-mandatory max-md:gap-4 max-md:overflow-x-auto max-md:px-4 max-md:pb-3 max-md:[scrollbar-width:none] max-md:[&::-webkit-scrollbar]:hidden">
             {a.restaurants.map((resto, i) => (
               <Reveal
                 key={resto.name}
                 delay={i * 120}
-                className="flex flex-col overflow-hidden rounded-2xl border-b-4 border-red bg-white shadow-md"
+                className="flex flex-col overflow-hidden rounded-2xl border-b-4 border-red bg-white shadow-md max-md:w-[82%] max-md:shrink-0 max-md:snap-center"
               >
                 <iframe
                   src={resto.embedUrl}
                   title={`${resto.name} Instagram`}
-                  className="h-80 w-full border-0 bg-lightGray sm:h-96"
+                  className="h-80 w-full border-0 bg-lightGray sm:h-96 max-md:h-72"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
@@ -449,7 +449,7 @@ export default function Contact() {
       </section>
 
       {/* ---- Around: Tourist office ---- */}
-      <section className="bg-white py-16 sm:py-20">
+      <section className="bg-white py-12 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="flex items-center gap-3">
@@ -466,7 +466,7 @@ export default function Contact() {
                 srcSet={buildSrcSet(images.aroundTourism)}
                 sizes={DEFAULT_SIZES}
                 alt={a.tourismTitle}
-                className="h-72 w-full object-cover sm:h-96"
+                className="h-52 w-full object-cover sm:h-96"
                 loading="lazy"
               />
             </Reveal>
@@ -486,9 +486,9 @@ export default function Contact() {
   )
 }
 
-function InfoCard({ icon: Icon, children }) {
+function InfoCard({ icon: Icon, children, className = '' }) {
   return (
-    <div className="rounded-2xl border-b-4 border-red bg-white p-6 shadow-md">
+    <div className={`rounded-2xl border-b-4 border-red bg-white p-6 shadow-md max-md:p-4 ${className}`}>
       <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-royalBlue/10">
         <Icon className="h-5 w-5 text-royalBlue" />
       </div>

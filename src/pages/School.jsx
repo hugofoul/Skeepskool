@@ -66,7 +66,7 @@ export default function School() {
                   srcSet={buildSrcSet(introSectionImages[i])}
                   sizes={DEFAULT_SIZES}
                   alt={sec.title}
-                  className="h-72 w-full object-cover sm:h-96"
+                  className="h-52 w-full object-cover sm:h-96"
                   loading="lazy"
                 />
               </Reveal>
@@ -87,16 +87,16 @@ export default function School() {
               </p>
             )}
           </Reveal>
-          <div className={`mt-12 grid gap-8 ${s.values.length === 1 ? 'md:grid-cols-1' : 'md:grid-cols-3'}`}>
+          <div className={`mt-12 grid gap-8 max-md:mt-8 max-md:gap-6 ${s.values.length === 1 ? 'md:grid-cols-1' : 'md:grid-cols-3'}`}>
             {s.values.map((v, i) => {
               const Icon = valueIcons[i]
               return (
-                <Reveal key={v.title} delay={i * 120} className="mx-auto text-center md:max-w-md">
-                  <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/10">
+                <Reveal key={v.title} delay={i * 120} className="mx-auto text-center md:max-w-md max-md:grid max-md:grid-cols-[3.5rem_1fr] max-md:items-start max-md:gap-x-4 max-md:text-left">
+                  <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/10 max-md:row-span-2 max-md:mx-0 max-md:h-14 max-md:w-14">
                     <Icon className="h-8 w-8 text-yellow" />
                   </span>
-                  <h3 className="mt-5 text-xl font-extrabold">{v.title}</h3>
-                  <p className="mx-auto mt-2 max-w-xs text-sm text-white/80">{v.text}</p>
+                  <h3 className="mt-5 text-xl font-extrabold max-md:mt-0 max-md:text-lg">{v.title}</h3>
+                  <p className="mx-auto mt-2 max-w-xs text-sm text-white/80 max-md:mx-0 max-md:mt-1 max-md:max-w-none">{v.text}</p>
                 </Reveal>
               )
             })}
@@ -105,7 +105,7 @@ export default function School() {
       </section>
 
       {/* ---- Team presentation ---- */}
-      <section id="equipe" className="scroll-mt-24 bg-white py-16 sm:py-24">
+      <section id="equipe" className="scroll-mt-24 bg-white py-12 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-center text-3xl font-black text-royalBlue sm:text-4xl">
@@ -116,14 +116,14 @@ export default function School() {
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-md:mt-8 max-md:grid-cols-1 max-md:gap-3">
             {s.team.map((member, i) => (
               <Reveal
                 key={member.name}
                 delay={(i % 4) * 100}
-                className="group overflow-hidden rounded-2xl bg-lightGray shadow-md ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1"
+                className="group max-md:flex max-md:items-center max-md:gap-4 max-md:p-3 overflow-hidden rounded-2xl bg-lightGray shadow-md ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-64 overflow-hidden max-md:h-20 max-md:w-20 max-md:shrink-0 max-md:rounded-full">
                   <img
                     src={teamPortraits[member.image] || teamImages[i % teamImages.length]}
                     srcSet={buildSrcSet(teamPortraits[member.image] || teamImages[i % teamImages.length])}
@@ -133,9 +133,9 @@ export default function School() {
                     loading="lazy"
                   />
                 </div>
-                <div className="p-5">
-                  <h3 className="text-xl font-extrabold text-royalBlue">{member.name}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-dark/75">{member.text}</p>
+                <div className="p-5 max-md:p-0">
+                  <h3 className="text-xl font-extrabold text-royalBlue max-md:text-lg">{member.name}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-dark/75 max-md:mt-0.5">{member.text}</p>
                 </div>
               </Reveal>
             ))}

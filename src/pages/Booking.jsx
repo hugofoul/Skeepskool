@@ -347,7 +347,7 @@ export default function Booking() {
           >
             <Reveal className="rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5 sm:p-7">
               <h2 className="text-xl font-black text-royalBlue">{b.contactTitleGift}</h2>
-              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              <div className="mt-5 grid gap-4 sm:grid-cols-2 max-md:grid-cols-2 max-md:gap-3">
                 <label className="block">
                   <span className="mb-2 block text-sm font-semibold text-dark">{b.firstName}</span>
                   <input
@@ -370,7 +370,7 @@ export default function Booking() {
                   />
                 </label>
 
-                <label className="block sm:col-span-2">
+                <label className="block sm:col-span-2 max-md:col-span-2">
                   <span className="mb-2 block text-sm font-semibold text-dark">{b.phone}</span>
                   <div className="grid gap-3 sm:grid-cols-[170px_1fr]">
                     <select
@@ -438,7 +438,7 @@ export default function Booking() {
                   {phoneError && <span className="mt-1 block text-xs font-bold text-red">{phoneError}</span>}
                 </label>
 
-                <label className="block sm:col-span-2">
+                <label className="block sm:col-span-2 max-md:col-span-2">
                   <span className="mb-2 block text-sm font-semibold text-dark">{b.emailOptional}</span>
                   <input
                     type="email"
@@ -498,7 +498,7 @@ export default function Booking() {
                       )}
                     </div>
 
-                    <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="grid gap-4 sm:grid-cols-2 max-md:grid-cols-2 max-md:gap-3">
                       <label className="block">
                         <span className="mb-2 block text-sm font-semibold text-dark">{b.surferFirstName}</span>
                         <input
@@ -521,7 +521,7 @@ export default function Booking() {
                         />
                       </label>
 
-                      <label className="block sm:col-span-2">
+                      <label className="block sm:col-span-2 max-md:col-span-2">
                         <span className="mb-2 block text-sm font-semibold text-dark">{b.surferPackage}</span>
                         <select
                           className={inputClass}

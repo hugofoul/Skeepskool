@@ -270,7 +270,7 @@ export default function Home() {
       </section>
 
       {/* ---------------- COURSES ---------------- */}
-      <section className="bg-[#f7f9fc] py-16 sm:py-20">
+      <section className="bg-[#f7f9fc] py-12 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-royalBlue/80">
@@ -284,14 +284,14 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3 max-md:mt-6 max-md:-mx-4 max-md:flex max-md:snap-x max-md:snap-mandatory max-md:gap-4 max-md:overflow-x-auto max-md:px-4 max-md:pb-3 max-md:[scrollbar-width:none] max-md:[&::-webkit-scrollbar]:hidden">
             {homeCourseCards.map((card, index) => {
               const isFeatured = Boolean(card.featuredLabel)
               return (
                 <Reveal
                   key={card.title}
                   delay={index * 90}
-                  className={`group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-black/5 transition-all duration-300 hover:shadow-2xl hover:ring-red/20 ${isFeatured ? 'ring-2 ring-red/20' : ''}`}
+                  className={`group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-black/5 transition-all duration-300 hover:shadow-2xl hover:ring-red/20 max-md:w-[82%] max-md:shrink-0 max-md:snap-center ${isFeatured ? 'ring-2 ring-red/20' : ''}`}
                 >
                   {isFeatured ? (
                     <div className="flex min-h-[44px] items-center justify-center bg-red px-5 py-2 text-center text-xs font-extrabold uppercase tracking-[0.14em] text-white">
@@ -385,7 +385,7 @@ export default function Home() {
       </section>
 
       {/* ---------------- SCHOOL ADVANTAGES ---------------- */}
-      <section className="relative overflow-hidden bg-royalBlue py-16 sm:py-20">
+      <section className="relative overflow-hidden bg-royalBlue py-12 sm:py-20">
         <div className="pointer-events-none absolute -left-24 top-8 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -432,7 +432,7 @@ export default function Home() {
                   delay={index * 80}
                   className="w-full px-1 py-1 text-white"
                 >
-                  <p className="flex items-start gap-2 text-lg font-semibold leading-relaxed sm:text-xl lg:text-2xl">
+                  <p className="flex items-start gap-2 text-lg font-semibold leading-relaxed sm:text-xl lg:text-2xl max-md:text-base max-md:leading-snug">
                     <span aria-hidden="true" className="mt-[1px] text-xl text-yellow sm:text-2xl lg:text-3xl">→</span>
                     <span>{item}</span>
                   </p>
@@ -445,7 +445,7 @@ export default function Home() {
       </section>
 
       {/* ---------------- PHOTO CAROUSEL ---------------- */}
-      <section className="bg-lightGray py-16 sm:py-20">
+      <section className="bg-lightGray py-12 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <Carousel slides={carousel} />
@@ -467,7 +467,7 @@ export default function Home() {
       </section>
 
       {/* ---------------- SCHOOL TEAM ---------------- */}
-      <section id="equipe" className="scroll-mt-24 bg-white py-16 sm:py-24">
+      <section id="equipe" className="scroll-mt-24 bg-white py-12 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-center text-3xl font-black text-royalBlue sm:text-4xl">
@@ -479,7 +479,7 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <div className="mt-12 grid grid-cols-2 gap-6 lg:grid-cols-4">
+          <div className="mt-12 grid grid-cols-2 gap-6 lg:grid-cols-4 max-md:mt-8 max-md:grid-cols-1 max-md:gap-3">
             {s.team.map((member, index) => (
               (() => {
                 const imageSrc = teamPortraits[member.image] || teamImages[index % teamImages.length]
@@ -490,9 +490,9 @@ export default function Home() {
               <Reveal
                 key={member.name}
                 delay={(index % 4) * 100}
-                className="group overflow-hidden rounded-2xl bg-lightGray shadow-md ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1"
+                className="group overflow-hidden rounded-2xl bg-lightGray shadow-md ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1 max-md:flex max-md:items-center max-md:gap-4 max-md:p-3"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-64 overflow-hidden max-md:h-20 max-md:w-20 max-md:shrink-0 max-md:rounded-full">
                   <img
                     src={imageSrc}
                     srcSet={buildSrcSet(imageSrc)}
@@ -501,13 +501,13 @@ export default function Home() {
                     className={`h-full w-full ${imagePosition} ${imageScale} transition-transform duration-500`}
                     loading="lazy"
                   />
-                  <span className="absolute bottom-3 left-3 rounded-full bg-yellow px-3 py-1 text-xs font-bold text-royalBlue">
+                  <span className="absolute bottom-3 left-3 rounded-full bg-yellow px-3 py-1 text-xs font-bold text-royalBlue max-md:hidden">
                     {member.role}
                   </span>
                 </div>
-                <div className="p-5">
-                  <h3 className="text-xl font-extrabold text-royalBlue">{member.name}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-dark/75 max-md:break-words max-md:[&:lang(de)]:hyphens-auto">{member.text}</p>
+                <div className="p-5 max-md:p-0">
+                  <h3 className="text-xl font-extrabold text-royalBlue max-md:text-lg">{member.name}</h3>
+                  <p className="mt-2 max-md:mt-0.5 text-sm leading-relaxed text-dark/75 max-md:break-words max-md:[&:lang(de)]:hyphens-auto">{member.text}</p>
                 </div>
               </Reveal>
                 )
@@ -519,7 +519,7 @@ export default function Home() {
 
       {/* ---------------- SURF CONDITIONS ---------------- */}
       {surfConditions.shouldDisplay && (
-        <section className="bg-lightGray py-16 sm:py-20">
+        <section className="bg-lightGray py-12 sm:py-20">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <Reveal className="rounded-3xl border-l-4 border-red bg-white p-7 shadow-lg ring-1 ring-black/5 sm:p-10">
               <span className="inline-flex items-center gap-2 rounded-full bg-royalBlue/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-royalBlue">
@@ -544,7 +544,7 @@ export default function Home() {
       )}
 
       {/* ---------------- TESTIMONIALS ---------------- */}
-      <section className="bg-white py-16 sm:py-24">
+      <section className="bg-white py-12 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-center text-3xl font-black text-royalBlue sm:text-4xl">
@@ -553,12 +553,12 @@ export default function Home() {
             <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
           </Reveal>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 md:grid-cols-3 max-md:mt-8 max-md:-mx-4 max-md:flex max-md:snap-x max-md:snap-mandatory max-md:gap-4 max-md:overflow-x-auto max-md:px-4 max-md:pb-3 max-md:[scrollbar-width:none] max-md:[&::-webkit-scrollbar]:hidden">
             {h.testimonials.map((rev, i) => (
               <Reveal
                 key={rev.name}
                 delay={i * 120}
-                className="rounded-2xl border-l-4 border-red bg-lightGray p-6 shadow-sm"
+                className="rounded-2xl border-l-4 border-red bg-lightGray p-6 shadow-sm max-md:w-[82%] max-md:shrink-0 max-md:snap-center max-md:p-5"
               >
                 <div className="flex gap-1">
                   {Array.from({ length: 5 }).map((_, s) => (
@@ -574,7 +574,7 @@ export default function Home() {
       </section>
 
       {/* ---------------- PRACTICAL / FAQ / MAP ---------------- */}
-      <section className="bg-[#f7f9fc] py-16 sm:py-20">
+      <section className="bg-[#f7f9fc] py-12 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
             <div className="divide-y divide-black/10 lg:grid lg:grid-cols-3 lg:divide-x lg:divide-y-0">

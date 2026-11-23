@@ -14,7 +14,7 @@ export default function Privacy() {
       <SEO title={p.seoTitle} routeKey="privacy" description={p.seoDescription} />
       <PageHero title={p.heroTitle} subtitle={p.heroSubtitle} image={images.fondpages} titleClassName="font-bold -translate-y-2" compact />
 
-      <section className="bg-white py-16 sm:py-20">
+      <section className="bg-white py-12 sm:py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <p className="text-sm font-semibold text-dark/60">{p.updated}</p>
           <div className="mt-8 space-y-10">
