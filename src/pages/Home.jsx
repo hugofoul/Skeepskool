@@ -262,7 +262,7 @@ export default function Home() {
         </div>
 
         <div className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-center text-white/90">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] max-md:text-xs">
             {t.ui.home.scroll}
           </p>
           <span className="mt-1 block text-sm leading-none animate-bounce">↓</span>
@@ -299,7 +299,7 @@ export default function Home() {
                     </div>
                   ) : (
                     <div className="flex min-h-[44px] items-center justify-center px-5 py-2">
-                      <span className="inline-flex rounded-full bg-royalBlue/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-royalBlue">
+                      <span className="inline-flex rounded-full bg-royalBlue/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-royalBlue max-md:text-xs">
                         {card.badge}
                       </span>
                     </div>
@@ -331,7 +331,7 @@ export default function Home() {
           </div>
 
           <Reveal delay={120} className="mt-8 text-center">
-            <Link to={lessonsPricingPath} className="text-base font-extrabold text-royalBlue transition-colors hover:text-red">
+            <Link to={lessonsPricingPath} className="text-base font-extrabold text-royalBlue transition-colors hover:text-red max-md:inline-block max-md:py-2.5">
               {h.offers.viewAllCta}
             </Link>
           </Reveal>
@@ -339,7 +339,7 @@ export default function Home() {
           <Reveal delay={160} className="mt-4 text-center">
             <Link
               to={schedulePath}
-              className="text-sm font-bold uppercase tracking-[0.12em] text-red transition-colors hover:text-royalBlue"
+              className="text-sm font-bold uppercase tracking-[0.12em] text-red transition-colors hover:text-royalBlue max-md:inline-block max-md:py-2.5"
             >
               {t.ui.home.seeThisWeekS}
             </Link>
@@ -507,7 +507,7 @@ export default function Home() {
                 </div>
                 <div className="p-5">
                   <h3 className="text-xl font-extrabold text-royalBlue">{member.name}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-dark/75">{member.text}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-dark/75 max-md:break-words max-md:[&:lang(de)]:hyphens-auto">{member.text}</p>
                 </div>
               </Reveal>
                 )
@@ -583,7 +583,7 @@ export default function Home() {
                 <span className="mt-3 block h-1 w-16 rounded bg-yellow" />
                 <Link
                   to={contactFindUsPath}
-                  className="mt-4 inline-flex items-center font-bold text-red transition-colors hover:text-royalBlue"
+                  className="mt-4 inline-flex items-center font-bold text-red transition-colors hover:text-royalBlue max-md:mt-2 max-md:min-h-[44px]"
                 >
                   {t.ui.home.goToHowTo}
                 </Link>
@@ -629,7 +629,7 @@ export default function Home() {
                               setOpenFaqIndex(isOpen && !showAllPracticalFaq ? null : index)
                             }
                           }}
-                          className="flex w-full items-center justify-between gap-3 py-2 text-left"
+                          className="flex w-full items-center justify-between gap-3 py-2 text-left max-md:min-h-[48px]"
                           aria-expanded={isOpen}
                           aria-controls={panelId}
                         >
@@ -651,7 +651,7 @@ export default function Home() {
                           {item.ctaLabel && item.ctaRoute ? (
                             <Link
                               to={path(item.ctaRoute)}
-                              className="mb-2 inline-flex rounded-full bg-red px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue"
+                              className="mb-2 inline-flex rounded-full bg-red px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue max-md:px-5 max-md:py-3 max-md:text-sm"
                             >
                               {item.ctaLabel}
                             </Link>
@@ -665,7 +665,7 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={() => setShowAllPracticalFaq(true)}
-                  className="mt-5 inline-flex items-center font-bold text-royalBlue transition-colors hover:text-red"
+                  className="mt-5 inline-flex items-center font-bold text-royalBlue transition-colors hover:text-red max-md:mt-3 max-md:min-h-[44px]"
                 >
                   {h.practical.allQuestionsCta}
                 </button>

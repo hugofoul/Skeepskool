@@ -73,10 +73,10 @@ export default function Contact() {
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2">
             <InfoCard icon={Phone}>
-              <a href="tel:+33670608426" onClick={() => trackEvent('click_phone', { target: 'tel:+33670608426', source: 'contact_page' })} className="block font-semibold text-dark hover:text-red">
+              <a href="tel:+33670608426" onClick={() => trackEvent('click_phone', { target: 'tel:+33670608426', source: 'contact_page' })} className="block font-semibold text-dark hover:text-red max-md:py-2.5">
                 +33 6 70 60 84 26
               </a>
-              <a href={`tel:${CONTACT.phoneSecondary}`} onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phoneSecondary}`, source: 'contact_page' })} className="block font-semibold text-dark hover:text-red">
+              <a href={`tel:${CONTACT.phoneSecondary}`} onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phoneSecondary}`, source: 'contact_page' })} className="block font-semibold text-dark hover:text-red max-md:py-2.5">
                 {CONTACT.phoneSecondaryDisplay}
               </a>
             </InfoCard>
@@ -85,7 +85,7 @@ export default function Contact() {
                 href={SOCIAL.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-dark hover:text-red"
+                className="font-semibold text-dark hover:text-red max-md:inline-block max-md:py-2"
               >
                 {c.instagram}
               </a>
@@ -95,7 +95,7 @@ export default function Contact() {
                 href={SOCIAL.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-dark hover:text-red"
+                className="font-semibold text-dark hover:text-red max-md:inline-block max-md:py-2"
               >
                 {c.facebook}
               </a>
@@ -178,7 +178,7 @@ export default function Contact() {
                 <p className="text-xs font-bold uppercase tracking-widest text-yellow">
                   {c.findUs.busPriceLabel}
                 </p>
-                <p className="mt-2 text-4xl font-black text-yellow">{c.findUs.busPrice}</p>
+                <p className="mt-2 text-4xl font-black text-yellow max-md:text-2xl">{c.findUs.busPrice}</p>
                 {c.findUs.busPriceNote && (
                   <p className="mt-3 text-xs text-white/75">{c.findUs.busPriceNote}</p>
                 )}
@@ -212,7 +212,7 @@ export default function Contact() {
                 <div>
                   <p className="font-bold text-royalBlue">{c.findUs.busLabel}</p>
                   <p className="text-sm text-dark/80">{c.findUs.bus}</p>
-                  <a href="#bus-details" className="mt-2 inline-block text-sm font-semibold text-red hover:underline">
+                  <a href="#bus-details" className="mt-2 inline-block text-sm font-semibold text-red hover:underline max-md:py-2.5">
                     {c.findUs.busLearnMore}
                   </a>
                 </div>
@@ -306,7 +306,7 @@ export default function Contact() {
                     {item.ctaLabel && item.ctaRoute ? (
                       <Link
                         to={path(item.ctaRoute)}
-                        className="mt-3 inline-flex rounded-full bg-red px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue"
+                        className="mt-3 inline-flex rounded-full bg-red px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-yellow hover:text-royalBlue max-md:px-5 max-md:py-3 max-md:text-sm"
                       >
                         {item.ctaLabel}
                       </Link>
@@ -383,7 +383,7 @@ export default function Contact() {
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="h-5 w-5 shrink-0 text-royalBlue" />
-                  <a href="tel:+33556265488" className="font-semibold hover:text-red">
+                  <a href="tel:+33556265488" className="font-semibold hover:text-red max-md:inline-block max-md:py-2.5">
                     {a.camping.phone}
                   </a>
                 </li>

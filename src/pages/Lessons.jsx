@@ -144,7 +144,7 @@ export default function Lessons() {
                 <Reveal
                   key={fact.label}
                   delay={i * 100}
-                  className="rounded-2xl border-b-4 border-red bg-lightGray p-6 shadow-sm"
+                  className="rounded-2xl border-b-4 border-red bg-lightGray p-6 shadow-sm max-md:break-words max-md:[&:lang(de)]:hyphens-auto max-md:p-4"
                 >
                   <Icon className="h-9 w-9 text-royalBlue" strokeWidth={2} />
                   <p className="mt-3 text-xs font-bold uppercase tracking-widest text-royalBlue/70">
@@ -449,7 +449,7 @@ export default function Lessons() {
           <Reveal>
             <h2 className="text-3xl font-black text-royalBlue sm:text-4xl">{l.pricesTitle}</h2>
             <span className="mx-auto mt-3 block h-1 w-16 rounded bg-yellow" />
-            <p className="mx-auto mt-5 flex w-full max-w-3xl items-center justify-center rounded-full bg-yellow/20 px-6 py-2.5 text-center text-base font-bold text-royalBlue ring-1 ring-yellow sm:max-w-5xl sm:px-8 sm:text-lg lg:max-w-6xl xl:max-w-7xl">
+            <p className="mx-auto mt-5 flex w-full max-w-3xl items-center justify-center rounded-full bg-yellow/20 px-6 py-2.5 text-center text-base font-bold max-md:rounded-2xl max-md:px-4 max-md:py-3 max-md:text-sm text-royalBlue ring-1 ring-yellow sm:max-w-5xl sm:px-8 sm:text-lg lg:max-w-6xl xl:max-w-7xl">
               {l.validityNote}
             </p>
           </Reveal>
@@ -471,17 +471,17 @@ export default function Lessons() {
                   }`}
                 >
                   {popular && (
-                    <span className="absolute right-4 top-4 z-10 inline-flex items-center gap-1 rounded-full bg-yellow px-3 py-1 text-xs font-bold text-royalBlue">
+                    <span className="absolute right-4 top-4 z-10 inline-flex items-center gap-1 rounded-full bg-yellow px-3 py-1 text-xs font-bold text-royalBlue max-md:left-3 max-md:right-auto max-md:top-3 max-md:px-2.5">
                       <Star className="h-3.5 w-3.5 fill-royalBlue" />
                       {l.popular}
                     </span>
                   )}
                   {/* royalBlue top band */}
-                  <div className="bg-royalBlue px-6 py-5">
+                  <div className={`bg-royalBlue px-6 py-5 max-md:px-4 ${popular ? 'max-md:pt-12' : ''}`}>
                     <h3 className="text-lg font-extrabold text-white">{card.name}</h3>
                     <p className="text-sm text-white/75">{card.detail}</p>
                   </div>
-                  <div className="flex flex-1 flex-col px-6 py-6">
+                  <div className="flex flex-1 flex-col px-6 py-6 max-md:px-4">
                     <p className="text-4xl font-black text-red">{card.price}</p>
                     {card.note && (
                       <p className="mt-1 text-sm font-medium text-dark/60">{card.note}</p>

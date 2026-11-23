@@ -113,7 +113,7 @@ export default function GiftVoucher() {
   const phoneInputRef = useRef(null)
 
   const inputClass =
-    'w-full rounded-xl border border-dark/20 bg-white px-4 py-3 text-sm text-dark shadow-sm outline-none transition focus:border-royalBlue focus:ring-2 focus:ring-royalBlue/20'
+    'w-full rounded-xl border border-dark/20 bg-white px-4 py-3 text-sm max-md:text-base text-dark shadow-sm outline-none transition focus:border-royalBlue focus:ring-2 focus:ring-royalBlue/20'
 
   const buildFullPhone = ({ phoneCountryCode, customPhoneCountryCode, phone }) => {
     const selectedCode = phoneCountryCode === 'custom' ? customPhoneCountryCode : phoneCountryCode

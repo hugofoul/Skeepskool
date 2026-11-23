@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Phone, CalendarCheck2 } from 'lucide-react'
+import { Phone, CalendarCheck2, Clock3 } from 'lucide-react'
 import { useLang } from '../hooks/useLang.js'
 import { usePrimaryPhone } from '../hooks/usePrimaryPhone.js'
 import { routeFromPath } from '../config/routes.js'
@@ -51,20 +51,27 @@ export default function QuickActionBar() {
         isVisible ? 'translate-y-0' : 'translate-y-full'
       }`}
     >
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-3 gap-2">
         <a
           href={`tel:${primaryPhone.tel}`}
           onClick={() => trackEvent('click_phone', { target: `tel:${primaryPhone.tel}`, source: 'quick_action_bar' })}
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-3 py-3 text-sm font-extrabold text-royalBlue"
+          className="inline-flex min-h-[48px] items-center justify-center gap-1.5 rounded-xl bg-white px-2 py-3 text-sm font-extrabold text-royalBlue"
         >
-          <Phone className="h-4 w-4" />
+          <Phone className="h-4 w-4 shrink-0" />
           {t.quickActions.call}
         </a>
         <Link
-          to={path('booking')}
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-red px-3 py-3 text-sm font-extrabold text-white"
+          to={path('schedule')}
+          className="inline-flex min-h-[48px] items-center justify-center gap-1.5 rounded-xl bg-green-500 px-2 py-3 text-sm font-extrabold text-white"
         >
-          <CalendarCheck2 className="h-4 w-4" />
+          <Clock3 className="h-4 w-4 shrink-0" />
+          {t.quickActions.schedule}
+        </Link>
+        <Link
+          to={path('booking')}
+          className="inline-flex min-h-[48px] items-center justify-center gap-1.5 rounded-xl bg-red px-2 py-3 text-sm font-extrabold text-white"
+        >
+          <CalendarCheck2 className="h-4 w-4 shrink-0" />
           {t.quickActions.book}
         </Link>
       </div>

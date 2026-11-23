@@ -10,6 +10,7 @@ export const de = {
     response: 'Schnelle Antwort',
     call: 'Anrufen',
     book: 'Buchen',
+    schedule: 'Kurszeiten',
   },
   nav: {
     home: 'Startseite',

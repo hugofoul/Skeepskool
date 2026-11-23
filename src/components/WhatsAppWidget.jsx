@@ -18,7 +18,7 @@ export default function WhatsAppWidget() {
     <Link
       to={schedulePath}
       aria-label={t.buttonLabel}
-      className="fixed top-32 right-7 z-40 flex items-center gap-1 rounded-full bg-green-500 py-3 pl-4 pr-8 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-green-600"
+      className="fixed top-32 right-7 z-40 flex max-md:hidden items-center gap-1 rounded-full bg-green-500 py-3 pl-4 pr-8 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-green-600"
     >
       <img src={images.whatsapp} alt="WhatsApp" className="h-12 w-12 shrink-0 object-contain" />
       <span className="text-left text-sm font-bold leading-tight">

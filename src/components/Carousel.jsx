@@ -156,7 +156,7 @@ export default function Carousel({ slides = [], interval = 4500 }) {
             onClick={() => goTo(i)}
             aria-label={`Aller à la photo ${i + 1}`}
             aria-current={i === index}
-            className={`h-2.5 rounded-full transition-all ${
+            className={`h-2.5 rounded-full transition-all max-md:relative max-md:before:absolute max-md:before:-inset-x-1.5 max-md:before:-inset-y-4 max-md:before:content-[''] ${
               i === index ? 'w-6 bg-yellow' : 'w-2.5 bg-white/70 hover:bg-white'
             }`}
           />

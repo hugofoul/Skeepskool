@@ -10,6 +10,7 @@ export const en = {
     response: 'Fast response',
     call: 'Call',
     book: 'Book',
+    schedule: 'Schedule',
   },
   nav: {
     home: 'Home',

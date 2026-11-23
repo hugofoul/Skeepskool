@@ -110,7 +110,7 @@ export default function Navbar() {
           }
           setLang(nextLang)
         }}
-        className="h-9 cursor-pointer appearance-none rounded-full bg-royalBlue pl-3 pr-9 text-sm font-bold leading-none text-white shadow-sm transition hover:bg-[#244fc8] focus:outline-none"
+        className="h-9 cursor-pointer appearance-none rounded-full bg-royalBlue pl-3 pr-9 text-sm font-bold leading-none text-white shadow-sm transition hover:bg-[#244fc8] focus:outline-none max-md:h-11 max-md:bg-white/10 max-md:pl-4 max-md:text-base"
       >
         <option value="fr" className="text-royalBlue">🇫🇷</option>
         <option value="en" className="text-royalBlue">🇬🇧</option>
@@ -225,7 +225,7 @@ export default function Navbar() {
           <LangToggle className="hidden md:inline-flex md:translate-y-0.5" />
           <button
             onClick={() => setOpen((v) => !v)}
-            className="text-white md:hidden"
+            className="-m-2 p-2 text-white md:hidden"
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
           >
@@ -234,7 +234,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <div className="-mt-5 px-4 pb-0.5 text-center text-[10px] font-extrabold uppercase tracking-[0.14em] text-yellow md:hidden">
+      <div className="-mt-5 px-4 pb-1 text-center text-xs font-extrabold uppercase tracking-[0.08em] text-yellow md:hidden">
         {t.ui.navbar.aprilToNovember9am}
       </div>
 
@@ -251,7 +251,7 @@ export default function Navbar() {
                 key={l.to}
                 to={l.to}
                 className={({ isActive }) =>
-                  `rounded-lg px-2 py-2.5 text-[0.95rem] font-semibold leading-tight tracking-tight transition-colors sm:px-3 sm:text-base ${
+                  `rounded-lg px-3 py-3 text-base font-semibold leading-tight tracking-tight transition-colors ${
                     isActive ? 'bg-white/10 text-yellow' : 'text-white hover:bg-white/10'
                   }`
                 }
@@ -262,7 +262,7 @@ export default function Navbar() {
             <a
               href={`tel:${primaryPhone.tel}`}
               onClick={() => trackEvent('click_phone', { target: `tel:${primaryPhone.tel}`, source: 'navbar_mobile' })}
-              className="mt-1 flex items-center gap-2 rounded-lg px-2 py-2.5 text-[0.95rem] font-semibold whitespace-nowrap text-white transition-colors hover:bg-white/10 sm:px-3 sm:text-base"
+              className="mt-2 flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-white/10 px-3 py-3 text-base font-bold whitespace-nowrap text-white transition-colors hover:bg-white/20"
             >
               <Phone className="h-5 w-5 text-yellow" />
               {primaryPhone.display}
@@ -270,9 +270,9 @@ export default function Navbar() {
             <NavLink
               to={bookingPath}
               onClick={() => trackEvent('click_booking_cta', { target: bookingPath, source: 'navbar_mobile_cart' })}
-              className="mt-1 inline-flex w-fit items-center self-start rounded-full bg-red px-3 py-1.5 text-sm font-bold leading-tight text-white transition-colors hover:bg-yellow hover:text-royalBlue"
+              className="mt-2 flex min-h-[48px] items-center justify-center rounded-xl bg-red px-3 py-3 text-base font-bold leading-tight text-white transition-colors hover:bg-yellow hover:text-royalBlue"
             >
-              <ShoppingCart className="mr-1.5 inline h-3.5 w-3.5" />
+              <ShoppingCart className="mr-2 inline h-5 w-5" />
               {t.nav.cart}
             </NavLink>
             <div className="pt-3">

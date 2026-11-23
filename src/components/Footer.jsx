@@ -55,12 +55,12 @@ export default function Footer() {
           <h3 className="mb-4 text-sm font-bold uppercase tracking-widest text-yellow">
             {t.footer.quickLinks}
           </h3>
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-2">
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-2 max-md:gap-y-0">
             {links.map((l) => (
               <li key={l.to}>
                 <Link
                   to={l.to}
-                  className="text-sm text-white/85 transition-colors hover:text-yellow"
+                  className="text-sm text-white/85 transition-colors hover:text-yellow max-md:block max-md:py-2.5"
                 >
                   {l.label}
                 </Link>
@@ -82,20 +82,20 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent('click_map', { target: MAPS.addressSearch, source: 'footer' })}
-                className="transition-colors hover:text-yellow"
+                className="transition-colors hover:text-yellow max-md:inline-block max-md:py-2.5"
               >
                 Plage Centrale, Le Porge Océan, 33680 Gironde
               </a>
             </li>
             <li className="flex items-center gap-2">
               <Phone className="h-4 w-4 shrink-0 text-yellow" />
-              <a href="tel:+33670608426" onClick={() => trackEvent('click_phone', { target: 'tel:+33670608426', source: 'footer' })} className="transition-colors hover:text-yellow">
+              <a href="tel:+33670608426" onClick={() => trackEvent('click_phone', { target: 'tel:+33670608426', source: 'footer' })} className="transition-colors hover:text-yellow max-md:py-2.5">
                 +33 6 70 60 84 26
               </a>
             </li>
             <li className="flex items-center gap-2">
               <Phone className="h-4 w-4 shrink-0 text-yellow" />
-              <a href={`tel:${CONTACT.phoneSecondary}`} onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phoneSecondary}`, source: 'footer' })} className="transition-colors hover:text-yellow">
+              <a href={`tel:${CONTACT.phoneSecondary}`} onClick={() => trackEvent('click_phone', { target: `tel:${CONTACT.phoneSecondary}`, source: 'footer' })} className="transition-colors hover:text-yellow max-md:py-2.5">
                 {CONTACT.phoneSecondaryDisplay}
               </a>
             </li>
@@ -107,7 +107,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
-              className="rounded-full bg-white/10 p-2 transition-colors hover:bg-yellow hover:text-royalBlue"
+              className="rounded-full bg-white/10 p-2 transition-colors hover:bg-yellow hover:text-royalBlue max-md:p-3"
             >
               <Facebook className="h-5 w-5" />
             </a>
@@ -116,7 +116,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="rounded-full bg-white/10 p-2 transition-colors hover:bg-yellow hover:text-royalBlue"
+              className="rounded-full bg-white/10 p-2 transition-colors hover:bg-yellow hover:text-royalBlue max-md:p-3"
             >
               <Instagram className="h-5 w-5" />
             </a>
@@ -131,13 +131,13 @@ export default function Footer() {
             {t.footer.rights} · {year}
           </p>
           <div className="flex items-center gap-4">
-            <Link to={path('legal')} className="transition-colors hover:text-yellow">
+            <Link to={path('legal')} className="transition-colors hover:text-yellow max-md:py-3">
               {t.footer.legal}
             </Link>
-            <Link to={path('privacy')} className="transition-colors hover:text-yellow">
+            <Link to={path('privacy')} className="transition-colors hover:text-yellow max-md:py-3">
               {t.footer.privacy}
             </Link>
-            <button type="button" onClick={openCookieSettings} className="transition-colors hover:text-yellow">
+            <button type="button" onClick={openCookieSettings} className="transition-colors hover:text-yellow max-md:py-3">
               {t.footer.cookies}
             </button>
           </div>

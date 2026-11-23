@@ -7,6 +7,7 @@ export const fr = {
     response: 'Réponse rapide',
     call: 'Appeler',
     book: 'Réserver',
+    schedule: 'Horaires',
   },
 
   nav: {
