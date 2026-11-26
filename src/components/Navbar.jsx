@@ -84,6 +84,7 @@ export default function Navbar() {
   ]
 
   const links = [
+    { key: 'home', to: path('home'), label: t.nav.home, end: true },
     { key: 'lessons', to: path('lessons'), label: t.nav.lessons, subLinks: lessonsSubLinks },
     { key: 'rental', to: path('rental'), label: t.nav.rental, subLinks: rentalSubLinks },
     { key: 'gift', to: path('gift'), label: t.nav.gift },
@@ -93,7 +94,7 @@ export default function Navbar() {
 
   const linkClass = (isActive) =>
     [
-      'relative inline-flex h-9 items-center whitespace-nowrap text-sm font-bold text-white transition-colors',
+      'relative inline-flex h-9 items-center whitespace-nowrap text-sm font-bold text-white transition-colors md:max-lg:text-[13px]',
       'after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:bg-yellow after:transition-all after:duration-300',
       isActive ? 'after:w-full' : 'after:w-0 hover:after:w-full',
     ].join(' ')
@@ -127,7 +128,7 @@ export default function Navbar() {
 
         {/* Brand */}
         <Link to={path('home')} className="group flex items-center justify-self-center md:-ml-4 md:justify-self-auto lg:-ml-6" aria-label="Retour à l'accueil">
-          <div className="h-[4.5rem] w-[15rem] overflow-hidden sm:h-[4.5rem] sm:w-[15rem] md:h-[3.75rem] md:w-[12.5rem] lg:h-[4rem] lg:w-[13.5rem]">
+          <div className="h-[4.5rem] w-[15rem] overflow-hidden sm:h-[4.5rem] sm:w-[15rem] md:h-[3rem] md:w-[10rem] lg:h-[4rem] lg:w-[13.5rem]">
             <img
               src="/logo-skeepskool-2026.svg"
               srcSet={buildSrcSet('/logo-skeepskool-2026.svg')}
@@ -139,7 +140,7 @@ export default function Navbar() {
         </Link>
 
         {/* Center links (desktop) */}
-        <div className="hidden items-center gap-4 md:flex lg:gap-6 xl:gap-8">
+        <div className="hidden items-center gap-4 md:flex md:gap-2.5 lg:gap-6 xl:gap-8">
           {links.map((l) => (
             <div
               key={l.key}
@@ -149,6 +150,7 @@ export default function Navbar() {
             >
               <NavLink
                 to={l.to}
+                end={l.end}
                 onClick={() => setActiveTopDropdown(null)}
                 className={({ isActive }) => linkClass(isActive)}
               >
@@ -249,6 +251,7 @@ export default function Navbar() {
               <NavLink
                 key={l.to}
                 to={l.to}
+                end={l.end}
                 className={({ isActive }) =>
                   `rounded-lg px-3 py-3 text-base font-semibold leading-tight tracking-tight transition-colors ${
                     isActive ? 'bg-white/10 text-yellow' : 'text-white hover:bg-white/10'
