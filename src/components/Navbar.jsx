@@ -84,7 +84,6 @@ export default function Navbar() {
   ]
 
   const links = [
-    { key: 'school', to: path('school'), label: t.nav.school },
     { key: 'lessons', to: path('lessons'), label: t.nav.lessons, subLinks: lessonsSubLinks },
     { key: 'rental', to: path('rental'), label: t.nav.rental, subLinks: rentalSubLinks },
     { key: 'gift', to: path('gift'), label: t.nav.gift },

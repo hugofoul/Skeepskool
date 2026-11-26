@@ -11,7 +11,6 @@ export default function Footer() {
 
   const links = [
     { to: path('home'), label: t.nav.home },
-    { to: path('school'), label: t.nav.school },
     { to: path('lessons'), label: t.nav.lessons },
     { to: path('rental'), label: t.nav.rental },
     { to: path('gift'), label: t.nav.gift },
